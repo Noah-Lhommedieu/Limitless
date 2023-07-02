@@ -290,7 +290,7 @@ public ArrayList<Integer> getIsCraftingType()
     return craftingType;
   }
 
-  public Player(int id, String name, int groupe, int sexe, int classe, int color1, int color2, int color3, long kamas, int pts, int _capital, int energy, int level, long exp, int _size, int _gfxid, byte alignement, int account, Map<Integer, Integer> stats, byte seeFriend, byte seeAlign, byte seeSeller, String canaux, short map, int cell, String stuff, String storeObjets, String pdvPer, String spells, String savePos, String jobs, int mountXp, int mount, int honor, int deshonor, int alvl, String z, int title, int wifeGuid, String morphMode, String allTitle, String emotes, long prison, boolean isNew, String parcho, long timeDeblo, boolean noall, String deadInformation, byte deathCount, long totalKills, final int tokens, final int apExo, final int mpExo, final int raExo, String rapid,int song, boolean Reload_item, int prestige, int ornement,int omega, double xpOmega, String ListOrnaments)
+  public Player(int id, String name, int groupe, int sexe, int classe, int color1, int color2, int color3, long kamas, int pts, int _capital, int energy, int level, double exp, int _size, int _gfxid, byte alignement, int account, Map<Integer, Integer> stats, byte seeFriend, byte seeAlign, byte seeSeller, String canaux, short map, int cell, String stuff, String storeObjets, String pdvPer, String spells, String savePos, String jobs, int mountXp, int mount, int honor, int deshonor, int alvl, String z, int title, int wifeGuid, String morphMode, String allTitle, String emotes, long prison, boolean isNew, String parcho, long timeDeblo, boolean noall, String deadInformation, byte deathCount, long totalKills, final int tokens, final int apExo, final int mpExo, final int raExo, String rapid,int song, boolean Reload_item, int prestige, int ornement,int omega, double xpOmega, String ListOrnaments)
   {
     this.id=id;
     this.noall=noall;
@@ -2604,7 +2604,7 @@ public void setTotal_reculte() {
   
   public String getParseToGM()
   {
-	 return parseToGM();
+	 return parseToOa();
   }
   public String parseToMerchant()
   {
@@ -3431,6 +3431,7 @@ public void setTotal_reculte() {
   {
     if(this.getLevel()==Main.world.getExpLevelSize())
       return false;
+    if(this.getLevel() >= 8000) return false;
     double addLvl = addlvl();
     this.level+= addLvl; // Modifier ça pour faire de 1 a 1  vers  1 -> lvl attendu
     _capital+= 5 * addLvl;
@@ -3512,9 +3513,11 @@ public void setTotal_reculte() {
   public boolean addXp(double xpPlayer)
   {
     boolean up=false;
+    if(this.getLevel() < 8000) {
     this.exp+=xpPlayer;
+    }
     int exLevel=this.getLevel();
-    while(this.getExp()>=Main.world.getPersoXpMax(this.getLevel())&&this.getLevel()<Main.world.getExpLevelSize())
+    while(this.getExp()>=Main.world.getPersoXpMax(this.getLevel())&&this.getLevel()<Main.world.getExpLevelSize() && this.getLevel() < 8000)
       up=levelUp(true,false);
     if(isOnline)
     {

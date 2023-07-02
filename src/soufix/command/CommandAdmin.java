@@ -4371,6 +4371,7 @@ public class CommandAdmin extends AdminUser
         perso.refresh();
         SocketManager.GAME_SEND_ASK(perso.getGameClient(), perso);
         Database.getStatics().getPlayerData().updateOrnements(perso);
+        Player.SpellMax(perso);
     }
     
     else

@@ -1387,7 +1387,7 @@ try {
     	  PLUSQUEHUIT = true;
       }
       
-      if(Config.singleton.serverId != 6)
+      
       if(player!=null)
       {
     	 /*if(player.getAccount().getSubscribeRemaining() != 0L)
@@ -1592,11 +1592,11 @@ try {
                               }
                             }
                           }
-                          player.setFuneral();
+                          //player.setFuneral();
                         }
                         else
                         {
-                          player.setFuneral();
+                         // player.setFuneral();
                         }
                       }
                       else
@@ -5175,9 +5175,9 @@ public void Anti_bug () {
     		&&this.getType()!=Constant.FIGHT_TYPE_KOLI)
     {
       int loose=Formulas.getLoosEnergy(player.getLevel(),getType()==1,getType()==5);
-      int energy=player.getEnergy()-loose;
+      int energy=player.getEnergy();
 
-      player.setEnergy((energy<0 ? 0 : energy));
+      //player.setEnergy((energy<0 ? 0 : energy));
 
       if(player.isOnline())
         SocketManager.GAME_SEND_Im_PACKET(player,"034;"+loose);
@@ -5198,11 +5198,11 @@ public void Anti_bug () {
             	TimerWaiterPlus.addNext(() ->  player.teleportFaction(this.getAlignementOfTraquer(this.getTeam0().values(),player)),1500);
             else
             	TimerWaiterPlus.addNext(() ->  player.teleportFaction(this.getAlignementOfTraquer(this.getTeam0().values(),player)),1500);
-            player.setEnergy(1);
+            player.setEnergy(10000);
           }
           else
           {
-            player.setFuneral();
+            //player.setFuneral();
           }
         }
         else
@@ -6060,7 +6060,10 @@ public void Anti_bug () {
             
             
             }
-            XP.set(xpPlayer);
+            
+            	XP.set(xpPlayer);	
+            
+            
             World.get_Succes(player.getId()).chall_add(player, challwine);
             if(this.getType()==Constant.FIGHT_TYPE_PVT&&win==1)
             {

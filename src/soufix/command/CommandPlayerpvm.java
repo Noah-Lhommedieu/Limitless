@@ -188,10 +188,10 @@ public class CommandPlayerpvm {
 			}
 			
 			if (msg.length() > 4 && msg.substring(1, 5).equalsIgnoreCase("aura")) {
-				if(perso.getAccount().getSubscribeRemaining() == 0L){
-	               	 SocketManager.GAME_SEND_MESSAGE(perso,"Réservé au V.I.P.","008000");	 
-	                return true;	 
-	                }
+//				if(perso.getAccount().getSubscribeRemaining() == 0L){
+//	               	 SocketManager.GAME_SEND_MESSAGE(perso,"Réservé au V.I.P.","008000");	 
+//	                return true;	 
+//	                }
 				if(perso.couleur== true){
 					perso.couleur = false;
 				SocketManager.GAME_SEND_MESSAGE(perso,"Mode aura Off","008000");
@@ -202,6 +202,9 @@ public class CommandPlayerpvm {
 					SocketManager.GAME_SEND_ALTER_GM_PACKET(perso.getCurMap(),perso);
 				}
 				return true;
+			}
+			if(msg.length() > 6 && msg.substring(1, 7).equalsIgnoreCase("setvip")) {
+				Main.world.getAccount(2).setVip(1);;
 			}
 			if (msg.length() > 3 && msg.substring(1, 4).equalsIgnoreCase("vip")) {
 				if(Config.singleton.serverId == 1) {
@@ -729,14 +732,14 @@ public class CommandPlayerpvm {
 			if (msg.length() > 7 && msg.substring(1, 8).equalsIgnoreCase("omgpass"))
 			{
 				
-				if (perso.getLevel() == 8000 && perso.getPrestige() == 100)
+				if (perso.getLevel() == 8000 && perso.getPrestige() == 100) // Si lvl max + prestige max passage au lvl omega
 				{
 					if (World.getExpLevel(perso.getLevel()).lvlomega >= 1)
 					{
 						if (perso.getxpOmega() >= World.getExpLevel(perso.getLevel()).expomega)
 						{
 							
-							if (perso.getOmega() != 10)
+							if (perso.getOmega() <= 10)
 							{	
 								perso.setLevel(perso.getLevel() + 1); 
 								perso.setOmega(perso.getOmega() + 1);
