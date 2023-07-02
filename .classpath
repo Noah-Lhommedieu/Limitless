@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="F:/Dofus Emulation/Serveur Casper/pack capser/emu/libs/librairies game/commons-cli-1.2.jar"/>
+	<classpathentry kind="lib" path="F:/Dofus Emulation/Serveur Casper/pack capser/emu/libs/librairies game/commons-lang3-3.10.jar"/>
+	<classpathentry kind="lib" path="F:/Dofus Emulation/Serveur Casper/pack capser/emu/libs/librairies game/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="F:/Dofus Emulation/Serveur Casper/pack capser/emu/libs/librairies game/config-1.4.0.jar"/>
+	<classpathentry kind="lib" path="F:/Dofus Emulation/Serveur Casper/pack capser/emu/libs/librairies game/HikariCP-5.0.0.jar"/>
+	<classpathentry kind="lib" path="F:/Dofus Emulation/Serveur Casper/pack capser/emu/libs/librairies game/jansi-1.18.jar"/>
+	<classpathentry kind="lib" path="F:/Dofus Emulation/Serveur Casper/pack capser/emu/libs/librairies game/javassist-3.27.0-GA.jar"/>
+	<classpathentry kind="lib" path="F:/Dofus Emulation/Serveur Casper/pack capser/emu/libs/librairies game/jep.jar"/>
+	<classpathentry kind="lib" path="F:/Dofus Emulation/Serveur Casper/pack capser/emu/libs/librairies game/joda-time-2.10.10.jar"/>
+	<classpathentry kind="lib" path="F:/Dofus Emulation/Serveur Casper/pack capser/emu/libs/librairies game/logback-classic-1.2.3.jar"/>
+	<classpathentry kind="lib" path="F:/Dofus Emulation/Serveur Casper/pack capser/emu/libs/librairies game/logback-core-1.2.3.jar"/>
+	<classpathentry kind="lib" path="F:/Dofus Emulation/Serveur Casper/pack capser/emu/libs/librairies game/lombok-1.18.12.jar"/>
+	<classpathentry kind="lib" path="F:/Dofus Emulation/Serveur Casper/pack capser/emu/libs/librairies game/mysql-connector-java-8.0.27.jar"/>
+	<classpathentry kind="lib" path="F:/Dofus Emulation/Serveur Casper/pack capser/emu/libs/librairies game/slf4j-api-1.7.30.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
