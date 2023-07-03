@@ -42,6 +42,7 @@ import soufix.object.ObjectSet;
 import soufix.object.ObjectTemplate;
 import soufix.other.Action;
 import soufix.other.Dopeul;
+import soufix.other.Ornements;
 import soufix.quest.Quest;
 import soufix.quest.QuestPlayer;
 import soufix.utility.Pair;
@@ -914,7 +915,7 @@ public void set_gameAction_rapide(GameAction _gameAction_rapide) {
   {
   	this.ornement = ornement;
   }
-  public int getOrnement ()
+  public int getOrnement()
   {
   	return this.ornement;
   }
@@ -3152,7 +3153,12 @@ public void setTotal_reculte() {
               this.getStats().addOneStat(Constant.STATS_ADD_VITA,2);
             break;
           case 12://Sage
-            this.getStats().addOneStat(Constant.STATS_ADD_SAGE,1);
+        	  if(this.getStats().get(Constant.STATS_ADD_SAGE) < 3000000) { // Si le joueur n'a pas dépasser le max de sagesse...
+        		  
+        		  this.getStats().addOneStat(Constant.STATS_ADD_SAGE,1);// la valeur STATS_ADD_SAGE indique la caractéristique précise, la valeur 1 indique 
+        		  //la quantité de sagesse donné, évidemment c'est de manière itératif donc 1 a 1 par point donné
+        	  }
+        	  
             break;
           case 10://Force
             this.getStats().addOneStat(Constant.STATS_ADD_FORC,1);
@@ -3169,7 +3175,10 @@ public void setTotal_reculte() {
           default:
             return;
         }
-        _capital-=cout;
+        if(this.getStats().get(Constant.STATS_ADD_SAGE) >= 3000000) { // Si le joueur a le max de sagesse, on lui redonne son capital (no gaspillage)
+        	_capital+=cout;
+  	  }
+        _capital-=cout; // On retire le capital car ici, ça donne les stats
       }
     }
     SocketManager.GAME_SEND_STATS_PACKET(this);
@@ -4822,7 +4831,6 @@ public void setTotal_reculte() {
     if(!this._showWings&&Config.getInstance().HEROIC)
       _showWings=true;
   }
-
   public int getDeshonor()
   {
     return _deshonor;

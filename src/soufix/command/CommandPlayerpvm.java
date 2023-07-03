@@ -363,6 +363,16 @@ public class CommandPlayerpvm {
                 // DEBUG perso.sendMessage(World.getOrnements().toString());
                 return true;
             }
+			if (msg.length() > 5 && msg.substring(1, 6).equalsIgnoreCase("speed")) {
+				if (perso.getOrnement() == 159) {
+					perso.sendMessage("Ton ancienne vitesse -> "+ perso.getSpeed());
+					perso.setSpeed(200);
+					perso.sendMessage("Ta vitesse actuel -> "+ perso.getSpeed());
+				}
+				else {
+					perso.sendMessage("Tu as pas le bon ornement !");
+				}
+			}
 			if (msg.length() > 8 && msg.substring(1, 9).equalsIgnoreCase("boutique")) {
 				GameClient.leaveExchange(perso);
 				soufix.main.Boutique.open(perso);
