@@ -1214,6 +1214,7 @@ public class CommandPlayerpvm {
     
     
     public static void Restat(Player player) {
+    	long capitalTotalActuel = (player.getBaseStats().get(Constant.STATS_ADD_SAGE) * 100) + player.getBaseStats().get(Constant.STATS_ADD_AGIL) + player.getBaseStats().get(Constant.STATS_ADD_CHAN) + player.getBaseStats().get(Constant.STATS_ADD_FORC) +player.getBaseStats().get(Constant.STATS_ADD_INTE) + player.getBaseStats().get(Constant.STATS_ADD_VITA);
     	long curPer = player.get_pdvper();
 
           if (player.getStatsParcho().getEffect(125) != 0 || player.getStatsParcho().getEffect(124) != 0 || player.getStatsParcho().getEffect(118) != 0
@@ -1250,6 +1251,57 @@ public class CommandPlayerpvm {
               player.getStats().addOneStat(123, -player.getStats().getEffect(123));
               player.getStats().addOneStat(119, -player.getStats().getEffect(119));
               player.getStats().addOneStat(126, -player.getStats().getEffect(126));
+              player.setCapital(capitalTotalActuel + player.get_capital()); // Ici on set exactement ce que la personne avait (même si y'a un give de capital)
+              //player.addCapital((player.getLevel() - 1) * 5 - player.get_capital()); Ancienne méthode
+              player.getStatsParcho().getMap().clear();
+              SocketManager.GAME_SEND_STATS_PACKET(player);
+          }
+          long newPDV = player.getMaxPdv() * curPer / 100;
+          player.setPdv(newPDV);
+          SocketManager.GAME_SEND_STATS_PACKET(player);
+          player.sendMessage("Reset des caractéristiques.");
+          player.verifEquiped();
+    	
+    }
+    public static void RestatByLevel(Player player) {
+    	//long capitalTotalActuel = (player.getBaseStats().get(Constant.STATS_ADD_SAGE) * 100) + player.getBaseStats().get(Constant.STATS_ADD_AGIL) + player.getBaseStats().get(Constant.STATS_ADD_CHAN) + player.getBaseStats().get(Constant.STATS_ADD_FORC) +player.getBaseStats().get(Constant.STATS_ADD_INTE) + player.getBaseStats().get(Constant.STATS_ADD_VITA);
+    	long curPer = player.get_pdvper();
+
+          if (player.getStatsParcho().getEffect(125) != 0 || player.getStatsParcho().getEffect(124) != 0 || player.getStatsParcho().getEffect(118) != 0
+                  || player.getStatsParcho().getEffect(119) != 0 || player.getStatsParcho().getEffect(126) != 0 || player.getStatsParcho().getEffect(123) != 0) {
+              player.getStats().addOneStat(125, -player.getStats().getEffect(125) + player.getStatsParcho().getEffect(125));
+              player.getStats().addOneStat(124, -player.getStats().getEffect(124) + player.getStatsParcho().getEffect(124));
+              player.getStats().addOneStat(118, -player.getStats().getEffect(118) + player.getStatsParcho().getEffect(118));
+              player.getStats().addOneStat(123, -player.getStats().getEffect(123) + player.getStatsParcho().getEffect(123));
+              player.getStats().addOneStat(119, -player.getStats().getEffect(119) + player.getStatsParcho().getEffect(119));
+              player.getStats().addOneStat(126, -player.getStats().getEffect(126) + player.getStatsParcho().getEffect(126));
+              player.addCapital((player.getLevel() - 1) * 5 - player.get_capital());
+              SocketManager.GAME_SEND_STATS_PACKET(player);
+          } else if (player.getStats().getEffect(125) == 101 && player.getStats().getEffect(124) == 101 && player.getStats().getEffect(118) == 101
+                  && player.getStats().getEffect(123) == 101 && player.getStats().getEffect(119) == 101 && player.getStats().getEffect(126) == 101) {
+              player.getStats().addOneStat(125, -player.getStats().getEffect(125) + 101);
+              player.getStats().addOneStat(124, -player.getStats().getEffect(124) + 101);
+              player.getStats().addOneStat(118, -player.getStats().getEffect(118) + 101);
+              player.getStats().addOneStat(123, -player.getStats().getEffect(123) + 101);
+              player.getStats().addOneStat(119, -player.getStats().getEffect(119) + 101);
+              player.getStats().addOneStat(126, -player.getStats().getEffect(126) + 101);
+              player.getStatsParcho().getMap().clear();
+              player.getStatsParcho().addOneStat(125, 101);
+              player.getStatsParcho().addOneStat(124, 101);
+              player.getStatsParcho().addOneStat(118, 101);
+              player.getStatsParcho().addOneStat(123, 101);
+              player.getStatsParcho().addOneStat(119, 101);
+              player.getStatsParcho().addOneStat(126, 101);
+              player.addCapital((player.getLevel() - 1) * 5 - player.get_capital());
+              SocketManager.GAME_SEND_STATS_PACKET(player);
+          } else {
+              player.getStats().addOneStat(125, -player.getStats().getEffect(125));
+              player.getStats().addOneStat(124, -player.getStats().getEffect(124));
+              player.getStats().addOneStat(118, -player.getStats().getEffect(118));
+              player.getStats().addOneStat(123, -player.getStats().getEffect(123));
+              player.getStats().addOneStat(119, -player.getStats().getEffect(119));
+              player.getStats().addOneStat(126, -player.getStats().getEffect(126));
+              //player.setCapital(capitalTotalActuel + player.get_capital()); // Ici on set exactement ce que la personne avait (même si y'a un give de capital)
               player.addCapital((player.getLevel() - 1) * 5 - player.get_capital());
               player.getStatsParcho().getMap().clear();
               SocketManager.GAME_SEND_STATS_PACKET(player);
@@ -1261,4 +1313,6 @@ public class CommandPlayerpvm {
           player.verifEquiped();
     	
     }
-}
+   }
+
+

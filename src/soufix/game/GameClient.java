@@ -878,7 +878,7 @@ public int chek;
         stat=Integer.parseInt(packet.substring(2).split(";")[0]);
         if(stat>0)
         {
-          int code=0;
+          long code=0;
           code=Integer.parseInt(packet.substring(2).split(";")[1]);
           if(code<0)
             return;
@@ -8068,7 +8068,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
         {
           try
           {
-            int code=0;
+            long code=0;
             code=Integer.parseInt(packet);
             if(code<0)
               return;

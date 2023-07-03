@@ -109,7 +109,7 @@ public int prestige = 0;
   private Stats statsParcho=new Stats(true);
   private long kamas;
   private int _spellPts;
-  private int _capital;
+  private long _capital;
   private int _size;
   private int gfxId;
   private int _orientation=1;
@@ -1725,7 +1725,7 @@ public void setTotal_reculte() {
     SocketManager.send(this,"ILS"+regenRate);
   }
 
-  public int get_capital()
+  public long get_capital()
   {
     return _capital;
   }
@@ -3121,7 +3121,7 @@ public void setTotal_reculte() {
     }
   }
 
-  public void boostStatFixedCount(int stat, int countVal)
+  public void boostStatFixedCount(int stat, long countVal)
   {
     for(int i=0;i<countVal;i++)
     {
@@ -4174,14 +4174,14 @@ public void setTotal_reculte() {
     return packet.toString();
   }
 
-  public void addCapital(int pts)
+  public void addCapital(long l)
   {
-    _capital+=pts;
+    _capital+=l;
   }
 
-  public void setCapital(final int capital)
+  public void setCapital(final long l)
   {
-    this._capital=capital;
+    this._capital=l;
   }
 
   public void addSpellPoint(int pts)

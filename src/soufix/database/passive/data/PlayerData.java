@@ -274,7 +274,7 @@ public class PlayerData extends AbstractDAO<Player>
       p.setInt(7,perso.getColor3());
       p.setLong(8,perso.getKamas());
       p.setInt(9,perso.get_spellPts());
-      p.setInt(10,perso.get_capital());
+      p.setLong(10,perso.get_capital());
       p.setInt(11,perso.getEnergy());
       p.setInt(12,perso.getLevel());
       p.setDouble(13,perso.getExp());
@@ -349,7 +349,7 @@ public class PlayerData extends AbstractDAO<Player>
       p=getPreparedStatement("UPDATE `players` SET `kamas`= ?, `spellboost`= ?, `capital`= ?, `energy`= ?, `level`= ?, `xp`= ?, `size` = ?, `gfx`= ?, `alignement`= ?, `honor`= ?, `deshonor`= ?, `alvl`= ?, `vitalite`= ?, `force`= ?, `sagesse`= ?, `intelligence`= ?, `chance`= ?, `agilite`= ?, `seeFriend`= ?, `seeAlign`= ?, `seeSeller`= ?, `canaux`= ?, `map`= ?, `cell`= ?, `pdvper`= ?, `spells`= ?, `objets`= ?, `storeObjets`= ?, `savepos`= ?, `zaaps`= ?, `jobs`= ?, `mountxpgive`= ?, `mount`= ?, `title`= ?, `wife`= ?, `morphMode`= ?, `allTitle` = ?, `emotes` = ?, `prison` = ?, `parcho` = ?, `timeDeblo` = ?, `noall` = ?, `deadInformation` = ?, `deathCount` = ?, `totalKills` = ?, `rapid` = ? , `song` = ?, `prestige` = ?, `ornement` = ? WHERE `players`.`id` = ? LIMIT 1");
       p.setLong(1,player.getKamas());
       p.setInt(2,player.get_spellPts());
-      p.setInt(3,player.get_capital());
+      p.setLong(3,player.get_capital());
       p.setInt(4,player.getEnergy());
       p.setInt(5,player.getLevel());
       p.setDouble(6,player.getExp());
