@@ -3507,7 +3507,7 @@ public void setTotal_reculte() {
     }
     return true;
   }
-  private int addlvl() //Calculateur d'exp pour le le setNewLevel
+  private int addlvl() //Calculateur d'exp pour savoir le niveau qu'aura le joueur à la fin, téléporte le lvl -> pas itératif -> no lag
 	{
 		int level = 0;
 		
@@ -3519,7 +3519,7 @@ public void setTotal_reculte() {
 		return level; // l'exp renvoyer est l'exp du niveau correspondant
 	}
 
-  public boolean addXp(double xpPlayer)
+  public boolean addXp(double xpPlayer) // Donne une quantité d'exp, tant que le joueur n'a pas le bon niveau par rapport a l'exp win, levelup
   {
     boolean up=false;
     if(this.getLevel() < 8000) {
