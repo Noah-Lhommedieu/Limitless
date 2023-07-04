@@ -42,6 +42,8 @@ import java.util.Map.Entry;
 import java.util.Random;
 import java.util.Set;
 
+import com.typesafe.config.ConfigException.Parse;
+
 public class CommandAdmin extends AdminUser
 {
 
@@ -2284,6 +2286,7 @@ public class CommandAdmin extends AdminUser
             perso.setLevel(count);
             perso.setExp(xpd);
             
+            
           if(perso.isOnline())
           {
             SocketManager.GAME_SEND_SPELL_LIST(perso);
@@ -2292,6 +2295,7 @@ public class CommandAdmin extends AdminUser
           }
         }
         String mess="Vous avez fixe le niveau de "+perso.getName()+" e "+count+".";
+        Player.SpellMax(perso);
         this.sendMessage(mess);
       }
       catch(Exception e)
@@ -2302,6 +2306,99 @@ public class CommandAdmin extends AdminUser
       }
       return;
     }
+    else if(command.equalsIgnoreCase("LVLPMAX")) // Met le joueur au lvl 8000 + Prestige max
+    {
+      try
+      {
+    	Player perso = this.getPlayer();
+        if(infos[1] != null || infos[1] != "")
+        {
+        	perso = Main.world.getPlayerByName(infos[1]);
+        }
+        double xpd = Main.world.getPersoXpMax(8000);
+        perso.setLevel(8000);
+        perso.setExp(xpd);
+        perso.setPrestige(100);
+        SocketManager.GAME_SEND_ALTER_GM_PACKET(perso.curMap,perso);
+    	Database.getStatics().getPlayerData().updatePrestige(perso);
+    	SocketManager.GAME_SEND_ASK(perso.getAccount().getGameClient(), perso); // ask le client
+    	SocketManager.GAME_SEND_ERASE_ON_MAP_TO_MAP(perso.getCurMap(), perso.getId()); // delete perso de la map
+    	SocketManager.GAME_SEND_ADD_PLAYER_TO_MAP(perso.getCurMap(), perso); // rajoute le perso
+      }
+      catch(Exception e)
+      {
+        // ok
+        this.sendMessage("Valeur incorecte.");
+        return;
+      }
+   }
+    else if(command.equalsIgnoreCase("ADDOMGEXP")) // Ajoute au joueur une quantité d'exp omega
+    {
+      try
+      {
+    	if (infos[1] == null || Double.parseDouble(infos[1]) == 0) {
+    		this.sendMessage("Valeur incorrecte ou 0.");
+            return;
+    	}
+    	  
+    	Player perso = this.getPlayer();
+        if(infos[2] != null || infos[2] != "")
+        {
+        	perso = Main.world.getPlayerByName(infos[2]);
+        }
+        
+        perso.setxpOmega(Double.parseDouble(infos[1]));
+        
+        
+        SocketManager.GAME_SEND_ALTER_GM_PACKET(perso.curMap,perso);
+    	Database.getStatics().getPlayerData().updateXpOmega(perso);
+    	Database.getStatics().getPlayerData().updateOmega(perso);
+    	SocketManager.GAME_SEND_ASK(perso.getAccount().getGameClient(), perso); // ask le client
+    	SocketManager.GAME_SEND_ERASE_ON_MAP_TO_MAP(perso.getCurMap(), perso.getId()); // delete perso de la map
+    	SocketManager.GAME_SEND_ADD_PLAYER_TO_MAP(perso.getCurMap(), perso); // rajoute le perso
+      }
+      catch(Exception e)
+      {
+        // ok
+        this.sendMessage("Valeur incorrecte.");
+        return;
+      }
+   }
+    else if(command.equalsIgnoreCase("SETOMGLVL")) // Met le joueur au lvl omega donné
+    {
+      try
+      {
+    	if (infos[1] == null || Integer.parseInt(infos[1]) == 0) {
+    		this.sendMessage("Level Omega incorrect.");
+            return;
+    	}
+    	  
+    	Player perso = this.getPlayer();
+        if(infos[2] != null || infos[2] != "")
+        {
+        	perso = Main.world.getPlayerByName(infos[2]);
+        }
+        double xpOmegaFinal = Main.world.getPersoXpOmegaMax(Integer.parseInt(infos[1]) + 8000);
+        perso.setOmega(Integer.parseInt(infos[1]));
+        perso.setxpOmega(xpOmegaFinal);
+        
+        
+        SocketManager.GAME_SEND_ALTER_GM_PACKET(perso.curMap,perso);
+    	Database.getStatics().getPlayerData().updateXpOmega(perso);
+    	Database.getStatics().getPlayerData().updateOmega(perso);
+    	SocketManager.GAME_SEND_ASK(perso.getAccount().getGameClient(), perso); // ask le client
+    	SocketManager.GAME_SEND_ERASE_ON_MAP_TO_MAP(perso.getCurMap(), perso.getId()); // delete perso de la map
+    	SocketManager.GAME_SEND_ADD_PLAYER_TO_MAP(perso.getCurMap(), perso); // rajoute le perso
+      }
+      catch(Exception e)
+      {
+        // ok
+        this.sendMessage("Valeur incorrecte.");
+        return;
+      }
+   }
+     
+     
     else if(command.equalsIgnoreCase("KAMAS"))
     {
       int count=0;

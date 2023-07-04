@@ -363,16 +363,7 @@ public class CommandPlayerpvm {
                 // DEBUG perso.sendMessage(World.getOrnements().toString());
                 return true;
             }
-			if (msg.length() > 5 && msg.substring(1, 6).equalsIgnoreCase("speed")) {
-				if (perso.getOrnement() == 159) {
-					perso.sendMessage("Ton ancienne vitesse -> "+ perso.getSpeed());
-					perso.setSpeed(200);
-					perso.sendMessage("Ta vitesse actuel -> "+ perso.getSpeed());
-				}
-				else {
-					perso.sendMessage("Tu as pas le bon ornement !");
-				}
-			}
+			
 			if (msg.length() > 8 && msg.substring(1, 9).equalsIgnoreCase("boutique")) {
 				GameClient.leaveExchange(perso);
 				soufix.main.Boutique.open(perso);
@@ -723,7 +714,8 @@ public class CommandPlayerpvm {
             	setRewardPrestige(perso);
             	SocketManager.PACKET_POPUP_DEPART(perso, "Vous êtes Prestige " + perso.getPrestige() + ".");
             	SocketManager.GAME_SEND_MESSAGE_TO_ALL("Le joueur " + perso.getName() + "est passé prestige " + perso.getPrestige() + ".", "32A852");
-			    return true;
+            	Player.SpellMax(perso);
+            	return true;
 			    
 				
 			}
@@ -731,11 +723,11 @@ public class CommandPlayerpvm {
 			{
     			if (perso.getPrestige() == 0) 
     			{
-    				perso.sendMessage("Vous n'êtes pas prestige");
+    				SocketManager.PACKET_POPUP_DEPART(perso, "Vous n'êtes pas prestige");
     			}
     			else 
     			{
-    				perso.sendMessage("Tu es <b>Prestige " + perso.prestige + " !</b>");
+    				SocketManager.PACKET_POPUP_DEPART(perso, "Tu es <b>Prestige " + perso.prestige + " !</b>");
     			}
 				return true;
 			}
@@ -763,11 +755,11 @@ public class CommandPlayerpvm {
 								SocketManager.GAME_SEND_MESSAGE_TO_ALL("Le joueur " + perso.getName() + "est passé Omega " + perso.getOmega() + ".", "34E5EB");
 							}
 							else
-								perso.sendMessage("Vous avez atteint le niveau Omega maximum.");
+								SocketManager.PACKET_POPUP_DEPART(perso, "Vous avez atteint le niveau Omega maximum.");
 								return true;
 						}
 						else
-							perso.sendMessage("Vous n'avez pas assez d'exp Omega pour passer au rang Omega supérieur.");
+							SocketManager.PACKET_POPUP_DEPART(perso, "Vous n'avez pas assez d'exp Omega pour passer au rang Omega supérieur.");
 							return true;
 					}
 					else
@@ -775,7 +767,7 @@ public class CommandPlayerpvm {
 						return true;
 				}
 				else 
-					perso.sendMessage("Vous devez être <b> Niveau 8000 et Prestige 100 </b> pour accéder aux niveaux Omega.");
+					SocketManager.PACKET_POPUP_DEPART(perso, "Vous devez être <b>Niveau 8000 et Prestige 100</b> pour accéder aux niveaux Omega.");
 					return true;	
 	            }
 			if (msg.length() > 8 && msg.substring(1, 9).equalsIgnoreCase("infomega")) 
@@ -785,15 +777,17 @@ public class CommandPlayerpvm {
 					double expomega = World.getExpLevel(perso.getLevel()).expomega;
 		            int lvlomega = World.getExpLevel(perso.getLevel()).lvlomega;
 		            double xppomega = perso.getxpOmega();
-		            perso.sendMessage("Tu es Omega: " + perso.getOmega());
-		            perso.sendMessage("XP Omega (table player): " + xppomega);
-		            perso.sendMessage("XP Omega (table experience): " + expomega);
-		            perso.sendMessage("LVL Omega (table experience): " + lvlomega);
+		            SocketManager.PACKET_POPUP_DEPART(perso, "Tu es Omega: " + perso.getOmega() +
+		            		"\n- Votre Exp Omega -> " + perso.getxpOmega() +
+		            		"\n- Exp du niveau Omega " + (perso.getOmega() + 1) + " -> ." + Main.world.getPersoXpOmegaMax(perso.getOmega()+1));
+		            //perso.sendMessage("XP Omega (table player): " + xppomega);
+//		            perso.sendMessage("XP Omega (table experience): " + expomega);
+//		            perso.sendMessage("LVL Omega (table experience): " + lvlomega);
 		            //player.sendMessage("Pour être niveau omega " + lvlomega + " il te faut " + expomega + " d'experience en plus.");
 				} 
 			else 
 				{
-				perso.sendMessage("Vous n'avez pas de niveau Omega.");
+				SocketManager.PACKET_POPUP_DEPART(perso, "Vous n'avez pas de niveau Omega.");
 				}
 				return true;
 			}

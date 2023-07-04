@@ -1013,6 +1013,25 @@ public class World
     if(_lvl<=1)
       _lvl=1;
     return experiences.get(_lvl+1).perso;
+    
+  }
+  public double getPersoXpOmegaMin(int _lvl)
+  {
+    if(_lvl>getExpLevelSize())
+      _lvl=getExpLevelSize();
+    if(_lvl<1)
+      _lvl=1;
+    return experiences.get(_lvl).expomega;
+  }
+
+  public double getPersoXpOmegaMax(int _lvl)
+  {
+    if(_lvl>=getExpLevelSize())
+      _lvl=(getExpLevelSize()-1);
+    if(_lvl<=1)
+      _lvl=1;
+    return experiences.get(_lvl+1).expomega;
+    
   }
 
   public long getTourmenteursXpMax(int _lvl)
