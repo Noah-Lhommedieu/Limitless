@@ -58,3 +58,6 @@ local.properties
 # Uncomment this line if you wish to ignore the project description file.
 # Typically, this file would be tracked if it contains build/dependency configurations:
 #.project
+config.conf
+*.log
+Logs/Ip_logs/5-7-2023/127.0.0.1.txt

@@ -79,7 +79,7 @@ public class MountData extends AbstractDAO<Mount>
       p.setInt(7,mount.getState());
       p.setInt(8,mount.getReproduction());
       p.setInt(9,mount.getFatigue());
-      p.setInt(10,mount.getEnergy());
+      p.setInt(10,mount.getMaxEnergy());
       p.setString(11,mount.getAncestors());
       p.setString(12,mount.parseObjectsToString());
       p.setInt(13,mount.getOwner());
@@ -149,7 +149,7 @@ public class MountData extends AbstractDAO<Mount>
       p.setInt(10,mount.getState());
       p.setInt(11,mount.getReproduction());
       p.setInt(12,mount.getFatigue());
-      p.setInt(13,mount.getEnergy());
+      p.setInt(13,mount.getMaxEnergy());
       p.setString(14,mount.parseObjectsToString());
       p.setString(15,mount.getAncestors());
       p.setString(16,mount.parseCapacitysToString());

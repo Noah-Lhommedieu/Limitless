@@ -4685,7 +4685,7 @@ public void setTotal_reculte() {
 
   public void toogleOnMount()
   {
-    if(_mount==null||this.isMorph()||this.getLevel()<60)
+    if(_mount==null||this.isMorph())
       return;
     if(this.getClasse()*10+this.getSexe()!=this.getGfxId())
       return;
@@ -4695,11 +4695,11 @@ public void setTotal_reculte() {
       return;
     }
     if(Config.singleton.serverId != 6) {
-    if(!_onMount&&_mount.isMontable()==0 && _mount.getColor() != 88)
-    {
-      SocketManager.GAME_SEND_Re_PACKET(this,"Er",null);
-      return;
-    }
+//    if(!_onMount && _mount.getColor() != 88)
+//    {
+//      SocketManager.GAME_SEND_Re_PACKET(this,"Er",null);
+//      return;
+//    }
 
     if(!_onMount)
     {

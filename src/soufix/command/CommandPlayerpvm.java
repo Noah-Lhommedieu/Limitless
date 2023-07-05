@@ -779,7 +779,7 @@ public class CommandPlayerpvm {
 		            double xppomega = perso.getxpOmega();
 		            SocketManager.PACKET_POPUP_DEPART(perso, "Tu es Omega: " + perso.getOmega() +
 		            		"\n- Votre Exp Omega -> " + perso.getxpOmega() +
-		            		"\n- Exp du niveau Omega " + (perso.getOmega() + 1) + " -> ." + Main.world.getPersoXpOmegaMax(perso.getOmega()+1));
+		            		"\n- Exp du niveau Omega " + (perso.getOmega() + 1) + " -> " + Main.world.getPersoXpOmegaMax(perso.getOmega()+1));
 		            //perso.sendMessage("XP Omega (table player): " + xppomega);
 //		            perso.sendMessage("XP Omega (table experience): " + expomega);
 //		            perso.sendMessage("LVL Omega (table experience): " + lvlomega);
@@ -790,6 +790,17 @@ public class CommandPlayerpvm {
 				SocketManager.PACKET_POPUP_DEPART(perso, "Vous n'avez pas de niveau Omega.");
 				}
 				return true;
+			}
+			if (msg.length() > 5 && msg.substring(1, 6).equalsIgnoreCase("monte"))
+			{
+				if(perso.getMount() == null) 
+				{
+					perso.sendMessage("Monture null");
+				}
+				else 
+				{
+					perso.toogleOnMount();
+				}
 			}
 			if (msg.length() > 5 && msg.substring(1, 6).equalsIgnoreCase("start"))
 			{

@@ -30,7 +30,7 @@ public class Mount
   private short mapId;
   private int cellId, orientation;
 
-  private int fatigue, energy, reproduction;
+  private int fatigue, energy = 1000, reproduction;
 
   private int amour, endurance, maturity;
   private int state, savage;
@@ -425,12 +425,13 @@ public class Mount
 
   public int getEnergy()
   {
-    return energy;
+    return getMaxEnergy(); // energy
   }
 
   public void setEnergy(int energy)
   {
-    this.energy=energy;
+    setMaxEnergy();
+    //this.energy = energy;
   }
 
   public int getReproduction()
@@ -527,7 +528,7 @@ public class Mount
     int mountable=((this.maturity<this.getMaxMaturity()||this.fatigue==240||this.savage==1) ? 0 : 1);
     if(mountable==1&&this.size==50)
       this.size=100;
-    return mountable;
+    return 1; // mountable pour savoir si elle est montable ou pas en fonction des carac au dessus
   }
 
   public int isFecund()
@@ -594,7 +595,7 @@ public class Mount
     //Database.getDynamics().getMountData().update(this);
   }
 
-  private int getMaxEnergy()
+  public int getMaxEnergy()
   {
     return Generation.getEnergy(Constant.getGeneration(this.color));
   }

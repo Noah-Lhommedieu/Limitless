@@ -120,6 +120,7 @@ public class Constant
   public static final int ITEM_POS_DOFUS10 = 123;
   public static final int ITEM_POS_DOFUS11 = 124;
   public static final int ITEM_POS_DOFUS12 = 125;
+  public static final int ITEM_POS_DOFUS_ULTIME = 126;
   public static final int ITEM_POS_BOUCLIER=15;
   public static final int ITEM_POS_DRAGODINDE=16;
   //Objets dons, mutations, malï¿½diction, ..
@@ -244,6 +245,7 @@ public class Constant
   public static final int ITEM_TYPE_ARME_MAGIQUE=114;
   public static final int ITEM_TYPE_FRAGM_AME_SHUSHU=115;
   public static final int ITEM_TYPE_POTION_FAMILIER=116;
+  public static final int ITEM_TYPE_DOFUS_ULTIME = 120;
   //Alignement
   public static final int ALIGNEMENT_NEUTRE=-1;
   public static final int ALIGNEMENT_BONTARIEN=1;
@@ -2266,6 +2268,36 @@ public class Constant
         stats.addOneStat(STATS_ADD_RP_FEU,lvl/20);
         stats.addOneStat(STATS_ADD_RP_NEU,lvl/20);
         break;
+      case 91:
+    	  stats.addOneStat(STATS_ADD_VITA,lvl*2); //200
+    	  break;
+      case 92:
+    	  stats.addOneStat(STATS_ADD_AGIL,lvl*2); //200
+    	  break;
+      case 93:
+    	  stats.addOneStat(STATS_ADD_PA,1); //200
+    	  break;
+      case 94:
+    	  stats.addOneStat(STATS_ADD_PA,2); //200
+    	  break;
+      case 95:
+    	  stats.addOneStat(STATS_ADD_PA,3); //200
+    	  break;
+      case 96:
+    	  stats.addOneStat(STATS_ADD_PM,1); //200
+    	  break;
+      case 97:
+    	  stats.addOneStat(STATS_ADD_PM,2); //200
+    	  break;
+      case 98:
+    	  stats.addOneStat(STATS_ADD_PM,3); //200
+    	  break;
+      case 99:
+    	  stats.addOneStat(STATS_ADD_INTE,lvl*2); //200
+    	  break;
+      case 100:
+    	  stats.addOneStat(STATS_ADD_FORC,lvl*2); //200
+    	  break;
     }
     return stats;
   }
@@ -2487,6 +2519,37 @@ public class Constant
       //Armure
       case 88:
         return Main.world.getObjTemplate(9582);
+        
+      //Sakochère
+      case 91:
+        return Main.world.getObjTemplate(7036);
+      //Kramkram
+      case 92:
+        return Main.world.getObjTemplate(7037);
+      //Boufx
+      case 93:
+        return Main.world.getObjTemplate(7038);
+      //Drago a Plume
+      case 94:
+        return Main.world.getObjTemplate(7039);
+      //Dragouf
+      case 95:
+        return Main.world.getObjTemplate(7040);
+      //Hurledent
+      case 96:
+        return Main.world.getObjTemplate(7041);
+      //Balafreux
+      case 97:
+        return Main.world.getObjTemplate(7042);
+      //Kwaltess
+      case 98:
+        return Main.world.getObjTemplate(7043);
+      //kwak de feu
+      case 99:
+        return Main.world.getObjTemplate(7044);
+      //Lava
+      case 100:
+        return Main.world.getObjTemplate(7058);
     }
     return null;
   }
@@ -2644,6 +2707,9 @@ public class Constant
                 || place == ITEM_POS_DOFUS12)
           return true;
         break;
+      case ITEM_TYPE_DOFUS_ULTIME:
+    	  if(place == ITEM_POS_DOFUS_ULTIME) return true;
+    	  break;
 
       case ITEM_TYPE_BOUCLIER:
         if(place==ITEM_POS_BOUCLIER)
