@@ -2264,6 +2264,7 @@ public class CommandAdmin extends AdminUser
     else if(command.equalsIgnoreCase("LEVEL"))
     {
       int count=0;
+      Player perso=this.getPlayer();
       try
       {
         count=Integer.parseInt(infos[1]);
@@ -2271,7 +2272,7 @@ public class CommandAdmin extends AdminUser
           count=1;
         if(count>Main.world.getExpLevelSize())
           count=Main.world.getExpLevelSize();
-        Player perso=this.getPlayer();
+        
         if(infos.length==3)//Si le nom du perso est specifie
         {
           String name=infos[2];
@@ -2295,7 +2296,7 @@ public class CommandAdmin extends AdminUser
           }
         }
         String mess="Vous avez fixe le niveau de "+perso.getName()+" e "+count+".";
-        Player.SpellMax(perso);
+        
         this.sendMessage(mess);
       }
       catch(Exception e)
@@ -2304,6 +2305,8 @@ public class CommandAdmin extends AdminUser
         this.sendMessage("Valeur incorecte.");
         return;
       }
+      Constant.onLevelUpSpells(perso, perso.getLevel()); // le possède Player.SpellMax(perso);
+      
       return;
     }
     else if(command.equalsIgnoreCase("LVLPMAX")) // Met le joueur au lvl 8000 + Prestige max
@@ -2324,6 +2327,7 @@ public class CommandAdmin extends AdminUser
     	SocketManager.GAME_SEND_ASK(perso.getAccount().getGameClient(), perso); // ask le client
     	SocketManager.GAME_SEND_ERASE_ON_MAP_TO_MAP(perso.getCurMap(), perso.getId()); // delete perso de la map
     	SocketManager.GAME_SEND_ADD_PLAYER_TO_MAP(perso.getCurMap(), perso); // rajoute le perso
+    	Constant.onLevelUpSpells(perso, perso.getLevel()); // le possède Player.SpellMax(perso);
       }
       catch(Exception e)
       {
@@ -4468,7 +4472,8 @@ public class CommandAdmin extends AdminUser
         perso.refresh();
         SocketManager.GAME_SEND_ASK(perso.getGameClient(), perso);
         Database.getStatics().getPlayerData().updateOrnements(perso);
-        Player.SpellMax(perso);
+        Constant.onLevelUpSpells(perso, perso.getLevel()); // le possède Player.SpellMax(perso);
+        
     }
     
     else

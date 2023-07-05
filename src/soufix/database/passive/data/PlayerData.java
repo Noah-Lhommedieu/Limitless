@@ -68,10 +68,11 @@ public class PlayerData extends AbstractDAO<Player>
         Player perso=new Player(RS.getInt("id"),RS.getString("name"),RS.getInt("groupe"),RS.getInt("sexe"),RS.getInt("class"),RS.getInt("color1"),RS.getInt("color2"),RS.getInt("color3"),RS.getLong("kamas"),RS.getInt("spellboost"),RS.getInt("capital"),RS.getInt("energy"),RS.getInt("level"),RS.getDouble("xp"),RS.getInt("size"),RS.getInt("gfx"),RS.getByte("alignement"),RS.getInt("account"),stats,RS.getByte("seeFriend"),RS.getByte("seeAlign"),RS.getByte("seeSeller"),RS.getString("canaux"),RS.getShort("map"),RS.getInt("cell"),RS.getString("objets"),RS.getString("storeObjets"),RS.getString("pdvper"),RS.getString("spells"),RS.getString("savepos"),RS.getString("jobs"),RS.getInt("mountxpgive"),RS.getInt("mount"),RS.getInt("honor"),RS.getInt("deshonor"),RS.getInt("alvl"),RS.getString("zaaps"),RS.getInt("title"),RS.getInt("wife"),RS.getString("morphMode"),RS.getString("allTitle"),RS.getString("emotes"),RS.getLong("prison"),false,RS.getString("parcho"),RS.getLong("timeDeblo"),RS.getBoolean("noall"),RS.getString("deadInformation"),RS.getByte("deathCount"),RS.getLong("totalKills"),RS.getInt("tokens"),RS.getInt("apExo"),RS.getInt("mpExo"),RS.getInt("raExo"),RS.getString("rapid"),RS.getInt("song"),false,RS.getInt("prestige"),RS.getInt("ornement"),RS.getInt("omega"), RS.getDouble("xpOmega"), RS.getString("ornementsList"));
         Main.world.kamas_total += RS.getLong("kamas");
         perso.VerifAndChangeItemPlace();
-        Player.SpellMax(perso);
         Main.world.addPlayer(perso);
         if(perso.isShowSeller())
           Main.world.addSeller(perso);
+        Constant.onLevelUpSpells(perso, perso.getLevel()); // le possède Player.SpellMax(perso);
+        
       }
     }
     catch(SQLException e)
@@ -341,7 +342,7 @@ public class PlayerData extends AbstractDAO<Player>
       super.sendError("PlayerData update",new Exception("perso is null"));
       return false;
     }
-    Player.SpellMax(player);
+    
 
     PreparedStatement p=null;
     try
@@ -429,6 +430,7 @@ public class PlayerData extends AbstractDAO<Player>
     {
       close(p);
     }
+    Player.SpellMax(player);
     return true;
   }
   

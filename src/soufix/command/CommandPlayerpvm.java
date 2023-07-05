@@ -714,7 +714,8 @@ public class CommandPlayerpvm {
             	setRewardPrestige(perso);
             	SocketManager.PACKET_POPUP_DEPART(perso, "Vous êtes Prestige " + perso.getPrestige() + ".");
             	SocketManager.GAME_SEND_MESSAGE_TO_ALL("Le joueur " + perso.getName() + "est passé prestige " + perso.getPrestige() + ".", "32A852");
-            	Player.SpellMax(perso);
+            	Constant.onLevelUpSpells(perso, perso.getLevel());// le possède Player.SpellMax(perso);
+            	
             	return true;
 			    
 				
