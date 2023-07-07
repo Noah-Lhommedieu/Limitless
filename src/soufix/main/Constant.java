@@ -121,6 +121,8 @@ public class Constant
   public static final int ITEM_POS_DOFUS11 = 124;
   public static final int ITEM_POS_DOFUS12 = 125;
   public static final int ITEM_POS_DOFUS_ULTIME = 126;
+  public static final int ITEM_POS_RELIQUE = 127;
+  public static final int ITEM_POS_FIGURINE = 128;
   public static final int ITEM_POS_BOUCLIER=15;
   public static final int ITEM_POS_DRAGODINDE=16;
   //Objets dons, mutations, mal�diction, ..
@@ -246,6 +248,8 @@ public class Constant
   public static final int ITEM_TYPE_FRAGM_AME_SHUSHU=115;
   public static final int ITEM_TYPE_POTION_FAMILIER=116;
   public static final int ITEM_TYPE_DOFUS_ULTIME = 120;
+  public static final int ITEM_TYPE_RELIQUE = 201;
+  public static final int ITEM_TYPE_FIGURINE = 202;
   //Alignement
   public static final int ALIGNEMENT_NEUTRE=-1;
   public static final int ALIGNEMENT_BONTARIEN=1;
@@ -2709,6 +2713,12 @@ public class Constant
         break;
       case ITEM_TYPE_DOFUS_ULTIME:
     	  if(place == ITEM_POS_DOFUS_ULTIME) return true;
+    	  break;
+      case ITEM_TYPE_RELIQUE:
+    	  if(place == ITEM_POS_RELIQUE) return true;
+    	  break;
+      case ITEM_TYPE_FIGURINE:
+    	  if(place == ITEM_POS_FIGURINE) return true;
     	  break;
 
       case ITEM_TYPE_BOUCLIER:

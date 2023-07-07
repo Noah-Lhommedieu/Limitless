@@ -128,7 +128,7 @@ public class Stats
     return this.effects;
   }
 
-  public int addOneStat(int id, long l)
+  public long addOneStat(int id, long l)
   {
     if(this.effects.get(id)==null||this.effects.get(id)==0)
     {

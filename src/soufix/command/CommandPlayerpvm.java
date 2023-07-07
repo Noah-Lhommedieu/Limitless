@@ -1220,7 +1220,7 @@ public class CommandPlayerpvm {
     
     
     public static void Restat(Player player) {
-    	long capitalTotalActuel = (player.getBaseStats().get(Constant.STATS_ADD_SAGE) * 100) + player.getBaseStats().get(Constant.STATS_ADD_AGIL) + player.getBaseStats().get(Constant.STATS_ADD_CHAN) + player.getBaseStats().get(Constant.STATS_ADD_FORC) +player.getBaseStats().get(Constant.STATS_ADD_INTE) + player.getBaseStats().get(Constant.STATS_ADD_VITA);
+    	long capitalTotalActuel = (player.getStats().get(Constant.STATS_ADD_SAGE)) + player.getStats().get(Constant.STATS_ADD_AGIL) + player.getStats().get(Constant.STATS_ADD_CHAN) + player.getStats().get(Constant.STATS_ADD_FORC) +player.getStats().get(Constant.STATS_ADD_INTE) + player.getStats().get(Constant.STATS_ADD_VITA);
     	long curPer = player.get_pdvper();
 
           if (player.getStatsParcho().getEffect(125) != 0 || player.getStatsParcho().getEffect(124) != 0 || player.getStatsParcho().getEffect(118) != 0

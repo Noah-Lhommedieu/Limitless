@@ -3123,66 +3123,47 @@ public void setTotal_reculte() {
 
   public void boostStatFixedCount(int stat, long countVal)
   {
-    for(int i=0;i<countVal;i++)
-    {
-      int value=0;
+	  
+    
+      
       switch(stat)
       {
+      case 11://Vita
+            this.getStats().addOneStat(Constant.STATS_ADD_VITA, countVal);
+          break;
+        case 12://Sage
+        	this.getStats().addOneStat(Constant.STATS_ADD_SAGE,countVal);
+        	if(this.getStats().get(Constant.STATS_ADD_SAGE) > 3000000) { // Si le joueur a le max de sagesse, on lui redonne son capital (no gaspillage)
+            	_capital+=countVal;
+            	this.getStats().addOneStat(Constant.STATS_ADD_SAGE,-countVal);
+            	SocketManager.PACKET_POPUP_DEPART(this, "Vous ne pouvez pas dépasser 3 millions de Sagesse \n <b>DOSE UN PEU</b>.");
+            	}
+          break;
         case 10://Force
-          value=this.getStats().getEffect(Constant.STATS_ADD_FORC);
+          
+          this.getStats().addOneStat(Constant.STATS_ADD_FORC, countVal);
           break;
         case 13://Chance
-          value=this.getStats().getEffect(Constant.STATS_ADD_CHAN);
+          
+          this.getStats().addOneStat(Constant.STATS_ADD_CHAN, countVal);
           break;
         case 14://Agilitï¿½
-          value=this.getStats().getEffect(Constant.STATS_ADD_AGIL);
+          
+          this.getStats().addOneStat(Constant.STATS_ADD_AGIL, countVal);
           break;
         case 15://Intelligence
-          value=this.getStats().getEffect(Constant.STATS_ADD_INTE);
+          
+          this.getStats().addOneStat(Constant.STATS_ADD_INTE, countVal);
           break;
       }
-      int cout=Constant.getReqPtsToBoostStatsByClass(this.getClasse(),stat,value);
-      if(cout<=_capital)
-      {
-        switch(stat)
-        {
-          case 11://Vita
-            if(this.getClasse()!=Constant.CLASS_SACRIEUR)
-              this.getStats().addOneStat(Constant.STATS_ADD_VITA,1);
-            else
-              this.getStats().addOneStat(Constant.STATS_ADD_VITA,2);
-            break;
-          case 12://Sage
-        	  if(this.getStats().get(Constant.STATS_ADD_SAGE) < 3000000) { // Si le joueur n'a pas dépasser le max de sagesse...
-        		  
-        		  this.getStats().addOneStat(Constant.STATS_ADD_SAGE,1);// la valeur STATS_ADD_SAGE indique la caractéristique précise, la valeur 1 indique 
-        		  //la quantité de sagesse donné, évidemment c'est de manière itératif donc 1 a 1 par point donné
-        	  }
-        	  
-            break;
-          case 10://Force
-            this.getStats().addOneStat(Constant.STATS_ADD_FORC,1);
-            break;
-          case 13://Chance
-            this.getStats().addOneStat(Constant.STATS_ADD_CHAN,1);
-            break;
-          case 14://Agilitï¿½
-            this.getStats().addOneStat(Constant.STATS_ADD_AGIL,1);
-            break;
-          case 15://Intelligence
-            this.getStats().addOneStat(Constant.STATS_ADD_INTE,1);
-            break;
-          default:
-            return;
-        }
-        if(this.getStats().get(Constant.STATS_ADD_SAGE) >= 3000000) { // Si le joueur a le max de sagesse, on lui redonne son capital (no gaspillage)
-        	_capital+=cout;
-  	  }
-        _capital-=cout; // On retire le capital car ici, ça donne les stats
-      }
-    }
+      //int cout = Constant.getReqPtsToBoostStatsByClass(this.getClasse(),stat,value);
+      
+  
+        
+        _capital-=countVal; // On retire le capital car ici, ça donne les stats
+      
     SocketManager.GAME_SEND_STATS_PACKET(this);
-    //Database.getStatics().getPlayerData().update(this);
+    Database.getStatics().getPlayerData().update(this);
   }
 
   public boolean isMuted()

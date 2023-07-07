@@ -2631,10 +2631,10 @@ public class CommandAdmin extends AdminUser
     }
     else if(command.equalsIgnoreCase("CAPITAL"))
     {
-      int pts=-1;
+      long pts=-1;
       try
       {
-        pts=Integer.parseInt(infos[1]);
+        pts=Long.parseLong(infos[1]);
       }
       catch(Exception e)
       {
