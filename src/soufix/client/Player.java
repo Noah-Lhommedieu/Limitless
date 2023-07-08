@@ -3124,7 +3124,7 @@ public void setTotal_reculte() {
   public void boostStatFixedCount(int stat, long countVal)
   {
 	  
-    
+    int maxSasa = 3000000;
       
       switch(stat)
       {
@@ -3133,10 +3133,10 @@ public void setTotal_reculte() {
           break;
         case 12://Sage
         	this.getStats().addOneStat(Constant.STATS_ADD_SAGE,countVal);
-        	if(this.getStats().get(Constant.STATS_ADD_SAGE) > 3000000) { // Si le joueur a le max de sagesse, on lui redonne son capital (no gaspillage)
+        	if(this.getStats().get(Constant.STATS_ADD_SAGE) > maxSasa ) { // Si le joueur a le max de sagesse, on lui redonne son capital (no gaspillage)
             	_capital+=countVal;
             	this.getStats().addOneStat(Constant.STATS_ADD_SAGE,-countVal);
-            	SocketManager.PACKET_POPUP_DEPART(this, "Vous ne pouvez pas dépasser 3 millions de Sagesse \n <b>DOSE UN PEU</b>.");
+            	SocketManager.PACKET_POPUP_DEPART(this, "Vous ne pouvez pas dépasser "+ maxSasa +" de Sagesse \n <b>DOSE UN PEU</b>.");
             	}
           break;
         case 10://Force
@@ -4703,7 +4703,7 @@ public void setTotal_reculte() {
 
     if(_onMount&&obj!=null)
     {
-      obj.setPosition(Constant.ITEM_POS_NO_EQUIPED);
+      //obj.setPosition(Constant.ITEM_POS_NO_EQUIPED); Fami -> Monture déséquipé
       SocketManager.GAME_SEND_OBJET_MOVE_PACKET(this,obj);
     }
 
@@ -7288,8 +7288,8 @@ public void setOne_windows(boolean one_windows) {
 			}
 			if(pos == Constant.ITEM_POS_FAMILIER ) {
 			if(_onMount && chek >= 1) {
-			this.unequipedObjet(this.getObjetByPos(pos));	
-			}
+			//this.unequipedObjet(this.getObjetByPos(pos));	
+			}   
 			}
 		}
 		return null;

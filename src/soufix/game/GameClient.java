@@ -8723,8 +8723,10 @@ public void setTimeLastTaverne(long timeLastTaverne) {
           SocketManager.GAME_SEND_ON_EQUIP_ITEM(this.player.getCurMap(),this.player);
 
         //Si familier
-        if(position==Constant.ITEM_POS_FAMILIER&&this.player.isOnMount())
-          this.player.toogleOnMount();
+        if(position==Constant.ITEM_POS_FAMILIER&&this.player.isOnMount()) {
+        	//this.player.toogleOnMount();
+        }
+          
         //Verif pour les thisils de m�¿½tier
         if(position==Constant.ITEM_POS_NO_EQUIPED&&this.player.getObjetByPos(Constant.ITEM_POS_ARME)==null)
           SocketManager.GAME_SEND_OT_PACKET(this,-1);
