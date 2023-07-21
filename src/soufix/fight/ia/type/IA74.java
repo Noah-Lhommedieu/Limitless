@@ -47,7 +47,7 @@ public class IA74 extends AbstractNeedSpell
         final int cellID=val-val/1000*1000;
         if(fight.canCastSpell1(fighter,SS,fighter.getCell(),cellID))
         {
-          int path=PathFinding.getShortestPathBetween(fight.getMap(),fighter.getCell().getId(),cellID,fighter.getCurPm(fight)).size();
+          int path=PathFinding.getShortestPathBetween(fight.getMap(),fighter.getCell().getId(),cellID,(int) fighter.getCurPm(fight)).size();
           if(path>0)
           {
             time=1000+path*100;
@@ -80,9 +80,9 @@ public class IA74 extends AbstractNeedSpell
 
       if(this.fighter.getCurPa(this.fight)>0&&!action)
       {
-        int beforeAP=this.fighter.getCurPa(this.fight);
+        int beforeAP=(int) this.fighter.getCurPa(this.fight);
         int value=Function.getInstance().attackIfPossible(this.fight,this.fighter,this.highests);
-        int afterAP=this.fighter.getCurPa(this.fight);
+        int afterAP=(int) this.fighter.getCurPa(this.fight);
         if(beforeAP>afterAP)
         {
           time=value+200;

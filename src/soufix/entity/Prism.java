@@ -30,7 +30,7 @@ public class Prism
   private int honor=0;
   private int area=-1;
   private Fight fight;
-  private Map<Integer, Integer> stats=new HashMap<Integer, Integer>();
+  private Map<Long, Long> stats=new HashMap<Long, Long>();
 
   public Prism(int id, int alignement, int level, short Map, int cell, int honor, int area)
   {
@@ -248,27 +248,27 @@ public class Prism
 
   public void refreshStats()
   {
-    int feu=1000+(500*this.level);
-    int intel=1000+(500*this.level);
-    int agi=1000+(500*this.level);
-    int sagesse=1000+(500*this.level);
-    int chance=1000+(500*this.level);
-    int resistance=9*this.level;
+    long feu=1000+(500*this.level);
+    long intel=1000+(500*this.level);
+    long agi=1000+(500*this.level);
+    long sagesse=1000+(500*this.level);
+    long chance=1000+(500*this.level);
+    long resistance=9*this.level;
     this.stats.clear();
     this.stats.put(Constant.STATS_ADD_FORC,feu);
     this.stats.put(Constant.STATS_ADD_INTE,intel);
     this.stats.put(Constant.STATS_ADD_AGIL,agi);
     this.stats.put(Constant.STATS_ADD_SAGE,sagesse);
     this.stats.put(Constant.STATS_ADD_CHAN,chance);
-    this.stats.put(Constant.STATS_ADD_RP_NEU,resistance);
-    this.stats.put(Constant.STATS_ADD_RP_FEU,resistance);
-    this.stats.put(Constant.STATS_ADD_RP_EAU,resistance);
-    this.stats.put(Constant.STATS_ADD_RP_AIR,resistance);
-    this.stats.put(Constant.STATS_ADD_RP_TER,resistance);
-    this.stats.put(Constant.STATS_ADD_AFLEE,resistance);
-    this.stats.put(Constant.STATS_ADD_MFLEE,resistance);
-    this.stats.put(Constant.STATS_ADD_PA,6);
-    this.stats.put(Constant.STATS_ADD_PM,0);
+    this.stats.put((long)Constant.STATS_ADD_RP_NEU,resistance);
+    this.stats.put((long)Constant.STATS_ADD_RP_FEU,resistance);
+    this.stats.put((long)Constant.STATS_ADD_RP_EAU,resistance);
+    this.stats.put((long)Constant.STATS_ADD_RP_AIR,resistance);
+    this.stats.put((long)Constant.STATS_ADD_RP_TER,resistance);
+    this.stats.put((long)Constant.STATS_ADD_AFLEE,resistance);
+    this.stats.put((long)Constant.STATS_ADD_MFLEE,resistance);
+    this.stats.put(Constant.STATS_ADD_PA,(long)6);
+    this.stats.put(Constant.STATS_ADD_PM,(long)0);
   }
 
   public int getX()

@@ -296,23 +296,23 @@ public class Constant
   //Effects
   public static final int STATS_ADD_PM2=78;
   public static final int STATS_REM_PA=101;
-  public static final int STATS_ADD_VIE=110;
-  public static final int STATS_ADD_PA=111;
-  public static final int STATS_ADD_DOMA=112;
+  public static final long STATS_ADD_VIE=110;
+  public static final long STATS_ADD_PA=111;
+  public static final long STATS_ADD_DOMA=112;
   public static final int STATS_MULTIPLY_DOMMAGE=114;
   public static final int STATS_ADD_CC=115;
   public static final int STATS_REM_PO=116;
-  public static final int STATS_ADD_PO=117;
-  public static final int STATS_ADD_FORC=118;
-  public static final int STATS_ADD_AGIL=119;
+  public static final long STATS_ADD_PO=117;
+  public static final long STATS_ADD_FORC=118;
+  public static final long STATS_ADD_AGIL=119;
   public static final int STATS_ADD_PA2=120;
   public static final int STATS_ADD_EC=122;
-  public static final int STATS_ADD_CHAN=123;
-  public static final int STATS_ADD_SAGE=124;
-  public static final int STATS_ADD_VITA=125;
-  public static final int STATS_ADD_INTE=126;
+  public static final long STATS_ADD_CHAN=123;
+  public static final long STATS_ADD_SAGE=124;
+  public static final long STATS_ADD_VITA=125;
+  public static final long STATS_ADD_INTE=126;
   public static final int STATS_REM_PM=127;
-  public static final int STATS_ADD_PM=128;
+  public static final long STATS_ADD_PM=128;
   public static final int STATS_ADD_PERDOM=138;
   public static final int STATS_ADD_PDOM=142;
   public static final int STATS_REM_DOMA=145;
@@ -322,7 +322,7 @@ public class Constant
   public static final int STATS_REM_INTE=155;
   public static final int STATS_REM_SAGE=156;
   public static final int STATS_REM_FORC=157;
-  public static final int STATS_ADD_PODS=158;
+  public static final long STATS_ADD_PODS=158;
   public static final int STATS_REM_PODS=159;
   public static final int STATS_ADD_AFLEE=160;
   public static final int STATS_ADD_MFLEE=161;
@@ -332,13 +332,13 @@ public class Constant
   public static final int STATS_REM_PA2=168;
   public static final int STATS_REM_PM2=169;
   public static final int STATS_REM_CC=171;
-  public static final int STATS_ADD_INIT=174;
+  public static final long STATS_ADD_INIT=174;
   public static final int STATS_REM_INIT=175;
-  public static final int STATS_ADD_PROS=176;
+  public static final long STATS_ADD_PROS=176;
   public static final int STATS_REM_PROS=177;
   public static final int STATS_ADD_SOIN=178;
   public static final int STATS_REM_SOIN=179;
-  public static final int STATS_ADD_SUM=182;
+  public static final long STATS_ADD_SUM=182;
   public static final int STATS_ADD_RES_M=183;
   public static final int STATS_ADD_RES_P=184;
   public static final int STATS_REM_PERDOM=186;
@@ -824,7 +824,7 @@ public class Constant
   }
 
   //v0.01 - Equal stat cost
-  public static int getReqPtsToBoostStatsByClass(int classID, int statID, int val)
+  public static int getReqPtsToBoostStatsByClass(int classID, int statID, long value)
   {
     switch(statID)
     {
@@ -836,118 +836,118 @@ public class Constant
         switch(classID)
         {
           case CLASS_SACRIEUR:
-            if(val<100)
+            if(value<100)
               return 1;
-            if(val<150)
+            if(value<150)
               return 1;
             return 1;
 
           case CLASS_FECA:
-              if (val < 50)
+              if (value < 50)
                   return 1;
-              if (val < 150)
+              if (value < 150)
                   return 1;
-              if (val < 250)
+              if (value < 250)
                   return 1;
               return 1;
 
           case CLASS_XELOR:
-              if (val < 50)
+              if (value < 50)
                   return 1;
-              if (val < 150)
+              if (value < 150)
                   return 1;
-              if (val < 250)
+              if (value < 250)
                   return 1;
               return 1;
 
           case CLASS_SRAM:
-              if (val < 100)
+              if (value < 100)
                   return 1;
-              if (val < 200)
+              if (value < 200)
                   return 1;
-              if (val < 300)
+              if (value < 300)
                   return 1;
-              if (val < 400)
+              if (value < 400)
                   return 1;
               return 1;
 
           case CLASS_OSAMODAS:
-              if (val < 50)
+              if (value < 50)
                   return 1;
-              if (val < 150)
+              if (value < 150)
                   return 1;
-              if (val < 250)
+              if (value < 250)
                   return 1;
               return 1;
 
           case CLASS_ENIRIPSA:
-              if (val < 50)
+              if (value < 50)
                   return 1;
-              if (val < 150)
+              if (value < 150)
                   return 1;
-              if (val < 250)
+              if (value < 250)
                   return 1;
               return 1;
 
           case CLASS_PANDAWA:
-              if (val < 50)
+              if (value < 50)
                   return 1;
-              if (val < 200)
+              if (value < 200)
                   return 1;
               return 1;
 
           case CLASS_SADIDA:
-              if (val < 50)
+              if (value < 50)
                   return 1;
-              if (val < 250)
+              if (value < 250)
                   return 1;
-              if (val < 300)
+              if (value < 300)
                   return 1;
-              if (val < 400)
+              if (value < 400)
                   return 1;
               return 5;
 
           case CLASS_CRA:
-              if (val < 50)
+              if (value < 50)
                   return 1;
-              if (val < 150)
+              if (value < 150)
                   return 1;
-              if (val < 250)
+              if (value < 250)
                   return 1;
-              if (val < 350)
+              if (value < 350)
                   return 1;
               return 1;
 
           case CLASS_ENUTROF:
-              if (val < 50)
+              if (value < 50)
                   return 1;
-              if (val < 150)
+              if (value < 150)
                   return 1;
-              if (val < 250)
+              if (value < 250)
                   return 1;
-              if (val < 350)
+              if (value < 350)
                   return 1;
               return 1;
 
           case CLASS_ECAFLIP:
-              if (val < 100)
+              if (value < 100)
                   return 1;
-              if (val < 200)
+              if (value < 200)
                   return 1;
-              if (val < 300)
+              if (value < 300)
                   return 1;
-              if (val < 400)
+              if (value < 400)
                   return 1;
               return 1;
 
           case CLASS_IOP:
-              if (val < 100)
+              if (value < 100)
                   return 1;
-              if (val < 200)
+              if (value < 200)
                   return 1;
-              if (val < 300)
+              if (value < 300)
                   return 1;
-              if (val < 400)
+              if (value < 400)
                   return 1;
               return 1;
       }
@@ -955,24 +955,24 @@ public class Constant
   case 13://Chance
       switch (classID) {
           case CLASS_FECA:
-              if (val < 20)
+              if (value < 20)
                   return 1;
-              if (val < 40)
+              if (value < 40)
                   return 1;
-              if (val < 60)
+              if (value < 60)
                   return 1;
-              if (val < 80)
+              if (value < 80)
                   return 1;
               return 1;
 
           case CLASS_XELOR:
-              if (val < 20)
+              if (value < 20)
                   return 1;
-              if (val < 40)
+              if (value < 40)
                   return 1;
-              if (val < 60)
+              if (value < 60)
                   return 1;
-              if (val < 80)
+              if (value < 80)
                   return 1;
               return 1;
 
@@ -980,97 +980,97 @@ public class Constant
               return 1;
 
           case CLASS_SRAM:
-              if (val < 20)
+              if (value < 20)
                   return 1;
-              if (val < 40)
+              if (value < 40)
                   return 1;
-              if (val < 60)
+              if (value < 60)
                   return 1;
-              if (val < 80)
+              if (value < 80)
                   return 1;
               return 1;
 
           case CLASS_SADIDA:
-              if (val < 100)
+              if (value < 100)
                   return 1;
-              if (val < 200)
+              if (value < 200)
                   return 1;
-              if (val < 300)
+              if (value < 300)
                   return 1;
-              if (val < 400)
+              if (value < 400)
                   return 1;
               return 1;
 
           case CLASS_PANDAWA:
-              if (val < 50)
+              if (value < 50)
                   return 1;
-              if (val < 200)
+              if (value < 200)
                   return 1;
               return 1;
 
           case CLASS_IOP:
-              if (val < 20)
+              if (value < 20)
                   return 1;
-              if (val < 40)
+              if (value < 40)
                   return 1;
-              if (val < 60)
+              if (value < 60)
                   return 1;
-              if (val < 80)
+              if (value < 80)
                   return 1;
               return 1;
 
           case CLASS_ENUTROF:
-              if (val < 100)
+              if (value < 100)
                   return 1;
-              if (val < 150)
+              if (value < 150)
                   return 1;
-              if (val < 230)
+              if (value < 230)
                   return 1;
-              if (val < 330)
+              if (value < 330)
                   return 1;
               return 1;
 
           case CLASS_OSAMODAS:
-              if (val < 100)
+              if (value < 100)
                   return 1;
-              if (val < 200)
+              if (value < 200)
                   return 1;
-              if (val < 300)
+              if (value < 300)
                   return 1;
-              if (val < 400)
+              if (value < 400)
                   return 1;
               return 1;
 
           case CLASS_ECAFLIP:
-              if (val < 20)
+              if (value < 20)
                   return 1;
-              if (val < 40)
+              if (value < 40)
                   return 1;
-              if (val < 60)
+              if (value < 60)
                   return 1;
-              if (val < 80)
+              if (value < 80)
                   return 1;
               return 1;
 
           case CLASS_ENIRIPSA:
-              if (val < 20)
+              if (value < 20)
                   return 1;
-              if (val < 40)
+              if (value < 40)
                   return 1;
-              if (val < 60)
+              if (value < 60)
                   return 1;
-              if (val < 80)
+              if (value < 80)
                   return 1;
               return 1;
 
           case CLASS_CRA:
-              if (val < 20)
+              if (value < 20)
                   return 1;
-              if (val < 40)
+              if (value < 40)
                   return 1;
-              if (val < 60)
+              if (value < 60)
                   return 1;
-              if (val < 80)
+              if (value < 80)
                   return 1;
               return 1;
       }
@@ -1078,24 +1078,24 @@ public class Constant
   case 14://Agilit�
       switch (classID) {
           case CLASS_FECA:
-              if (val < 20)
+              if (value < 20)
                   return 1;
-              if (val < 40)
+              if (value < 40)
                   return 1;
-              if (val < 60)
+              if (value < 60)
                   return 1;
-              if (val < 80)
+              if (value < 80)
                   return 1;
               return 1;
 
           case CLASS_XELOR:
-              if (val < 20)
+              if (value < 20)
                   return 1;
-              if (val < 40)
+              if (value < 40)
                   return 1;
-              if (val < 60)
+              if (value < 60)
                   return 1;
-              if (val < 80)
+              if (value < 80)
                   return 1;
               return 1;
 
@@ -1103,97 +1103,97 @@ public class Constant
               return 1;
 
           case CLASS_SRAM:
-              if (val < 100)
+              if (value < 100)
                   return 1;
-              if (val < 200)
+              if (value < 200)
                   return 1;
-              if (val < 300)
+              if (value < 300)
                   return 1;
-              if (val < 400)
+              if (value < 400)
                   return 1;
               return 1;
 
           case CLASS_SADIDA:
-              if (val < 20)
+              if (value < 20)
                   return 1;
-              if (val < 40)
+              if (value < 40)
                   return 1;
-              if (val < 60)
+              if (value < 60)
                   return 1;
-              if (val < 80)
+              if (value < 80)
                   return 1;
               return 1;
 
           case CLASS_PANDAWA:
-              if (val < 50)
+              if (value < 50)
                   return 1;
-              if (val < 200)
+              if (value < 200)
                   return 1;
               return 1;
 
           case CLASS_ENIRIPSA:
-              if (val < 20)
+              if (value < 20)
                   return 1;
-              if (val < 40)
+              if (value < 40)
                   return 1;
-              if (val < 60)
+              if (value < 60)
                   return 1;
-              if (val < 80)
+              if (value < 80)
                   return 1;
               return 1;
 
           case CLASS_IOP:
-              if (val < 20)
+              if (value < 20)
                   return 1;
-              if (val < 40)
+              if (value < 40)
                   return 1;
-              if (val < 60)
+              if (value < 60)
                   return 1;
-              if (val < 80)
+              if (value < 80)
                   return 1;
               return 1;
 
           case CLASS_ENUTROF:
-              if (val < 20)
+              if (value < 20)
                   return 1;
-              if (val < 40)
+              if (value < 40)
                   return 1;
-              if (val < 60)
+              if (value < 60)
                   return 1;
-              if (val < 80)
+              if (value < 80)
                   return 1;
               return 1;
 
           case CLASS_ECAFLIP:
-              if (val < 50)
+              if (value < 50)
                   return 1;
-              if (val < 100)
+              if (value < 100)
                   return 1;
-              if (val < 150)
+              if (value < 150)
                   return 1;
-              if (val < 200)
+              if (value < 200)
                   return 1;
               return 1;
 
           case CLASS_CRA:
-              if (val < 50)
+              if (value < 50)
                   return 1;
-              if (val < 100)
+              if (value < 100)
                   return 1;
-              if (val < 150)
+              if (value < 150)
                   return 1;
-              if (val < 200)
+              if (value < 200)
                   return 1;
               return 1;
 
           case CLASS_OSAMODAS:
-              if (val < 20)
+              if (value < 20)
                   return 1;
-              if (val < 40)
+              if (value < 40)
                   return 1;
-              if (val < 60)
+              if (value < 60)
                   return 1;
-              if (val < 80)
+              if (value < 80)
                   return 1;
               return 1;
       }
@@ -1201,24 +1201,24 @@ public class Constant
   case 15://Intelligence
       switch (classID) {
           case CLASS_XELOR:
-              if (val < 100)
+              if (value < 100)
                   return 1;
-              if (val < 200)
+              if (value < 200)
                   return 1;
-              if (val < 300)
+              if (value < 300)
                   return 1;
-              if (val < 400)
+              if (value < 400)
                   return 1;
               return 1;
 
           case CLASS_FECA:
-              if (val < 100)
+              if (value < 100)
                   return 1;
-              if (val < 200)
+              if (value < 200)
                   return 1;
-              if (val < 300)
+              if (value < 300)
                   return 1;
-              if (val < 400)
+              if (value < 400)
                   return 1;
               return 1;
 
@@ -1226,95 +1226,95 @@ public class Constant
               return 1;
 
           case CLASS_SRAM:
-              if (val < 50)
+              if (value < 50)
                   return 1;
-              if (val < 150)
+              if (value < 150)
                   return 1;
-              if (val < 250)
+              if (value < 250)
                   return 1;
               return 1;
 
           case CLASS_SADIDA:
-              if (val < 100)
+              if (value < 100)
                   return 1;
-              if (val < 200)
+              if (value < 200)
                   return 1;
-              if (val < 300)
+              if (value < 300)
                   return 1;
-              if (val < 400)
+              if (value < 400)
                   return 1;
               return 1;
 
           case CLASS_ENUTROF:
-              if (val < 20)
+              if (value < 20)
                   return 1;
-              if (val < 60)
+              if (value < 60)
                   return 1;
-              if (val < 100)
+              if (value < 100)
                   return 1;
-              if (val < 140)
+              if (value < 140)
                   return 1;
               return 1;
 
           case CLASS_PANDAWA:
-              if (val < 50)
+              if (value < 50)
                   return 1;
-              if (val < 200)
+              if (value < 200)
                   return 1;
               return 1;
 
           case CLASS_IOP:
-              if (val < 20)
+              if (value < 20)
                   return 1;
-              if (val < 40)
+              if (value < 40)
                   return 1;
-              if (val < 60)
+              if (value < 60)
                   return 1;
-              if (val < 80)
+              if (value < 80)
                   return 1;
               return 1;
 
           case CLASS_ENIRIPSA:
-              if (val < 100)
+              if (value < 100)
                   return 1;
-              if (val < 200)
+              if (value < 200)
                   return 1;
-              if (val < 300)
+              if (value < 300)
                   return 1;
-              if (val < 400)
+              if (value < 400)
                   return 1;
               return 1;
 
           case CLASS_CRA:
-              if (val < 50)
+              if (value < 50)
                   return 1;
-              if (val < 150)
+              if (value < 150)
                   return 1;
-              if (val < 250)
+              if (value < 250)
                   return 1;
-              if (val < 350)
+              if (value < 350)
                   return 1;
               return 1;
 
           case CLASS_OSAMODAS:
-              if (val < 100)
+              if (value < 100)
                   return 1;
-              if (val < 200)
+              if (value < 200)
                   return 1;
-              if (val < 300)
+              if (value < 300)
                   return 1;
-              if (val < 400)
+              if (value < 400)
                   return 1;
               return 1;
 
           case CLASS_ECAFLIP:
-              if (val < 20)
+              if (value < 20)
                   return 1;
-              if (val < 40)
+              if (value < 40)
                   return 1;
-              if (val < 60)
+              if (value < 60)
                   return 1;
-              if (val < 80)
+              if (value < 80)
                   return 1;
               return 1;
         }

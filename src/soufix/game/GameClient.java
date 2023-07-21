@@ -397,6 +397,8 @@ public int chek;
       case 'w':
      	  switch(packet.charAt(1))
   	    {
+     	  
+     		  
   	  case 'y':
     	  
   		// buy ornements
@@ -3085,9 +3087,9 @@ public void setTimeLastTaverne(long timeLastTaverne) {
           if(type>23&&type!=81&&type!=82)
         	  continue;
            calcule ++;
-          for(Map.Entry<Integer, Integer> entry1 : object.getStats().getMap().entrySet())
+          for(Entry<Long, Long> entry1 : object.getStats().getMap().entrySet())
           {
-            int jet=entry1.getValue();
+            Long jet=entry1.getValue();
             for(Rune rune : Rune.runes)
             {
               short characteristic=Short.parseShort(Main.world.getObjTemplate(rune.getTemplateId()).getStrTemplate().split("#")[0],16);
@@ -3119,18 +3121,19 @@ public void setTimeLastTaverne(long timeLastTaverne) {
                     val*=3.0;
 
                   double tauxGetMin=Main.world.getTauxObtentionIntermediaire(val,true,(val!=30)),tauxGetMax=(tauxGetMin/(2.0/3.0))/0.9;
-                  int tauxMax=(int)Math.ceil(tauxGetMax),tauxGet=(int)Math.ceil(tauxGetMin),tauxMin=2*(tauxMax-tauxGet)-2;
+                  int tauxMax=(int)Math.ceil(tauxGetMax);
+				int tauxGet=(int)Math.ceil(tauxGetMin),tauxMin=2*(tauxMax-tauxGet)-2;
 
                   if(rune.getTemplateId()==7433||rune.getTemplateId()==7434||rune.getTemplateId()==7435||rune.getTemplateId()==7441)
                     tauxMax++;
                   if(jet<tauxMin)
                     continue;
 
-                  for(int i=jet;i>0;i-=tauxMax)
+                  for(Long i=jet;i>0;i-=tauxMax)
                   {
-                    int j=0;
+                    Long j=(long) 0;
                     if(i>tauxMax)
-                      j=tauxMax;
+                      j=(long) tauxMax;
                     else
                       j=i;
                     if(j==tauxMax)
@@ -4401,7 +4404,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
           }
 
           GameObject object=World.getGameObject(id);
-          Mount mount=Main.world.getMountById(-object.getStats().getEffect(995));
+          Mount mount=Main.world.getMountById((int) -object.getStats().getEffect(995));
 
           if(mount==null)
             return;
@@ -5328,7 +5331,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
           ArrayList<GameObject> objects=new ArrayList<>();
           for(GameObject object : player.getItems().values())
           {
-            Mount mount=Main.world.getMountById(-object.getStats().getEffect(995));
+            Mount mount=Main.world.getMountById((int) -object.getStats().getEffect(995));
 
             if(mount==null&&object.getTemplate().getType()==Constant.ITEM_TYPE_CERTIF_MONTURE)
               objects.add(object);
@@ -7169,7 +7172,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
         if(G.getStats(176)>=500)
           return;
         G.setCapital(G.getCapital()-1);
-        G.upgradeStats(176,1);
+        G.upgradeStats((long) 176,1);
         break;
       case 'x'://Sagesse
         if(G.getCapital()<1)
@@ -7177,7 +7180,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
         if(G.getStats(124)>=400)
           return;
         G.setCapital(G.getCapital()-1);
-        G.upgradeStats(124,1);
+        G.upgradeStats((long) 124,1);
         break;
       case 'o'://Pod
         if(G.getCapital()<1)
@@ -7185,7 +7188,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
         if(G.getStats(158)>=5000)
           return;
         G.setCapital(G.getCapital()-1);
-        G.upgradeStats(158,20);
+        G.upgradeStats((long) 158,20);
         break;
       case 'k'://Nb Collector
         if(G.getCapital()<10)
@@ -10275,17 +10278,30 @@ Logging.getInstance().write("DDOS","IP Same Packet 500 out "+packet+" "+ip);
   }
   public void size(String packet)
   {
-	  if(player.hasItemTemplate(22009,1))
+	  //Potentiel condition item
+	  //if(player.hasItemTemplate(22009,1))
+	  int pointDuJoueur = player.getAccount().getPoints();
+	  int prix = 10;
+	  int tailleMini = 10;
+	  int tailleMax = 250;
+	  //Potentiel condition monnaie
+	  if (pointDuJoueur >= prix)
 	    {
          int size = Integer.parseInt(packet.substring(2));
-         if(size < 50 || size > 150) {
-        	 this.player.sendMessage("Erreur size minimum 50 & maximum 150");
+         if(size < 10 || size > 250) {
+        	 SocketManager.PACKET_POPUP_DEPART(player,"Erreur -> Taille Minimum "+ tailleMini + " & Maximum " + tailleMax);
          return;	 
          }
          this.player.set_size(size);
 		 SocketManager.GAME_SEND_ALTER_GM_PACKET(this.player.getCurMap(),this.player);
-		 player.removeByTemplateID(22009,1);
+		 //player.removeByTemplateID(22009,1);
+		 player.getAccount().setPoints(pointDuJoueur-prix);
 	    }
+	  else {
+		  SocketManager.PACKET_POPUP_DEPART(player, 
+				  "Tu n'a que " + pointDuJoueur + " PB sur ton compte \n"+
+				  "Il te faut " + prix + " PB pour changer de Size");
+	  }
   }
   public void changeName(String packet , boolean new_core)
   {

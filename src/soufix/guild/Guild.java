@@ -26,9 +26,9 @@ public class Guild
   private int capital=0;
   private int nbrPerco=0;
   private Map<Integer, SortStats> spells=new HashMap<>(); //<ID, Level>
-  private Map<Integer, Integer> stats=new HashMap<>(); //<Effet, Quantit�>
+  private Map<Long, Long> stats=new HashMap<>(); //<Effet, Quantit�>
   //Stats en combat
-  private Map<Integer, Integer> statsFight=new HashMap<>();
+  private Map<Long, Long> statsFight=new HashMap<>();
   private long date;
 
   public Guild(String name, String emblem)
@@ -65,15 +65,15 @@ public class Guild
     decompileStats(stats);
     //Mise en place des stats
     statsFight.clear();
-    statsFight.put(Constant.STATS_ADD_DOMA,(int)Math.floor(getLvl()/4));
-    statsFight.put(Constant.STATS_ADD_CC,(int)Math.floor(getLvl()/10));
-    statsFight.put(Constant.STATS_ADD_SOIN,(int)Math.floor(getLvl()/2));
-    statsFight.put(Constant.STATS_ADD_PERDOM,(int)Math.floor(getLvl()));
-    statsFight.put(Constant.STATS_ADD_RP_NEU,(int)Math.floor(getLvl()/4));
-    statsFight.put(Constant.STATS_ADD_RP_FEU,(int)Math.floor(getLvl()/4));
-    statsFight.put(Constant.STATS_ADD_RP_EAU,(int)Math.floor(getLvl()/4));
-    statsFight.put(Constant.STATS_ADD_RP_AIR,(int)Math.floor(getLvl()/4));
-    statsFight.put(Constant.STATS_ADD_RP_TER,(int)Math.floor(getLvl()/4));
+    statsFight.put((long)Constant.STATS_ADD_DOMA,(long)Math.floor(getLvl()/4));
+    statsFight.put((long)Constant.STATS_ADD_CC,(long)Math.floor(getLvl()/10));
+    statsFight.put((long)Constant.STATS_ADD_SOIN,(long)Math.floor(getLvl()/2));
+    statsFight.put((long)Constant.STATS_ADD_PERDOM,(long)Math.floor(getLvl()));
+    statsFight.put((long)Constant.STATS_ADD_RP_NEU,(long)Math.floor(getLvl()/4));
+    statsFight.put((long)Constant.STATS_ADD_RP_FEU,(long)Math.floor(getLvl()/4));
+    statsFight.put((long)Constant.STATS_ADD_RP_EAU,(long)Math.floor(getLvl()/4));
+    statsFight.put((long)Constant.STATS_ADD_RP_AIR,(long)Math.floor(getLvl()/4));
+    statsFight.put((long)Constant.STATS_ADD_RP_TER,(long)Math.floor(getLvl()/4));
   }
 
   public GuildMember addMember(int id, int r, byte pXp, long x, int ri, String lastCo)
@@ -125,7 +125,7 @@ public class Guild
     return this.spells;
   }
 
-  public Map<Integer, Integer> getStats()
+  public Map<Long, Long> getStats()
   {
     return stats;
   }
@@ -271,7 +271,7 @@ public class Guild
   public void decompileStats(String statsStr)
   {
     for(String split : statsStr.split("\\|"))
-      this.stats.put(Integer.parseInt(split.split(";")[0]),Integer.parseInt(split.split(";")[1]));
+      this.stats.put(Long.parseLong(split.split(";")[0]),Long.parseLong(split.split(";")[1]));
   }
 
   public String compileSpell()
@@ -301,7 +301,7 @@ public class Guild
     StringBuilder toReturn=new StringBuilder();
     boolean isFirst=true;
 
-    for(Entry<Integer, Integer> curStats : this.stats.entrySet())
+    for(Entry<Long, Long> curStats : this.stats.entrySet())
     {
       if(!isFirst)
         toReturn.append("|");
@@ -314,14 +314,14 @@ public class Guild
     return toReturn.toString();
   }
 
-  public void upgradeStats(int id, int add)
+  public void upgradeStats(Long id, int add)
   {
     this.stats.put(id,(this.stats.get(id)+add));
   }
 
-  public int getStats(int id)
+  public long getStats(long statsAddSage)
   {
-    return stats.get(id);
+    return stats.get(statsAddSage);
   }
 
   public String parseCollectorToGuild()

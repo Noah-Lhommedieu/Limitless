@@ -57,8 +57,8 @@ public class Monster
             spells="";
         }
         //PDVMax//init
-        int pdvmax=1;
-        int init=1;
+        long pdvmax=1;
+        long init=1;
 
         try
         {

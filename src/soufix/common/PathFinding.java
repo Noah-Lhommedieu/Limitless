@@ -286,7 +286,7 @@ private static Integer nSteps=new Integer(0);
           bestPo=sort.getMaxPO();
       }
     }
-    int pmNumber=fighter.getCurPm(fight);
+    int pmNumber=(int) fighter.getCurPm(fight);
     /*
      * if(fighter != fight.getCurFighter()) pmNumber = fighter.getPm();
      */
@@ -342,7 +342,7 @@ private static Integer nSteps=new Integer(0);
       if(sort.getMaxPO()>bestPo)
         bestPo=sort.getMaxPO();
     }
-    int cellNumber=Formulas.countCell(fighter.getCurPm(fight)+1);
+    int cellNumber=Formulas.countCell((int) (fighter.getCurPm(fight)+1));
     int _loc1_=0;
     int _loc3_=0;
     char[] dirs= { 'b', 'd', 'f', 'h' };

@@ -1728,14 +1728,14 @@ public class SpellEffect
         if(target.getCell().getId()==this.cell.getId()||spell==73)
           cell=caster.getCell();
 
-        int newCellId=(int) PathFinding.newCaseAfterPush(fight,cell,target.getCell(),value,spell==73);
+        long newCellId=(int) PathFinding.newCaseAfterPush(fight,cell,target.getCell(),value,spell==73);
         if(newCellId==0)
           return;
         if(newCellId<0)
         {
 
           long a=-newCellId;
-          long finalDmg=Formulas.pushDamage(-newCellId,(caster.isInvocation() ? caster.getInvocator().getLvl() : caster.getLvl()),caster.getTotalStats().getEffect(Constant.STATS_ADD_PUSH),caster.getTotalStats().getEffect(Constant.STATS_REM_PUSH),target.getTotalStats().getEffect(Constant.STATS_ADD_R_PUSH),target.getTotalStats().getEffect(Constant.STATS_REM_R_PUSH));
+          long finalDmg=Formulas.pushDamage(-newCellId,(caster.isInvocation() ? (long)caster.getInvocator().getLvl() : (long)caster.getLvl()),caster.getTotalStats().getEffect(Constant.STATS_ADD_PUSH),caster.getTotalStats().getEffect(Constant.STATS_REM_PUSH),target.getTotalStats().getEffect(Constant.STATS_ADD_R_PUSH),target.getTotalStats().getEffect(Constant.STATS_REM_R_PUSH));
 
           if(finalDmg<1)
             finalDmg=1;
@@ -5187,7 +5187,7 @@ public class SpellEffect
       caster.addBuff(effectID,0,3,1,true,spell,args,caster,true);
       SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,effectID,caster.getId()+"",caster.getId()+","+(3-1));
       caster.lastInvisCell=caster.getCell();
-      caster.lastInvisMP=caster.getCurPm(fight);
+      caster.lastInvisMP=(int) caster.getCurPm(fight);
       return;
     }
 
@@ -5199,12 +5199,12 @@ public class SpellEffect
         if(spell==72)
         {
           if(spellLvl==6)
-            target.lastInvisMP=target.getCurPm(fight)+2;
+            target.lastInvisMP=(int) (target.getCurPm(fight)+2);
           else
-            target.lastInvisMP=target.getCurPm(fight)+1;
+            target.lastInvisMP=(int) (target.getCurPm(fight)+1);
         }
         else
-          target.lastInvisMP=target.getCurPm(fight);
+          target.lastInvisMP=(int) target.getCurPm(fight);
       }
       else
         target.lastInvisMP=0;
@@ -5647,7 +5647,7 @@ public class SpellEffect
     if(fight.getTeam(caster.getTeam()).size() > 30)
     	return;
     int id=fight.getNextLowerFighterGuid();
-    Player clone=Player.ClonePerso(caster.getPersonnage(),-id-10000,(int) (caster.getPersonnage().getMaxPdv()-((caster.getLvl()-1)*5+50)));
+    Player clone=Player.ClonePerso(caster.getPersonnage(),-id-10000,(long) (caster.getPersonnage().getMaxPdv()-((caster.getLvl()-1)*5+50)));
     clone.setFight(fight);
 
     Fighter fighter=new Fighter(fight,clone);
@@ -6420,7 +6420,7 @@ public class SpellEffect
           SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,106,target.getId()+"",target.getId()+",1");
           target=caster;
         }
-        int resP=target.getPersonnage() != null  ?target.getTotalStats().getEffect(Constant.STATS_ADD_RP_NEU): 50,resF=target.getPersonnage() != null  ?target.getTotalStats().getEffect(Constant.STATS_ADD_R_NEU): 50;
+        int resP=(int) (target.getPersonnage() != null  ?target.getTotalStats().getEffect(Constant.STATS_ADD_RP_NEU): 50),resF=(int) (target.getPersonnage() != null  ?target.getTotalStats().getEffect(Constant.STATS_ADD_R_NEU): 50);
 
         if(target.getPersonnage()!=null)
         {
@@ -6491,7 +6491,7 @@ public class SpellEffect
       }
      // int finalDommage=Formulas.calculFinalDommage(fight,caster,target,Constant.ELEMENT_NEUTRE,dgt,false,true,spell,this.cell,target.getCell(),aoe,isTrap);
       long finalDommage=applyOnHitBuffs(dgt,target,caster,fight,Constant.ELEMENT_NEUTRE,spell); //S'il y a des buffs spï¿½ciaux
-      int resi=target.getTotalStats().getEffect(Constant.STATS_ADD_RP_NEU);
+      int resi=(int) target.getTotalStats().getEffect(Constant.STATS_ADD_RP_NEU);
       long retir=0;
       if(resi>2)
       {
@@ -6998,8 +6998,8 @@ public class SpellEffect
         SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,106,target.getId()+"",target.getId()+",1");
         target=caster;
       }
-      int resP=target.getPersonnage() != null  ?target.getTotalStats().getEffect(Constant.STATS_ADD_RP_NEU): 50;
-      int resF=target.getPersonnage() != null  ?target.getTotalStats().getEffect(Constant.STATS_ADD_R_NEU): 50;
+      int resP=(int) (target.getPersonnage() != null  ?target.getTotalStats().getEffect(Constant.STATS_ADD_RP_NEU): 50);
+      int resF=(int) (target.getPersonnage() != null  ?target.getTotalStats().getEffect(Constant.STATS_ADD_R_NEU): 50);
       if(target.getPersonnage()!=null) //Si c'est un joueur, on ajoute les resists bouclier
       {
         resP+=target.getPersonnage() != null  ?target.getTotalStats().getEffect(Constant.STATS_ADD_RP_PVP_NEU): 50;
@@ -7013,13 +7013,13 @@ public class SpellEffect
       int armor=0;
       for(SpellEffect SE : target.getBuffsByEffectID(105))
       {
-        int[] stats= { target.getTotalStats().getEffect(118), target.getTotalStats().getEffect(126), target.getTotalStats().getEffect(123), target.getTotalStats().getEffect(119) };
-        int highest=0;
+        long[] stats= { target.getTotalStats().getEffect(118), (int) target.getTotalStats().getEffect(126), target.getTotalStats().getEffect(123), target.getTotalStats().getEffect(119) };
+        long highest=0;
         for(int i=0;i<stats.length-1;i++)
           if(stats[i]>highest)
             highest=stats[i];
         final long value=SE.getValue();
-        int carac=target.getTotalStats().getEffect(Constant.STATS_ADD_FORC);
+        long carac=target.getTotalStats().getEffect(Constant.STATS_ADD_FORC);
         final long a=value*(100+highest/2+carac/2)/100;
         armor+=a;
       }
@@ -7294,7 +7294,7 @@ public class SpellEffect
         SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,106,target.getId()+"",target.getId()+",1");
         target=caster;
       }
-      int dmg=0;
+      long dmg=0;
       if(target.hasBuff(782)) //Brokle
       {
         dmg=Formulas.getMaxJet(args.split(";")[5]);

@@ -23,7 +23,7 @@ public class IA12 extends AbstractNeedSpell
     if(!this.stop&&this.fighter.canPlay()&&this.count>0)
     {
       Fighter ennemy=Function.getInstance().getNearestEnnemy(this.fight,this.fighter);
-      int PA=this.fighter.getCurPa(this.fight),PM=this.fighter.getCurPm(this.fight),time=100,maxPo=1,apCost=5;
+      int PA=(int) this.fighter.getCurPa(this.fight),PM=(int) this.fighter.getCurPm(this.fight),time=100,maxPo=1,apCost=5;
       boolean action=false;
 
       if(this.fighter.getMob().getPa()<PA)
@@ -54,8 +54,8 @@ public class IA12 extends AbstractNeedSpell
         }
       }
 
-      PA=this.fighter.getCurPa(this.fight);
-      PM=this.fighter.getCurPm(this.fight);
+      PA=(int) this.fighter.getCurPa(this.fight);
+      PM=(int) this.fighter.getCurPm(this.fight);
 
       if(PA>0&&target!=null&&!action)
       {

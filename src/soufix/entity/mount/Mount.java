@@ -1196,13 +1196,13 @@ public class Mount
   private String convertStatsToString()
   {
     StringBuilder stats=new StringBuilder();
-    for(java.util.Map.Entry<Integer, Integer> entry : this.stats.getMap().entrySet())
+    for(java.util.Map.Entry<Long, Long> entry : this.stats.getMap().entrySet())
     {
       if(entry.getValue()<=0)
         continue;
       if(stats.length()>0)
         stats.append(",");
-      stats.append(Integer.toHexString(entry.getKey())).append("#").append(Integer.toHexString(entry.getValue())).append("#0#0");
+      stats.append(Long.toHexString(entry.getKey())).append("#").append(Long.toHexString(entry.getValue())).append("#0#0");
     }
     return stats.toString();
   }

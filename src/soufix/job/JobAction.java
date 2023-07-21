@@ -973,7 +973,7 @@ public boolean doMage(boolean repeat, Player receiver, Map<Player, ArrayList<Pai
     {
   
        int statMax=getStatBaseMaxs(objectFm.getTemplate(),rune.getStatId());
-       int currentStat=Job.getActualJet(objectFm,rune.getStatId());
+       long currentStat=Job.getActualJet(objectFm,rune.getStatId());
        if(statMax < 0)
     	   statMax = 0;
       int maxOvermage=getMaxStat(rune.getPower(),rune.getStatsAdd());
@@ -2008,10 +2008,10 @@ public boolean doMage(boolean repeat, Player receiver, Map<Player, ArrayList<Pai
 
   public static float currentStatPower(final GameObject obj, Rune rune)
   {
-    for(final Map.Entry<Integer, Integer> entry : obj.getStats().getMap().entrySet())
+    for(final Entry<Long, Long> entry : obj.getStats().getMap().entrySet())
     {
-      final int statID=entry.getKey();
-      if(Integer.toHexString(statID).toLowerCase().compareTo(rune.getStatId())==0)
+      final Long statID=entry.getKey();
+      if(Long.toHexString(statID).toLowerCase().compareTo(rune.getStatId())==0)
       {
         float finalWeight=0; //v2.0 - Divide by 0 handler
         final float Weight=entry.getValue()*(rune.getPower()/rune.getStatsAdd());
@@ -2021,7 +2021,7 @@ public boolean doMage(boolean repeat, Player receiver, Map<Player, ArrayList<Pai
           finalWeight=Weight;
         return finalWeight;
       }
-      else if(Integer.toHexString(statID).toLowerCase().compareTo(Rune.getNegativeStatByRuneStat(rune.getStatId()))==0)
+      else if(Long.toHexString(statID).toLowerCase().compareTo(Rune.getNegativeStatByRuneStat(rune.getStatId()))==0)
       {
         float finalWeight=0; //v2.0 - Divide by 0 handler
         final float Weight=entry.getValue()*(rune.getnPower()/rune.getStatsAdd());

@@ -813,7 +813,7 @@ public class ObjectAction
 				  player0.getStats().addOneStat(123, -player0.getStats().getEffect(123));
 				  player0.getStats().addOneStat(119, -player0.getStats().getEffect(119));
 				  player0.getStats().addOneStat(126, -player0.getStats().getEffect(126));
-				  int val = 0;
+				  long val = 0;
 		            if(player.getStatsParcho().getEffect(Constant.STATS_ADD_VITA) != 0) {
 		            	val = player.getStatsParcho().getEffect(Constant.STATS_ADD_VITA);
 		            	player.getStatsParcho().addOneStat(Constant.STATS_ADD_VITA,-player.getStatsParcho().getEffect(Constant.STATS_ADD_VITA));

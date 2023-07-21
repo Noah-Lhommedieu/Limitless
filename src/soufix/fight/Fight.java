@@ -60,8 +60,8 @@ public class Fight
   private int id, state=0, guildId=-1, type=-1;
   private int st1, st2;
   private int curPlayer, captWinner=-1;
-  private int curFighterPa, curFighterPm;
-  private int curFighterUsedPa, curFighterUsedPm;
+  private long curFighterPa, curFighterPm;
+  private long curFighterUsedPa, curFighterUsedPm;
   private final Map<Integer, Fighter> team0=new HashMap<>();
   private final Map<Integer, Fighter> team1=new HashMap<>();
   private final ArrayList<Pair<Integer, Fighter>> deadList=new ArrayList<Pair<Integer, Fighter>>();
@@ -694,37 +694,37 @@ public class Fight
     this.captWinner=captWinner;
   }
 
-  public int getCurFighterPa()
+  public long getCurFighterPa()
   {
     return curFighterPa;
   }
 
-  public void setCurFighterPa(int curFighterPa)
+  public void setCurFighterPa(long l)
   {
-    this.curFighterPa=curFighterPa;
+    this.curFighterPa=l;
   }
 
-  public int getCurFighterPm()
+  public long getCurFighterPm()
   {
     return curFighterPm;
   }
 
-  public void setCurFighterPm(int curFighterPm)
+  public void setCurFighterPm(long l)
   {
-    this.curFighterPm=curFighterPm;
+    this.curFighterPm=l;
   }
 
-  private int getCurFighterUsedPa()
+  private long getCurFighterUsedPa()
   {
     return curFighterUsedPa;
   }
 
-  private void setCurFighterUsedPa(int ap)
+  private void setCurFighterUsedPa(long l)
   {
-    this.curFighterUsedPa=ap;
+    this.curFighterUsedPa=l;
   }
 
-  public int getCurFighterUsedPm()
+  public long getCurFighterUsedPm()
   {
     return curFighterUsedPm;
   }
@@ -2886,10 +2886,10 @@ public void Anti_bug () {
   {
     int j=0;
     int k=0;
-    int start0=0;
-    int start1=0;
-    int curMaxIni0=0;
-    int curMaxIni1=0;
+    long start0=0;
+    long start1=0;
+    long curMaxIni0=0;
+    long curMaxIni1=0;
     Fighter curMax0=null;
     Fighter curMax1=null;
     boolean team1_ready=false;
@@ -3244,7 +3244,7 @@ public void Anti_bug () {
           {
             showCaseToAll(fighter.getId(),fighter.getCell().getId());
             fighter.lastInvisCell=fighter.getCell();
-            fighter.lastInvisMP=fighter.getCurPm(this);
+            fighter.lastInvisMP=(int) fighter.getCurPm(this);
           }
         }
         spell.applySpellEffectToFight(this,fighter,Cell,isCC,false); // on applique les effets de l'arme
@@ -3718,7 +3718,7 @@ public void Anti_bug () {
       if(rand>esquive)
       {
         SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(this,7,GA.id,"104",fighter.getId()+";","");
-        int pierdePA=getCurFighterPa()*esquive/100;
+        long pierdePA=getCurFighterPa()*esquive/100;
         if(pierdePA<0)
           pierdePA=-pierdePA;
         if(getCurFighterPm()<0)
@@ -3743,7 +3743,7 @@ public void Anti_bug () {
     }
     current.setJustTrapped(false);
     setCurFighterPm(getCurFighterPm()-nStep);
-    this.setCurFighterUsedPm(this.getCurFighterUsedPm()+nStep);
+    this.setCurFighterUsedPm((int) (this.getCurFighterUsedPm()+nStep));
 
     int nextCellID=Main.world.getCryptManager().cellCode_To_ID(newPath.substring(newPath.length()-2));
     // les monstres n'ont pas de GAS//GAF
@@ -5644,7 +5644,7 @@ public void Anti_bug () {
       Fighter higherFighter=null;
       while(temporary1.size()<winners.size())
       {
-        int currentProspecting=-1;
+        long currentProspecting=-1;
         for(Fighter fighter : winners)
         {
           if(fighter.getMob()!=null&&fighter.getMob().getTemplate()!=null&&fighter.getMob().getTemplate().getId()==285&&fighter.getInvocator()!=null)
@@ -6123,7 +6123,7 @@ public void Anti_bug () {
 
             for(Drop drop : temporary3)
             {
-              int charPros=i.getPros();
+              long charPros=i.getPros();
               if(charPros<1)
                 charPros=1;
               if(this.type == Constant.FIGHT_TYPE_PVM)

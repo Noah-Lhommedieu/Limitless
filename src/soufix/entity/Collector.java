@@ -478,7 +478,7 @@ public class Collector
     return pod;
   }
 
-  public int getMaxPod()
+  public long getMaxPod()
   {
     return Main.world.getGuild(this.getGuildId()).getStats(Constant.STATS_ADD_PODS);
   }

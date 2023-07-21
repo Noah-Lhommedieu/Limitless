@@ -501,7 +501,7 @@ public class ObjectTemplate
   {
     int id=Database.getDynamics().getObjectData().getNextId();
     GameObject item;
-    Map<Integer, Integer> maps=new HashMap<>();
+    Map<Long, Long> maps=new HashMap<>();
     maps.putAll(obj.getStats().getMap());
     Stats newStats=new Stats(maps);
     Map<Integer, String> Stat=new HashMap<>();

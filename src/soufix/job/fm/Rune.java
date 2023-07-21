@@ -44,31 +44,31 @@ public class Rune
 
   public static void addRunes()
   {
-	  new Rune(1523,Integer.toHexString(Constant.STATS_ADD_VITA),Integer.toHexString(Constant.STATS_REM_VITA),(byte)5,1f,0.5f); //Vi
-	    new Rune(1548,Integer.toHexString(Constant.STATS_ADD_VITA),Integer.toHexString(Constant.STATS_REM_VITA),(byte)15,2f,1.5f); //Pa Vi
-	    new Rune(1554,Integer.toHexString(Constant.STATS_ADD_VITA),Integer.toHexString(Constant.STATS_REM_VITA),(byte)50,5f,3f); //Ra Vi
-	    new Rune(1521,Integer.toHexString(Constant.STATS_ADD_SAGE),Integer.toHexString(Constant.STATS_REM_SAGE),(byte)1,1f,1f); //Sa
-	    new Rune(1546,Integer.toHexString(Constant.STATS_ADD_SAGE),Integer.toHexString(Constant.STATS_REM_SAGE),(byte)3,2f,2f); //Pa Sa
-	    new Rune(1552,Integer.toHexString(Constant.STATS_ADD_SAGE),Integer.toHexString(Constant.STATS_REM_SAGE),(byte)10,5f,5f); //Ra Sa
-	    new Rune(1519,Integer.toHexString(Constant.STATS_ADD_FORC),Integer.toHexString(Constant.STATS_REM_FORC),(byte)1,1f,1f); //Fo
-	    new Rune(1545,Integer.toHexString(Constant.STATS_ADD_FORC),Integer.toHexString(Constant.STATS_REM_FORC),(byte)3,2f,2f); //Pa Fo
-	    new Rune(1551,Integer.toHexString(Constant.STATS_ADD_FORC),Integer.toHexString(Constant.STATS_REM_FORC),(byte)10,5f,5f); //Ra Fo
-	    new Rune(1522,Integer.toHexString(Constant.STATS_ADD_INTE),Integer.toHexString(Constant.STATS_REM_INTE),(byte)1,1f,1f); //Ine
-	    new Rune(1547,Integer.toHexString(Constant.STATS_ADD_INTE),Integer.toHexString(Constant.STATS_REM_INTE),(byte)3,2f,2f); //Pa Ine
-	    new Rune(1553,Integer.toHexString(Constant.STATS_ADD_INTE),Integer.toHexString(Constant.STATS_REM_INTE),(byte)10,5f,5f); //Ra Ine
-	    new Rune(1525,Integer.toHexString(Constant.STATS_ADD_CHAN),Integer.toHexString(Constant.STATS_REM_CHAN),(byte)1,1f,1f); //Cha
-	    new Rune(1550,Integer.toHexString(Constant.STATS_ADD_CHAN),Integer.toHexString(Constant.STATS_REM_CHAN),(byte)3,2f,2f); //Pa Cha
-	    new Rune(1556,Integer.toHexString(Constant.STATS_ADD_CHAN),Integer.toHexString(Constant.STATS_REM_CHAN),(byte)10,5f,5f); //Ra Cha
-	    new Rune(1524,Integer.toHexString(Constant.STATS_ADD_AGIL),Integer.toHexString(Constant.STATS_REM_AGIL),(byte)1,1f,1f); //Age
-	    new Rune(1549,Integer.toHexString(Constant.STATS_ADD_AGIL),Integer.toHexString(Constant.STATS_REM_AGIL),(byte)3,1f,1f); //Pa Age
-	    new Rune(1555,Integer.toHexString(Constant.STATS_ADD_AGIL),Integer.toHexString(Constant.STATS_REM_AGIL),(byte)10,5f,5f); //Ra Age
 
-	    new Rune(1557,Integer.toHexString(Constant.STATS_ADD_PA),Integer.toHexString(Constant.STATS_REM_PA),(byte)1,100f,50f); //Ga Pa
-	    new Rune(1558,Integer.toHexString(Constant.STATS_ADD_PM),Integer.toHexString(Constant.STATS_REM_PM),(byte)1,90f,45f); //Ga Pme
-	    new Rune(7438,Integer.toHexString(Constant.STATS_ADD_PO),Integer.toHexString(Constant.STATS_REM_PO),(byte)1,5f,3f); //Po
-	    new Rune(7442,Integer.toHexString(Constant.STATS_ADD_SUM),Integer.toHexString(Constant.STATS_REM_SUM),(byte)1,10f,5f); //Sum
-	    new Rune(7433,Integer.toHexString(Constant.STATS_ADD_CC),Integer.toHexString(Constant.STATS_REM_CC),(byte)1,5f,3f); //Cri
-	    new Rune(7434,Integer.toHexString(Constant.STATS_ADD_SOIN),Integer.toHexString(Constant.STATS_REM_SOIN),(byte)1,5f,2f); //So
+      new Rune(1548,Long.toHexString(Constant.STATS_ADD_VITA),Integer.toHexString(Constant.STATS_REM_VITA),(byte)15,2f,1.5f); //Pa Vi
+      new Rune(1554,Long.toHexString(Constant.STATS_ADD_VITA),Integer.toHexString(Constant.STATS_REM_VITA),(byte)50,5f,3f); //Ra Vi
+      new Rune(1521,Long.toHexString(Constant.STATS_ADD_SAGE),Integer.toHexString(Constant.STATS_REM_SAGE),(byte)1,1f,1f); //Sa
+      new Rune(1546,Long.toHexString(Constant.STATS_ADD_SAGE),Integer.toHexString(Constant.STATS_REM_SAGE),(byte)3,2f,2f); //Pa Sa
+      new Rune(1552,Long.toHexString(Constant.STATS_ADD_SAGE),Integer.toHexString(Constant.STATS_REM_SAGE),(byte)10,5f,5f); //Ra Sa
+      new Rune(1519,Long.toHexString(Constant.STATS_ADD_FORC),Integer.toHexString(Constant.STATS_REM_FORC),(byte)1,1f,1f); //Fo
+      new Rune(1545,Long.toHexString(Constant.STATS_ADD_FORC),Integer.toHexString(Constant.STATS_REM_FORC),(byte)3,2f,2f); //Pa Fo
+      new Rune(1551,Long.toHexString(Constant.STATS_ADD_FORC),Integer.toHexString(Constant.STATS_REM_FORC),(byte)10,5f,5f); //Ra Fo
+      new Rune(1522,Long.toHexString(Constant.STATS_ADD_INTE),Integer.toHexString(Constant.STATS_REM_INTE),(byte)1,1f,1f); //Ine
+      new Rune(1547,Long.toHexString(Constant.STATS_ADD_INTE),Integer.toHexString(Constant.STATS_REM_INTE),(byte)3,2f,2f); //Pa Ine
+      new Rune(1553,Long.toHexString(Constant.STATS_ADD_INTE),Integer.toHexString(Constant.STATS_REM_INTE),(byte)10,5f,5f); //Ra Ine
+      new Rune(1525,Long.toHexString(Constant.STATS_ADD_CHAN),Integer.toHexString(Constant.STATS_REM_CHAN),(byte)1,1f,1f); //Cha
+      new Rune(1550,Long.toHexString(Constant.STATS_ADD_CHAN),Integer.toHexString(Constant.STATS_REM_CHAN),(byte)3,2f,2f); //Pa Cha
+      new Rune(1556,Long.toHexString(Constant.STATS_ADD_CHAN),Integer.toHexString(Constant.STATS_REM_CHAN),(byte)10,5f,5f); //Ra Cha
+      new Rune(1524,Long.toHexString(Constant.STATS_ADD_AGIL),Integer.toHexString(Constant.STATS_REM_AGIL),(byte)1,1f,1f); //Age
+      new Rune(1549,Long.toHexString(Constant.STATS_ADD_AGIL),Integer.toHexString(Constant.STATS_REM_AGIL),(byte)3,1f,1f); //Pa Age
+      new Rune(1555,Long.toHexString(Constant.STATS_ADD_AGIL),Integer.toHexString(Constant.STATS_REM_AGIL),(byte)10,5f,5f); //Ra Age
+
+      new Rune(1557,Long.toHexString(Constant.STATS_ADD_PA),Integer.toHexString(Constant.STATS_REM_PA),(byte)1,100f,50f); //Ga Pa
+      new Rune(1558,Long.toHexString(Constant.STATS_ADD_PM),Integer.toHexString(Constant.STATS_REM_PM),(byte)1,90f,45f); //Ga Pme
+      new Rune(7438,Long.toHexString(Constant.STATS_ADD_PO),Integer.toHexString(Constant.STATS_REM_PO),(byte)1,5f,3f); //Po
+      new Rune(7442,Long.toHexString(Constant.STATS_ADD_SUM),Integer.toHexString(Constant.STATS_REM_SUM),(byte)1,10f,5f); //Sum
+      new Rune(7433,Long.toHexString(Constant.STATS_ADD_CC),Integer.toHexString(Constant.STATS_REM_CC),(byte)1,5f,3f); //Cri
+      new Rune(7434,Long.toHexString(Constant.STATS_ADD_SOIN),Integer.toHexString(Constant.STATS_REM_SOIN),(byte)1,5f,2f); //So
 
 	    new Rune(7460,Integer.toHexString(Constant.STATS_ADD_RP_NEU),Integer.toHexString(Constant.STATS_REM_RP_NEU),(byte)1,2f,1f); //Neutral Re Per
 	    new Rune(7459,Integer.toHexString(Constant.STATS_ADD_RP_TER),Integer.toHexString(Constant.STATS_REM_RP_TER),(byte)1,2f,1f); //Earth Re Per
@@ -81,7 +81,7 @@ public class Rune
 	    new Rune(7454,Integer.toHexString(Constant.STATS_ADD_R_EAU),Integer.toHexString(Constant.STATS_REM_R_EAU),(byte)1,2f,1f); //Water Re
 	    new Rune(7453,Integer.toHexString(Constant.STATS_ADD_R_AIR),Integer.toHexString(Constant.STATS_REM_R_AIR),(byte)1,2f,1f); //Air Re
 
-	    new Rune(7435,Integer.toHexString(Constant.STATS_ADD_DOMA),Integer.toHexString(Constant.STATS_REM_DOMA),(byte)1,3f,2f); //Do
+	    new Rune(7435,Long.toHexString(Constant.STATS_ADD_DOMA),Integer.toHexString(Constant.STATS_REM_DOMA),(byte)1,3f,2f); //Do
 	    new Rune(7436,Integer.toHexString(Constant.STATS_ADD_PERDOM),Integer.toHexString(Constant.STATS_REM_PERDOM),(byte)1,2f,1f); //Do Per
 	    new Rune(10618,Integer.toHexString(Constant.STATS_ADD_PERDOM),Integer.toHexString(Constant.STATS_REM_PERDOM),(byte)3,3f,1f); //Pa Do Per
 	    new Rune(10619,Integer.toHexString(Constant.STATS_ADD_PERDOM),Integer.toHexString(Constant.STATS_REM_PERDOM),(byte)10,4f,2f); //Ra Do Per
@@ -92,14 +92,14 @@ public class Rune
 	    new Rune(10615,Integer.toHexString(Constant.STATS_TRAPPER),"",(byte)3,3f,1f); //Pa Pi Per
 	    new Rune(10616,Integer.toHexString(Constant.STATS_TRAPPER),"",(byte)10,5f,3f); //Ra Pi Per
 
-	    new Rune(7443,Integer.toHexString(Constant.STATS_ADD_PODS),Integer.toHexString(Constant.STATS_REM_PODS),(byte)10,1.5f,0.5f); //Pod
-	    new Rune(7444,Integer.toHexString(Constant.STATS_ADD_PODS),Integer.toHexString(Constant.STATS_REM_PODS),(byte)30,3.5f,2.5f); //Pa Pod
-	    new Rune(7445,Integer.toHexString(Constant.STATS_ADD_PODS),Integer.toHexString(Constant.STATS_REM_PODS),(byte)100,4f,2f); //Ra Pod
-	    new Rune(7448,Integer.toHexString(Constant.STATS_ADD_INIT),Integer.toHexString(Constant.STATS_REM_INIT),(byte)10,1f,0.5f); //Ini
-	    new Rune(7449,Integer.toHexString(Constant.STATS_ADD_INIT),Integer.toHexString(Constant.STATS_REM_INIT),(byte)30,2f,1.5f); //Pa Ini
-	    new Rune(7450,Integer.toHexString(Constant.STATS_ADD_INIT),Integer.toHexString(Constant.STATS_REM_INIT),(byte)100,3f,1f); //Ra Ini
-	    new Rune(7451,Integer.toHexString(Constant.STATS_ADD_PROS),Integer.toHexString(Constant.STATS_REM_PROS),(byte)1,1f,1f); //Prospe
-	    new Rune(10662,Integer.toHexString(Constant.STATS_ADD_PROS),Integer.toHexString(Constant.STATS_REM_PROS),(byte)3,3f,2f); //Pa Prospe
+	    new Rune(7443,Long.toHexString(Constant.STATS_ADD_PODS),Integer.toHexString(Constant.STATS_REM_PODS),(byte)10,1.5f,0.5f); //Pod
+	    new Rune(7444,Long.toHexString(Constant.STATS_ADD_PODS),Integer.toHexString(Constant.STATS_REM_PODS),(byte)30,3.5f,2.5f); //Pa Pod
+	    new Rune(7445,Long.toHexString(Constant.STATS_ADD_PODS),Integer.toHexString(Constant.STATS_REM_PODS),(byte)100,4f,2f); //Ra Pod
+	    new Rune(7448,Long.toHexString(Constant.STATS_ADD_INIT),Integer.toHexString(Constant.STATS_REM_INIT),(byte)10,1f,0.5f); //Ini
+	    new Rune(7449,Long.toHexString(Constant.STATS_ADD_INIT),Integer.toHexString(Constant.STATS_REM_INIT),(byte)30,2f,1.5f); //Pa Ini
+	    new Rune(7450,Long.toHexString(Constant.STATS_ADD_INIT),Integer.toHexString(Constant.STATS_REM_INIT),(byte)100,3f,1f); //Ra Ini
+	    new Rune(7451,Long.toHexString(Constant.STATS_ADD_PROS),Integer.toHexString(Constant.STATS_REM_PROS),(byte)1,1f,1f); //Prospe
+	    new Rune(10662,Long.toHexString(Constant.STATS_ADD_PROS),Integer.toHexString(Constant.STATS_REM_PROS),(byte)3,3f,2f); //Pa Prospe
 	    new Rune(10057,Integer.toHexString(Constant.STATS_HUNTING),"",(byte)1,5f,2.5f); //Hunting}
   }
 

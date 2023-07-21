@@ -200,7 +200,7 @@ private String _savePos;
   private Map<Integer, Spell.SortStats> _saveSorts=new HashMap<Integer, Spell.SortStats>();
   private Map<Integer, Character> _saveSortsPlaces=new HashMap<Integer, Character>();
   private int _saveSpellPts;
-  private int pa=0, pm=0, vitalite=0, sagesse=0, terre=0, feu=0, eau=0, air=0, initiative=0;
+  private long pa=0, pm=0, vitalite=0, sagesse=0, terre=0, feu=0, eau=0, air=0, initiative=0;
   private boolean useStats=false;
   private boolean useCac=true;
   // Other ?
@@ -291,7 +291,7 @@ public ArrayList<Integer> getIsCraftingType()
     return craftingType;
   }
 
-  public Player(int id, String name, int groupe, int sexe, int classe, int color1, int color2, int color3, long kamas, int pts, int _capital, int energy, int level, double exp, int _size, int _gfxid, byte alignement, int account, Map<Integer, Integer> stats, byte seeFriend, byte seeAlign, byte seeSeller, String canaux, short map, int cell, String stuff, String storeObjets, String pdvPer, String spells, String savePos, String jobs, int mountXp, int mount, int honor, int deshonor, int alvl, String z, int title, int wifeGuid, String morphMode, String allTitle, String emotes, long prison, boolean isNew, String parcho, long timeDeblo, boolean noall, String deadInformation, byte deathCount, long totalKills, final int tokens, final int apExo, final int mpExo, final int raExo, String rapid,int song, boolean Reload_item, int prestige, int ornement,int omega, double xpOmega, String ListOrnaments)
+  public Player(int id, String name, int groupe, int sexe, int classe, int color1, int color2, int color3, long kamas, int pts, long _capital, int energy, int level, double exp, int _size, int _gfxid, byte alignement, int account, Map<Long, Long> stats, byte seeFriend, byte seeAlign, byte seeSeller, String canaux, short map, int cell, String stuff, String storeObjets, String pdvPer, String spells, String savePos, String jobs, int mountXp, int mount, int honor, int deshonor, int alvl, String z, int title, int wifeGuid, String morphMode, String allTitle, String emotes, long prison, boolean isNew, String parcho, long timeDeblo, boolean noall, String deadInformation, byte deathCount, long totalKills, final int tokens, final int apExo, final int mpExo, final int raExo, String rapid,int song, boolean Reload_item, int prestige, int ornement,int omega, double xpOmega, String ListOrnaments)
   {
     this.id=id;
     this.noall=noall;
@@ -564,7 +564,7 @@ public ArrayList<Integer> getIsCraftingType()
   }
 
   //Clone double
-  public Player(int id, String name, int groupe, int sexe, int classe, int color1, int color2, int color3, int level, int _size, int _gfxid, Map<Integer, Integer> stats, String stuff, int pdvPer, byte seeAlign, int mount, int alvl, byte alignement)
+  public Player(int id, String name, int groupe, int sexe, int classe, int color1, int color2, int color3, int level, int _size, int _gfxid, HashMap<Long, Long> stats2, String stuff, int pdvPer, byte seeAlign, int mount, int alvl, byte alignement)
   {
 	  
     this.id=id;
@@ -579,7 +579,7 @@ public ArrayList<Integer> getIsCraftingType()
     this._aLvl=alvl;
     this._size=_size;
     this.gfxId=_gfxid;
-    this.stats=new Stats(stats,true,this);
+    this.stats=new Stats(stats2,true,this);
     this.changeName=false;
     this.set_isClone(true);
     /*if(!stuff.equals(""))
@@ -625,7 +625,7 @@ public ArrayList<Integer> getIsCraftingType()
       return null;
     if(sexe<0||sexe>1)
       return null;
-    Player perso=new Player(Database.getStatics().getPlayerData().getNextId(),name,-1,sexe,classe,color1,color2,color3,(Config.getInstance().serverId==6 ? 10000000 : 0),((Config.getInstance().startLevel-1)),((Config.getInstance().startLevel-1)*5),10000,Config.getInstance().startLevel,(long) Main.world.getPersoXpMin(Config.getInstance().startLevel),100,Integer.parseInt(classe+""+sexe),(byte)0,compte.getId(),new HashMap<Integer, Integer>(),(byte)1,(byte)0,(byte)0,"*#%!pi$:?",(Config.getInstance().startMap!=0 ? (short)Config.getInstance().startMap : Constant.getStartMap(classe)),(Config.getInstance().startCell!=0 ? (short)Config.getInstance().startCell : Constant.getStartCell(classe)),"","","100;0","",(Config.getInstance().startMap!=0 ? (short)Config.getInstance().startMap : Constant.getStartMap(classe))+","+(Config.getInstance().startCell!=0 ? (short)Config.getInstance().startCell : Constant.getStartCell(classe)),"",0,-1,0,0,0,z.toString(),(byte)0,0,"0;0","",(Config.getInstance().allEmote ? "0;1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19;20;21" : "0"),0,true,"118,0;119,0;123,0;124,0;125,0;126,0",0,false,"0,0,0,0",(byte)0,0,0,0,0,0,"",0,false,0,0,0,0,ListOrnaments);
+    Player perso=new Player(Database.getStatics().getPlayerData().getNextId(),name,-1,sexe,classe,color1,color2,color3,(Config.getInstance().serverId==6 ? 10000000 : 0),((Config.getInstance().startLevel-1)),((Config.getInstance().startLevel-1)*5),10000,Config.getInstance().startLevel,(long) Main.world.getPersoXpMin(Config.getInstance().startLevel),100,Integer.parseInt(classe+""+sexe),(byte)0,compte.getId(),new HashMap<Long, Long>(),(byte)1,(byte)0,(byte)0,"*#%!pi$:?",(Config.getInstance().startMap!=0 ? (short)Config.getInstance().startMap : Constant.getStartMap(classe)),(Config.getInstance().startCell!=0 ? (short)Config.getInstance().startCell : Constant.getStartCell(classe)),"","","100;0","",(Config.getInstance().startMap!=0 ? (short)Config.getInstance().startMap : Constant.getStartMap(classe))+","+(Config.getInstance().startCell!=0 ? (short)Config.getInstance().startCell : Constant.getStartCell(classe)),"",0,-1,0,0,0,z.toString(),(byte)0,0,"0;0","",(Config.getInstance().allEmote ? "0;1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19;20;21" : "0"),0,true,"118,0;119,0;123,0;124,0;125,0;126,0",0,false,"0,0,0,0",(byte)0,0,0,0,0,0,"",0,false,0,0,0,0,ListOrnaments);
     perso.emotes.add(1);
     perso._sorts=Constant.getStartSorts(classe);
     for(int a=1;a<=perso.getLevel();a++)
@@ -712,9 +712,9 @@ public ArrayList<Integer> getIsCraftingType()
   }
 
   //CLONAGE
-  public static Player ClonePerso(Player P, int id, int pdv)
+  public static Player ClonePerso(Player P, int id, Long pdv)
   {
-    HashMap<Integer, Integer> stats=new HashMap<Integer, Integer>();
+    HashMap<Long, Long> stats=new HashMap<Long, Long>();
     stats.put(Constant.STATS_ADD_VITA,pdv);
     stats.put(Constant.STATS_ADD_FORC,P.getStats().getEffect(Constant.STATS_ADD_FORC));
     stats.put(Constant.STATS_ADD_SAGE,P.getStats().getEffect(Constant.STATS_ADD_SAGE));
@@ -723,13 +723,13 @@ public ArrayList<Integer> getIsCraftingType()
     stats.put(Constant.STATS_ADD_AGIL,P.getStats().getEffect(Constant.STATS_ADD_AGIL));
     stats.put(Constant.STATS_ADD_PA,P.getStats().getEffect(Constant.STATS_ADD_PA));
     stats.put(Constant.STATS_ADD_PM,P.getStats().getEffect(Constant.STATS_ADD_PM));
-    stats.put(Constant.STATS_ADD_RP_NEU,P.getStats().getEffect(Constant.STATS_ADD_RP_NEU) <= 50  ?P.getStats().getEffect(Constant.STATS_ADD_RP_NEU) : 50);
-    stats.put(Constant.STATS_ADD_RP_TER,P.getStats().getEffect(Constant.STATS_ADD_RP_TER) <= 50  ?P.getStats().getEffect(Constant.STATS_ADD_RP_TER): 50);
-    stats.put(Constant.STATS_ADD_RP_FEU,P.getStats().getEffect(Constant.STATS_ADD_RP_FEU) <= 50  ?P.getStats().getEffect(Constant.STATS_ADD_RP_FEU): 50);
-    stats.put(Constant.STATS_ADD_RP_EAU,P.getStats().getEffect(Constant.STATS_ADD_RP_EAU) <= 50  ?P.getStats().getEffect(Constant.STATS_ADD_RP_EAU): 50);
-    stats.put(Constant.STATS_ADD_RP_AIR,P.getStats().getEffect(Constant.STATS_ADD_RP_AIR) <= 50  ?P.getStats().getEffect(Constant.STATS_ADD_RP_AIR): 50);
-    stats.put(Constant.STATS_ADD_AFLEE,P.getStats().getEffect(Constant.STATS_ADD_AFLEE));
-    stats.put(Constant.STATS_ADD_MFLEE,P.getStats().getEffect(Constant.STATS_ADD_MFLEE));
+    stats.put((long) Constant.STATS_ADD_RP_NEU,P.getStats().getEffect(Constant.STATS_ADD_RP_NEU) <= 50  ?P.getStats().getEffect(Constant.STATS_ADD_RP_NEU) : 50);
+    stats.put((long)Constant.STATS_ADD_RP_TER,P.getStats().getEffect(Constant.STATS_ADD_RP_TER) <= 50  ?P.getStats().getEffect(Constant.STATS_ADD_RP_TER): 50);
+    stats.put((long)Constant.STATS_ADD_RP_FEU,P.getStats().getEffect(Constant.STATS_ADD_RP_FEU) <= 50  ?P.getStats().getEffect(Constant.STATS_ADD_RP_FEU): 50);
+    stats.put((long)Constant.STATS_ADD_RP_EAU,P.getStats().getEffect(Constant.STATS_ADD_RP_EAU) <= 50  ?P.getStats().getEffect(Constant.STATS_ADD_RP_EAU): 50);
+    stats.put((long)Constant.STATS_ADD_RP_AIR,P.getStats().getEffect(Constant.STATS_ADD_RP_AIR) <= 50  ?P.getStats().getEffect(Constant.STATS_ADD_RP_AIR): 50);
+    stats.put((long)Constant.STATS_ADD_AFLEE,P.getStats().getEffect(Constant.STATS_ADD_AFLEE));
+    stats.put((long)Constant.STATS_ADD_MFLEE,P.getStats().getEffect(Constant.STATS_ADD_MFLEE));
 
     byte showWings=0;
     int alvl=0;
@@ -1012,7 +1012,7 @@ public void setTotal_reculte() {
   public String parseStatsParcho()
   {
     StringBuilder parcho=new StringBuilder();
-    for(Entry<Integer, Integer> i : statsParcho.getMap().entrySet())
+    for(Entry<Long, Long> i : statsParcho.getMap().entrySet())
       parcho.append(parcho.toString().isEmpty() ? i.getKey()+","+i.getValue() : ";"+i.getKey()+","+i.getValue());
     return parcho.toString();
   }
@@ -2047,7 +2047,7 @@ public void setTotal_reculte() {
         this.feu=Integer.parseInt(fullMorph.get("feu"));
         this.eau=Integer.parseInt(fullMorph.get("eau"));
         this.air=Integer.parseInt(fullMorph.get("air"));
-        this.initiative=Integer.parseInt(fullMorph.get("initiative")+this.sagesse+this.terre+this.feu+this.eau+this.air);
+        this.initiative=Long.parseLong(fullMorph.get("initiative")+this.sagesse+this.terre+this.feu+this.eau+this.air);
         this.useStats=fullMorph.get("stats").equals("1");
         this.donjon=fullMorph.get("donjon").equals("1");
         this.useCac=false;
@@ -2656,7 +2656,7 @@ public void setTotal_reculte() {
     {
       object.parseStatsString();
 
-      Integer obvi=object.getStats().getMap().get(970);
+      Long obvi=object.getStats().getMap().get(970);
       if(obvi==null)
       {
           if(object.getTxtStat().get(Constant.STATS_MIMI_ID)!=null) {
@@ -2667,7 +2667,7 @@ public void setTotal_reculte() {
       }
       else
       {
-        str.append(Integer.toHexString(obvi)).append("~16~").append(object.getObvijevanLook());
+        str.append(Long.toHexString(obvi)).append("~16~").append(object.getObvijevanLook());
       }
     }
 
@@ -2679,7 +2679,7 @@ public void setTotal_reculte() {
     {
       object.parseStatsString();
 
-      Integer obvi=object.getStats().getMap().get(970);
+      Long obvi=object.getStats().getMap().get(970);
       if(obvi==null)
       {
     	  if(object.getTxtStat().get(Constant.STATS_MIMI_ID)!=null) {
@@ -2690,7 +2690,7 @@ public void setTotal_reculte() {
       }
       else
       {
-        str.append(Integer.toHexString(obvi)).append("~17~").append(object.getObvijevanLook());
+        str.append(Long.toHexString(obvi)).append("~17~").append(object.getObvijevanLook());
       }
     }
 
@@ -2884,7 +2884,7 @@ public void setTotal_reculte() {
     this._orientation=_orientation;
   }
 
-  public int getInitiative()
+  public long getInitiative()
   {
     if(!useStats)
     {
@@ -2901,9 +2901,9 @@ public void setTotal_reculte() {
       coef+=getTotalStats().getEffect(Constant.STATS_ADD_INTE);
       coef+=getTotalStats().getEffect(Constant.STATS_ADD_FORC);
 
-      int init=1;
+      long init=1;
       if(maxPdv!=0)
-        init=(int)(coef*((double)curPdv/(double)maxPdv));
+        init=(long)(coef*((double)curPdv/(double)maxPdv));
       if(init<0)
         init=0;
       return init;
@@ -3070,7 +3070,7 @@ public void setTotal_reculte() {
 
   public void boostStat(int stat, boolean capital)
   {
-    int value=0;
+    long value=0;
     switch(stat)
     {
       case 10://Force
@@ -3086,7 +3086,7 @@ public void setTotal_reculte() {
         value=this.getStats().getEffect(Constant.STATS_ADD_INTE);
         break;
     }
-    int cout=Constant.getReqPtsToBoostStatsByClass(this.getClasse(),stat,value);
+    long cout=Constant.getReqPtsToBoostStatsByClass(this.getClasse(),stat,value);
     if(!capital)
       cout=0;
     if(cout<=_capital)
@@ -5755,7 +5755,7 @@ public void setTotal_reculte() {
         this.getStats().addOneStat(123,-this.getStats().getEffect(123));
         this.getStats().addOneStat(119,-this.getStats().getEffect(119));
         this.getStats().addOneStat(126,-this.getStats().getEffect(126));
-        int val = 0;
+        long val = 0;
         if(this.getStatsParcho().getEffect(Constant.STATS_ADD_VITA) != 0) {
         	val = this.getStatsParcho().getEffect(Constant.STATS_ADD_VITA);
         	this.getStatsParcho().addOneStat(Constant.STATS_ADD_VITA,-this.getStatsParcho().getEffect(Constant.STATS_ADD_VITA));

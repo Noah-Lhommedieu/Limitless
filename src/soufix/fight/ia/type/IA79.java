@@ -22,7 +22,7 @@ public class IA79 extends AbstractNeedSpell
   {
     if(!this.stop&&this.fighter.canPlay()&&this.count>0)
     {
-      int PM=this.fighter.getCurPm(this.fight),time=100,maxPo=1;
+      int PM=(int) this.fighter.getCurPm(this.fight),time=100,maxPo=1;
       boolean action=false;
 
       for(SortStats spellStats : this.highests)

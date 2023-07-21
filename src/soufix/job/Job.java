@@ -105,17 +105,17 @@ public class Job
     return (this.id>42&&this.id<51)||(this.id>61&&this.id<65);
   }
 
-  public static int getActualJet(GameObject obj, String statsModif)
+  public static long getActualJet(GameObject obj, String statsModif)
   {
-    for(Entry<Integer, Integer> entry : obj.getStats().getMap().entrySet())
+    for(Entry<Long, Long> entry : obj.getStats().getMap().entrySet())
     {
-      if(Integer.toHexString(entry.getKey()).compareTo(statsModif)>0)//Effets inutiles
+      if(Long.toHexString(entry.getKey()).compareTo(statsModif)>0)//Effets inutiles
       {
         continue;
       }
-      else if(Integer.toHexString(entry.getKey()).compareTo(statsModif)==0)//L'effet existe bien !
+      else if(Long.toHexString(entry.getKey()).compareTo(statsModif)==0)//L'effet existe bien !
       {
-        int JetActual=entry.getValue();
+        long JetActual=entry.getValue();
         return JetActual;
       }
     }
@@ -127,18 +127,18 @@ public class Job
   {
     if(!obj.parseStatsString().isEmpty())
     {
-      for(Entry<Integer, Integer> entry : obj.getStats().getMap().entrySet())
+      for(Entry<Long, Long> entry : obj.getStats().getMap().entrySet())
       {
-        if(!Integer.toHexString(entry.getKey()).equalsIgnoreCase(runeStat)) //Rune is not on item
+        if(!Long.toHexString(entry.getKey()).equalsIgnoreCase(runeStat)) //Rune is not on item
         {
-          if(Rune.getNegativeStatByRuneStat(runeStat).equalsIgnoreCase(Integer.toHexString(entry.getKey())))
+          if(Rune.getNegativeStatByRuneStat(runeStat).equalsIgnoreCase(Long.toHexString(entry.getKey())))
           {
             return 2;
           }
           else
             continue;
         }
-        else if(Integer.toHexString(entry.getKey()).equalsIgnoreCase(runeStat)) //Rune is on item
+        else if(Long.toHexString(entry.getKey()).equalsIgnoreCase(runeStat)) //Rune is on item
           return 1;
       }
       return 0;

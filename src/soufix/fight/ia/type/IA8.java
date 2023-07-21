@@ -25,7 +25,7 @@ public class IA8 extends AbstractNeedSpell
     {
       //Fighter ennemy=Function.getInstance().getNearestEnnemy(this.fight,this.fighter);
       boolean action=false;
-      int PA=0,PM=this.fighter.getCurPm(this.fight),maxPo=1,time=100;
+      int PA=0,PM=(int) this.fighter.getCurPm(this.fight),maxPo=1,time=100;
 
       for(SortStats spellStats : this.buffs)
         if(spellStats!=null&&spellStats.getMaxPO()>maxPo)
@@ -44,8 +44,8 @@ public class IA8 extends AbstractNeedSpell
         }
       }*/
 
-      PA=this.fighter.getCurPa(this.fight);
-      PM=this.fighter.getCurPm(this.fight);
+      PA=(int) this.fighter.getCurPa(this.fight);
+      PM=(int) this.fighter.getCurPm(this.fight);
 
       if(PA>0&&!action)
       {

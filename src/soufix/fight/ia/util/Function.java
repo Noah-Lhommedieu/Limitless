@@ -1103,7 +1103,7 @@ public class Function
     //if(dist[0] == 0)return false;//Si ennemi "coll�"
 
     int dist2[]= { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-    int PM=F.getCurPm(fight),caseDepart=F.getCell().getId(),destCase=F.getCell().getId();
+    int PM=(int) F.getCurPm(fight),caseDepart=F.getCell().getId(),destCase=F.getCell().getId();
     ArrayList<Integer> caseUse=new ArrayList<Integer>();
     caseUse.add(caseDepart); // On ne revient pas a sa position de d�part
     for(int i=0;i<=PM;i++)//Pour chaque PM on analyse la meilleur case a prendre. C'est a dire la plus �liogn�e de tous.
@@ -3409,7 +3409,7 @@ public class Function
       int curInfl=0,Infl1=0,Infl2=0;
       int PA=0;
       if(F.isCollector())
-    	  PA =  F.getPa();
+    	  PA =  (int) F.getPa();
     	  else
     	  PA = F.getMob().getPa();
       int usedPA[]= { 0, 0 };

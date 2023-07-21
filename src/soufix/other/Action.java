@@ -644,7 +644,7 @@ public class Action
           int messID=0;
           switch(statID)
           {
-            case Constant.STATS_ADD_INTE:
+            case (int) Constant.STATS_ADD_INTE:
               messID=14;
               break;
           }
@@ -748,7 +748,7 @@ public class Action
             player.getStats().addOneStat(123,-player.getStats().getEffect(123));
             player.getStats().addOneStat(119,-player.getStats().getEffect(119));
             player.getStats().addOneStat(126,-player.getStats().getEffect(126));
-            int val = 0;
+            long val = 0;
             if(player.getStatsParcho().getEffect(Constant.STATS_ADD_VITA) != 0) {
             	val = player.getStatsParcho().getEffect(Constant.STATS_ADD_VITA);
             	player.getStatsParcho().addOneStat(Constant.STATS_ADD_VITA,-player.getStatsParcho().getEffect(Constant.STATS_ADD_VITA));
@@ -1584,7 +1584,7 @@ public class Action
               player.getStats().addOneStat(123,-player.getStats().getEffect(123));
               player.getStats().addOneStat(119,-player.getStats().getEffect(119));
               player.getStats().addOneStat(126,-player.getStats().getEffect(126));
-              int val = 0;
+              long val = 0;
 	            if(player.getStatsParcho().getEffect(Constant.STATS_ADD_VITA) != 0) {
 	            	val = player.getStatsParcho().getEffect(Constant.STATS_ADD_VITA);
 	            	player.getStatsParcho().addOneStat(Constant.STATS_ADD_VITA,-player.getStatsParcho().getEffect(Constant.STATS_ADD_VITA));
@@ -1672,7 +1672,7 @@ public class Action
                 player.getStats().addOneStat(119,-player.getStats().getEffect(119)+player.getStatsParcho().getEffect(119));
                 player.getStats().addOneStat(126,-player.getStats().getEffect(126)+player.getStatsParcho().getEffect(126));
                 player.addCapital((player.getLevel()-1)*5-player.get_capital());
-                int val = 0;
+                long val = 0;
 	            if(player.getStatsParcho().getEffect(Constant.STATS_ADD_VITA) != 0) {
 	            	val = player.getStatsParcho().getEffect(Constant.STATS_ADD_VITA);
 	            	player.getStatsParcho().addOneStat(Constant.STATS_ADD_VITA,-player.getStatsParcho().getEffect(Constant.STATS_ADD_VITA));

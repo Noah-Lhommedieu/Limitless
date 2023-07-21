@@ -27,8 +27,8 @@ public class IA77 extends AbstractNeedSpell
     if(!this.stop&&this.fighter.canPlay()&&this.count>0)
     {
       Fighter ennemy=Function.getInstance().getNearestEnnemy(this.fight,this.fighter);
-      int PA=this.fighter.getCurPa(this.fight),
-          PM=this.fighter.getCurPm(this.fight),time=100,maxPo=1;
+      int PA=(int) this.fighter.getCurPa(this.fight),
+          PM=(int) this.fighter.getCurPm(this.fight),time=100,maxPo=1;
       boolean action=false;
 
       if(this.fighter.getMob().getPa()<PA)
@@ -44,8 +44,8 @@ public class IA77 extends AbstractNeedSpell
         if(target.isHide())
           target=null;
 
-      PA=this.fighter.getCurPa(this.fight);
-      PM=this.fighter.getCurPm(this.fight);
+      PA=(int) this.fighter.getCurPa(this.fight);
+      PM=(int) this.fighter.getCurPm(this.fight);
 
       if(this.fighter.getCurPa(this.fight)>0&&!action)
       {
@@ -69,9 +69,9 @@ public class IA77 extends AbstractNeedSpell
 
       if(PA>0&&target!=null&&!action)
       {
-        int beforeAP=this.fighter.getCurPa(this.fight);
+        int beforeAP=(int) this.fighter.getCurPa(this.fight);
         int num=Function.getInstance().attackIfPossible(this.fight,this.fighter,this.cacs);
-        int afterAP=this.fighter.getCurPa(this.fight);
+        int afterAP=(int) this.fighter.getCurPa(this.fight);
         if(beforeAP>afterAP)
         {
           time=num;

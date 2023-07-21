@@ -38,11 +38,11 @@ public class Formulas
     return 2*(i)*(i+1);
   }
 
-  public static int getRandomValue(int i1, int i2)
+  public static int getRandomValue(int i1, long baseCrit)
   {
-    if(i2<i1)
+    if(baseCrit<i1)
       return 0;
-    return (random.nextInt((i2-i1)+1))+i1;
+    return (random.nextInt((int) ((baseCrit-i1)+1)))+i1;
   }
 
   public static int getMinJet(String jet)
@@ -172,19 +172,19 @@ public class Formulas
 
   public static int getTacleChance(Fighter fight, Fighter fighter)
   {
-    int agiTacleur=fight.getTotalStats().getEffect(Constant.STATS_ADD_AGIL);
-    int agiEnemi=fighter.getTotalStats().getEffect(Constant.STATS_ADD_AGIL);
-    int div=agiTacleur+agiEnemi+50;
+    long agiTacleur=fight.getTotalStats().getEffect(Constant.STATS_ADD_AGIL);
+    long agiEnemi=fighter.getTotalStats().getEffect(Constant.STATS_ADD_AGIL);
+    int div=(int) (agiTacleur+agiEnemi+50);
     if(div==0)
       div=1;
-    int esquive=300*(agiTacleur+25)/div-100;
+    int esquive=(int) (300*(agiTacleur+25)/div-100);
     return esquive;
   }
 
   public static long calculFinalHeal(Fighter healer, long roll, boolean isCac)
   {
-    int intel=healer.getTotalStats().getEffect(Constant.STATS_ADD_INTE);
-    int heals=healer.getTotalStats().getEffect(Constant.STATS_ADD_SOIN);
+    long intel=healer.getTotalStats().getEffect(Constant.STATS_ADD_INTE);
+    long heals=healer.getTotalStats().getEffect(Constant.STATS_ADD_SOIN);
     if(intel<0)
       intel=0;
     float a=1;
@@ -473,7 +473,7 @@ public class Formulas
     return base*Config.getInstance().rateHonor;
   }
 
-  public static int calculFinalDommage(Fight fight, Fighter caster, Fighter target, int statID, int jet, boolean isHeal, boolean isCaC, int spellid, GameCase castCell, GameCase targetCell, boolean isAoe, boolean isTrap)
+  public static int calculFinalDommage(Fight fight, Fighter caster, Fighter target, int statID, long dmg, boolean isHeal, boolean isCaC, int spellid, GameCase castCell, GameCase targetCell, boolean isAoe, boolean isTrap)
   {
     float a=1; //Calcul
     float num=0;
@@ -493,7 +493,7 @@ public class Formulas
     //v2.1 - punch fix
     if(caster.getPersonnage()!=null&&spellid==0&&caster.getPersonnage().getObjetByPos(1)==null)
     {
-      jet=Formulas.getRandomJet("1d4+1");
+      dmg=Formulas.getRandomJet("1d4+1");
       statID=0;
       isHeal=false;
       isCaC=false;
@@ -746,7 +746,7 @@ public class Formulas
       for(SpellEffect SS : target.getBuffsByEffectID(1029))
         trapMultiplier+=(float)SS.getValue()/100;
 
-    num=a*mulT*aoeMultiplier*trapMultiplier*(jet*((100+statC+perdomC)/100))+domC; //dÃ¯Â¿Â½gats bruts
+    num=a*mulT*aoeMultiplier*trapMultiplier*(dmg*((100+statC+perdomC)/100))+domC; //dÃ¯Â¿Â½gats bruts
 
     //Non-buff reflect
     if(caster.getId()!=target.getId())
@@ -876,10 +876,10 @@ public class Formulas
         }
       }
       long damRed=0;
-      int carac=0;
-      int[] stats= { SE.getCaster().getTotalStats().getEffect(Constant.STATS_ADD_FORC), SE.getCaster().getTotalStats().getEffect(Constant.STATS_ADD_INTE), SE.getCaster().getTotalStats().getEffect(Constant.STATS_ADD_CHAN), SE.getCaster().getTotalStats().getEffect(Constant.STATS_ADD_AGIL) };
-      int highest=0;
-      for(int stat : stats)
+      long carac=0;
+      long[] stats= { SE.getCaster().getTotalStats().getEffect(Constant.STATS_ADD_FORC), SE.getCaster().getTotalStats().getEffect(Constant.STATS_ADD_INTE), SE.getCaster().getTotalStats().getEffect(Constant.STATS_ADD_CHAN), SE.getCaster().getTotalStats().getEffect(Constant.STATS_ADD_AGIL) };
+      long highest=0;
+      for(long stat : stats)
         if(stat>highest)
           highest=stat;
       final long value=SE.getValue();
@@ -913,9 +913,9 @@ public class Formulas
 
     for(final SpellEffect SE : target.getBuffsByEffectID(105))
     {
-      int[] stats= { SE.getCaster().getTotalStats().getEffect(Constant.STATS_ADD_FORC), SE.getCaster().getTotalStats().getEffect(Constant.STATS_ADD_INTE), SE.getCaster().getTotalStats().getEffect(Constant.STATS_ADD_CHAN), SE.getCaster().getTotalStats().getEffect(Constant.STATS_ADD_AGIL) };
-      int highest=0;
-      for(int stat : stats)
+      long[] stats= { SE.getCaster().getTotalStats().getEffect(Constant.STATS_ADD_FORC), SE.getCaster().getTotalStats().getEffect(Constant.STATS_ADD_INTE), SE.getCaster().getTotalStats().getEffect(Constant.STATS_ADD_CHAN), SE.getCaster().getTotalStats().getEffect(Constant.STATS_ADD_AGIL) };
+      long highest=0;
+      for(long stat : stats)
         if(stat>highest)
           highest=stat;
 
@@ -1576,7 +1576,7 @@ public class Formulas
   }
 
   //v2.5 - new stats
-  public static int pushDamage(int pushedCells, int lvlPusher, int pushDam, int negPushDam, int pushRes, int negPushRes)
+  public static long pushDamage(long pushedCells, long lvlPusher, long pushDam, long negPushDam, long pushRes, long negPushRes)
   {
     return (8+Formulas.getRandomJet("1d8+0")*lvlPusher/50)*pushedCells+pushDam-negPushDam-pushRes+negPushRes;
   }
@@ -1811,12 +1811,12 @@ public class Formulas
   }
 
   //v2.8 - Critical hit system
-  public static boolean isCriticalHit(int spellCrit, int critHits, int critFails, int agi)
+  public static boolean isCriticalHit(long baseCrit, long equipCrit, long negativeCrit, long agi)
   {
-    spellCrit=(int)Math.floor(((spellCrit-critHits+critFails)*2.9901)/Math.log(agi+12));
-    if(spellCrit<2)
-      spellCrit=2;
-    return Formulas.getRandomValue(1,spellCrit)==spellCrit;
+    baseCrit=(int)Math.floor(((baseCrit-equipCrit+negativeCrit)*2.9901)/Math.log(agi+12));
+    if(baseCrit<2)
+      baseCrit=2;
+    return Formulas.getRandomValue(1,baseCrit)==baseCrit;
   }
 
   //v2.8 - drop bonus for less unique IPs in fight
