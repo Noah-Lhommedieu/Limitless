@@ -104,8 +104,8 @@ public int prestige = 0;
   private int level;
   private int energy;
   private double exp;
-  private long curPdv;
-  private long maxPdv;
+  private double curPdv;
+  private double maxPdv;
   private Stats statsParcho=new Stats(true);
   private long kamas;
   private int _spellPts;
@@ -518,7 +518,11 @@ public ArrayList<Integer> getIsCraftingType()
       }
       this.maxPdv=(this.level-1)*5+55+getTotalStats().getEffect(Constant.STATS_ADD_VITA)+getTotalStats().getEffect(Constant.STATS_ADD_VIE);
       if(this.curPdv<=0)
-        this.curPdv=1;
+      {
+    	  //this.sendMessage("PV en dessous ou égal à 0");
+    	  this.curPdv=10;
+    	  //this.curPdv=1;
+    	  }
       String[] pdvv2 = null;
 		if(pdvPer.contains(";")){
 			pdvv2 = pdvPer.split(";");	
@@ -526,11 +530,11 @@ public ArrayList<Integer> getIsCraftingType()
 			final String pdv1 = pdvPer+";0";
 			pdvv2 = pdv1.split(";");
 		}
-		this.time_last_connecte = (long) Integer.parseInt(pdvv2[1]);
-      if(Integer.parseInt(pdvv2[0])>100)
+		this.time_last_connecte =  Long.parseLong(pdvv2[1]);
+      if(Long.parseLong(pdvv2[0])>100)
         this.curPdv=(this.maxPdv*100/100);
       else
-        this.curPdv=(this.maxPdv*Integer.parseInt(pdvv2[0])/100);
+        this.curPdv=(this.maxPdv*Long.parseLong(pdvv2[0])/100);
       if(this.curPdv<=0)
         this.curPdv=1;
       parseSpells(spells);
@@ -951,13 +955,13 @@ public void set_gameAction_rapide(GameAction _gameAction_rapide) {
     	this.xpOmega = xpOmega; 
     }
 
-  public long getCurPdv()
+  public double getCurPdv()
   {
     refreshLife(false);
     return this.curPdv;
   }
 
-  public void setPdv(long newPDV)
+  public void setPdv(double newPDV)
   {
     this.curPdv=newPDV;
     if(this.curPdv>this.maxPdv)
@@ -979,15 +983,17 @@ public int getTotal_reculte() {
 public void setTotal_reculte() {
 	this.total_reculte += 1;
 }
-  public long getMaxPdv()
+  public double getMaxPdv()
   {
     return this.maxPdv;
   }
 
-  public void setMaxPdv(int maxPdv)
+  public void setMaxPdv()
   {
-    this.maxPdv=maxPdv;
-    SocketManager.GAME_SEND_STATS_PACKET(this);
+	  //this.sendMessage("PDV Avant modif -> " + curPdv);
+    this.setPdv(getMaxPdv());
+    //SocketManager.GAME_SEND_STATS_PACKET(this);
+    this.sendMessage("PDV Apres modif -> " + curPdv);
     if(party!=null)
       SocketManager.GAME_SEND_PM_MOD_PACKET_TO_GROUP(party,this);
   }
@@ -2037,16 +2043,16 @@ public void setTotal_reculte() {
     {
       try
       {
-        this.maxPdv=Integer.parseInt(fullMorph.get("vie"));
+        this.maxPdv=Long.parseLong(fullMorph.get("vie"));
         this.setPdv(this.getMaxPdv());
         this.pa=Integer.parseInt(fullMorph.get("pa"));
         this.pm=Integer.parseInt(fullMorph.get("pm"));
-        this.vitalite=Integer.parseInt(fullMorph.get("vitalite"));
+        this.vitalite=Long.parseLong(fullMorph.get("vitalite"));
         this.sagesse=Integer.parseInt(fullMorph.get("sagesse"));
-        this.terre=Integer.parseInt(fullMorph.get("terre"));
-        this.feu=Integer.parseInt(fullMorph.get("feu"));
-        this.eau=Integer.parseInt(fullMorph.get("eau"));
-        this.air=Integer.parseInt(fullMorph.get("air"));
+        this.terre=Long.parseLong(fullMorph.get("terre"));
+        this.feu=Long.parseLong(fullMorph.get("feu"));
+        this.eau=Long.parseLong(fullMorph.get("eau"));
+        this.air=Long.parseLong(fullMorph.get("air"));
         this.initiative=Long.parseLong(fullMorph.get("initiative")+this.sagesse+this.terre+this.feu+this.eau+this.air);
         this.useStats=fullMorph.get("stats").equals("1");
         this.donjon=fullMorph.get("donjon").equals("1");
@@ -2369,7 +2375,7 @@ public void setTotal_reculte() {
     
     if(this.time_last_connecte < (System.currentTimeMillis()/1000)){
 		if(this.time_last_connecte != 0){
-			long val = (int) ((System.currentTimeMillis()/1000)-this.time_last_connecte);
+			double val =  ((System.currentTimeMillis()/1000)-this.time_last_connecte);
 		if (this.getCurPdv() != this.getMaxPdv()) {
 			
 		if (this.getCurPdv() + val > this.getMaxPdv()) {
@@ -2889,7 +2895,7 @@ public void setTotal_reculte() {
     if(!useStats)
     {
       int fact=4;
-      long maxPdv=this.maxPdv-55;
+      double maxPdv=this.maxPdv-55;
       double curPdv=this.curPdv-55;
       if(this.getClasse()==Constant.CLASS_SACRIEUR)
         fact=8;
@@ -3028,7 +3034,7 @@ public void setTotal_reculte() {
         SocketManager.GAME_SEND_STATS_PACKET(this);
       return;
     }
-    long diff=(int)time/regenRate;
+    double diff=(int)time/regenRate;
     if(diff+this.curPdv>this.maxPdv)
       diff=this.maxPdv-this.curPdv;
     if(diff>=10&&this.regenRate==2000)
@@ -3041,10 +3047,10 @@ public void setTotal_reculte() {
     return _align;
   }
 
-  public long get_pdvper()
+  public double get_pdvper()
   {
     refreshLife(false);
-    long pdvper=100;
+    double pdvper=100;
     pdvper=(100*this.curPdv)/this.maxPdv;
     if(pdvper>100)
       return 100;
@@ -3414,7 +3420,7 @@ public void setTotal_reculte() {
     double actPdvPer=(100*(double)this.curPdv)/(double)this.maxPdv;
     if(!useStats)
       this.maxPdv=(this.getLevel()-1)*5+50+getTotalStats().getEffect(Constant.STATS_ADD_VITA);
-    this.curPdv=(int)Math.round(maxPdv*actPdvPer/100);
+    this.curPdv=Math.round(maxPdv*actPdvPer/100);
   }
 
   public boolean levelUp(boolean send, boolean addXp)
@@ -3469,7 +3475,7 @@ public void setTotal_reculte() {
     if (this.getLevel() == 8000)
     {
     	this.getStats().addOneStat(Constant.STATS_ADD_PA, 2);
-    	this.getStats().addOneStat(Constant.STATS_ADD_PM, 1);
+    	this.getStats().addOneStat(Constant.STATS_ADD_PM, 1);	  
     }
     Constant.onLevelUpSpells(this,this.getLevel());
     if(addXp)
@@ -3486,6 +3492,7 @@ public void setTotal_reculte() {
     if(this.getLevel()==8000) {
     SocketManager.GAME_SEND_Im_PACKET_TO_ALL(this.name+" a atteint le niveau 8000.");
     }
+    //ItemEvolution();
     return true;
   }
   private int addlvl() //Calculateur d'exp pour savoir le niveau qu'aura le joueur à la fin, téléporte le lvl -> pas itératif -> no lag
@@ -3500,6 +3507,129 @@ public void setTotal_reculte() {
 		return level; // l'exp renvoyer est l'exp du niveau correspondant
 	}
 
+
+  
+  public void ItemEvolution() 
+  {
+//	  GameObject item = null;
+//		if(this.getObjetByPos(Constant.ITEM_POS_DOFUS12) == null)
+//		{
+//			this.sendMessage("Fonctionne pas");
+//		}
+//		else
+//		{
+//			
+//			item = this.getObjetByPos(Constant.ITEM_POS_DOFUS12);
+//			int lvl = this.getLevel();
+//			long force = item.getStats().getEffect(Constant.STATS_ADD_FORC);
+//			item.getStats().addOneStat(Constant.STATS_ADD_FORC, -force + (long) (10*(lvl)));
+//		
+//			Database.getDynamics().getObjectData().update(item);
+//		
+//			SocketManager.GAME_SEND_ALTER_GM_PACKET(this.curMap,this);
+//			SocketManager.GAME_SEND_ASK(this.getAccount().getGameClient(), this); // ask le client
+//			SocketManager.GAME_SEND_ERASE_ON_MAP_TO_MAP(this.getCurMap(), this.getId()); // delete perso de la map
+//			SocketManager.GAME_SEND_ADD_PLAYER_TO_MAP(this.getCurMap(), this); // rajoute le perso 
+//		}
+//		GameObject[] items = 
+//			{
+//				this.getObjetByPos(Constant.ITEM_POS_AMULETTE), 
+//				this.getObjetByPos(Constant.ITEM_POS_ANNEAU1),
+//				this.getObjetByPos(Constant.ITEM_POS_ANNEAU2),
+//				this.getObjetByPos(Constant.ITEM_POS_ARME),
+//				this.getObjetByPos(Constant.ITEM_POS_BOTTES),
+//				this.getObjetByPos(Constant.ITEM_POS_CAPE),
+//				this.getObjetByPos(Constant.ITEM_POS_CEINTURE),
+//				this.getObjetByPos(Constant.ITEM_POS_COIFFE),
+//				this.getObjetByPos(Constant.ITEM_POS_DOFUS1),
+//				this.getObjetByPos(Constant.ITEM_POS_DOFUS2),
+//				this.getObjetByPos(Constant.ITEM_POS_DOFUS3),
+//				this.getObjetByPos(Constant.ITEM_POS_DOFUS4),
+//				this.getObjetByPos(Constant.ITEM_POS_DOFUS5),
+//				this.getObjetByPos(Constant.ITEM_POS_DOFUS6),
+//				this.getObjetByPos(Constant.ITEM_POS_DOFUS7),
+//				this.getObjetByPos(Constant.ITEM_POS_DOFUS8),
+//				this.getObjetByPos(Constant.ITEM_POS_DOFUS9),
+//				this.getObjetByPos(Constant.ITEM_POS_DOFUS10),
+//				this.getObjetByPos(Constant.ITEM_POS_DOFUS10),
+//				this.getObjetByPos(Constant.ITEM_POS_DOFUS10),
+//				this.getObjetByPos(Constant.ITEM_POS_DOFUS10),
+//				this.getObjetByPos(Constant.ITEM_POS_DOFUS11),
+//				this.getObjetByPos(Constant.ITEM_POS_DOFUS12),
+//				this.getObjetByPos(Constant.ITEM_POS_BOUCLIER),
+//				this.getObjetByPos(Constant.ITEM_POS_DOFUS_ULTIME),
+//				this.getObjetByPos(Constant.ITEM_POS_FAMILIER),
+//				this.getObjetByPos(Constant.ITEM_POS_RELIQUE),
+//				this.getObjetByPos(Constant.ITEM_POS_FIGURINE),
+//				this.getObjetByPos(Constant.ITEM_POS_DRAGODINDE),
+//			};
+//		
+//		
+//		this.sendMessage("Test Méthode Avant Boucle");
+//		for (int i = 0; i < items.length; i++) 
+//		{
+//			if (items[i].getGuid() == World.getObjTemplate(7114).getId())
+//			{
+//				int lvl = this.getLevel();
+//				long force = items[i].getStats().getEffect(Constant.STATS_ADD_FORC);
+//				items[i].getStats().addOneStat(Constant.STATS_ADD_FORC, -force + (long) (1000*(lvl)));
+//				this.sendMessage("ObjTemplate fonctionne");
+//			}
+//			if(items[i].getGuid() == 7114)
+//			{
+//				int lvl = this.getLevel();
+//				long force = items[i].getStats().getEffect(Constant.STATS_ADD_FORC);
+//				items[i].getStats().addOneStat(Constant.STATS_ADD_FORC, -force + (long) (10*(lvl)));
+//				this.sendMessage("Simple nombre fonctionne");
+//			}
+//			this.sendMessage("Test Boucle");
+//		
+//		
+//		
+//		Database.getDynamics().getObjectData().update(items[i]);
+//	}
+//	this.sendMessage("Test Méthode Après Boucle");
+//	
+//		SocketManager.GAME_SEND_ALTER_GM_PACKET(this.curMap,this);
+//		SocketManager.GAME_SEND_ASK(this.getAccount().getGameClient(), this); // ask le client
+//		SocketManager.GAME_SEND_ERASE_ON_MAP_TO_MAP(this.getCurMap(), this.getId()); // delete perso de la map
+//		SocketManager.GAME_SEND_ADD_PLAYER_TO_MAP(this.getCurMap(), this); // rajoute le perso
+//		for (GameObject gameObject : items) 
+//		{
+//			
+//				if (gameObject.getGuid() == World.getObjTemplate(7114).getId())
+//				{
+//					int lvl = this.getLevel();
+//					long force = gameObject.getStats().getEffect(Constant.STATS_ADD_FORC);
+//					gameObject.getStats().addOneStat(Constant.STATS_ADD_FORC, -force + (long) (1000*(lvl)));
+//					this.sendMessage("ObjTemplate fonctionne");
+//				}
+//				if(gameObject.getGuid() == 7114)
+//				{
+//					int lvl = this.getLevel();
+//					long force = gameObject.getStats().getEffect(Constant.STATS_ADD_FORC);
+//					gameObject.getStats().addOneStat(Constant.STATS_ADD_FORC, -force + (long) (10*(lvl)));
+//					this.sendMessage("Simple nombre fonctionne");
+//				}
+//				this.sendMessage("Test Boucle");
+//			
+//			
+//			
+//			Database.getDynamics().getObjectData().update(gameObject);
+//		}
+//		this.sendMessage("Test Méthode Après Boucle");
+//		
+//			SocketManager.GAME_SEND_ALTER_GM_PACKET(this.curMap,this);
+//			SocketManager.GAME_SEND_ASK(this.getAccount().getGameClient(), this); // ask le client
+//			SocketManager.GAME_SEND_ERASE_ON_MAP_TO_MAP(this.getCurMap(), this.getId()); // delete perso de la map
+//			SocketManager.GAME_SEND_ADD_PLAYER_TO_MAP(this.getCurMap(), this); // rajoute le perso
+		
+		
+  }
+  private void ChoixItemEvo(int Constant_ItemPos)
+  {
+	  
+  }
   public boolean addXp(double xpPlayer) // Donne une quantité d'exp, tant que le joueur n'a pas le bon niveau par rapport a l'exp win, levelup
   {
     boolean up=false;
@@ -4402,7 +4532,7 @@ public void setTotal_reculte() {
 
   public void fullPDV()
   {
-    this.setPdv(this.getMaxPdv());
+    this.setMaxPdv();
     SocketManager.GAME_SEND_STATS_PACKET(this);
   }
 
@@ -5730,7 +5860,7 @@ public void setTotal_reculte() {
   public void die(byte type, long id)
   {
     new ArrayList<>(this.getItems().values()).stream().filter(object -> object!=null).forEach(object -> this.removeItem(object.getGuid(),object.getQuantity(),true,false));
-    this.setFuneral();
+    //this.setFuneral();
     this.deathCount++;
     this.deadType=type;
     this.killByTypeId=id;
@@ -5924,7 +6054,7 @@ public void setTotal_reculte() {
     this.isGhost=false;
     this.dead=0;
     this.setEnergy(1000);
-    this.setPdv(1);
+    //this.setPdv(1);
     this.setGfxId(Integer.parseInt(this.getClasse()+""+this.getSexe()));
     this.setCanAggro(true);
     this.setAway(false);

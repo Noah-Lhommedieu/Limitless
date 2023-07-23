@@ -26,7 +26,7 @@ public class CommandPlayerpvm {
 	static {
 		CommandPlayerpvm.canal = "Limitless";
 	}
-
+	static int i = 0;
 	public static boolean analyse(final Player perso, final String msg) {
 		if (msg.charAt(0) != '.' || msg.charAt(1) == '.') {
 			return false;
@@ -149,24 +149,6 @@ public class CommandPlayerpvm {
 				 SocketManager.GAME_SEND_MESSAGE(perso,"La relique du jour est <b>["+Main.relique_donjon+"]</b> pour <b>Antre du kralamour </b>.","257C38");
 				return true;
 			}
-			// à enlever si serveur open
-			if (msg.length() > 4 && msg.substring(1, 5).equalsIgnoreCase("seto"))
-			{
-				perso.setOrnement(5);
-		      	  perso.send("km");
-		          SocketManager.GAME_SEND_ALTER_GM_PACKET(perso.getCurMap(), perso);
-		          perso.refresh();
-		          SocketManager.GAME_SEND_ASK(perso.getGameClient(), perso);
-				  perso.sendMessage("DEBUG | Orn appliqué.");
-				  perso.sendMessage("orn ID: " + perso.getOrnement());
-				return true;
-			}
-			// à enlever si serveur open
-			if (msg.length() > 4 && msg.substring(1, 5).equalsIgnoreCase("geto"))
-			{
-				perso.sendMessage("geto by noah test: " + perso.getOrnement());
-				return true;
-			}
 //			if (msg.length() > 7 && msg.substring(1, 8).equalsIgnoreCase("addorna"))
 //			{
 //				String[] mots = msg.split(" "); // Diviser la chaîne en mots
@@ -204,7 +186,7 @@ public class CommandPlayerpvm {
 				return true;
 			}
 			if(msg.length() > 6 && msg.substring(1, 7).equalsIgnoreCase("setvip")) {
-				Main.world.getAccount(2).setVip(1);;
+				perso.getAccount().setVip(1);
 			}
 			if (msg.length() > 3 && msg.substring(1, 4).equalsIgnoreCase("vip")) {
 				if(Config.singleton.serverId == 1) {
@@ -691,6 +673,33 @@ public class CommandPlayerpvm {
 			    return true;
 				
 			}
+			
+			if (msg.length() > 7 && msg.substring(1, 8).equalsIgnoreCase("ItemEvo"))
+			{
+				GameObject item = null;
+				if(perso.getObjetByPos(Constant.ITEM_POS_DOFUS12) == null)
+				{
+					perso.sendMessage("Fonctionne pas");
+					return true;
+				}
+				else
+				{
+					item = perso.getObjetByPos(Constant.ITEM_POS_DOFUS12);
+					int lvl = perso.getLevel();
+					long force = item.getStats().getEffect(Constant.STATS_ADD_FORC);
+					item.getStats().addOneStat(Constant.STATS_ADD_FORC, -force + (long) (10*(lvl)));
+					
+					Database.getDynamics().getObjectData().update(item);
+					
+					SocketManager.GAME_SEND_ALTER_GM_PACKET(perso.curMap,perso);
+	            	SocketManager.GAME_SEND_ASK(perso.getAccount().getGameClient(), perso); // ask le client
+	            	SocketManager.GAME_SEND_ERASE_ON_MAP_TO_MAP(perso.getCurMap(), perso.getId()); // delete perso de la map
+	            	SocketManager.GAME_SEND_ADD_PLAYER_TO_MAP(perso.getCurMap(), perso); // rajoute le perso 
+					
+					
+					return true;
+				}				
+			}
 			if (msg.length() > 8 && msg.substring(1, 9).equalsIgnoreCase("prestige")) {
 				int max = 100, lvlmax = 8000;
             	if(perso.prestige < 0 || perso.prestige >= max ) {
@@ -791,6 +800,19 @@ public class CommandPlayerpvm {
 				SocketManager.PACKET_POPUP_DEPART(perso, "Vous n'avez pas de niveau Omega.");
 				}
 				return true;
+			}
+				
+			if (msg.length() > 4 && msg.substring(1, 5).equalsIgnoreCase("size"))
+			{
+				if(perso.getAccount().getPoints() >= 10)
+				{
+					perso.send("ka");
+				}
+				else
+				{
+					SocketManager.PACKET_POPUP_DEPART(perso, "Pas assez de Points Boutique (tu as moins de 10 PB)");
+				}
+				
 			}
 			if (msg.length() > 5 && msg.substring(1, 6).equalsIgnoreCase("monte"))
 			{
@@ -1048,6 +1070,38 @@ public class CommandPlayerpvm {
 				perso.teleport((short) 3336, 183);
 				return true;
 			}
+			if(msg.length() > 9 && msg.substring(1, 10).equalsIgnoreCase("commandes"))
+			{
+				SocketManager.PACKET_POPUP_DEPART(perso, "<b>.start</b> - Permet de se téléporter au zaap."
+						+ "\n<b>.marchand</b> - Permets de se téléporter à la map marchande."
+						+ "\n<b>.staff</b> - Permet de voir les membres du staff connect\u00e9s."
+						+ "\n<b>.boutique</b> - Permet d'accéder à la boutique."
+						+ "\n<b>.points</b> - Affiche ses points boutique."
+						+ "\n<b>.all</b> - <b>.noall</b> - Permet d'envoyer un message \u00e0 tous les joueurs."
+						+ "\n<b>.celldeblo</b> - Permet de téléporter à une cellule libre si vous êtes bloqués."
+						+ "\n<b>.movemobs</b> - Permet de deplace un groupe de monstres."
+						+ "\n<b>.banque</b> - Ouvrir la banque n’importe où."
+						+ "\n<b>.maitre</b> - Permet de créer une escouade et d'inviter toutes tes mules dans ton groupe."
+						+ "\n<b>.window</b> - Permet de gérer toutes vos mules en combat via la fenêtre du maitre."
+						+ "\n<b>.tp</b> - Permet de téléporter tes personnages sur ta map actuelle."
+						+ "\n<b>.tpgroupe</b> - Permets de téléporter ton groupe sur ta map actuelle."
+						+ "\n<b>.pass</b> - Permet au joueur de passer automatiquement ses tours."
+						+ "\n<b>.nodrop</b> - Vous empêche de recevoir des items de monstres."
+						+ "\n<b>.joindelay</b> - Permet de définir le delai d'attente avant de rejoindre le combat pour vos mules en groupe."
+						+ "\n<b>.debug</b> - permet de debug le personnage lors d'un freeze."
+						+ "\n<b>.hdv</b> - Permet d'accéder au HDV."
+						+ "\n<b>.vip</b> - Affiche les privilèges VIP."
+						+ "\n<b>.pvm1</b> - Permet de se téléporter au pvm1."
+						+ "\n<b>.pvm2</b> - Permet de se téléporter au pvm2."
+						+ "\n<b>.parse</b> - Permet d'afficher son ParseToGM."
+						+ "\n<b>.ornements</b> - Permet d'afficher le panel d'ornement."
+						+ "\n<b>.prestige</b> - Permet de monter en prestige."
+						+ "\n<b>.infoprestige</b> - Permet de s'informer sur son prestige."
+						+ "\n<b>.omgpass</b> - Permet de monter son niveau Omega."
+						+ "\n<b>.infomega</b> - Permet de s'informer sur ses Omega."
+						+ "\n<b>.size</b> - Permet d'afficher le panel de size.");
+				return true;
+			}
 			
 			else {
 				if (msg.length() > 5 && msg.substring(1, 6).equalsIgnoreCase("infos")) {
@@ -1082,33 +1136,14 @@ public class CommandPlayerpvm {
 					}
 					SocketManager.GAME_SEND_MESSAGE(perso, mess);
 					return true;
+					
 				}
-				if(Config.singleton.serverId == 1) {
+				i ++;
+				if(Config.singleton.serverId == 1 && i == 5) {
 				SocketManager.GAME_SEND_MESSAGE(perso,
 						"Les commandes disponibles sont  :\n<b>.infos</b> - Permet d'obtenir des informations sur le serveur."
-						+ "\n<b>.start</b> - Permet de se téléporter au zaap."
-						+ "\n<b>.marchand</b> - Permets de se téléporter à la map marchande."
-						+ "\n<b>.staff</b> - Permet de voir les membres du staff connect\u00e9s."
-						+ "\n<b>.boutique</b> - Permet d'accéder à la boutique."
-						+ "\n<b>.points</b> - Affiche ses points boutique."
-						+ "\n<b>.all</b> - <b>.noall</b> - Permet d'envoyer un message \u00e0 tous les joueurs."
-						+ "\n<b>.celldeblo</b> - Permet de téléporter à une cellule libre si vous êtes bloqués."
-						+ "\n<b>.movemobs</b> - Permet de deplace un groupe de monstres."
-						+ "\n<b>.banque</b> - Ouvrir la banque n’importe où."
-						+ "\n<b>.maitre</b> - Permet de créer une escouade et d'inviter toutes tes mules dans ton groupe."
-						+ "\n<b>.window</b> - Permet de gérer toutes vos mules en combat via la fenêtre du maitre."
-						+ "\n<b>.tp</b> - Permet de téléporter tes personnages sur ta map actuelle."
-						+ "\n<b>.tpgroupe</b> - Permets de téléporter ton groupe sur ta map actuelle."
-						+ "\n<b>.pass</b> - Permet au joueur de passer automatiquement ses tours."
-						+ "\n<b>.nodrop</b> - Vous empêche de recevoir des items de monstres."
-						+ "\n<b>.joindelay</b> - Permet de définir le delai d'attente avant de rejoindre le combat pour vos mules en groupe."
-						+ "\n<b>.debug</b> - permet de debug le personnage lors d'un freeze."
-						+ "\n<b>.hdv</b> - Permet d'accéder au HDV."
-						+ "\n<b>.vip</b> - Affiche les privilèges VIP."
-						+ "\n<b>.pvm1</b> - Permet de se téléporter au pvm1."
-						+ "\n<b>.pvm2</b> - Permet de se téléporter au pvm2."
-						+ "\n<b>.poutch</b> - Permet de se téléporter au poutch."
 						);
+				i = 0;
 				}else
 				{
 					SocketManager.GAME_SEND_MESSAGE(perso,
@@ -1221,7 +1256,7 @@ public class CommandPlayerpvm {
     
     public static void Restat(Player player) {
     	long capitalTotalActuel = (player.getStats().get(Constant.STATS_ADD_SAGE)) + player.getStats().get(Constant.STATS_ADD_AGIL) + player.getStats().get(Constant.STATS_ADD_CHAN) + player.getStats().get(Constant.STATS_ADD_FORC) +player.getStats().get(Constant.STATS_ADD_INTE) + player.getStats().get(Constant.STATS_ADD_VITA);
-    	long curPer = player.get_pdvper();
+    	double curPer = player.get_pdvper();
 
           if (player.getStatsParcho().getEffect(125) != 0 || player.getStatsParcho().getEffect(124) != 0 || player.getStatsParcho().getEffect(118) != 0
                   || player.getStatsParcho().getEffect(119) != 0 || player.getStatsParcho().getEffect(126) != 0 || player.getStatsParcho().getEffect(123) != 0) {
@@ -1262,7 +1297,7 @@ public class CommandPlayerpvm {
               player.getStatsParcho().getMap().clear();
               SocketManager.GAME_SEND_STATS_PACKET(player);
           }
-          long newPDV = player.getMaxPdv() * curPer / 100;
+          double newPDV = player.getMaxPdv() * curPer / 100;
           player.setPdv(newPDV);
           SocketManager.GAME_SEND_STATS_PACKET(player);
           player.sendMessage("Reset des caractéristiques.");
@@ -1271,7 +1306,7 @@ public class CommandPlayerpvm {
     }
     public static void RestatByLevel(Player player) {
     	//long capitalTotalActuel = (player.getBaseStats().get(Constant.STATS_ADD_SAGE) * 100) + player.getBaseStats().get(Constant.STATS_ADD_AGIL) + player.getBaseStats().get(Constant.STATS_ADD_CHAN) + player.getBaseStats().get(Constant.STATS_ADD_FORC) +player.getBaseStats().get(Constant.STATS_ADD_INTE) + player.getBaseStats().get(Constant.STATS_ADD_VITA);
-    	long curPer = player.get_pdvper();
+    	double curPer = player.get_pdvper();
 
           if (player.getStatsParcho().getEffect(125) != 0 || player.getStatsParcho().getEffect(124) != 0 || player.getStatsParcho().getEffect(118) != 0
                   || player.getStatsParcho().getEffect(119) != 0 || player.getStatsParcho().getEffect(126) != 0 || player.getStatsParcho().getEffect(123) != 0) {
@@ -1312,7 +1347,7 @@ public class CommandPlayerpvm {
               player.getStatsParcho().getMap().clear();
               SocketManager.GAME_SEND_STATS_PACKET(player);
           }
-          long newPDV = player.getMaxPdv() * curPer / 100;
+          double newPDV = player.getMaxPdv() * curPer / 100;
           player.setPdv(newPDV);
           SocketManager.GAME_SEND_STATS_PACKET(player);
           player.sendMessage("Reset des caractéristiques.");

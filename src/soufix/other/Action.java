@@ -678,10 +678,10 @@ public class Action
         try
         {
           int min=Integer.parseInt(args.split(",",2)[0]);
-          int max=Integer.parseInt(args.split(",",2)[1]);
+          double max=Double.parseDouble(args.split(",",2)[1]);
           if(max==0)
             max=min;
-          long val=Formulas.getRandomValue(min,max);
+          double val=Formulas.getRandomValue(min,(long)max);
           if(target!=null)
           {
             if(target.getCurPdv()+val>target.getMaxPdv())

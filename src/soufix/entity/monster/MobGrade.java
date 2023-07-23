@@ -332,7 +332,7 @@ public class MobGrade
         double modifier=((casterVit*pdvMax*0.15)/225);
         if(modifier>800)
           modifier=800;
-        pdv=(int)(pdvMax+modifier);
+        pdv=(long)(pdvMax+modifier);
         pdvMax=pdv;
       }
       double casterWis=caster.getPersonnage().getTotalStats().getEffect(Constant.STATS_ADD_SAGE);

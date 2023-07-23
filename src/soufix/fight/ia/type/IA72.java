@@ -66,7 +66,7 @@ public class IA72 extends AbstractNeedSpell
         }
       }
 
-      long percentPdv=(this.fighter.getPdv()*100)/this.fighter.getPdvMax();
+      double percentPdv=(this.fighter.getPdv()*100)/this.fighter.getPdvMax();
 
       if(this.fighter.getCurPa(this.fight)>0&&!action&&percentPdv<50)
       {

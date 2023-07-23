@@ -868,31 +868,31 @@ public int chek;
   {
     try
     {
-      int stat=-1;
+      long stat=-1;
       if(this.player.getMorphMode())
       {
         this.player.sendMessage("Vous étes incarné, vous ne pouvez pas utiliser vos points caractéristiques dans cet état.");
         return;
       }
 
-      if(packet.substring(2).contains(";"))
+      if(packet.substring(4).contains(";")) // Avant substring 2, marchait pas pour nous car prenait BoostStats et pas fixed, donc unitaire pour des valeur cheat -> impossible
       {
-        stat=Integer.parseInt(packet.substring(2).split(";")[0]);
+        stat=Long.parseLong(packet.substring(2).split(";")[0]);
         if(stat>0)
         {
           long code=0;
-          code=Integer.parseInt(packet.substring(2).split(";")[1]);
+          code=Long.parseLong(packet.substring(4).split(";")[1]);
           if(code<0)
             return;
           if(this.player.get_capital()<code)
             code=this.player.get_capital();
-          this.player.boostStatFixedCount(stat,code);
+          this.player.boostStatFixedCount((int) stat,code);
         }
       }
       else
       {
         stat=Integer.parseInt(packet.substring(2).split("/u000A")[0]);
-        this.player.boostStat(stat,true);
+        this.player.boostStat((int) stat,true);
         SocketManager.GAME_SEND_STATS_PACKET(this.player);
        //Database.getStatics().getPlayerData().update(this.player);
       }

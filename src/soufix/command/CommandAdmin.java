@@ -2306,6 +2306,7 @@ public class CommandAdmin extends AdminUser
         return;
       }
       Constant.onLevelUpSpells(perso, perso.getLevel()); // le possède Player.SpellMax(perso);
+      perso.ItemEvolution();
       
       return;
     }
@@ -2716,7 +2717,7 @@ public class CommandAdmin extends AdminUser
           if(perso==null)
             perso=this.getPlayer();
         }
-        long newPDV=perso.getMaxPdv()*count/100;
+        double newPDV=perso.getMaxPdv()*count/100;
         perso.setPdv(newPDV);
         if(perso.isOnline())
           SocketManager.GAME_SEND_STATS_PACKET(perso);

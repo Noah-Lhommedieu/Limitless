@@ -62,8 +62,8 @@ public class Monster
 
         try
         {
-          pdvmax=Integer.parseInt(thisPdvs.split("\\|")[n]);
-          init=Integer.parseInt(thisInit.split("\\|")[n]);
+          pdvmax=Long.parseLong(thisPdvs.split("\\|")[n]);
+          init=Long.parseLong(thisInit.split("\\|")[n]);
         }
         catch(Exception e)
         {
@@ -134,13 +134,13 @@ public class Monster
         if(spells.equals("-1"))
           spells="";
         //PDVMax//init
-        int pdvmax=1;
-        int init=1;
+        long pdvmax=1;
+        long init=1;
 
         try
         {
-          pdvmax=Integer.parseInt(thisPdvs.split("\\|")[n]);
-          init=Integer.parseInt(thisInit.split("\\|")[n]);
+          pdvmax=Long.parseLong(thisPdvs.split("\\|")[n]);
+          init=Long.parseLong(thisInit.split("\\|")[n]);
         }
         catch(Exception e)
         {

@@ -305,7 +305,7 @@ public class Fight
 
     if(perso.getCurPdv()>=perso.getMaxPdv())
     {
-    	long pdvMax=perso.getMaxPdv();
+    	double pdvMax=perso.getMaxPdv();
       perso.setPdv(pdvMax);
     }
     if(protecteur)
@@ -2316,10 +2316,10 @@ public void Anti_bug () {
       if(dgt<=0)
         continue;
       if(dgt>current.getPdv())
-        dgt=(long) current.getPdv(); //va mourrir
+        dgt= (long)current.getPdv(); //va mourrir
 
       current.removePdv(current,dgt);
-      current.removePdvMax((int)Math.floor(dgt*(Config.getInstance().erosion+SE.getCaster().getTotalStats().getEffect(Constant.STATS_ADD_ERO)-SE.getCaster().getTotalStats().getEffect(Constant.STATS_REM_ERO)-current.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+current.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
+      current.removePdvMax(Math.floor(dgt*(Config.getInstance().erosion+SE.getCaster().getTotalStats().getEffect(Constant.STATS_ADD_ERO)-SE.getCaster().getTotalStats().getEffect(Constant.STATS_REM_ERO)-current.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+current.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
       dgt=-(dgt);
       SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(this,7,100,SE.getCaster().getId()+"",current.getId()+","+dgt);
     }

@@ -41,8 +41,8 @@ public class Fighter implements Comparable<Fighter>
   private Prism prism=null;
   private int team=-2;
   private GameCase cell;
-  private long pdvMax;
-  private long pdv;
+  private double pdvMax;
+  private double pdv;
   private boolean isDead;
   private boolean hasLeft;
   private int gfxId;
@@ -258,31 +258,31 @@ public void setTourplus() {
     this.cell=cell;
   }
 
-  public long getPdvMax()
+  public double getPdvMax()
   {
     return this.pdvMax+getBuffValue(Constant.STATS_ADD_VITA);
   }
 
-  public void removePdvMax(int pdv)
+  public void removePdvMax(double d)
   {
-    this.pdvMax=this.pdvMax-pdv;
+    this.pdvMax= (this.pdvMax-d);
     if(this.pdv>this.pdvMax)
       this.pdv=this.pdvMax;
   }
 
-  public long getPdv()
+  public double getPdv()
   {
     return (this.pdv+getBuffValue(Constant.STATS_ADD_VITA));
   }
 
-  public void setPdvMax(long pdvMax)
+  public void setPdvMax(double d)
   {
-    this.pdvMax=pdvMax;
+    this.pdvMax=d;
   }
 
-  public void setPdv(long pdv)
+  public void setPdv(double d)
   {
-    this.pdv=pdv;
+    this.pdv=d;
     if(this.pdv>this.pdvMax)
       this.pdv=this.pdvMax;
   }
@@ -889,7 +889,7 @@ public void setTourplus() {
               this.pdvMax=(this.pdvMax-entry.getValue());
 
               //Baisse des pdvs actuel
-              long pdv=0;
+              double pdv=0;
               if(this.pdv-entry.getValue()<=0)
               {
                 pdv=0;
@@ -1171,7 +1171,7 @@ public void setTourplus() {
     return hasBuff(150);
   }
 
-  public long getPdvMaxOutFight()
+  public double getPdvMaxOutFight()
   {
     if(this.perso!=null)
       return this.perso.getMaxPdv();

@@ -1328,6 +1328,12 @@ public class Constant
     switch(perso.getClasse())
     {
     case CLASS_FECA:
+    	if(lvl >= 1)
+    	{
+    		perso.learnSpell(6,1,true,false,false);//Attaque Naturelle
+    		perso.learnSpell(3,1,true,false,false);//Armure Terrestre
+    		perso.learnSpell(17,1,true,false,false);//Glyphe Agressif
+    	}
         if(lvl>=3)
           perso.learnSpell(4,1,true,false,false);//Renvoie de sort
         if(lvl>=6)
@@ -1367,6 +1373,12 @@ public class Constant
         break;
 
       case CLASS_OSAMODAS:
+    	  if(lvl >= 1)
+      	{
+      		perso.learnSpell(34,1,true,false,false);//Invocation de tofu
+      		perso.learnSpell(21,1,true,false,false);//Griffe Spectrale
+      		perso.learnSpell(23,1,true,false,false);//Cri de l'ours
+      	}
         if(lvl>=3)
           perso.learnSpell(26,1,true,false,false);//Bï¿½nï¿½diction Animale
         if(lvl>=6)
@@ -1406,6 +1418,12 @@ public class Constant
         break;
 
       case CLASS_ENUTROF:
+    	  if(lvl >= 1)
+      	{
+      		perso.learnSpell(51,1,true,false,false);//Lancer de Piece
+      		perso.learnSpell(43,1,true,false,false);//Lancer de Pelle
+      		perso.learnSpell(41,1,true,false,false);//Sac animé
+      	}
         if(lvl>=3)
           perso.learnSpell(49,1,true,false,false);//Pelle Fantomatique
         if(lvl>=6)
@@ -1445,6 +1463,12 @@ public class Constant
         break;
 
       case CLASS_SRAM:
+    	  if(lvl >= 1)
+      	{
+      		perso.learnSpell(61,1,true,false,false);//Sournoiserie
+      		perso.learnSpell(72,1,true,false,false);//Invisibilité
+      		perso.learnSpell(65,1,true,false,false);//Piege sournois
+      	}
         if(lvl>=3)
           perso.learnSpell(66,1,true,false,false);//Poison insidieux
         if(lvl>=6)
@@ -1484,6 +1508,12 @@ public class Constant
         break;
 
       case CLASS_XELOR:
+    	  if(lvl >= 1)
+      	{
+      		perso.learnSpell(81,1,true,false,false);//Ralentissement
+      		perso.learnSpell(82,1,true,false,false);//Contre
+      		perso.learnSpell(83,1,true,false,false);//Aiguille
+      	}
         if(lvl>=3)
           perso.learnSpell(84,1,true,false,false);//Gelure
         if(lvl>=6)
@@ -1523,6 +1553,12 @@ public class Constant
         break;
 
       case CLASS_ECAFLIP:
+    	  if(lvl >= 1)
+      	{
+      		perso.learnSpell(102,1,true,false,false);//Pile ou Face
+      		perso.learnSpell(103,1,true,false,false);//Chance d'ecaflip
+      		perso.learnSpell(105,1,true,false,false);//Bond du felin
+      	}
         if(lvl>=3)
           perso.learnSpell(109,1,true,false,false);//Bluff
         if(lvl>=6)
@@ -1562,6 +1598,12 @@ public class Constant
         break;
 
       case CLASS_ENIRIPSA:
+    	  if(lvl >= 1)
+      	{
+      		perso.learnSpell(125,1,true,false,false);//Mot Interdit
+      		perso.learnSpell(128,1,true,false,false);//Mot de Frayeur
+      		perso.learnSpell(121,1,true,false,false);//Mot Curatif
+      	}
         if(lvl>=3)
           perso.learnSpell(124,1,true,false,false);//Mot Soignant
         if(lvl>=6)
@@ -1601,6 +1643,12 @@ public class Constant
         break;
 
       case CLASS_IOP:
+    	  if(lvl >= 1)
+      	{
+      		perso.learnSpell(141,1,true,false,false);//Pression
+      		perso.learnSpell(142,1,true,false,false);//Bond
+      		perso.learnSpell(143,1,true,false,false);//Intimidation
+      	}
         if(lvl>=3)
           perso.learnSpell(144,1,true,false,false);//Compulsion
         if(lvl>=6)
@@ -1640,6 +1688,12 @@ public class Constant
         break;
 
       case CLASS_CRA:
+    	  if(lvl >= 1)
+      	{
+      		perso.learnSpell(161,1,true,false,false);//Fleche Magique
+      		perso.learnSpell(169,1,true,false,false);//Fleche de Recul
+      		perso.learnSpell(164,1,true,false,false);////Fleche Empoisonnï¿½e(ex Fleche chercheuse)
+      	}
         if(lvl>=3)
           perso.learnSpell(163,1,true,false,false);//Flï¿½che Glacï¿½e
         if(lvl>=6)
@@ -1679,6 +1733,12 @@ public class Constant
         break;
 
       case CLASS_SADIDA:
+    	  if(lvl >= 1)
+        	{
+        		perso.learnSpell(183,1,true,false,false);//Ronce
+        		perso.learnSpell(200,1,true,false,false);//Poison Paralysant
+        		perso.learnSpell(193,1,true,false,false);//La bloqueuse
+        	}
         if(lvl>=3)
           perso.learnSpell(198,1,true,false,false);//Sacrifice Poupesque
         if(lvl>=6)
@@ -1718,6 +1778,12 @@ public class Constant
         break;
 
       case CLASS_SACRIEUR:
+    	  if(lvl >= 1)
+      	{
+      		perso.learnSpell(432,1,true,false,false);//Pied du Sacrieur
+      		perso.learnSpell(431,1,true,false,false);//Chatiment Forcï¿½
+      		perso.learnSpell(434,1,true,false,false);//Attirance
+      	}
         if(lvl>=3)
           perso.learnSpell(444,1,true,false,false);//Dï¿½robade
         if(lvl>=6)
@@ -1757,6 +1823,12 @@ public class Constant
         break;
 
       case CLASS_PANDAWA:
+    	  if(lvl >= 1)
+        	{
+        		perso.learnSpell(686,1,true,false,false);//Picole
+        		perso.learnSpell(692,1,true,false,false);//Gueule de bois
+        		perso.learnSpell(687,1,true,false,false);//Poing enflammé
+        	}
         if(lvl>=3)
           perso.learnSpell(689,1,true,false,false);//Epouvante
         if(lvl>=6)

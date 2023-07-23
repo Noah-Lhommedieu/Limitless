@@ -201,7 +201,7 @@ public class SpellEffect
               {
                 finalDommage=-(finalDommage*coefHeal);
                 if(-finalDommage>(target.getPdvMax()-target.getPdv()))
-                  finalDommage=-(target.getPdvMax()-target.getPdv());
+                  finalDommage=(long) -(target.getPdvMax()-target.getPdv());
               }
               else //Dommage
                 finalDommage=finalDommage*coefDom;
@@ -248,7 +248,7 @@ public class SpellEffect
             finalDommage-=renvoie;
             SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,107,"-1",target.getId()+","+renvoie);
             if(renvoie>caster.getPdv())
-              renvoie=caster.getPdv();
+              renvoie=(long) caster.getPdv();
             if(finalDommage<0)
               finalDommage=0;
             
@@ -358,7 +358,7 @@ public class SpellEffect
     return finalDommage;
   }
 
-  private void applyOnHealBuffs(int heal, Fighter target, Fighter caster, Fight fight)
+  private void applyOnHealBuffs(long heal, Fighter target, Fighter caster, Fight fight)
   {
     for(int id : Constant.ON_HEAL_BUFFS)
     {
@@ -383,7 +383,7 @@ public class SpellEffect
               //le lanceur devient donc la cible
               target=caster;
             }
-            int dmg=0;
+            long dmg=0;
             String[] args=buff.getArgs().split(";");
             if(target.hasBuff(782)) //Brokle
             {
@@ -396,8 +396,8 @@ public class SpellEffect
             else
               dmg=Formulas.getRandomJet(args[5]);//%age de pdv infligï¿½
 
-            int val=(int)Math.floor(((double)caster.getPdv()/100)*dmg);//Valeur des dï¿½gats
-            int armor=Formulas.getArmorResist(target,Constant.ELEMENT_TERRE);
+            long val=(int)Math.floor(((double)caster.getPdv()/100)*dmg);//Valeur des dï¿½gats
+            long armor=Formulas.getArmorResist(target,Constant.ELEMENT_TERRE);
             if(!target.hasBuff(786))
             {
               val-=armor;
@@ -408,14 +408,14 @@ public class SpellEffect
             }
             long finalDommage=applyOnHitBuffs(val,target,caster,fight,Constant.ELEMENT_TERRE,spell);
             if(finalDommage>target.getPdv())
-              finalDommage=target.getPdv();//Target va mourrir
+              finalDommage=(long) target.getPdv();//Target va mourrir
             target.removePdv(caster,finalDommage);
             target.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
             long cura=finalDommage;
             if(target.hasBuff(786))
             {
               if((cura+caster.getPdv())>caster.getPdvMax())
-                cura=caster.getPdvMax()-caster.getPdv();
+                cura=(long) (caster.getPdvMax()-caster.getPdv());
               caster.removePdv(caster,-cura);
               SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+",+"+cura);
             }
@@ -475,14 +475,14 @@ public class SpellEffect
             }
             long finalDommage=applyOnHitBuffs(val,target,caster,fight,Constant.ELEMENT_FEU,spell);
             if(finalDommage>target.getPdv())
-              finalDommage=target.getPdv();//Target va mourrir
+              finalDommage=(long) target.getPdv();//Target va mourrir
             target.removePdv(caster,finalDommage);
             target.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
             long cura=finalDommage;
             if(target.hasBuff(786))
             {
               if((cura+caster.getPdv())>caster.getPdvMax())
-                cura=caster.getPdvMax()-caster.getPdv();
+                cura=(long) (caster.getPdvMax()-caster.getPdv());
               caster.removePdv(caster,-cura);
               SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+",+"+cura);
             }
@@ -542,14 +542,14 @@ public class SpellEffect
             }
             long finalDommage=applyOnHitBuffs(val,target,caster,fight,Constant.ELEMENT_EAU,spell);
             if(finalDommage>target.getPdv())
-              finalDommage=target.getPdv();//Target va mourrir
+              finalDommage=(long) target.getPdv();//Target va mourrir
             target.removePdv(caster,finalDommage);
             target.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
             long cura=finalDommage;
             if(target.hasBuff(786))
             {
               if((cura+caster.getPdv())>caster.getPdvMax())
-                cura=caster.getPdvMax()-caster.getPdv();
+                cura=(long) (caster.getPdvMax()-caster.getPdv());
               caster.removePdv(caster,-cura);
               SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+",+"+cura);
             }
@@ -609,14 +609,14 @@ public class SpellEffect
             }
             long finalDommage=applyOnHitBuffs(val,target,caster,fight,Constant.ELEMENT_AIR,spell);
             if(finalDommage>target.getPdv())
-              finalDommage=target.getPdv();//Target va mourrir
+              finalDommage=(long) target.getPdv();//Target va mourrir
             target.removePdv(caster,finalDommage);
             target.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
             long cura=finalDommage;
             if(target.hasBuff(786))
             {
               if((cura+caster.getPdv())>caster.getPdvMax())
-                cura=caster.getPdvMax()-caster.getPdv();
+                cura=(long) (caster.getPdvMax()-caster.getPdv());
               caster.removePdv(caster,-cura);
               SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+",+"+cura);
             }
@@ -698,7 +698,7 @@ public class SpellEffect
             long finalDommage=Formulas.calculFinalDommage(fight,caster,target,Constant.ELEMENT_TERRE,dmg,false,false,spell,this.cell,target.getCell(),aoe,isTrap);
             finalDommage=applyOnHitBuffs(finalDommage,target,caster,fight,Constant.ELEMENT_TERRE,spell);//S'il y a des buffs spï¿½ciaux
             if(finalDommage>target.getPdv())
-              finalDommage=target.getPdv();//Target va mourrir
+              finalDommage=(long) target.getPdv();//Target va mourrir
             target.removePdv(caster,finalDommage);
             target.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
             long cura=finalDommage;
@@ -706,7 +706,7 @@ public class SpellEffect
             if(target.hasBuff(786))
             {
               if((cura+caster.getPdv())>caster.getPdvMax())
-                cura=caster.getPdvMax()-caster.getPdv();
+                cura=(long) (caster.getPdvMax()-caster.getPdv());
               caster.removePdv(caster,-cura);
               SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+",+"+cura);
             }
@@ -788,7 +788,7 @@ public class SpellEffect
             long finalDommage=Formulas.calculFinalDommage(fight,caster,target,Constant.ELEMENT_FEU,dmg,false,false,spell,this.cell,target.getCell(),aoe,isTrap);
             finalDommage=applyOnHitBuffs(finalDommage,target,caster,fight,Constant.ELEMENT_FEU,spell);//S'il y a des buffs spï¿½ciaux
             if(finalDommage>target.getPdv())
-              finalDommage=target.getPdv();//Target va mourrir
+              finalDommage=(long) target.getPdv();//Target va mourrir
             target.removePdv(caster,finalDommage);
             target.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
             long cura=finalDommage;
@@ -796,7 +796,7 @@ public class SpellEffect
             if(target.hasBuff(786))
             {
               if((cura+caster.getPdv())>caster.getPdvMax())
-                cura=caster.getPdvMax()-caster.getPdv();
+                cura=(long) (caster.getPdvMax()-caster.getPdv());
               caster.removePdv(caster,-cura);
               SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+",+"+cura);
             }
@@ -878,7 +878,7 @@ public class SpellEffect
             long finalDommage=Formulas.calculFinalDommage(fight,caster,target,Constant.ELEMENT_EAU,dmg,false,false,spell,this.cell,target.getCell(),aoe,isTrap);
             finalDommage=applyOnHitBuffs(finalDommage,target,caster,fight,Constant.ELEMENT_EAU,spell);//S'il y a des buffs spï¿½ciaux
             if(finalDommage>target.getPdv())
-              finalDommage=target.getPdv();//Target va mourrir
+              finalDommage=(long) target.getPdv();//Target va mourrir
             target.removePdv(caster,finalDommage);
             target.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
             long cura=finalDommage;
@@ -886,7 +886,7 @@ public class SpellEffect
             if(target.hasBuff(786))
             {
               if((cura+caster.getPdv())>caster.getPdvMax())
-                cura=caster.getPdvMax()-caster.getPdv();
+                cura=(long) (caster.getPdvMax()-caster.getPdv());
               caster.removePdv(caster,-cura);
               SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+",+"+cura);
             }
@@ -968,7 +968,7 @@ public class SpellEffect
             long finalDommage=Formulas.calculFinalDommage(fight,caster,target,Constant.ELEMENT_AIR,dmg,false,false,spell,this.cell,target.getCell(),aoe,isTrap);
             finalDommage=applyOnHitBuffs(finalDommage,target,caster,fight,Constant.ELEMENT_AIR,spell);//S'il y a des buffs spï¿½ciaux
             if(finalDommage>target.getPdv())
-              finalDommage=target.getPdv();//Target va mourrir
+              finalDommage=(long) target.getPdv();//Target va mourrir
             target.removePdv(caster,finalDommage);
             target.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
             long cura=finalDommage;
@@ -976,7 +976,7 @@ public class SpellEffect
             if(target.hasBuff(786))
             {
               if((cura+caster.getPdv())>caster.getPdvMax())
-                cura=caster.getPdvMax()-caster.getPdv();
+                cura=(long) (caster.getPdvMax()-caster.getPdv());
               caster.removePdv(caster,-cura);
               SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+",+"+cura);
             }
@@ -1740,7 +1740,7 @@ public class SpellEffect
           if(finalDmg<1)
             finalDmg=1;
           if(finalDmg>target.getPdv())
-            finalDmg=target.getPdv();
+            finalDmg=(long) target.getPdv();
 
           if(target.hasBuff(184))
           {
@@ -2091,10 +2091,10 @@ public class SpellEffect
           if(cible.getTeam2()!=caster.getTeam2())
             continue;
         heal=getMaxMinSpell(cible,heal);
-        long pdvMax=cible.getPdvMax();
+        long pdvMax=(long) cible.getPdvMax();
         long healFinal=Formulas.calculFinalHeal(caster,heal,false);
         if((healFinal+cible.getPdv())>pdvMax)
-          healFinal=pdvMax-cible.getPdv();
+          healFinal=(long) (pdvMax-cible.getPdv());
         if(healFinal<1)
           healFinal=0;
         cible.removePdv(caster,-healFinal);
@@ -2140,7 +2140,7 @@ public class SpellEffect
         long finalDommage=dmg;
         finalDommage=applyOnHitBuffs(finalDommage,target,caster,fight,Constant.ELEMENT_NULL,spell);//S'il y a des buffs spï¿½ciaux
         if(finalDommage>target.getPdv())
-          finalDommage=target.getPdv();//Target va mourrir
+          finalDommage=(long) target.getPdv();//Target va mourrir
         target.removePdv(caster,finalDommage);
         target.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
         finalDommage=-(finalDommage);
@@ -2150,7 +2150,7 @@ public class SpellEffect
         if(heal<0)
           heal=0;
         if((caster.getPdv()+heal)>caster.getPdvMax())
-          heal=caster.getPdvMax()-caster.getPdv();
+          heal=(long) (caster.getPdvMax()-caster.getPdv());
         caster.removePdv(caster,-heal);
         if(heal!=0)
           SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+","+heal);
@@ -2276,14 +2276,14 @@ public class SpellEffect
 
         long finalDommage=applyOnHitBuffs(val,target,caster,fight,Constant.ELEMENT_EAU,spell);
         if(finalDommage>target.getPdv())
-          finalDommage=target.getPdv();//Target va mourrir
+          finalDommage=(long) target.getPdv();//Target va mourrir
         target.removePdv(caster,finalDommage);
         target.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
         long cura=finalDommage;
         if(target.hasBuff(786))
         {
           if((cura+caster.getPdv())>caster.getPdvMax())
-            cura=caster.getPdvMax()-caster.getPdv();
+            cura=(long) (caster.getPdvMax()-caster.getPdv());
           caster.removePdv(caster,-cura);
           SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+",+"+cura);
         }
@@ -2371,14 +2371,14 @@ public class SpellEffect
 
         long finalDommage=applyOnHitBuffs(val,target,caster,fight,Constant.ELEMENT_TERRE,spell);
         if(finalDommage>target.getPdv())
-          finalDommage=target.getPdv();//Target va mourrir
+          finalDommage=(long) target.getPdv();//Target va mourrir
         target.removePdv(caster,finalDommage);
         target.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
         long cura=finalDommage;
         if(target.hasBuff(786))
         {
           if((cura+caster.getPdv())>caster.getPdvMax())
-            cura=caster.getPdvMax()-caster.getPdv();
+            cura=(long) (caster.getPdvMax()-caster.getPdv());
           caster.removePdv(caster,-cura);
           SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+",+"+cura);
         }
@@ -2468,14 +2468,14 @@ public class SpellEffect
 
         long finalDommage=applyOnHitBuffs(val,target,caster,fight,Constant.ELEMENT_AIR,spell);
         if(finalDommage>target.getPdv())
-          finalDommage=target.getPdv();//Target va mourrir
+          finalDommage=(long) target.getPdv();//Target va mourrir
         target.removePdv(caster,finalDommage);
         target.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
         long cura=finalDommage;
         if(target.hasBuff(786))
         {
           if((cura+caster.getPdv())>caster.getPdvMax())
-            cura=caster.getPdvMax()-caster.getPdv();
+            cura=(long) (caster.getPdvMax()-caster.getPdv());
           caster.removePdv(caster,-cura);
           SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+",+"+cura);
         }
@@ -2562,14 +2562,14 @@ public class SpellEffect
 
         long finalDommage=applyOnHitBuffs(val,target,caster,fight,Constant.ELEMENT_FEU,spell);
         if(finalDommage>target.getPdv())
-          finalDommage=target.getPdv();//Target va mourrir
+          finalDommage=(long) target.getPdv();//Target va mourrir
         target.removePdv(caster,finalDommage);
         target.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
         long cura=finalDommage;
         if(target.hasBuff(786))
         {
           if((cura+caster.getPdv())>caster.getPdvMax())
-            cura=caster.getPdvMax()-caster.getPdv();
+            cura=(long) (caster.getPdvMax()-caster.getPdv());
           caster.removePdv(caster,-cura);
           SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+",+"+cura);
         }
@@ -2658,14 +2658,14 @@ public class SpellEffect
         long finalDommage=applyOnHitBuffs(val,target,caster,fight,Constant.ELEMENT_NEUTRE,spell);
 
         if(finalDommage>target.getPdv())
-          finalDommage=target.getPdv(); //Target va mourrir
+          finalDommage=(long) target.getPdv(); //Target va mourrir
         target.removePdv(caster,finalDommage);
         target.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
         long cura=finalDommage;
         if(target.hasBuff(786))
         {
           if((cura+caster.getPdv())>caster.getPdvMax())
-            cura=caster.getPdvMax()-caster.getPdv();
+            cura=(long) (caster.getPdvMax()-caster.getPdv());
           caster.removePdv(caster,-cura);
           SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+",+"+cura);
         }
@@ -2708,12 +2708,12 @@ public class SpellEffect
 		if (turns <= 0)//Si Direct
 		{
 			int pAge = Formulas.getRandomJet(args.split(";")[5]);
-			long val = pAge * (caster.getPdv() / 100);
+			long val = (long) (pAge * (caster.getPdv() / 100));
 			//Calcul des Doms recus par le lanceur
 			long finalDommage = applyOnHitBuffs(val, caster, caster, fight, Constant.ELEMENT_NULL,spell);//S'il y a des buffs sp�ciaux
 
 			if (finalDommage > caster.getPdv())
-				finalDommage = caster.getPdv();//Caster va mourrir
+				finalDommage = (long) caster.getPdv();//Caster va mourrir
 			caster.removePdv(caster, finalDommage);
 			finalDommage = -(finalDommage);
 			SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight, 7, 100, caster.getId()
@@ -2724,7 +2724,7 @@ public class SpellEffect
 		    	  if(target.isDead())
 		    		  continue;
 				if ((val + target.getPdv()) > target.getPdvMax())
-					val = target.getPdvMax() - target.getPdv();//Target va mourrir
+					val = (long) (target.getPdvMax() - target.getPdv());//Target va mourrir
 				target.removePdv(caster, -val);
 				SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight, 7, 100, caster.getId()
 						+ "", target.getId() + ",+" + val);
@@ -2773,7 +2773,7 @@ public class SpellEffect
         finalDommage=applyOnHitBuffs(finalDommage,target,caster,fight,Constant.ELEMENT_EAU,spell);//S'il y a des buffs spï¿½ciaux
 
         if(finalDommage>target.getPdv())
-          finalDommage=target.getPdv();//Target va mourrir
+          finalDommage=(long) target.getPdv();//Target va mourrir
         target.removePdv(caster,finalDommage);
         target.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
         finalDommage=-(finalDommage);
@@ -2782,7 +2782,7 @@ public class SpellEffect
         if(heal<0)
           heal=0;
         if((caster.getPdv()+heal)>caster.getPdvMax())
-          heal=caster.getPdvMax()-caster.getPdv();
+          heal=(long) (caster.getPdvMax()-caster.getPdv());
         caster.removePdv(caster,-heal);
         if(heal!=0)
           SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+","+heal);
@@ -2836,7 +2836,7 @@ public class SpellEffect
 
         finalDommage=applyOnHitBuffs(finalDommage,target,caster,fight,Constant.ELEMENT_EAU,spell);//S'il y a des buffs spï¿½ciaux
         if(finalDommage>target.getPdv())
-          finalDommage=target.getPdv();//Target va mourrir
+          finalDommage=(long) target.getPdv();//Target va mourrir
         target.removePdv(caster,finalDommage);
         target.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
         finalDommage=-(finalDommage);
@@ -2845,7 +2845,7 @@ public class SpellEffect
         if(heal<0)
           heal=0;
         if((caster.getPdv()+heal)>caster.getPdvMax())
-          heal=caster.getPdvMax()-caster.getPdv();
+          heal=(long) (caster.getPdvMax()-caster.getPdv());
         caster.removePdv(caster,-heal);
         if(heal!=0)
           SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+","+heal);
@@ -2905,7 +2905,7 @@ public class SpellEffect
         finalDommage=applyOnHitBuffs(finalDommage,target,caster,fight,Constant.ELEMENT_TERRE,spell);//S'il y a des buffs spï¿½ciaux
 
         if(finalDommage>target.getPdv())
-          finalDommage=target.getPdv();//Target va mourrir
+          finalDommage=(long) target.getPdv();//Target va mourrir
         target.removePdv(caster,finalDommage);
         target.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
         finalDommage=-(finalDommage);
@@ -2914,7 +2914,7 @@ public class SpellEffect
         if(heal<0)
           heal=0;
         if((caster.getPdv()+heal)>caster.getPdvMax())
-          heal=caster.getPdvMax()-caster.getPdv();
+          heal=(long) (caster.getPdvMax()-caster.getPdv());
         caster.removePdv(caster,-heal);
         if(heal!=0)
           SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+","+heal);
@@ -2966,7 +2966,7 @@ public class SpellEffect
 
         finalDommage=applyOnHitBuffs(finalDommage,target,caster,fight,Constant.ELEMENT_TERRE,spell);//S'il y a des buffs spï¿½ciaux
         if(finalDommage>target.getPdv())
-          finalDommage=target.getPdv();//Target va mourrir
+          finalDommage=(long) target.getPdv();//Target va mourrir
         target.removePdv(caster,finalDommage);
         target.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
         finalDommage=-(finalDommage);
@@ -2975,7 +2975,7 @@ public class SpellEffect
         if(heal<0)
           heal=0;
         if((caster.getPdv()+heal)>caster.getPdvMax())
-          heal=caster.getPdvMax()-caster.getPdv();
+          heal=(long) (caster.getPdvMax()-caster.getPdv());
         caster.removePdv(caster,-heal);
         if(heal!=0)
           SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+","+heal);
@@ -3035,7 +3035,7 @@ public class SpellEffect
         finalDommage=applyOnHitBuffs(finalDommage,target,caster,fight,Constant.ELEMENT_AIR,spell);//S'il y a des buffs spï¿½ciaux
 
         if(finalDommage>target.getPdv())
-          finalDommage=target.getPdv();//Target va mourrir
+          finalDommage=(long) target.getPdv();//Target va mourrir
         target.removePdv(caster,finalDommage);
         target.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
         finalDommage=-(finalDommage);
@@ -3044,7 +3044,7 @@ public class SpellEffect
         if(heal<0)
           heal=0;
         if((caster.getPdv()+heal)>caster.getPdvMax())
-          heal=caster.getPdvMax()-caster.getPdv();
+          heal=(long) (caster.getPdvMax()-caster.getPdv());
         caster.removePdv(caster,-heal);
         if(heal!=0)
           SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+","+heal);
@@ -3096,7 +3096,7 @@ public class SpellEffect
 
         finalDommage=applyOnHitBuffs(finalDommage,target,caster,fight,Constant.ELEMENT_AIR,spell);//S'il y a des buffs spï¿½ciaux
         if(finalDommage>target.getPdv())
-          finalDommage=target.getPdv();//Target va mourrir
+          finalDommage=(long) target.getPdv();//Target va mourrir
         target.removePdv(caster,finalDommage);
         target.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
         finalDommage=-(finalDommage);
@@ -3106,7 +3106,7 @@ public class SpellEffect
         if(heal<0)
           heal=0;
         if((caster.getPdv()+heal)>caster.getPdvMax())
-          heal=caster.getPdvMax()-caster.getPdv();
+          heal=(long) (caster.getPdvMax()-caster.getPdv());
         caster.removePdv(caster,-heal);
         if(heal!=0)
           SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+","+heal);
@@ -3165,7 +3165,7 @@ public class SpellEffect
         finalDommage=applyOnHitBuffs(finalDommage,target,caster,fight,Constant.ELEMENT_FEU,spell);//S'il y a des buffs spï¿½ciaux
 
         if(finalDommage>target.getPdv())
-          finalDommage=target.getPdv();//Target va mourrir
+          finalDommage=(long) target.getPdv();//Target va mourrir
         target.removePdv(caster,finalDommage);
         target.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
         finalDommage=-(finalDommage);
@@ -3174,7 +3174,7 @@ public class SpellEffect
         if(heal<0)
           heal=0;
         if((caster.getPdv()+heal)>caster.getPdvMax())
-          heal=caster.getPdvMax()-caster.getPdv();
+          heal=(long) (caster.getPdvMax()-caster.getPdv());
         caster.removePdv(caster,-heal);
         if(heal!=0)
           SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+","+heal);
@@ -3226,7 +3226,7 @@ public class SpellEffect
 
         finalDommage=applyOnHitBuffs(finalDommage,target,caster,fight,Constant.ELEMENT_FEU,spell);//S'il y a des buffs spï¿½ciaux
         if(finalDommage>target.getPdv())
-          finalDommage=target.getPdv();//Target va mourrir
+          finalDommage=(long) target.getPdv();//Target va mourrir
         target.removePdv(caster,finalDommage);
         target.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
         finalDommage=-(finalDommage);
@@ -3235,7 +3235,7 @@ public class SpellEffect
         if(heal<0)
           heal=0;
         if((caster.getPdv()+heal)>caster.getPdvMax())
-          heal=caster.getPdvMax()-caster.getPdv();
+          heal=(long) (caster.getPdvMax()-caster.getPdv());
         caster.removePdv(caster,-heal);
         if(heal!=0)
           SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+","+heal);
@@ -3294,7 +3294,7 @@ public class SpellEffect
         finalDommage=applyOnHitBuffs(finalDommage,target,caster,fight,Constant.ELEMENT_NEUTRE,spell);//S'il y a des buffs spï¿½ciaux
 
         if(finalDommage>target.getPdv())
-          finalDommage=target.getPdv();//Target va mourrir
+          finalDommage=(long) target.getPdv();//Target va mourrir
         target.removePdv(caster,finalDommage);
         target.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
         finalDommage=-(finalDommage);
@@ -3303,7 +3303,7 @@ public class SpellEffect
         if(heal<0)
           heal=0;
         if((caster.getPdv()+heal)>caster.getPdvMax())
-          heal=caster.getPdvMax()-caster.getPdv();
+          heal=(long) (caster.getPdvMax()-caster.getPdv());
         caster.removePdv(caster,-heal);
         if(heal!=0)
           SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+","+heal);
@@ -3354,7 +3354,7 @@ public class SpellEffect
         long finalDommage=Formulas.calculFinalDommage(fight,caster,target,Constant.ELEMENT_NEUTRE,dmg,false,false,spell,this.cell,target.getCell(),aoe,isTrap);
         finalDommage=applyOnHitBuffs(finalDommage,target,caster,fight,Constant.ELEMENT_NEUTRE,spell);//S'il y a des buffs spï¿½ciaux
         if(finalDommage>target.getPdv())
-          finalDommage=target.getPdv();//Target va mourrir
+          finalDommage=(long) target.getPdv();//Target va mourrir
         target.removePdv(caster,finalDommage);
         target.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
         finalDommage=-(finalDommage);
@@ -3364,7 +3364,7 @@ public class SpellEffect
         if(heal<0)
           heal=0;
         if((caster.getPdv()+heal)>caster.getPdvMax())
-          heal=caster.getPdvMax()-caster.getPdv();
+          heal=(long) (caster.getPdvMax()-caster.getPdv());
         caster.removePdv(caster,-heal);
         if(heal!=0)
           SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+","+heal);
@@ -3446,14 +3446,14 @@ public class SpellEffect
         finalDommage=applyOnHitBuffs(finalDommage,target,caster,fight,Constant.ELEMENT_EAU,spell);//S'il y a des buffs spï¿½ciaux
 
         if(finalDommage>target.getPdv())
-          finalDommage=target.getPdv();//Target va mourrir
+          finalDommage=(long) target.getPdv();//Target va mourrir
         target.removePdv(caster,finalDommage);
         target.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
         long cura=finalDommage;
         if(target.hasBuff(786))
         {
           if((cura+caster.getPdv())>caster.getPdvMax())
-            cura=caster.getPdvMax()-caster.getPdv();
+            cura=(long) (caster.getPdvMax()-caster.getPdv());
           caster.removePdv(caster,-cura);
           SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+",+"+cura);
         }
@@ -3534,14 +3534,14 @@ public class SpellEffect
         finalDommage=applyOnHitBuffs(finalDommage,target,caster,fight,Constant.ELEMENT_EAU,spell);//S'il y a des buffs spï¿½ciaux
 
         if(finalDommage>target.getPdv())
-          finalDommage=target.getPdv();//Target va mourrir
+          finalDommage=(long) target.getPdv();//Target va mourrir
         target.removePdv(caster,finalDommage);
         target.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
         long cura=finalDommage;
         if(target.hasBuff(786))
         {
           if((cura+caster.getPdv())>caster.getPdvMax())
-            cura=caster.getPdvMax()-caster.getPdv();
+            cura=(long) (caster.getPdvMax()-caster.getPdv());
           caster.removePdv(caster,-cura);
           SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+",+"+cura);
         }
@@ -3626,7 +3626,7 @@ public class SpellEffect
         finalDommage=applyOnHitBuffs(finalDommage,target,caster,fight,Constant.ELEMENT_TERRE,spell); //S'il y a des buffs spï¿½ciaux
 
         if(finalDommage>target.getPdv())
-          finalDommage=target.getPdv(); //Target va mourrir
+          finalDommage=(long) target.getPdv(); //Target va mourrir
         target.removePdv(caster,finalDommage);
         target.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
         long cura=finalDommage;
@@ -3634,7 +3634,7 @@ public class SpellEffect
         if(target.hasBuff(786))
         {
           if((cura+caster.getPdv())>caster.getPdvMax())
-            cura=caster.getPdvMax()-caster.getPdv();
+            cura=(long) (caster.getPdvMax()-caster.getPdv());
           caster.removePdv(caster,-cura);
           SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+",+"+cura);
         }
@@ -3724,14 +3724,14 @@ public class SpellEffect
         long finalDommage=Formulas.calculFinalDommage(fight,caster,target,Constant.ELEMENT_TERRE,dmg,false,false,spell,this.cell,target.getCell(),aoe,isTrap);
         finalDommage=applyOnHitBuffs(finalDommage,target,caster,fight,Constant.ELEMENT_TERRE,spell);//S'il y a des buffs spï¿½ciaux
         if(finalDommage>target.getPdv())
-          finalDommage=target.getPdv();//Target va mourrir
+          finalDommage=(long) target.getPdv();//Target va mourrir
         target.removePdv(caster,finalDommage);
         target.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
         long cura=finalDommage;
         if(target.hasBuff(786))
         {
           if((cura+caster.getPdv())>caster.getPdvMax())
-            cura=caster.getPdvMax()-caster.getPdv();
+            cura=(long) (caster.getPdvMax()-caster.getPdv());
           caster.removePdv(caster,-cura);
           SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+",+"+cura);
         }
@@ -3831,14 +3831,14 @@ public class SpellEffect
         finalDommage=applyOnHitBuffs(finalDommage,target,caster,fight,Constant.ELEMENT_AIR,spell);//S'il y a des buffs spï¿½ciaux
 
         if(finalDommage>target.getPdv())
-          finalDommage=target.getPdv();//Target va mourrir
+          finalDommage=(long) target.getPdv();//Target va mourrir
         target.removePdv(caster,finalDommage);
         target.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
         long cura=finalDommage;
         if(target.hasBuff(786))
         {
           if((cura+caster.getPdv())>caster.getPdvMax())
-            cura=caster.getPdvMax()-caster.getPdv();
+            cura=(long) (caster.getPdvMax()-caster.getPdv());
           caster.removePdv(caster,-cura);
           SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+",+"+cura);
         }
@@ -3918,7 +3918,7 @@ public class SpellEffect
         finalDommage=applyOnHitBuffs(finalDommage,target,caster,fight,Constant.ELEMENT_AIR,spell);//S'il y a des buffs spï¿½ciaux
 
         if(finalDommage>target.getPdv())
-          finalDommage=target.getPdv();//Target va mourrir
+          finalDommage=(long) target.getPdv();//Target va mourrir
 
         target.removePdv(caster,finalDommage);
         target.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
@@ -3926,7 +3926,7 @@ public class SpellEffect
         if(target.hasBuff(786))
         {
           if((cura+caster.getPdv())>caster.getPdvMax())
-            cura=caster.getPdvMax()-caster.getPdv();
+            cura=(long) (caster.getPdvMax()-caster.getPdv());
           caster.removePdv(caster,-cura);
           SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+",+"+cura);
         }
@@ -4008,14 +4008,14 @@ public class SpellEffect
         long finalDommage=Formulas.calculFinalDommage(fight,caster,target,Constant.ELEMENT_FEU,dmg,false,true,spell,this.cell,target.getCell(),aoe,isTrap);
         finalDommage=applyOnHitBuffs(finalDommage,target,caster,fight,Constant.ELEMENT_FEU,spell);//S'il y a des buffs spï¿½ciaux
         if(finalDommage>target.getPdv())
-          finalDommage=target.getPdv();//Target va mourrir
+          finalDommage=(long) target.getPdv();//Target va mourrir
         target.removePdv(caster,finalDommage);
         target.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
         long cura=finalDommage;
         if(target.hasBuff(786))
         {
           if((cura+caster.getPdv())>caster.getPdvMax())
-            cura=caster.getPdvMax()-caster.getPdv();
+            cura=(long) (caster.getPdvMax()-caster.getPdv());
           caster.removePdv(caster,-cura);
           SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+",+"+cura);
         }
@@ -4095,14 +4095,14 @@ public class SpellEffect
         long finalDommage=Formulas.calculFinalDommage(fight,caster,target,Constant.ELEMENT_FEU,dmg,false,false,spell,this.cell,target.getCell(),aoe,isTrap);
         finalDommage=applyOnHitBuffs(finalDommage,target,caster,fight,Constant.ELEMENT_FEU,spell); //S'il y a des buffs spï¿½ciaux
         if(finalDommage>target.getPdv())
-          finalDommage=target.getPdv();//Target va mourrir
+          finalDommage=(long) target.getPdv();//Target va mourrir
         target.removePdv(caster,finalDommage);
         target.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
         long cura=finalDommage;
         if(target.hasBuff(786))
         {
           if((cura+caster.getPdv())>caster.getPdvMax())
-            cura=caster.getPdvMax()-caster.getPdv();
+            cura=(long) (caster.getPdvMax()-caster.getPdv());
           caster.removePdv(caster,-cura);
           SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+",+"+cura);
         }
@@ -4187,14 +4187,14 @@ public class SpellEffect
         finalDommage=applyOnHitBuffs(finalDommage,target,caster,fight,Constant.ELEMENT_NEUTRE,spell);//S'il y a des buffs spï¿½ciaux
 
         if(finalDommage>target.getPdv())
-          finalDommage=target.getPdv();//Target va mourrir
+          finalDommage=(long) target.getPdv();//Target va mourrir
         target.removePdv(caster,finalDommage);
         target.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
         long cura=finalDommage;
         if(target.hasBuff(786))
         {
           if((cura+caster.getPdv())>caster.getPdvMax())
-            cura=caster.getPdvMax()-caster.getPdv();
+            cura=(long) (caster.getPdvMax()-caster.getPdv());
           caster.removePdv(caster,-cura);
           SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+",+"+cura);
         }
@@ -4272,14 +4272,14 @@ public class SpellEffect
         finalDommage=applyOnHitBuffs(finalDommage,target,caster,fight,Constant.ELEMENT_NEUTRE,spell);//S'il y a des buffs spï¿½ciaux
 
         if(finalDommage>target.getPdv())
-          finalDommage=target.getPdv();//Target va mourrir
+          finalDommage=(long) target.getPdv();//Target va mourrir
         target.removePdv(caster,finalDommage);
         target.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
         long cura=finalDommage;
         if(target.hasBuff(786))
         {
           if((cura+caster.getPdv())>caster.getPdvMax())
-            cura=caster.getPdvMax()-caster.getPdv();
+            cura=(long) (caster.getPdvMax()-caster.getPdv());
           caster.removePdv(caster,-cura);
           SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+",+"+cura);
         }
@@ -4507,10 +4507,10 @@ public class SpellEffect
         if(caster.hasBuff(179))
           heal=heal-caster.getBuffValue(179);
         heal=getMaxMinSpell(cible,heal);
-        long pdvMax=cible.getPdvMax();
+        long pdvMax=(long) cible.getPdvMax();
         long healFinal=Formulas.calculFinalHeal(caster,heal,isCaC);
         if((healFinal+cible.getPdv())>pdvMax)
-          healFinal=pdvMax-cible.getPdv();
+          healFinal=(long) (pdvMax-cible.getPdv());
         if(healFinal<1||cible.haveState(Constant.STATE_UNHEALABLE))
           healFinal=0;
         cible.removePdv(caster,-healFinal);
@@ -4543,7 +4543,7 @@ public class SpellEffect
 
       finalDommage=applyOnHitBuffs(finalDommage,caster,caster,fight,Constant.ELEMENT_NULL,spell);//S'il y a des buffs spï¿½ciaux
       if(finalDommage>caster.getPdv())
-        finalDommage=caster.getPdv();//Caster va mourrir
+        finalDommage=(long) caster.getPdv();//Caster va mourrir
       caster.removePdv(caster,finalDommage);
       caster.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-caster.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+caster.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
       finalDommage=-(finalDommage);
@@ -5064,7 +5064,7 @@ public class SpellEffect
           healFinal=heal;
         }
         if((healFinal+cible.getPdv())>cible.getPdvMax())
-          healFinal=cible.getPdvMax()-cible.getPdv();
+          healFinal=(long) (cible.getPdvMax()-cible.getPdv());
         if(healFinal<1)
           healFinal=0;
         cible.removePdv(caster,-healFinal);
@@ -5097,7 +5097,7 @@ public class SpellEffect
           healFinal=heal;
         }
         if((healFinal+cible.getPdv())>cible.getPdvMax())
-          healFinal=cible.getPdvMax()-cible.getPdv();
+          healFinal=(long) (cible.getPdvMax()-cible.getPdv());
         if(healFinal<1)
           healFinal=0;
         cible.removePdv(caster,-healFinal);
@@ -6430,7 +6430,7 @@ public class SpellEffect
 
         int dmg=Formulas.getRandomJet(args.split(";")[5]);// % de pdv
         dmg=getMaxMinSpell(target,dmg);
-        long val=caster.getPdv()/100*dmg;// Valor de daï¿½os
+        long val=(long) (caster.getPdv()/100*dmg);// Valor de daï¿½os
         val-=resF;
         int reduc=(int)(((float)val)/(float)100)*resP;// Reduc
         // %resis
@@ -6439,14 +6439,14 @@ public class SpellEffect
           val=0;
         val=applyOnHitBuffs(val,target,caster,fight,Constant.ELEMENT_NULL,spell);
         if(val>target.getPdv())
-          val=target.getPdv();
+          val=(long) target.getPdv();
         target.removePdv(caster,val);
         target.removePdvMax((int)Math.floor(val*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
         long cura=val;
         if(target.hasBuff(786)&&target.getBuff(786)!=null)
         {
           if((cura+caster.getPdv())>caster.getPdvMax())
-            cura=caster.getPdvMax()-caster.getPdv();
+            cura=(long) (caster.getPdvMax()-caster.getPdv());
           caster.removePdv(caster,-cura);
           SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+",+"+cura);
         }
@@ -6465,7 +6465,7 @@ public class SpellEffect
   private void applyEffect_672(ArrayList<Fighter> cibles, Fight fight)
   {
     double val=((double)Formulas.getRandomJet(jet)/(double)100);
-    long pdvMax=caster.getPdvMaxOutFight();
+    long pdvMax=(long) caster.getPdvMaxOutFight();
     double pVie=(double)caster.getPdv()/(double)caster.getPdvMax();
     double rad=(double)2*Math.PI*(double)(pVie-0.5);
     double cos=Math.cos(rad);
@@ -6504,7 +6504,7 @@ public class SpellEffect
         finalDommage=finalDommage+retir;
       }
       if(finalDommage>target.getPdv())
-        finalDommage=target.getPdv();//Target va mourrir
+        finalDommage=(long) target.getPdv();//Target va mourrir
       target.removePdv(caster,finalDommage);
       target.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
       finalDommage=-(finalDommage);
@@ -6587,7 +6587,7 @@ public class SpellEffect
     target.getCell().addFighter(target);
 
     target.fullPdv();
-    long percent=(100-value)*target.getPdvMax()/100;
+    long percent=(long) ((100-value)*target.getPdvMax()/100);
     target.removePdv(target,percent);
     target.removePdvMax((int)Math.floor(percent*(Config.getInstance().erosion+target.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-target.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
     String gm=target.getGmPacket('+',true).substring(3);
@@ -6981,7 +6981,7 @@ public class SpellEffect
 
   private void applyEffect_1003(ArrayList<Fighter> cibles, Fight fight)
   {
-    long casterPdv=this.caster.getPdv();
+    long casterPdv=(long) this.caster.getPdv();
     for(Fighter target : cibles)
     {
       if(target.hasBuff(765))//sacrifice
@@ -7032,14 +7032,14 @@ public class SpellEffect
         val=0;
       val=applyOnHitBuffs(val,target,caster,fight,Constant.ELEMENT_NULL,spell);//S'il y a des buffs spï¿½ciaux
       if(val>target.getPdv())
-        val=target.getPdv();//Target va mourrir
+        val=(long) target.getPdv();//Target va mourrir
       target.removePdv(caster,val);
       target.removePdvMax((int)Math.floor(val*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
       long cura=val;
       if(target.hasBuff(786))
       {
         if((cura+caster.getPdv())>caster.getPdvMax())
-          cura=caster.getPdvMax()-caster.getPdv();
+          cura=(long) (caster.getPdvMax()-caster.getPdv());
         caster.removePdv(caster,-cura);
         SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+",+"+cura);
       }
@@ -7065,7 +7065,7 @@ public class SpellEffect
 
     for(Fighter target : cibles)
     {
-      val=target.getPdvMax()*val/100;
+      val=(long) (target.getPdvMax()*val/100);
       if(val>0)
       {
         target.addBuff(125,val,turns,1,true,spell,args,caster,false);
@@ -7203,14 +7203,14 @@ public class SpellEffect
         long finalDommage=Formulas.calculFinalDommage(fight,caster,target,Constant.ELEMENT_EAU,dmg,false,false,spell,this.cell,target.getCell(),aoe,isTrap);
         finalDommage=applyOnHitBuffs(finalDommage,target,caster,fight,Constant.ELEMENT_EAU,spell); //S'il y a des buffs spï¿½ciaux
         if(finalDommage>target.getPdv())
-          finalDommage=target.getPdv();
+          finalDommage=(long) target.getPdv();
         target.removePdv(caster,finalDommage);
         target.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
         long cura=finalDommage;
         if(target.hasBuff(786))
         {
           if((cura+caster.getPdv())>caster.getPdvMax())
-            cura=caster.getPdvMax()-caster.getPdv();
+            cura=(long) (caster.getPdvMax()-caster.getPdv());
           caster.removePdv(caster,-cura);
           SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+",+"+cura);
         }
@@ -7244,9 +7244,9 @@ public class SpellEffect
             heal+=caster.getBuffValue(178);
           if(caster.hasBuff(179))
             heal=heal-caster.getBuffValue(179);
-          long pdvMax=ally.getPdvMax();
+          long pdvMax=(long) ally.getPdvMax();
           if((heal+ally.getPdv())>pdvMax)
-            heal=pdvMax-ally.getPdv();
+            heal=(long) (pdvMax-ally.getPdv());
           if(heal<1)
             heal=0;
           ally.removePdv(caster,-heal);
@@ -7337,7 +7337,7 @@ public class SpellEffect
       long finalDommage=Formulas.calculFinalDommage(fight,caster,target,Constant.ELEMENT_TERRE,dmg,false,false,spell,this.cell,target.getCell(),aoe,isTrap);
       finalDommage=applyOnHitBuffs(finalDommage,target,caster,fight,Constant.ELEMENT_TERRE,spell);//S'il y a des buffs spï¿½ciaux
       if(finalDommage>target.getPdv())
-        finalDommage=target.getPdv();//Target va mourrir
+        finalDommage=(long) target.getPdv();//Target va mourrir
       target.removePdv(caster,finalDommage);
       target.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
       long cura=finalDommage;
@@ -7345,7 +7345,7 @@ public class SpellEffect
       if(target.hasBuff(786))
       {
         if((cura+caster.getPdv())>caster.getPdvMax())
-          cura=caster.getPdvMax()-caster.getPdv();
+          cura=(long) (caster.getPdvMax()-caster.getPdv());
         caster.removePdv(caster,-cura);
         SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+",+"+cura);
       }
@@ -7555,7 +7555,7 @@ public class SpellEffect
         finalDommage=applyOnHitBuffs(finalDommage,target,caster,fight,Constant.ELEMENT_TERRE,spell); //S'il y a des buffs spï¿½ciaux
 
         if(finalDommage>target.getPdv())
-          finalDommage=target.getPdv(); //Target va mourrir
+          finalDommage=(long) target.getPdv(); //Target va mourrir
         target.removePdv(caster,finalDommage);
         target.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
         long cura=finalDommage;
@@ -7563,7 +7563,7 @@ public class SpellEffect
         if(target.hasBuff(786))
         {
           if((cura+caster.getPdv())>caster.getPdvMax())
-            cura=caster.getPdvMax()-caster.getPdv();
+            cura=(long) (caster.getPdvMax()-caster.getPdv());
           caster.removePdv(caster,-cura);
           SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+",+"+cura);
         }
@@ -7649,7 +7649,7 @@ public class SpellEffect
         long finalDommage=Formulas.calculFinalDommage(fight,caster,target,Constant.ELEMENT_TERRE,dmg,false,false,spell,this.cell,target.getCell(),aoe,isTrap);
         finalDommage=applyOnHitBuffs(finalDommage,target,caster,fight,Constant.ELEMENT_TERRE,spell);//S'il y a des buffs spï¿½ciaux
         if(finalDommage>target.getPdv())
-          finalDommage=target.getPdv();//Target va mourrir
+          finalDommage=(long) target.getPdv();//Target va mourrir
         target.removePdv(caster,finalDommage);
         target.removePdvMax((int)Math.floor(finalDommage*(Config.getInstance().erosion+caster.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-caster.getTotalStats().getEffect(Constant.STATS_REM_ERO)-target.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+target.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
         long cura=finalDommage;
@@ -7657,7 +7657,7 @@ public class SpellEffect
         if(target.hasBuff(786))
         {
           if((cura+caster.getPdv())>caster.getPdvMax())
-            cura=caster.getPdvMax()-caster.getPdv();
+            cura=(long) (caster.getPdvMax()-caster.getPdv());
           caster.removePdv(caster,-cura);
           SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,target.getId()+"",caster.getId()+",+"+cura);
         }
@@ -7818,7 +7818,7 @@ public class SpellEffect
         {
           long healFinal=200;
           if((healFinal+caster.getPdv())>caster.getPdvMax())
-            healFinal=caster.getPdvMax()-caster.getPdv();
+            healFinal=(long) (caster.getPdvMax()-caster.getPdv());
           if(healFinal<1)
             healFinal=0;
           caster.removePdv(caster,healFinal);
@@ -7829,7 +7829,7 @@ public class SpellEffect
       case 2750:
         long healFinal=cura;
         if((healFinal+caster.getPdv())>caster.getPdvMax())
-          healFinal=caster.getPdvMax()-caster.getPdv();
+          healFinal=(long) (caster.getPdvMax()-caster.getPdv());
         if(healFinal<1)
           healFinal=0;
         caster.removePdv(caster,-healFinal);

@@ -2629,12 +2629,13 @@ public class Function
       }
     }
     int i=0,i2=ennemy.size();
-    long curHP=10000;
+    double curHP=10000;
     Fighter curEnnemy=null;
 
     while(i<i2)
     {
       curHP=2147483646;
+      //curHP=Double.MAX_VALUE;
       curEnnemy=null;
       for(Map.Entry<Integer, Fighter> t : ennemy.entrySet())
       {

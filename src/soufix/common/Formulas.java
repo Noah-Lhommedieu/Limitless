@@ -473,7 +473,7 @@ public class Formulas
     return base*Config.getInstance().rateHonor;
   }
 
-  public static int calculFinalDommage(Fight fight, Fighter caster, Fighter target, int statID, long dmg, boolean isHeal, boolean isCaC, int spellid, GameCase castCell, GameCase targetCell, boolean isAoe, boolean isTrap)
+  public static long calculFinalDommage(Fight fight, Fighter caster, Fighter target, int statID, long dmg, boolean isHeal, boolean isCaC, int spellid, GameCase castCell, GameCase targetCell, boolean isAoe, boolean isTrap)
   {
     float a=1; //Calcul
     float num=0;
@@ -763,7 +763,7 @@ public class Formulas
             }
           }
         if(renvoie>num)
-          renvoie=(int)num;
+          renvoie=(long)num;
         num-=renvoie;
         SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,107,"-1",target.getId()+","+renvoie);
         if(renvoie>caster.getPdv())
@@ -785,16 +785,16 @@ public class Formulas
         else
         {
           caster.removePdv(caster,renvoie);
-          caster.removePdvMax((int)Math.floor(renvoie*(Config.getInstance().erosion+target.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-target.getTotalStats().getEffect(Constant.STATS_REM_ERO)-caster.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+caster.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
+          caster.removePdvMax((long)Math.floor(renvoie*(Config.getInstance().erosion+target.getTotalStats().getEffect(Constant.STATS_ADD_ERO)-target.getTotalStats().getEffect(Constant.STATS_REM_ERO)-caster.getTotalStats().getEffect(Constant.STATS_ADD_R_ERO)+caster.getTotalStats().getEffect(Constant.STATS_REM_R_ERO)))/100);
         }
         SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,100,caster.getId()+"",caster.getId()+",-"+renvoie);
       }
     }
 
-    int reduc=(int)((num/(float)100)*respT);//Reduc %resis
+    double reduc=(long)((num/(float)100)*respT);//Reduc %resis
     if(!isHeal)
       num-=reduc;
-    int armor=getArmorResist(target,statID);
+    double armor=getArmorResist(target,statID);
 
     if(!isHeal)
       num-=armor;
@@ -818,13 +818,13 @@ public class Formulas
       {
         int niveauMob=caster.getLvl();
         double CalculCoef=((niveauMob*0.5)/100);
-        int Multiplicateur=(int)Math.ceil(CalculCoef);
+        double Multiplicateur=(int)Math.ceil(CalculCoef);
         if(Multiplicateur>3)
           Multiplicateur=3;
-        return (int)num*Multiplicateur;
+        return (long) ((long)num*Multiplicateur);
       }
     }
-    return (int)num;
+    return (long)num;
   }
 
   public static int calculZaapCost(GameMap map1, GameMap map2)
