@@ -871,6 +871,16 @@ public ArrayList<Integer> getIsCraftingType()
   {
     this.level=level;
   }
+  
+  public void setAura(int aura)
+  {
+	  this.auraC = aura;
+  }
+  
+  public int getAura()
+  {
+	  return this.auraC;
+  }
   public GameAction get_gameAction_rapide() {
 	return _gameAction_rapide;
 }
@@ -2535,78 +2545,80 @@ public void setTotal_reculte() {
     return "Oa"+this.getId()+"|"+getGMStuffString();
   }
 
-  public String parseToGM()
-  {
-    StringBuilder str=new StringBuilder();
-    if(fight==null&&curCell!=null)// Hors combat
-    {
-      str.append(curCell.getId()).append(";").append(_orientation).append(";");
-      //str.append("0^"+(this.couleur ? 1 : 0)).append(";");//FIXME:?
-      str.append(ornement).append(";");
-      str.append(this.getId()).append(";").append("[P" + this.getPrestige() + "] " + this.getName()).append(";").append(this.getClasse());
-      str.append((this.get_title()>0 ? (","+this.getStringTitle(get_title())+";") : (";")));
-      int gfx=gfxId;
-      if(this.getObjetByPos(Constant.ITEM_POS_ROLEPLAY_BUFF)!=null)
-        if(this.getObjetByPos(Constant.ITEM_POS_ROLEPLAY_BUFF).getTemplate().getId()==10681)
-          gfx=8037;
-      str.append(gfx).append("^").append(_size);//gfxID^size
-      if(this.getObjetByPos(Constant.ITEM_POS_PNJ_SUIVEUR)!=null)
-        str.append(",").append(Constant.getItemIdByMascotteId(this.getObjetByPos(Constant.ITEM_POS_PNJ_SUIVEUR).getTemplate().getId())).append("^100");
-      str.append(";").append(this.getSexe()).append(";");
-      str.append(_align).append(",");
-      str.append("0").append(",");//FIXME:?
-      str.append((_showWings ? getGrade() : "0")).append(",");
-      str.append(this.getLevel()+this.getId());
-      if(_showWings&&_deshonor>0)
+  public String parseToGM() {
+      StringBuilder str = new StringBuilder();
+      
+      int t = curCell.getId();
+      int m = curMap.getId();
+      if (fight == null && curCell != null)// Hors combat
       {
-        str.append(",");
-        str.append(_deshonor>0 ? 1 : 0).append(';');
-      }
-      else
-      {
-        str.append(";");
-      }
-      int color1=this.getColor1(),color2=this.getColor2(),color3=this.getColor3();
-      if(this.getObjetByPos(Constant.ITEM_POS_MALEDICTION)!=null)
-        if(this.getObjetByPos(Constant.ITEM_POS_MALEDICTION).getTemplate().getId()==10838)
-        {
-          color1=16342021;
-          color2=16342021;
-          color3=16342021;
-        }
+          str.append(curCell.getId()).append(";").append(_orientation).append(";");
+          str.append(ornement).append(";");//FIXME:?
+          str.append(this.getId()).append(";").append("[P" + this.getPrestige() + "] " + this.getName()).append(";").append(this.getClasse());
+          str.append((this.get_title() > 0 ? ("," + this.getStringTitle(this.get_title()) + ";") : (";")));
+          int gfx = gfxId;
+          if (this.getObjetByPos(Constant.ITEM_POS_ROLEPLAY_BUFF) != null)
+              if (this.getObjetByPos(Constant.ITEM_POS_ROLEPLAY_BUFF).getTemplate().getId() == 10681)
+                  gfx = 8037;
+          str.append(gfx).append("^").append(_size);//gfxID^size
+          if (this.getObjetByPos(Constant.ITEM_POS_PNJ_SUIVEUR) != null)
+              str.append(",").append(Constant.getItemIdByMascotteId(this.getObjetByPos(Constant.ITEM_POS_PNJ_SUIVEUR).getTemplate().getId())).append("^100");
+          str.append(";").append(this.getSexe()).append(";");
+          str.append(_align).append(",");
+          str.append("0").append(",");//FIXME:?
+          str.append((_showWings ? getGrade() : "0")).append(",");
+          str.append(this.getLevel() + this.getId());
+          if (_showWings && _deshonor > 0) {
+              str.append(",");
+              str.append(_deshonor > 0 ? 1 : 0).append(';');
+          } else {
+              str.append(";");
+          }
+          int color1 = this.getColor1(), color2 = this.getColor2(), color3 = this.getColor3();
+          if (this.getObjetByPos(Constant.ITEM_POS_MALEDICTION) != null)
+              if (this.getObjetByPos(Constant.ITEM_POS_MALEDICTION).getTemplate().getId() == 10838) {
+                  color1 = 16342021;
+                  color2 = 16342021;
+                  color3 = 16342021;
+              }
 
-      str.append((color1==-1 ? "-1" : Integer.toHexString(color1))).append(";");
-      str.append((color2==-1 ? "-1" : Integer.toHexString(color2))).append(";");
-      str.append((color3==-1 ? "-1" : Integer.toHexString(color3))).append(";");
-      str.append(getGMStuffString()).append(";");
-      if(this.hasEquiped(10054)||this.hasEquiped(10055)||this.hasEquiped(10056)||this.hasEquiped(10058)||this.hasEquiped(10061)||this.hasEquiped(10102))
-      {
-        str.append(3).append(";");
+          str.append((color1 == -1 ? "-1" : Integer.toHexString(color1))).append(";");
+          str.append((color2 == -1 ? "-1" : Integer.toHexString(color2))).append(";");
+          str.append((color3 == -1 ? "-1" : Integer.toHexString(color3))).append(";");
+          str.append(getGMStuffString()).append(";");
+          if (hasEquiped(10054) || hasEquiped(10055) || hasEquiped(10056)
+                  || hasEquiped(10058) || hasEquiped(10061)
+                  || hasEquiped(10102)) {
+              str.append(3).append(";");
+              set_title(2);
+          } else {
+              if (get_title() == 2)
+                  set_title(0);
+              Group g = this.getGroupe();
+              int level = this.getLevel();
+              if (g != null)
+                  if (this.get_size() <= 0)  // Si c'est un groupe non joueur ou que l'on est invisible on cache l'aura
+                  	//if (!g.isPlayer() || this.get_size() <= 0)
+                      level = 1;
+              /*if (auraC!= 0) str.append((level > 99 ? (level > 199  ? (2) : (1)) : (0))).append(";");
+              else str.append(auraC).append(";");*/
+              str.append(auraC).append(";");
+          }
+          str.append(";");//Emote
+          str.append(";");//Emote timer
+          if (this._guildMember != null
+                  && this._guildMember.getGuild().haveTenMembers())
+              str.append(this._guildMember.getGuild().getName()).append(";").append(this._guildMember.getGuild().getEmblem()).append(";");
+          else
+              str.append(";;");
+          if (this.dead == 1 && !this.isGhost)
+              str.append("-1");
+          str.append(getSpeed()).append(";");//Restriction
+          str.append((_onMount && _mount != null ? _mount.getStringColor(parsecolortomount()) : "")).append(";");
+          str.append(this.isDead()).append(";");
       }
-      else
-      {
-        Group g=this.getGroupe();
-        int level=this.getLevel();
-        if(g!=null)
-          if(!g.isPlayer()||this.get_size()<=0) // Si c'est un groupe non joueur ou que l'on est invisible on cache l'aura
-            level=1;
-        str.append((level>99 ? (level>199 ? (2) : (1)) : (0))).append(";");
-      }
-      str.append(";");//Emote
-      str.append(";");//Emote timer
-      if(this._guildMember!=null&&this._guildMember.getGuild().haveTenMembers())
-        str.append(this._guildMember.getGuild().getName()).append(";").append(this._guildMember.getGuild().getEmblem()).append(";");
-      else
-        str.append(";;");
-      if(this.dead==1&&!this.isGhost)
-        str.append("-1");
-      str.append(getSpeed()).append(";");//Restriction
-      str.append((_onMount&&_mount!=null ? _mount.getStringColor(parsecolortomount()) : "")).append(";");
-      str.append(this.isDead()).append(";");
-      //str.append(this.getPrestige()).append(";");//FIXME:?
-      //str.append(this.getOrnement());
-    }
-    return str.toString();
+      String test= str.toString();
+      return str.toString();
   }
   
   public String getParseToGM()
@@ -3492,7 +3504,7 @@ public void setTotal_reculte() {
     if(this.getLevel()==8000) {
     SocketManager.GAME_SEND_Im_PACKET_TO_ALL(this.name+" a atteint le niveau 8000.");
     }
-    //ItemEvolution();
+    
     return true;
   }
   private int addlvl() //Calculateur d'exp pour savoir le niveau qu'aura le joueur à la fin, téléporte le lvl -> pas itératif -> no lag
@@ -3511,124 +3523,92 @@ public void setTotal_reculte() {
   
   public void ItemEvolution() 
   {
-//	  GameObject item = null;
-//		if(this.getObjetByPos(Constant.ITEM_POS_DOFUS12) == null)
-//		{
-//			this.sendMessage("Fonctionne pas");
-//		}
-//		else
-//		{
-//			
-//			item = this.getObjetByPos(Constant.ITEM_POS_DOFUS12);
-//			int lvl = this.getLevel();
-//			long force = item.getStats().getEffect(Constant.STATS_ADD_FORC);
-//			item.getStats().addOneStat(Constant.STATS_ADD_FORC, -force + (long) (10*(lvl)));
-//		
-//			Database.getDynamics().getObjectData().update(item);
-//		
-//			SocketManager.GAME_SEND_ALTER_GM_PACKET(this.curMap,this);
-//			SocketManager.GAME_SEND_ASK(this.getAccount().getGameClient(), this); // ask le client
-//			SocketManager.GAME_SEND_ERASE_ON_MAP_TO_MAP(this.getCurMap(), this.getId()); // delete perso de la map
-//			SocketManager.GAME_SEND_ADD_PLAYER_TO_MAP(this.getCurMap(), this); // rajoute le perso 
-//		}
-//		GameObject[] items = 
-//			{
-//				this.getObjetByPos(Constant.ITEM_POS_AMULETTE), 
-//				this.getObjetByPos(Constant.ITEM_POS_ANNEAU1),
-//				this.getObjetByPos(Constant.ITEM_POS_ANNEAU2),
-//				this.getObjetByPos(Constant.ITEM_POS_ARME),
-//				this.getObjetByPos(Constant.ITEM_POS_BOTTES),
-//				this.getObjetByPos(Constant.ITEM_POS_CAPE),
-//				this.getObjetByPos(Constant.ITEM_POS_CEINTURE),
-//				this.getObjetByPos(Constant.ITEM_POS_COIFFE),
-//				this.getObjetByPos(Constant.ITEM_POS_DOFUS1),
-//				this.getObjetByPos(Constant.ITEM_POS_DOFUS2),
-//				this.getObjetByPos(Constant.ITEM_POS_DOFUS3),
-//				this.getObjetByPos(Constant.ITEM_POS_DOFUS4),
-//				this.getObjetByPos(Constant.ITEM_POS_DOFUS5),
-//				this.getObjetByPos(Constant.ITEM_POS_DOFUS6),
-//				this.getObjetByPos(Constant.ITEM_POS_DOFUS7),
-//				this.getObjetByPos(Constant.ITEM_POS_DOFUS8),
-//				this.getObjetByPos(Constant.ITEM_POS_DOFUS9),
-//				this.getObjetByPos(Constant.ITEM_POS_DOFUS10),
-//				this.getObjetByPos(Constant.ITEM_POS_DOFUS10),
-//				this.getObjetByPos(Constant.ITEM_POS_DOFUS10),
-//				this.getObjetByPos(Constant.ITEM_POS_DOFUS10),
-//				this.getObjetByPos(Constant.ITEM_POS_DOFUS11),
-//				this.getObjetByPos(Constant.ITEM_POS_DOFUS12),
-//				this.getObjetByPos(Constant.ITEM_POS_BOUCLIER),
-//				this.getObjetByPos(Constant.ITEM_POS_DOFUS_ULTIME),
-//				this.getObjetByPos(Constant.ITEM_POS_FAMILIER),
-//				this.getObjetByPos(Constant.ITEM_POS_RELIQUE),
-//				this.getObjetByPos(Constant.ITEM_POS_FIGURINE),
-//				this.getObjetByPos(Constant.ITEM_POS_DRAGODINDE),
-//			};
-//		
-//		
-//		this.sendMessage("Test Méthode Avant Boucle");
-//		for (int i = 0; i < items.length; i++) 
-//		{
-//			if (items[i].getGuid() == World.getObjTemplate(7114).getId())
-//			{
-//				int lvl = this.getLevel();
-//				long force = items[i].getStats().getEffect(Constant.STATS_ADD_FORC);
-//				items[i].getStats().addOneStat(Constant.STATS_ADD_FORC, -force + (long) (1000*(lvl)));
-//				this.sendMessage("ObjTemplate fonctionne");
-//			}
-//			if(items[i].getGuid() == 7114)
-//			{
-//				int lvl = this.getLevel();
-//				long force = items[i].getStats().getEffect(Constant.STATS_ADD_FORC);
-//				items[i].getStats().addOneStat(Constant.STATS_ADD_FORC, -force + (long) (10*(lvl)));
-//				this.sendMessage("Simple nombre fonctionne");
-//			}
-//			this.sendMessage("Test Boucle");
-//		
-//		
-//		
-//		Database.getDynamics().getObjectData().update(items[i]);
-//	}
-//	this.sendMessage("Test Méthode Après Boucle");
-//	
-//		SocketManager.GAME_SEND_ALTER_GM_PACKET(this.curMap,this);
-//		SocketManager.GAME_SEND_ASK(this.getAccount().getGameClient(), this); // ask le client
-//		SocketManager.GAME_SEND_ERASE_ON_MAP_TO_MAP(this.getCurMap(), this.getId()); // delete perso de la map
-//		SocketManager.GAME_SEND_ADD_PLAYER_TO_MAP(this.getCurMap(), this); // rajoute le perso
-//		for (GameObject gameObject : items) 
-//		{
-//			
-//				if (gameObject.getGuid() == World.getObjTemplate(7114).getId())
-//				{
-//					int lvl = this.getLevel();
-//					long force = gameObject.getStats().getEffect(Constant.STATS_ADD_FORC);
-//					gameObject.getStats().addOneStat(Constant.STATS_ADD_FORC, -force + (long) (1000*(lvl)));
-//					this.sendMessage("ObjTemplate fonctionne");
-//				}
-//				if(gameObject.getGuid() == 7114)
-//				{
-//					int lvl = this.getLevel();
-//					long force = gameObject.getStats().getEffect(Constant.STATS_ADD_FORC);
-//					gameObject.getStats().addOneStat(Constant.STATS_ADD_FORC, -force + (long) (10*(lvl)));
-//					this.sendMessage("Simple nombre fonctionne");
-//				}
-//				this.sendMessage("Test Boucle");
-//			
-//			
-//			
-//			Database.getDynamics().getObjectData().update(gameObject);
-//		}
-//		this.sendMessage("Test Méthode Après Boucle");
-//		
-//			SocketManager.GAME_SEND_ALTER_GM_PACKET(this.curMap,this);
-//			SocketManager.GAME_SEND_ASK(this.getAccount().getGameClient(), this); // ask le client
-//			SocketManager.GAME_SEND_ERASE_ON_MAP_TO_MAP(this.getCurMap(), this.getId()); // delete perso de la map
-//			SocketManager.GAME_SEND_ADD_PLAYER_TO_MAP(this.getCurMap(), this); // rajoute le perso
+	  //Récupération des items parmi toutes les positions possibles
+		GameObject[] itemsPosOfPlayer = 
+			{
+				this.getObjetByPos(Constant.ITEM_POS_AMULETTE), 
+				this.getObjetByPos(Constant.ITEM_POS_ANNEAU1),
+				this.getObjetByPos(Constant.ITEM_POS_ANNEAU2),
+				this.getObjetByPos(Constant.ITEM_POS_ARME),
+				this.getObjetByPos(Constant.ITEM_POS_BOTTES),
+				this.getObjetByPos(Constant.ITEM_POS_CAPE),
+				this.getObjetByPos(Constant.ITEM_POS_CEINTURE),
+				this.getObjetByPos(Constant.ITEM_POS_COIFFE),
+				this.getObjetByPos(Constant.ITEM_POS_DOFUS1),
+				this.getObjetByPos(Constant.ITEM_POS_DOFUS2),
+				this.getObjetByPos(Constant.ITEM_POS_DOFUS3),
+				this.getObjetByPos(Constant.ITEM_POS_DOFUS4),
+				this.getObjetByPos(Constant.ITEM_POS_DOFUS5),
+				this.getObjetByPos(Constant.ITEM_POS_DOFUS6),
+				this.getObjetByPos(Constant.ITEM_POS_DOFUS7),
+				this.getObjetByPos(Constant.ITEM_POS_DOFUS8),
+				this.getObjetByPos(Constant.ITEM_POS_DOFUS9),
+				this.getObjetByPos(Constant.ITEM_POS_DOFUS10),
+				this.getObjetByPos(Constant.ITEM_POS_DOFUS11),
+				this.getObjetByPos(Constant.ITEM_POS_DOFUS12),
+				this.getObjetByPos(Constant.ITEM_POS_BOUCLIER),
+				this.getObjetByPos(Constant.ITEM_POS_DOFUS_ULTIME),
+				this.getObjetByPos(Constant.ITEM_POS_FAMILIER),
+				this.getObjetByPos(Constant.ITEM_POS_RELIQUE),
+				this.getObjetByPos(Constant.ITEM_POS_FIGURINE),
+				this.getObjetByPos(Constant.ITEM_POS_DRAGODINDE)
+			};
+		//Création d'une liste, qui va récupérer tous les items que le joueur a d'équipé // non null
+		List<GameObject> itemsPosWithItem = new ArrayList<>();
+		for(GameObject gameObject : itemsPosOfPlayer)
+		{
+			if(gameObject != null && gameObject.getPosition()!= Constant.ITEM_POS_NO_EQUIPED)
+			{
+				itemsPosWithItem.add(gameObject);
+			}
+		}
+		
+		//Récupération du facteur principal des futurs stats, les niveaux.
+		int lvl = this.getLevel();
 		
 		
-  }
-  private void ChoixItemEvo(int Constant_ItemPos)
-  {
-	  
+		
+		//Boucle pour modifié unitairement les items sur la bonne liste de de GameObject.
+		for (GameObject gameObject : itemsPosWithItem) 
+		{
+			//Récupération des stats a modifier
+			long force = gameObject.getStats().getEffect(Constant.STATS_ADD_FORC);
+			long intel = gameObject.getStats().getEffect(Constant.STATS_ADD_INTE);
+			long agi = gameObject.getStats().getEffect(Constant.STATS_ADD_AGIL);
+			long chance = gameObject.getStats().getEffect(Constant.STATS_ADD_CHAN);
+			
+			
+			if(gameObject.getTemplate() == World.getObjTemplate(7114)) // Ciblage d'un item précis, et donc amélioration précise 
+			{
+				gameObject.getStats().addOneStat(Constant.STATS_ADD_FORC, -force + (long) (1000*(lvl)));
+			}
+			else if (gameObject.getTemplate() == World.getObjTemplate(739))
+			{
+				gameObject.getStats().addOneStat(Constant.STATS_ADD_CHAN, -chance + (long) (1000*(lvl)));
+
+			}
+			else 
+			{
+				//Modification des stats a améliorer par level (ici c'est le cas) et pour TOUS les items si ce n'est pas un item rechercher
+				gameObject.getStats().addOneStat(Constant.STATS_ADD_AGIL, -agi + (long) (1000*(lvl)));
+			}
+			
+			
+			
+			
+			
+			
+			//Actualisation de la database des items modifié de manière individuel
+			Database.getDynamics().getObjectData().update(gameObject);			
+
+		}
+		
+		
+			//Refresh le perso pour voir et utiliser les modifications sans déco reco
+			SocketManager.GAME_SEND_ALTER_GM_PACKET(this.curMap,this);
+			//SocketManager.GAME_SEND_ASK(this.getAccount().getGameClient(), this); / ask le client / bug le tableau score
+			SocketManager.GAME_SEND_ERASE_ON_MAP_TO_MAP(this.getCurMap(), this.getId()); // delete this de la map
+			SocketManager.GAME_SEND_ADD_PLAYER_TO_MAP(this.getCurMap(), this); // rajoute le this
   }
   public boolean addXp(double xpPlayer) // Donne une quantité d'exp, tant que le joueur n'a pas le bon niveau par rapport a l'exp win, levelup
   {
@@ -3638,7 +3618,10 @@ public void setTotal_reculte() {
     }
     int exLevel=this.getLevel();
     while(this.getExp()>=Main.world.getPersoXpMax(this.getLevel())&&this.getLevel()<Main.world.getExpLevelSize() && this.getLevel() < 8000)
-      up=levelUp(true,false);
+    {
+    	up=levelUp(true,false);
+    	//ItemEvolution(); // Tableau fin de combat bug
+    }
     if(isOnline)
     {
       if(exLevel<this.getLevel())

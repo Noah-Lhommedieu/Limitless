@@ -107,7 +107,9 @@ public class ConditionParser
       jep.addVariable("MA",perso.getAlignMap());//Pandala
       jep.addVariable("PSB",perso.getAccount().getPoints());//Points Boutique
       jep.addVariable("CF",(perso.getObjetByPos(Constant.ITEM_POS_PNJ_SUIVEUR)==null ? -1 : perso.getObjetByPos(Constant.ITEM_POS_PNJ_SUIVEUR).getTemplate().getId()));//Personnage suiveur
-
+      jep.addVariable("PR",perso.getPrestige());
+      jep.addVariable("OM",perso.getOmega());
+      
       jep.parse(req);
       Object result=jep.evaluate();
       boolean ok=false;

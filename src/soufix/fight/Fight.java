@@ -3202,7 +3202,7 @@ public void Anti_bug () {
         setCurFighterUsedPa(getCurFighterUsedPa()+spell.getPACost());
       }
 
-      boolean isEc=Formulas.isCriticalFail(spell.getTauxEC(),fighter);
+      boolean isEc=Formulas.isCriticalFail(spell.getTauxEC(),fighter); // Echec Critique
       if(isEc)
         SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(this,7,302,fighter.getId()+"",spell.getSpellID()+""); // envoi de  l'EC
 
@@ -3233,7 +3233,7 @@ public void Anti_bug () {
         
         String sort=spell.getSpellID()+","+cell+","+spell.getSpriteID()+","+spell.getLevel()+","+spell.getSpriteInfos();
         SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(this,7,300,fighter.getId()+"",sort); // xx lance le sort
-
+        //SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(this,7,300,fighter.getId()+"",sort); Duplique "X lance le sort Y"
         if(isCC)
           SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(this,7,301,fighter.getId()+"",sort); // CC !
         if(fighter.isHide()) // Si le joueur est invi, on montre la case
@@ -5005,7 +5005,10 @@ public void Anti_bug () {
         player.setPdv(fighter.getPdv());
 
       if(fighter.getLevelUp())
+      {
         player.fullPDV();
+      	player.ItemEvolution();
+      }
     }
 
     if(this.getType()==2)
@@ -6078,7 +6081,7 @@ public void Anti_bug () {
             else
               xpGuild=(Formulas.getGuildXpWin(i,XP)/2);
 
-            if(player.isOnMount())
+            if(player.isOnMount()) //EXP MONTURE
             {
               xpMount=Formulas.getMountXpWin(i,XP);
               player.getMount().addXp((long) (xpMount*10));

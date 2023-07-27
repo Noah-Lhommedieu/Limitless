@@ -10,6 +10,7 @@ import soufix.other.Ornements;
 import soufix.Hdv.Hdv;
 import soufix.client.Player;
 import soufix.client.other.Party;
+import soufix.command.administration.Command;
 import soufix.common.SocketManager;
 import soufix.database.Database;
 //import soufix.database.Database;
@@ -163,13 +164,32 @@ public class CommandPlayerpvm {
 //			}
 //		        }
 			
+			
 			if (msg.length() > 5 && msg.substring(1, 6).equalsIgnoreCase("parse"))
 			{
-				perso.sendMessage(perso.getParseToGM());
+				perso.sendMessage(perso.parseToGM());
 				return true;
 			}
-			
-			if (msg.length() > 4 && msg.substring(1, 5).equalsIgnoreCase("aura")) {
+			if (msg.length() > 4 && msg.substring(1, 5).equalsIgnoreCase("aura"))
+			{	
+				try {
+				int aura =  Integer.parseInt(msg.substring(6, msg.length() - 1));
+				perso.setAura(aura);
+				}
+				catch (Exception e) 
+				{
+					perso.sendMessage("Exception AURA");
+				}
+				SocketManager.PACKET_POPUP_DEPART(perso, "Aura "+ perso.auraC +" équipé");
+				
+				
+				//CommandPlayerpvm.analyse(perso,".parse");
+				SocketManager.GAME_SEND_ALTER_GM_PACKET(perso.getCurMap(), perso);
+				SocketManager.GAME_SEND_ASK(perso.getAccount().getGameClient(), perso); // ask le client
+            	SocketManager.GAME_SEND_ERASE_ON_MAP_TO_MAP(perso.getCurMap(), perso.getId()); // delete perso de la map
+            	SocketManager.GAME_SEND_ADD_PLAYER_TO_MAP(perso.getCurMap(), perso); // rajoute le perso 
+			}
+			if (msg.length() > 4 && msg.substring(1, 5).equalsIgnoreCase("FEURVIP")) {
 //				if(perso.getAccount().getSubscribeRemaining() == 0L){
 //	               	 SocketManager.GAME_SEND_MESSAGE(perso,"Réservé au V.I.P.","008000");	 
 //	                return true;	 
@@ -335,12 +355,14 @@ public class CommandPlayerpvm {
                         if (ornements.length() > 0) {
                             ornements.append(";");
                         }
-                        ornements.append(o.getId() + ","+o.getName()+"," + o.getPrice());
+                        //ornements.append(o.getId() + ","+o.getName()+"," + o.getPrice());
                     }
+                    ornements.append(o.getId() + ","+o.getName()+"," + o.getPrice());
                 }
 
 
                 perso.send("wl"+ornements.toString());
+                perso.sendMessage("wl"+ornements.toString());
                 // DEBUG perso.sendMessage("wl"+ornements.toString());
                 // DEBUG perso.sendMessage(World.getOrnements().toString());
                 return true;
@@ -674,32 +696,7 @@ public class CommandPlayerpvm {
 				
 			}
 			
-			if (msg.length() > 7 && msg.substring(1, 8).equalsIgnoreCase("ItemEvo"))
-			{
-				GameObject item = null;
-				if(perso.getObjetByPos(Constant.ITEM_POS_DOFUS12) == null)
-				{
-					perso.sendMessage("Fonctionne pas");
-					return true;
-				}
-				else
-				{
-					item = perso.getObjetByPos(Constant.ITEM_POS_DOFUS12);
-					int lvl = perso.getLevel();
-					long force = item.getStats().getEffect(Constant.STATS_ADD_FORC);
-					item.getStats().addOneStat(Constant.STATS_ADD_FORC, -force + (long) (10*(lvl)));
-					
-					Database.getDynamics().getObjectData().update(item);
-					
-					SocketManager.GAME_SEND_ALTER_GM_PACKET(perso.curMap,perso);
-	            	SocketManager.GAME_SEND_ASK(perso.getAccount().getGameClient(), perso); // ask le client
-	            	SocketManager.GAME_SEND_ERASE_ON_MAP_TO_MAP(perso.getCurMap(), perso.getId()); // delete perso de la map
-	            	SocketManager.GAME_SEND_ADD_PLAYER_TO_MAP(perso.getCurMap(), perso); // rajoute le perso 
-					
-					
-					return true;
-				}				
-			}
+			
 			if (msg.length() > 8 && msg.substring(1, 9).equalsIgnoreCase("prestige")) {
 				int max = 100, lvlmax = 8000;
             	if(perso.prestige < 0 || perso.prestige >= max ) {

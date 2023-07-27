@@ -6188,9 +6188,11 @@ public void setTimeLastTaverne(long timeLastTaverne) {
       	}   
         Spell.SortStats SS=this.player.getSortStatBySortIfHas(id);
         if(SS!=null)
-          if(this.player.getFight().getCurAction().isEmpty())
+          if(this.player.getFight().getCurAction().isEmpty()) {
             this.player.getFight().cast(this.player.getFight().getFighterByPerso(this.player),() -> this.player.getFight().tryCastSpell(this.player.getFight().getFighterByPerso(this.player),SS,cellId));
-      }
+        	//this.player.getFight().cast(this.player.getFight().getFighterByPerso(this.player),() -> this.player.getFight().tryCastSpell(this.player.getFight().getFighterByPerso(this.player),SS,cellId));
+          }
+      	}
     }
     catch(NumberFormatException e)
     {
@@ -10253,7 +10255,7 @@ Logging.getInstance().write("DDOS","IP Same Packet 500 out "+packet+" "+ip);
   }
   public void add_titre(String packet)
   {
-	  if(player.hasItemTemplate(22005,1))
+	  //if(player.hasItemTemplate(22005,1))
 	    {
 		  String[] infos=packet.substring(2).split(";");
 		String titre = infos[0];
@@ -10273,7 +10275,7 @@ Logging.getInstance().write("DDOS","IP Same Packet 500 out "+packet+" "+ip);
 		Database.getDynamics().getTitreData().add_titre(id, titre, couleur);
 		this.player.set_title(id);
 		 SocketManager.GAME_SEND_ALTER_GM_PACKET(this.player.getCurMap(),this.player);
-		 player.removeByTemplateID(22005,1);
+		 //player.removeByTemplateID(22005,1);
 	    }
   }
   public void size(String packet)

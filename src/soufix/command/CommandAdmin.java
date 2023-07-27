@@ -2310,6 +2310,37 @@ public class CommandAdmin extends AdminUser
       
       return;
     }
+     
+    else if (command.equalsIgnoreCase("PRESTIGE"))
+    {
+    	try
+    	{
+    		Player perso = this.getPlayer();
+    		int prestige = Integer.parseInt(infos[1]);
+    		
+    		if(infos.length==3||infos[2] != null || infos[2] != "")//Si le nom du perso est specifie
+            {
+              String name=infos[2];
+              perso=Main.world.getPlayerByName(name);
+              if(perso==null)
+                perso=this.getPlayer();
+            }
+    		perso.setPrestige(prestige);
+    		
+    		SocketManager.GAME_SEND_ALTER_GM_PACKET(perso.curMap,perso);
+        	Database.getStatics().getPlayerData().updatePrestige(perso);
+        	SocketManager.GAME_SEND_ASK(perso.getAccount().getGameClient(), perso); // ask le client
+        	SocketManager.GAME_SEND_ERASE_ON_MAP_TO_MAP(perso.getCurMap(), perso.getId()); // delete perso de la map
+        	SocketManager.GAME_SEND_ADD_PLAYER_TO_MAP(perso.getCurMap(), perso); // rajoute le perso
+    		
+    	}
+    	catch(Exception e)
+        {
+          // ok
+          this.sendMessage("Valeur incorecte.");
+          return;
+        }
+    }
     else if(command.equalsIgnoreCase("LVLPMAX")) // Met le joueur au lvl 8000 + Prestige max
     {
       try

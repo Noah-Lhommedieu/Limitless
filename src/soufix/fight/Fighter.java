@@ -95,7 +95,7 @@ public Fighter(Fight f, MobGrade mob)
     }
     setId(player.getId());
     this.pdvMax=player.getMaxPdv();
-    this.pdv=player.getCurPdv();
+    this.pdv=player.getCurPdv(); // Si on remplace par getMaxPDV() ça redonne full pv a chaque entrée en combat
     this.setGfxId(getDefaultGfx());
   }
 

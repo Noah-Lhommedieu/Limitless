@@ -5651,7 +5651,12 @@ public class SpellEffect
     clone.setFight(fight);
 
     Fighter fighter=new Fighter(fight,clone);
+    
+    fighter.setPdvMax(caster.getPdvMax()*0.4);
+    fighter.setPdv(caster.getPdvMax()*0.4);
+    //fighter.getTotalStats().addOneStat(Constant.STATS_ADD_VIE, 5000);
     fighter.fullPdv();
+    
     fighter.setTeam(caster.getTeam());
     fighter.setInvocator(caster);
 
@@ -5660,7 +5665,6 @@ public class SpellEffect
 
     fight.getOrderPlaying().add((fight.getOrderPlaying().indexOf(caster)+1),fighter);
     fight.addFighterInTeam(fighter,caster.getTeam());
-
     SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,180,caster.getId()+"",fighter.getGmPacket('+',true).substring(3));
     SocketManager.GAME_SEND_GA_PACKET_TO_FIGHT(fight,7,999,caster.getId()+"",fight.getGTL());
 
