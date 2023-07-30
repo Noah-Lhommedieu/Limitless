@@ -57,6 +57,8 @@ import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Pattern;
 
+import javassist.expr.NewArray;
+
 
 
 
@@ -66,6 +68,26 @@ public int prestige = 0;
 	public int ornement = 0; 
 	public String allornament;
     public int auraC = 0;
+    public List<Integer> auraList = new ArrayList<>();
+    public List<Integer> getAuraList() {
+        return auraList;
+    }
+
+    public void setAuraList(List<Integer> auraList) {
+        this.auraList = auraList;
+    }
+    public String parseAuraToDB() {
+        StringBuilder str = new StringBuilder();
+        boolean isFirst = true;
+        for (int i : this.auraList) {
+            if (isFirst)
+                str.append(i).append("");
+            else
+                str.append(",").append(i);
+            isFirst = false;
+        }
+        return str.toString();
+    }
     public String titre = "";
     public int omega;
 	public double xpOmega;
@@ -283,6 +305,10 @@ private String _savePos;
           if(!this.ornementsList.contains(id))
               this.ornementsList.add(id);
       }
+      public void addAura(int id) {
+          if(!this.auraList.contains(id))
+              this.auraList.add(id);
+      }
   
   
 //public boolean bot=false;
@@ -291,7 +317,7 @@ public ArrayList<Integer> getIsCraftingType()
     return craftingType;
   }
 
-  public Player(int id, String name, int groupe, int sexe, int classe, int color1, int color2, int color3, long kamas, int pts, long _capital, int energy, int level, double exp, int _size, int _gfxid, byte alignement, int account, Map<Long, Long> stats, byte seeFriend, byte seeAlign, byte seeSeller, String canaux, short map, int cell, String stuff, String storeObjets, String pdvPer, String spells, String savePos, String jobs, int mountXp, int mount, int honor, int deshonor, int alvl, String z, int title, int wifeGuid, String morphMode, String allTitle, String emotes, long prison, boolean isNew, String parcho, long timeDeblo, boolean noall, String deadInformation, byte deathCount, long totalKills, final int tokens, final int apExo, final int mpExo, final int raExo, String rapid,int song, boolean Reload_item, int prestige, int ornement,int omega, double xpOmega, String ListOrnaments)
+  public Player(int id, String name, int groupe, int sexe, int classe, int color1, int color2, int color3, long kamas, int pts, long _capital, int energy, int level, double exp, int _size, int _gfxid, byte alignement, int account, Map<Long, Long> stats, byte seeFriend, byte seeAlign, byte seeSeller, String canaux, short map, int cell, String stuff, String storeObjets, String pdvPer, String spells, String savePos, String jobs, int mountXp, int mount, int honor, int deshonor, int alvl, String z, int title, int wifeGuid, String morphMode, String allTitle, String emotes, long prison, boolean isNew, String parcho, long timeDeblo, boolean noall, String deadInformation, byte deathCount, long totalKills, final int tokens, final int apExo, final int mpExo, final int raExo, String rapid,int song, boolean Reload_item, int prestige, int ornement,int omega, double xpOmega, String ListOrnaments, int AuraC, String auraList)
   {
     this.id=id;
     this.noall=noall;
@@ -491,6 +517,15 @@ public ArrayList<Integer> getIsCraftingType()
 
      } catch (NullPointerException e) {
   }
+     this.auraC = AuraC;
+     try {
+         if (!auraList.isEmpty() || !auraList.equalsIgnoreCase(""))
+             for (String i : auraList.split(","))
+                 this.addAura(Integer.parseInt(i));
+
+
+    } catch (NullPointerException e) {
+ }
       if(!storeObjets.equals(""))
       {
         for(String _storeObjets : storeObjets.split("\\|"))
@@ -629,7 +664,7 @@ public ArrayList<Integer> getIsCraftingType()
       return null;
     if(sexe<0||sexe>1)
       return null;
-    Player perso=new Player(Database.getStatics().getPlayerData().getNextId(),name,-1,sexe,classe,color1,color2,color3,(Config.getInstance().serverId==6 ? 10000000 : 0),((Config.getInstance().startLevel-1)),((Config.getInstance().startLevel-1)*5),10000,Config.getInstance().startLevel,(long) Main.world.getPersoXpMin(Config.getInstance().startLevel),100,Integer.parseInt(classe+""+sexe),(byte)0,compte.getId(),new HashMap<Long, Long>(),(byte)1,(byte)0,(byte)0,"*#%!pi$:?",(Config.getInstance().startMap!=0 ? (short)Config.getInstance().startMap : Constant.getStartMap(classe)),(Config.getInstance().startCell!=0 ? (short)Config.getInstance().startCell : Constant.getStartCell(classe)),"","","100;0","",(Config.getInstance().startMap!=0 ? (short)Config.getInstance().startMap : Constant.getStartMap(classe))+","+(Config.getInstance().startCell!=0 ? (short)Config.getInstance().startCell : Constant.getStartCell(classe)),"",0,-1,0,0,0,z.toString(),(byte)0,0,"0;0","",(Config.getInstance().allEmote ? "0;1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19;20;21" : "0"),0,true,"118,0;119,0;123,0;124,0;125,0;126,0",0,false,"0,0,0,0",(byte)0,0,0,0,0,0,"",0,false,0,0,0,0,ListOrnaments);
+    Player perso=new Player(Database.getStatics().getPlayerData().getNextId(),name,-1,sexe,classe,color1,color2,color3,(Config.getInstance().serverId==6 ? 10000000 : 0),((Config.getInstance().startLevel-1)),((Config.getInstance().startLevel-1)*5),10000,Config.getInstance().startLevel,(long) Main.world.getPersoXpMin(Config.getInstance().startLevel),100,Integer.parseInt(classe+""+sexe),(byte)0,compte.getId(),new HashMap<Long, Long>(),(byte)1,(byte)0,(byte)0,"*#%!pi$:?",(Config.getInstance().startMap!=0 ? (short)Config.getInstance().startMap : Constant.getStartMap(classe)),(Config.getInstance().startCell!=0 ? (short)Config.getInstance().startCell : Constant.getStartCell(classe)),"","","100;0","",(Config.getInstance().startMap!=0 ? (short)Config.getInstance().startMap : Constant.getStartMap(classe))+","+(Config.getInstance().startCell!=0 ? (short)Config.getInstance().startCell : Constant.getStartCell(classe)),"",0,-1,0,0,0,z.toString(),(byte)0,0,"0;0","",(Config.getInstance().allEmote ? "0;1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19;20;21" : "0"),0,true,"118,0;119,0;123,0;124,0;125,0;126,0",0,false,"0,0,0,0",(byte)0,0,0,0,0,0,"",0,false,0,0,0,0,ListOrnaments,0,"");
     perso.emotes.add(1);
     perso._sorts=Constant.getStartSorts(classe);
     for(int a=1;a<=perso.getLevel();a++)
@@ -1313,10 +1348,10 @@ public void setTotal_reculte() {
   //v2.1 - alltitle nullpointerexception fix
   public String getAllTitle()
   {
-  //  _allTitle=Database.getStatics().getPlayerData().loadTitles(this.getId());
-   // if(_allTitle!=null)
-   //   return _allTitle;
-   // else
+    _allTitle=Database.getStatics().getPlayerData().loadTitles(this.getId());
+    if(_allTitle!=null)
+      return _allTitle;
+    else
      return "";
   }
 
