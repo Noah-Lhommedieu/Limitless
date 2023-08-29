@@ -3704,13 +3704,16 @@ public class CommandAdmin extends AdminUser
       }
       if(count==0)
       {
-        this.sendMessage("Sale rat donne pas 0.");
+        this.sendMessage("Valeur inutile.");
         return;
       }
       Player perso=this.getPlayer();
       int pointtotal=perso.getAccount().getPoints()+count;
-      
-      perso.getAccount().setPoints(pointtotal);
+      if(pointtotal<0)
+        pointtotal=0;
+      if(pointtotal>100)
+        pointtotal=100;
+      perso.getAccount().setPoints(pointtotal+perso.getAccount().getPoints());
       if(perso.isOnline())
         SocketManager.GAME_SEND_STATS_PACKET(perso);
       String mess="Vous venez de donner "+count+" points boutique e "+perso.getName()+".";

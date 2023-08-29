@@ -1,15 +1,12 @@
 package soufix.command;
 
 import java.util.ArrayList;
-import java.util.Dictionary;
-import java.util.HashMap;
-import java.util.Map;
 
 import soufix.fight.spells.Spell;
 import soufix.main.Constant;
 
 import soufix.other.Ornements;
-import soufix.other.Titre;
+
 import soufix.Hdv.Hdv;
 import soufix.client.Player;
 import soufix.client.other.Party;
@@ -168,67 +165,16 @@ public class CommandPlayerpvm {
 //		        }
 			
 			
-
 			if (msg.length() > 5 && msg.substring(1, 6).equalsIgnoreCase("parse"))
 			{
 				perso.sendMessage(perso.parseToGM());
 				return true;
 			}
-			/*if (msg.length() > 8 && msg.substring(1, 9).equalsIgnoreCase("auraPrice"))
-			{
-				perso.sendMessage("auraList = "+perso.auraList);
-				perso.sendMessage("auraList.ToString() = " + perso.auraList.toString());
-			}*/
 			if (msg.length() > 4 && msg.substring(1, 5).equalsIgnoreCase("aura"))
 			{	
 				try {
-			        Map<Integer, Integer> PriceAura = new HashMap<>();
-			        int j = 0;
-			        int price = 0;
-			        
-			        for (int i = 0; i < 33; i++) 
-			        {	switch (j)
-			        	{
-			        case 10:
-			        	price = 150;
-			        	break;
-			        case 20:
-			        	price = 300;
-			        	break;
-			        case 30:
-			        	price = 450;
-			        	break;
-			        	}
-			        	PriceAura.put(i, price);
-			        	j++;
-					}
-			        
-			        int aura =  Integer.parseInt(msg.substring(6, msg.length() - 1));
-			        if(perso.getAuraList().contains(aura)) 
-			        {
-			        	perso.setAura(aura);
-			        }
-			        else
-			        {
-			        	if(perso.getAccount().getPoints() >= PriceAura.get(aura))
-			        	{
-				        	perso.setAura(aura);
-							perso.addAura(aura);
-							perso.getAccount().setPoints(perso.getAccount().getPoints() - PriceAura.get(aura));
-			        	}
-			        
-			        	else 
-			        	{
-			        		SocketManager.PACKET_POPUP_DEPART(perso, "Tu n'as pas assez de points pour acheter cette aura, il t'en faut " + PriceAura.get(aura));
-			        	}
-			        }
-					
-				Database.getStatics().getPlayerData().updateAura(perso);
-				Database.getStatics().getPlayerData().update(perso);
-				perso.sendMessage("parseAuraToDB = " + perso.parseAuraToDB());
-				
-				
-				
+				int aura =  Integer.parseInt(msg.substring(6, msg.length() - 1));
+				perso.setAura(aura);
 				}
 				catch (Exception e) 
 				{
@@ -243,10 +189,6 @@ public class CommandPlayerpvm {
             	SocketManager.GAME_SEND_ERASE_ON_MAP_TO_MAP(perso.getCurMap(), perso.getId()); // delete perso de la map
             	SocketManager.GAME_SEND_ADD_PLAYER_TO_MAP(perso.getCurMap(), perso); // rajoute le perso 
 			}
-			/*if (msg.length() > 9 && msg.substring(1, 10).equalsIgnoreCase("auraClear")) 
-			{
-				perso.getAuraList().clear();
-			}*/
 			if (msg.length() > 4 && msg.substring(1, 5).equalsIgnoreCase("FEURVIP")) {
 //				if(perso.getAccount().getSubscribeRemaining() == 0L){
 //	               	 SocketManager.GAME_SEND_MESSAGE(perso,"Réservé au V.I.P.","008000");	 
@@ -419,8 +361,8 @@ public class CommandPlayerpvm {
                 }
 
 
-                //perso.send("wl"+ornements.toString());
-                //perso.sendMessage("wl"+ornements.toString());
+                perso.send("wl"+ornements.toString());
+                perso.sendMessage("wl"+ornements.toString());
                 // DEBUG perso.sendMessage("wl"+ornements.toString());
                 // DEBUG perso.sendMessage(World.getOrnements().toString());
                 return true;
@@ -1194,12 +1136,12 @@ public class CommandPlayerpvm {
 					
 				}
 				i ++;
-				if(Config.singleton.serverId == 1 && i == 8) {
+				if(Config.singleton.serverId == 1 && i == 5) {
 				SocketManager.GAME_SEND_MESSAGE(perso,
 						"Les commandes disponibles sont  :\n<b>.infos</b> - Permet d'obtenir des informations sur le serveur."
 						);
 				i = 0;
-				}/*else
+				}else
 				{
 					SocketManager.GAME_SEND_MESSAGE(perso,
 							"Les commandes disponibles sont  :\n<b>.infos</b> - Permet d'obtenir des informations sur le serveur."
@@ -1222,7 +1164,7 @@ public class CommandPlayerpvm {
 							+ "\n<b>.hdv</b> - Permet d'accéder au HDV."
 							+ "\n<b>.vip</b> - Affiche les privilèges VIP."
 							);	
-				}*/
+				}
 				return true;
 			
 			}
