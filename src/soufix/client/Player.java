@@ -554,7 +554,7 @@ public ArrayList<Integer> getIsCraftingType()
       this.maxPdv=(this.level-1)*5+55+getTotalStats().getEffect(Constant.STATS_ADD_VITA)+getTotalStats().getEffect(Constant.STATS_ADD_VIE);
       if(this.curPdv<=0)
       {
-    	  //this.sendMessage("PV en dessous ou égal à 0");
+    	  //this.sendMessage("PV en dessous ou ï¿½gal ï¿½ 0");
     	  this.curPdv=10;
     	  //this.curPdv=1;
     	  }
@@ -1830,7 +1830,7 @@ public void setTotal_reculte() {
 
     if(_sorts.containsKey(Integer.valueOf(spellID))&&learn)
     {
-      SocketManager.GAME_SEND_MESSAGE(this,"Vous Avez déjà ce sort.");
+      SocketManager.GAME_SEND_MESSAGE(this,"Vous Avez dï¿½jï¿½ ce sort.");
       return false;
     }
     else
@@ -2403,7 +2403,7 @@ public void setTotal_reculte() {
             object.getTxtStat().putAll(Dopeul.generateStatsTrousseau());
             object.setModification();
             SocketManager.GAME_SEND_UPDATE_ITEM(this,object);
-            this.sendMessage("Votre trousseau a été réinitialisé");
+            this.sendMessage("Votre trousseau a ï¿½tï¿½ rï¿½initialisï¿½");
           }
         }
       }
@@ -2414,7 +2414,7 @@ public void setTotal_reculte() {
       setFullMorph(_morphId,true,true);
 
     if(Config.getInstance().fightAsBlocked)
-      this.sendServerMessage("Vous ne pouvez démarrer aucun combat tant que le serveur n'a pas redémarré.");
+      this.sendServerMessage("Vous ne pouvez dï¿½marrer aucun combat tant que le serveur n'a pas redï¿½marrï¿½.");
 
     Main.world.logger.info("The player "+this.getName()+" come to connect.");
     
@@ -3189,7 +3189,7 @@ public void setTotal_reculte() {
         	if(this.getStats().get(Constant.STATS_ADD_SAGE) > maxSasa ) { // Si le joueur a le max de sagesse, on lui redonne son capital (no gaspillage)
             	_capital+=countVal;
             	this.getStats().addOneStat(Constant.STATS_ADD_SAGE,-countVal);
-            	SocketManager.PACKET_POPUP_DEPART(this, "Vous ne pouvez pas dépasser "+ maxSasa +" de Sagesse \n <b>DOSE UN PEU</b>.");
+            	SocketManager.PACKET_POPUP_DEPART(this, "Vous ne pouvez pas dï¿½passer "+ maxSasa +" de Sagesse \n <b>DOSE UN PEU</b>.");
             	}
           break;
         case 10://Force
@@ -3213,7 +3213,7 @@ public void setTotal_reculte() {
       
   
         
-        _capital-=countVal; // On retire le capital car ici, ça donne les stats
+        _capital-=countVal; // On retire le capital car ici, ï¿½a donne les stats
       
     SocketManager.GAME_SEND_STATS_PACKET(this);
     Database.getStatics().getPlayerData().update(this);
@@ -3476,7 +3476,7 @@ public void setTotal_reculte() {
       return false;
     if(this.getLevel() >= 8000) return false;
     double addLvl = addlvl();
-    this.level+= addLvl; // Modifier ça pour faire de 1 a 1  vers  1 -> lvl attendu
+    this.level+= addLvl; // Modifier ï¿½a pour faire de 1 a 1  vers  1 -> lvl attendu
     _capital+= 5 * addLvl;
     _spellPts += 1 * addLvl;
     this.maxPdv+= 5*addLvl;
@@ -3542,7 +3542,7 @@ public void setTotal_reculte() {
     
     return true;
   }
-  private int addlvl() //Calculateur d'exp pour savoir le niveau qu'aura le joueur à la fin, téléporte le lvl -> pas itératif -> no lag
+  private int addlvl() //Calculateur d'exp pour savoir le niveau qu'aura le joueur ï¿½ la fin, tï¿½lï¿½porte le lvl -> pas itï¿½ratif -> no lag
 	{
 		int level = 0;
 		
@@ -3558,7 +3558,7 @@ public void setTotal_reculte() {
   
   public void ItemEvolution() 
   {
-	  //Récupération des items parmi toutes les positions possibles
+	  //Rï¿½cupï¿½ration des items parmi toutes les positions possibles
 		GameObject[] itemsPosOfPlayer = 
 			{
 				this.getObjetByPos(Constant.ITEM_POS_AMULETTE), 
@@ -3588,7 +3588,7 @@ public void setTotal_reculte() {
 				this.getObjetByPos(Constant.ITEM_POS_FIGURINE),
 				this.getObjetByPos(Constant.ITEM_POS_DRAGODINDE)
 			};
-		//Création d'une liste, qui va récupérer tous les items que le joueur a d'équipé // non null
+		//Crï¿½ation d'une liste, qui va rï¿½cupï¿½rer tous les items que le joueur a d'ï¿½quipï¿½ // non null
 		List<GameObject> itemsPosWithItem = new ArrayList<>();
 		for(GameObject gameObject : itemsPosOfPlayer)
 		{
@@ -3598,22 +3598,22 @@ public void setTotal_reculte() {
 			}
 		}
 		
-		//Récupération du facteur principal des futurs stats, les niveaux.
+		//Rï¿½cupï¿½ration du facteur principal des futurs stats, les niveaux.
 		int lvl = this.getLevel();
 		
 		
 		
-		//Boucle pour modifié unitairement les items sur la bonne liste de de GameObject.
+		//Boucle pour modifiï¿½ unitairement les items sur la bonne liste de de GameObject.
 		for (GameObject gameObject : itemsPosWithItem) 
 		{
-			//Récupération des stats a modifier
+			//Rï¿½cupï¿½ration des stats a modifier
 			long force = gameObject.getStats().getEffect(Constant.STATS_ADD_FORC);
 			long intel = gameObject.getStats().getEffect(Constant.STATS_ADD_INTE);
 			long agi = gameObject.getStats().getEffect(Constant.STATS_ADD_AGIL);
 			long chance = gameObject.getStats().getEffect(Constant.STATS_ADD_CHAN);
 			
 			
-			if(gameObject.getTemplate() == World.getObjTemplate(7114)) // Ciblage d'un item précis, et donc amélioration précise 
+			if(gameObject.getTemplate() == World.getObjTemplate(7114)) // Ciblage d'un item prï¿½cis, et donc amï¿½lioration prï¿½cise 
 			{
 				gameObject.getStats().addOneStat(Constant.STATS_ADD_FORC, -force + (long) (1000*(lvl)));
 			}
@@ -3624,7 +3624,7 @@ public void setTotal_reculte() {
 			}
 			else 
 			{
-				//Modification des stats a améliorer par level (ici c'est le cas) et pour TOUS les items si ce n'est pas un item rechercher
+				//Modification des stats a amï¿½liorer par level (ici c'est le cas) et pour TOUS les items si ce n'est pas un item rechercher
 				gameObject.getStats().addOneStat(Constant.STATS_ADD_AGIL, -agi + (long) (1000*(lvl)));
 			}
 			
@@ -3633,19 +3633,19 @@ public void setTotal_reculte() {
 			
 			
 			
-			//Actualisation de la database des items modifié de manière individuel
+			//Actualisation de la database des items modifiï¿½ de maniï¿½re individuel
 			Database.getDynamics().getObjectData().update(gameObject);			
 
 		}
 		
 		
-			//Refresh le perso pour voir et utiliser les modifications sans déco reco
+			//Refresh le perso pour voir et utiliser les modifications sans dï¿½co reco
 			SocketManager.GAME_SEND_ALTER_GM_PACKET(this.curMap,this);
 			//SocketManager.GAME_SEND_ASK(this.getAccount().getGameClient(), this); / ask le client / bug le tableau score
 			SocketManager.GAME_SEND_ERASE_ON_MAP_TO_MAP(this.getCurMap(), this.getId()); // delete this de la map
 			SocketManager.GAME_SEND_ADD_PLAYER_TO_MAP(this.getCurMap(), this); // rajoute le this
   }
-  public boolean addXp(double xpPlayer) // Donne une quantité d'exp, tant que le joueur n'a pas le bon niveau par rapport a l'exp win, levelup
+  public boolean addXp(double xpPlayer) // Donne une quantitï¿½ d'exp, tant que le joueur n'a pas le bon niveau par rapport a l'exp win, levelup
   {
     boolean up=false;
     if(this.getLevel() < 8000) {
@@ -3877,12 +3877,12 @@ public void setTotal_reculte() {
       if(arme.getTemplate().isTwoHanded()&&bouclier!=null)
       {
         this.unequipedObjet(arme);
-        this.sendMessage("Vous ne pouve pas équipée une arme à 2 mains avec votre bouclier");
+        this.sendMessage("Vous ne pouve pas ï¿½quipï¿½e une arme ï¿½ 2 mains avec votre bouclier");
       }
       else if(!arme.getTemplate().getConditions().equalsIgnoreCase("")&&!ConditionParser.validConditions(this,arme.getTemplate().getConditions()))
       {
        this.unequipedObjet(arme);
-       this.sendMessage("Vous ne pouve pas équipée une arme à 2 mains avec votre bouclier");
+       this.sendMessage("Vous ne pouve pas ï¿½quipï¿½e une arme ï¿½ 2 mains avec votre bouclier");
       }
     }
     if(bouclier!=null)
@@ -3890,7 +3890,7 @@ public void setTotal_reculte() {
       if(!bouclier.getTemplate().getConditions().equalsIgnoreCase("")&&!ConditionParser.validConditions(this,bouclier.getTemplate().getConditions()))
       {
         this.unequipedObjet(bouclier);
-        this.sendMessage("Vous ne pouve pas équipée une arme à 2 mains avec votre bouclier");
+        this.sendMessage("Vous ne pouve pas ï¿½quipï¿½e une arme ï¿½ 2 mains avec votre bouclier");
       }
     }
   }
@@ -4058,7 +4058,7 @@ public void setTotal_reculte() {
       if(this.getMount().getEnergy()<=0&&this.isOnMount())
       {
         this.toogleOnMount();
-        SocketManager.GAME_SEND_MESSAGE(this,"Vous ne pouvez plus monter votre monture, elle est épuisée ... Nourrissez-la ou laissez-la reposer dans un enclos");
+        SocketManager.GAME_SEND_MESSAGE(this,"Vous ne pouvez plus monter votre monture, elle est ï¿½puisï¿½e ... Nourrissez-la ou laissez-la reposer dans un enclos");
       }
     }
     if(this.curCell != null)
@@ -4185,7 +4185,7 @@ public void setTotal_reculte() {
       if(this.getMount().getEnergy()<=0&&this.isOnMount())
       {
         this.toogleOnMount();
-        SocketManager.GAME_SEND_MESSAGE(this,"Vous ne pouvez plus monter votre monture, elle est épuisée ... Nourrissez-la ou laissez-la reposer dans un enclos");
+        SocketManager.GAME_SEND_MESSAGE(this,"Vous ne pouvez plus monter votre monture, elle est ï¿½puisï¿½e ... Nourrissez-la ou laissez-la reposer dans un enclos");
       }
     }
     if(this.curCell != null)
@@ -4851,7 +4851,7 @@ public void setTotal_reculte() {
 
     if(_onMount&&obj!=null)
     {
-      //obj.setPosition(Constant.ITEM_POS_NO_EQUIPED); Fami -> Monture déséquipé
+      //obj.setPosition(Constant.ITEM_POS_NO_EQUIPED); Fami -> Monture dï¿½sï¿½quipï¿½
       SocketManager.GAME_SEND_OBJET_MOVE_PACKET(this,obj);
     }
 
@@ -5013,7 +5013,7 @@ public void setTotal_reculte() {
       case '-':
         if(Config.getInstance().HEROIC)
         {
-          SocketManager.GAME_SEND_MESSAGE(this,"Vous ne pouvez pas désactiver vos ailes sur un serveur héroïque.");
+          SocketManager.GAME_SEND_MESSAGE(this,"Vous ne pouvez pas dï¿½sactiver vos ailes sur un serveur hï¿½roï¿½que.");
           break;
         }
         else
@@ -5266,7 +5266,7 @@ public void setTotal_reculte() {
       {
         if(Prisme.getFight()!=null)
         {
-          SocketManager.GAME_SEND_MESSAGE(this,"Ce prisme est actuellement en combat et ne peut pas être téléporté vers.");
+          SocketManager.GAME_SEND_MESSAGE(this,"Ce prisme est actuellement en combat et ne peut pas ï¿½tre tï¿½lï¿½portï¿½ vers.");
           return;
         }
 
@@ -7519,7 +7519,7 @@ public void setOne_windows(boolean one_windows) {
         }
         if (changed) {
             SocketManager.GAME_SEND_SPELL_LIST(player);
-            SocketManager.GAME_SEND_MESSAGE(player, "Tous vos sorts ont été montés au niveau <b>6</b>." , "009900");
+            SocketManager.GAME_SEND_MESSAGE(player, "Tous vos sorts ont ï¿½tï¿½ montï¿½s au niveau <b>6</b>." , "009900");
     }
     }
 

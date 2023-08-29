@@ -1108,7 +1108,7 @@ public class Fight
         }
         else
         {
-          SocketManager.GAME_SEND_MESSAGE(player,"Vous ne pouviez pas rejoindre le combat des percepteurs parce que vous n'étiez pas disponible.");
+          SocketManager.GAME_SEND_MESSAGE(player,"Vous ne pouviez pas rejoindre le combat des percepteurs parce que vous n'ï¿½tiez pas disponible.");
           collector.delDefenseFight(player);
         }
       }
@@ -1308,12 +1308,14 @@ try {
     }
     /** Challenges **/
      int total = 0 ;
+     List<Fighter> FighterIP;
     for(Fighter F : getFighters(3))
     {
       Player player=F.getPersonnage();
       if(player!=null)
       {
     	  total++;
+    	  FighterIP.add(F);
     	  
     	  if(player.getSpioned_by() != null) {
     	 if(player.getSpioned_by().getCurMap().getId() == player.getCurMap().getId()) {
@@ -1341,59 +1343,25 @@ try {
     
     for(Fighter F : getFighters(3))
     {
+    	if(F.getPersonnage().getAccount().getCurrentIp() == "0")
+    	{
+    		
+    	}
       Player player=F.getPersonnage();
       if(this.type == Constant.FIGHT_TYPE_PVM)
       {
-      if(total == 1) {
-    	 MONO = true; 
-      }
-      if(total == 2) {
-    	  MONO = false; 
-     	 DUO = true;
-       }
+      switch (total)
+      {
       
-      if (total == 3)
-      {
-    	TROIS = true;  
+      case 1:
+    	  break;
       }
-
-      if (total == 4)
-      {
-    	  QUATRE = true;
-      }
-
-      if (total == 5)
-      {
-    	  CINQ = true;
-      }
-
-      if (total == 6)
-      {
-    	  SIX = true;
-      }
-
-      if (total == 7)
-      {
-    	  SEPT = true;
-      }
-
-      if (total == 8)
-      {
-    	  HUIT = true;
-      }
-
-      if (total > 8)
-      {
-    	  PLUSQUEHUIT = true;
-      }
-      
-      
       if(player!=null)
       {
     	 /*if(player.getAccount().getSubscribeRemaining() != 0L)
-       	SocketManager.GAME_SEND_MESSAGE(player,"Bonus VIP 25% activé.","008000");*/
+       	SocketManager.GAME_SEND_MESSAGE(player,"Bonus VIP 25% activï¿½.","008000");*/
     	if(MONO)
-    	SocketManager.GAME_SEND_MESSAGE(player,"Aucun bonus exp en solo activé.","008000");
+    	SocketManager.GAME_SEND_MESSAGE(player,"Aucun bonus exp en solo activï¿½.","008000");
     	if(DUO)
         SocketManager.GAME_SEND_MESSAGE(player,"Bonus Duo + 5% exp.","008000");
     	if(TROIS)
@@ -2427,7 +2395,7 @@ public void Anti_bug () {
             multiIp=true;
         if(multiIp)
         {
-          SocketManager.GAME_SEND_MESSAGE(perso,"Vous ne pouvez pas rejoindre ce combat, il y a Déjà un personnage dans ce combat avec la méme IP.");
+          SocketManager.GAME_SEND_MESSAGE(perso,"Vous ne pouvez pas rejoindre ce combat, il y a Dï¿½jï¿½ un personnage dans ce combat avec la mï¿½me IP.");
           return;
         }
       }
@@ -2439,7 +2407,7 @@ public void Anti_bug () {
         	  multiIp++;
         if(multiIp >= 2)
         {
-          SocketManager.GAME_SEND_MESSAGE(perso,"Vous ne pouvez pas rejoindre ce combat, il y a Déjà un personnage dans ce combat avec la méme IP.");
+          SocketManager.GAME_SEND_MESSAGE(perso,"Vous ne pouvez pas rejoindre ce combat, il y a Dï¿½jï¿½ un personnage dans ce combat avec la mï¿½me IP.");
           return;
         }
       }
@@ -2528,7 +2496,7 @@ public void Anti_bug () {
             multiIp=true;
         if(multiIp)
         {
-          SocketManager.GAME_SEND_MESSAGE(perso,"Vous ne pouvez pas rejoindre ce combat, il y a déjà un personnage dans ce combat avec la même IP.");
+          SocketManager.GAME_SEND_MESSAGE(perso,"Vous ne pouvez pas rejoindre ce combat, il y a dï¿½jï¿½ un personnage dans ce combat avec la mï¿½me IP.");
           return;
         }
       }
@@ -2540,7 +2508,7 @@ public void Anti_bug () {
         	  multiIp++;
         if(multiIp >= 2)
         {
-          SocketManager.GAME_SEND_MESSAGE(perso,"Vous ne pouvez pas rejoindre ce combat, il y a Déjà un personnage dans ce combat avec la méme IP.");
+          SocketManager.GAME_SEND_MESSAGE(perso,"Vous ne pouvez pas rejoindre ce combat, il y a Dï¿½jï¿½ un personnage dans ce combat avec la mï¿½me IP.");
           return;
         }
       }
@@ -5019,7 +4987,7 @@ public void Anti_bug () {
     	TimerWaiterPlus.addNext(() ->  player.teleportOld(),6000);
     	 if(Main.world.addKoli_players(player))
       	  { 
-      	   SocketManager.GAME_SEND_MESSAGE(player,"Vous vous êtes inscrit au Kolizeum", "008000");
+      	   SocketManager.GAME_SEND_MESSAGE(player,"Vous vous ï¿½tes inscrit au Kolizeum", "008000");
       	  }
     	 World.get_Succes(player.getId()).koli_wine_add(player);
     	 long xp=Formulas.getXpStalk(player.getLevel());
@@ -5170,7 +5138,7 @@ public void Anti_bug () {
     }
     if(this.getType()==Constant.FIGHT_TYPE_KOLI) {
     	TimerWaiterPlus.addNext(() ->  player.teleportOld(),6000);
-    	 SocketManager.GAME_SEND_MESSAGE(player,"Vous avez quitté le Kolizeum", "FF0000");
+    	 SocketManager.GAME_SEND_MESSAGE(player,"Vous avez quittï¿½ le Kolizeum", "FF0000");
     	 World.get_Succes(player.getId()).koli_lose_add(player);
     }
 
@@ -5738,7 +5706,7 @@ public void Anti_bug () {
           {
             if(!fighter.isInvocation()&&curPlayer!=null&&curPlayer.get_traque()!=null&&curPlayer.get_traque().getTraque()==fighter.getPersonnage())
             {
-              SocketManager.GAME_SEND_MESSAGE(curPlayer,"Thomas Sacre : Le contrat a été exécuté, venez me voir pour réclamer votre récompense.","000000");
+              SocketManager.GAME_SEND_MESSAGE(curPlayer,"Thomas Sacre : Le contrat a ï¿½tï¿½ exï¿½cutï¿½, venez me voir pour rï¿½clamer votre rï¿½compense.","000000");
               curPlayer.get_traque().setTime(-2);
               stalk=true;
               fighter.setTraqued(true);
@@ -6397,10 +6365,10 @@ public void Anti_bug () {
               
               if(playerTarget != null) {
               if(objectTemplate.getType() == 23) {
-              SocketManager.GAME_SEND_Im_PACKET_TO_ALL("116;"+"<b>Server</b>"+"~ON dirait que la chance sourit à ["+playerTarget.getName()+"] Il vient de drop ["+objectTemplate.getName()+"]");
+              SocketManager.GAME_SEND_Im_PACKET_TO_ALL("116;"+"<b>Server</b>"+"~ON dirait que la chance sourit ï¿½ ["+playerTarget.getName()+"] Il vient de drop ["+objectTemplate.getName()+"]");
               }
               if(objectTemplate.getId() == 12324 || objectTemplate.getId() == 101620) {
-                  SocketManager.GAME_SEND_Im_PACKET_TO_ALL("116;"+"<b>Server</b>"+"~ON dirait que la chance sourit à ["+playerTarget.getName()+"] Il vient de drop ["+objectTemplate.getName()+"]");
+                  SocketManager.GAME_SEND_Im_PACKET_TO_ALL("116;"+"<b>Server</b>"+"~ON dirait que la chance sourit ï¿½ ["+playerTarget.getName()+"] Il vient de drop ["+objectTemplate.getName()+"]");
               }
               }
               if(objectTemplate.getType()!=24) //not a quest item
