@@ -1308,14 +1308,15 @@ try {
     }
     /** Challenges **/
      int total = 0 ;
-     List<Fighter> FighterIP;
+     int NbrRealFighterByFight = 0;
+     List<Fighter> NbrFighterInFight = new ArrayList<Fighter>();
     for(Fighter F : getFighters(3))
     {
       Player player=F.getPersonnage();
       if(player!=null)
       {
     	  total++;
-    	  FighterIP.add(F);
+    	  NbrFighterInFight.add(F);
     	  
     	  if(player.getSpioned_by() != null) {
     	 if(player.getSpioned_by().getCurMap().getId() == player.getCurMap().getId()) {
@@ -1341,21 +1342,53 @@ try {
       }
     }
     
+   
+    Set<String> FightNbrIp = new HashSet<>();
+    for (Fighter fighter : NbrFighterInFight) 
+    {
+        if (!FightNbrIp.contains(fighter.GetIp())) 
+        {
+        	FightNbrIp.add(fighter.GetIp());
+            NbrRealFighterByFight++;
+        }
+    }
     for(Fighter F : getFighters(3))
     {
-    	if(F.getPersonnage().getAccount().getCurrentIp() == "0")
-    	{
-    		
-    	}
+    	
       Player player=F.getPersonnage();
       if(this.type == Constant.FIGHT_TYPE_PVM)
       {
-      switch (total)
-      {
-      
-      case 1:
-    	  break;
-      }
+    	  switch (NbrRealFighterByFight) 
+    	  {
+    	    case 1:
+    	        MONO = true;
+    	        break;
+    	    case 2:
+    	    	DUO = true;
+    	        break;
+    	    case 3:
+    	    	TROIS = true;
+    	        break;
+    	    case 4:
+    	    	QUATRE = true;
+    	        break;
+    	    case 5:
+    	    	CINQ = true;
+    	        break;
+    	    case 6:
+    	    	SIX = true;
+    	        break;
+    	    case 7:
+    	    	SEPT = true;
+    	        break;
+    	    case 8:
+    	    	HUIT = true;
+    	        break;
+    	    default:
+    	    	PLUSQUEHUIT = true;
+    	        break;
+    	}
+
       if(player!=null)
       {
     	 /*if(player.getAccount().getSubscribeRemaining() != 0L)

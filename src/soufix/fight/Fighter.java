@@ -68,6 +68,8 @@ public class Fighter implements Comparable<Fighter>
   public long chamkar = 0;
   public int tour = 0;
   public long start_turn = 0L;
+ 
+
 
 public Fighter(Fight f, MobGrade mob)
   {
@@ -95,7 +97,7 @@ public Fighter(Fight f, MobGrade mob)
     }
     setId(player.getId());
     this.pdvMax=player.getMaxPdv();
-    this.pdv=player.getCurPdv(); // Si on remplace par getMaxPDV() ça redonne full pv a chaque entrée en combat
+    this.pdv=player.getCurPdv(); // Si on remplace par getMaxPDV() ï¿½a redonne full pv a chaque entrï¿½e en combat
     this.setGfxId(getDefaultGfx());
   }
 
@@ -1400,5 +1402,9 @@ public void setTourplus() {
   public void setJustTrapped(boolean justTrapped)
   {
     this.justTrapped=justTrapped;
+  }
+  public String GetIp()
+  {
+	  return this.getPersonnage().getAccount().getCurrentIp();
   }
 }
