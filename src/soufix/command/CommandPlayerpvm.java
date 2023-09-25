@@ -155,14 +155,14 @@ public class CommandPlayerpvm {
 			}
 //			if (msg.length() > 7 && msg.substring(1, 8).equalsIgnoreCase("addorna"))
 //			{
-//				String[] mots = msg.split(" "); // Diviser la chaîne en mots
+//				String[] mots = msg.split(" "); // Diviser la chaï¿½ne en mots
 //
 //		        if (mots.length > 1) {
-//	            String valeurOrnementStr = mots[1]; // Récupérer le deuxième mot après "geto"
+//	            String valeurOrnementStr = mots[1]; // Rï¿½cupï¿½rer le deuxiï¿½me mot aprï¿½s "geto"
 //		        int valeurOrnement = Integer.parseInt(valeurOrnementStr);
 //				perso.addOrnements(valeurOrnement);
 //				perso.setOrnement(valeurOrnement);
-//		    	perso.sendMessage(perso.getName() + ": Ornement reçu -> " + perso.getOrnement()); // Affichage résultat d'obtention d'ornement
+//		    	perso.sendMessage(perso.getName() + ": Ornement reï¿½u -> " + perso.getOrnement()); // Affichage rï¿½sultat d'obtention d'ornement
 //				return true;
 //			}
 //		        }
@@ -234,7 +234,7 @@ public class CommandPlayerpvm {
 				{
 					perso.sendMessage("Exception AURA");
 				}
-				SocketManager.PACKET_POPUP_DEPART(perso, "Aura "+ perso.auraC +" équipé");
+				SocketManager.PACKET_POPUP_DEPART(perso, "Aura "+ perso.auraC +" ï¿½quipï¿½");
 				
 				
 				//CommandPlayerpvm.analyse(perso,".parse");
@@ -249,7 +249,7 @@ public class CommandPlayerpvm {
 			}*/
 			if (msg.length() > 4 && msg.substring(1, 5).equalsIgnoreCase("FEURVIP")) {
 //				if(perso.getAccount().getSubscribeRemaining() == 0L){
-//	               	 SocketManager.GAME_SEND_MESSAGE(perso,"Réservé au V.I.P.","008000");	 
+//	               	 SocketManager.GAME_SEND_MESSAGE(perso,"Rï¿½servï¿½ au V.I.P.","008000");	 
 //	                return true;	 
 //	                }
 				if(perso.couleur== true){
@@ -269,32 +269,32 @@ public class CommandPlayerpvm {
 			if (msg.length() > 3 && msg.substring(1, 4).equalsIgnoreCase("vip")) {
 				if(Config.singleton.serverId == 1) {
 				SocketManager.PACKET_POPUP_DEPART(perso, 
-						 "\n- Vos points acquis par vote sur Serveur-Prive passent à 45 PB par vote."
-						+ "\n- Avoir accès à la <b>banque</b>. gratuitement pour les VIP."
-						//+ "\n- L'accélération <b>*3</b> de votre temps de craft."
+						 "\n- Vos points acquis par vote sur Serveur-Prive passent ï¿½ 45 PB par vote."
+						+ "\n- Avoir accï¿½s ï¿½ la <b>banque</b>. gratuitement pour les VIP."
+						//+ "\n- L'accï¿½lï¿½ration <b>*3</b> de votre temps de craft."
 						+ "\n+ <b>10.000</b> pods de plus."
-						+ "\n<b>.ipdrop</b> - Permets de récupérer le drop de vos mules."
-						+ "\n<b>.ipkamas</b> - Permets de récupérer les kamas de vos mules."
-						+ "\n<b>.nodropitem</b> - Vous empêche de recevoir des items de monstres."
-						+ "\n<b>.nodropressources</b> - Vous empêche de recevoir des ressources de monstres."
-						+ "\n Vous obtenez un bonus de 25% d'expérience à chaque combat pour toute la team"
-						+ "\n Vous obtenez un bonus de 25% d'expérience métier "
-						+ "\n Vous obtenez un bonus de 25% de drop à chaque combat pour toute la team"
+						+ "\n<b>.ipdrop</b> - Permets de rï¿½cupï¿½rer le drop de vos mules."
+						+ "\n<b>.ipkamas</b> - Permets de rï¿½cupï¿½rer les kamas de vos mules."
+						+ "\n<b>.nodropitem</b> - Vous empï¿½che de recevoir des items de monstres."
+						+ "\n<b>.nodropressources</b> - Vous empï¿½che de recevoir des ressources de monstres."
+						+ "\n Vous obtenez un bonus de 25% d'expï¿½rience ï¿½ chaque combat pour toute la team"
+						+ "\n Vous obtenez un bonus de 25% d'expï¿½rience mï¿½tier "
+						+ "\n Vous obtenez un bonus de 25% de drop ï¿½ chaque combat pour toute la team"
 						+ "\n<b>.aura</b> - Aura exlusive multicolore"
 						+ "\nAugmente la chance de reussite d'un <b>Exo</b> 1/4 vip 1/10 non vip.");
 				}else {
 					SocketManager.PACKET_POPUP_DEPART(perso, 
-							 "\n- Vos points acquis par vote sur Serveur-Prive passent à 45 PB par vote."
-							+ "\n- Avoir accès à la <b>banque</b>. gratuitement pour les VIP."
-							//+ "\n- L'accélération <b>*3</b> de votre temps de craft."
+							 "\n- Vos points acquis par vote sur Serveur-Prive passent ï¿½ 45 PB par vote."
+							+ "\n- Avoir accï¿½s ï¿½ la <b>banque</b>. gratuitement pour les VIP."
+							//+ "\n- L'accï¿½lï¿½ration <b>*3</b> de votre temps de craft."
 							+ "\n+ <b>10.000</b> pods de plus."
-							+ "\n<b>.ipdrop</b> - Permets de récupérer le drop de vos mules."
-							+ "\n<b>.ipkamas</b> - Permets de récupérer les kamas de vos mules."
-							+ "\n<b>.nodropitem</b> - Vous empêche de recevoir des items de monstres."
-							+ "\n<b>.nodropressources</b> - Vous empêche de recevoir des ressources de monstres."
-							+ "\n Vous obtenez un bonus de 25% d'expérience à chaque combat pour toute la team"
-							+ "\n Vous obtenez un bonus de 25% d'expérience métier "
-							+ "\n Vous obtenez un bonus de 25% de drop à chaque combat pour toute la team"
+							+ "\n<b>.ipdrop</b> - Permets de rï¿½cupï¿½rer le drop de vos mules."
+							+ "\n<b>.ipkamas</b> - Permets de rï¿½cupï¿½rer les kamas de vos mules."
+							+ "\n<b>.nodropitem</b> - Vous empï¿½che de recevoir des items de monstres."
+							+ "\n<b>.nodropressources</b> - Vous empï¿½che de recevoir des ressources de monstres."
+							+ "\n Vous obtenez un bonus de 25% d'expï¿½rience ï¿½ chaque combat pour toute la team"
+							+ "\n Vous obtenez un bonus de 25% d'expï¿½rience mï¿½tier "
+							+ "\n Vous obtenez un bonus de 25% de drop ï¿½ chaque combat pour toute la team"
 							+ "\n<b>.aura</b> - Aura exlusive multicolore"
 							+ "\nAugmente la chance de reussite d'un <b>Exo</b> 1/10 vip 1/20 non vip.");	
 				}
@@ -317,7 +317,7 @@ public class CommandPlayerpvm {
 				    		 perso.sendMessage("Mode Maitre off.");
 				    		 return true;
 				    	}
-				      perso.sendMessage("Vos etes déjà dans un groupe.");
+				      perso.sendMessage("Vos etes dï¿½jï¿½ dans un groupe.");
 				      return true;
 				    }
 				    int nbr = 0;
@@ -348,7 +348,7 @@ public class CommandPlayerpvm {
 				    final Party party=perso.getParty();
 				    party.setMaster(perso);
 				    party.moveAllPlayersToMaster(null);
-				    SocketManager.GAME_SEND_MESSAGE(perso,"Vous êtes désormais le maitre de votre groupe");
+				    SocketManager.GAME_SEND_MESSAGE(perso,"Vous ï¿½tes dï¿½sormais le maitre de votre groupe");
 				    return true;
 			}
 			if (msg.length() > 6 && msg.substring(1, 7).equalsIgnoreCase("banque")) {
@@ -407,7 +407,7 @@ public class CommandPlayerpvm {
                         if (ornements.length() > 0) {
                             ornements.append(";");
                         }
-                        ornements.append(o.getId() + ","+ o.getName() +",T");
+                        ornements.append(o.getId() + ","+ o.getPrice() +",T");
 
                     } else if (!o.isCanbuy()) {
                         if (ornements.length() > 0) {
@@ -415,11 +415,11 @@ public class CommandPlayerpvm {
                         }
                         //ornements.append(o.getId() + ","+o.getName()+"," + o.getPrice());
                     }
-                    ornements.append(o.getId() + ","+o.getName()+"," + o.getPrice());
+                    ornements.append(o.getId() + ","+o.getPrice() +"," + o.getName());
                 }
 
 
-                //perso.send("wl"+ornements.toString());
+                perso.send("wl"+ornements.toString());
                 //perso.sendMessage("wl"+ornements.toString());
                 // DEBUG perso.sendMessage("wl"+ornements.toString());
                 // DEBUG perso.sendMessage(World.getOrnements().toString());
@@ -439,7 +439,7 @@ public class CommandPlayerpvm {
 				if(perso.getParty() == null || perso.getParty().getMaster() == null ||
 						perso.getParty().getMaster().getId() != perso.getId())
 				{
-				SocketManager.GAME_SEND_MESSAGE(perso,"Mets toi Maître avant");	
+				SocketManager.GAME_SEND_MESSAGE(perso,"Mets toi Maï¿½tre avant");	
 				return true;
 				}
 				if(perso.isOne_windows())
@@ -455,7 +455,7 @@ public class CommandPlayerpvm {
 			} 
 			if (msg.length() > 3 && msg.substring(1, 4).equalsIgnoreCase("hdv")) {
 				if(perso.getFight()!=null)
-				SocketManager.GAME_SEND_MESSAGE(perso,"Vous ne pouvez pas ouvrir le marché pendant le combat.");
+				SocketManager.GAME_SEND_MESSAGE(perso,"Vous ne pouvez pas ouvrir le marchï¿½ pendant le combat.");
 		        else
 		        {
 		        	GameClient.leaveExchange(perso);
@@ -687,13 +687,13 @@ public class CommandPlayerpvm {
 						z.teleport(perso.getCurMap(), perso.getCurCell().getId());
 					}
 				}else{
-					SocketManager.GAME_SEND_MESSAGE(perso,"Mets toi Maître avant", "008000");	
+					SocketManager.GAME_SEND_MESSAGE(perso,"Mets toi Maï¿½tre avant", "008000");	
 				}
 				return true;
 			}
 			if (msg.length() > 16 && msg.substring(1, 17).equalsIgnoreCase("nodropressources")) {
 				if(perso.getAccount().getSubscribeRemaining() == 0L){
-	               	 SocketManager.GAME_SEND_MESSAGE(perso,"Réservé au V.I.P.","008000");	 
+	               	 SocketManager.GAME_SEND_MESSAGE(perso,"Rï¿½servï¿½ au V.I.P.","008000");	 
 	                return true;	 
 	                }
 				if(perso.isCanDrop_ressources())
@@ -715,7 +715,7 @@ public class CommandPlayerpvm {
 			}
 			if (msg.length() > 10 && msg.substring(1, 11).equalsIgnoreCase("nodropitem")) {
 				if(perso.getAccount().getSubscribeRemaining() == 0L){
-	               	 SocketManager.GAME_SEND_MESSAGE(perso,"Réservé au V.I.P.","008000");	 
+	               	 SocketManager.GAME_SEND_MESSAGE(perso,"Rï¿½servï¿½ au V.I.P.","008000");	 
 	                return true;	 
 	                }
 				if(perso.isCanDrop_items())
@@ -758,11 +758,11 @@ public class CommandPlayerpvm {
 			if (msg.length() > 8 && msg.substring(1, 9).equalsIgnoreCase("prestige")) {
 				int max = 100, lvlmax = 8000;
             	if(perso.prestige < 0 || perso.prestige >= max ) {
-            		perso.sendMessage("Action impossible : vous avez déjà  atteint le prestige maximal.");
+            		perso.sendMessage("Action impossible : vous avez dï¿½jï¿½ atteint le prestige maximal.");
             		return true;
             	}
             	if(perso.getLevel() != lvlmax) {
-            		perso.sendMessage("Vous devez être niveau "+lvlmax+" pour pouvoir bénéficier de ce service.");
+            		perso.sendMessage("Vous devez ï¿½tre niveau "+lvlmax+" pour pouvoir bï¿½nï¿½ficier de ce service.");
             		return true;
             	}
             	
@@ -776,9 +776,9 @@ public class CommandPlayerpvm {
             	SocketManager.GAME_SEND_ERASE_ON_MAP_TO_MAP(perso.getCurMap(), perso.getId()); // delete perso de la map
             	SocketManager.GAME_SEND_ADD_PLAYER_TO_MAP(perso.getCurMap(), perso); // rajoute le perso 
             	setRewardPrestige(perso);
-            	SocketManager.PACKET_POPUP_DEPART(perso, "Vous êtes Prestige " + perso.getPrestige() + ".");
-            	SocketManager.GAME_SEND_MESSAGE_TO_ALL("Le joueur " + perso.getName() + "est passé prestige " + perso.getPrestige() + ".", "32A852");
-            	Constant.onLevelUpSpells(perso, perso.getLevel());// le possède Player.SpellMax(perso);
+            	SocketManager.PACKET_POPUP_DEPART(perso, "Vous ï¿½tes Prestige " + perso.getPrestige() + ".");
+            	SocketManager.GAME_SEND_MESSAGE_TO_ALL("Le joueur " + perso.getName() + "est passï¿½ prestige " + perso.getPrestige() + ".", "32A852");
+            	Constant.onLevelUpSpells(perso, perso.getLevel());// le possï¿½de Player.SpellMax(perso);
             	
             	return true;
 			    
@@ -788,7 +788,7 @@ public class CommandPlayerpvm {
 			{
     			if (perso.getPrestige() == 0) 
     			{
-    				SocketManager.PACKET_POPUP_DEPART(perso, "Vous n'êtes pas prestige");
+    				SocketManager.PACKET_POPUP_DEPART(perso, "Vous n'ï¿½tes pas prestige");
     			}
     			else 
     			{
@@ -816,15 +816,15 @@ public class CommandPlayerpvm {
 				            	SocketManager.GAME_SEND_ADD_PLAYER_TO_MAP(perso.getCurMap(), perso); // rajoute le perso
 				            	SocketManager.GAME_SEND_ALTER_GM_PACKET(perso.curMap,perso);
 								setRewardOmega(perso);
-								SocketManager.PACKET_POPUP_DEPART(perso, "Vous êtes Omega " + perso.getOmega() + ".");
-								SocketManager.GAME_SEND_MESSAGE_TO_ALL("Le joueur " + perso.getName() + "est passé Omega " + perso.getOmega() + ".", "34E5EB");
+								SocketManager.PACKET_POPUP_DEPART(perso, "Vous ï¿½tes Omega " + perso.getOmega() + ".");
+								SocketManager.GAME_SEND_MESSAGE_TO_ALL("Le joueur " + perso.getName() + "est passï¿½ Omega " + perso.getOmega() + ".", "34E5EB");
 							}
 							else
 								SocketManager.PACKET_POPUP_DEPART(perso, "Vous avez atteint le niveau Omega maximum.");
 								return true;
 						}
 						else
-							SocketManager.PACKET_POPUP_DEPART(perso, "Vous n'avez pas assez d'exp Omega pour passer au rang Omega supérieur.");
+							SocketManager.PACKET_POPUP_DEPART(perso, "Vous n'avez pas assez d'exp Omega pour passer au rang Omega supï¿½rieur.");
 							return true;
 					}
 					else
@@ -832,7 +832,7 @@ public class CommandPlayerpvm {
 						return true;
 				}
 				else 
-					SocketManager.PACKET_POPUP_DEPART(perso, "Vous devez être <b>Niveau 8000 et Prestige 100</b> pour accéder aux niveaux Omega.");
+					SocketManager.PACKET_POPUP_DEPART(perso, "Vous devez ï¿½tre <b>Niveau 8000 et Prestige 100</b> pour accï¿½der aux niveaux Omega.");
 					return true;	
 	            }
 			if (msg.length() > 8 && msg.substring(1, 9).equalsIgnoreCase("infomega")) 
@@ -848,7 +848,7 @@ public class CommandPlayerpvm {
 		            //perso.sendMessage("XP Omega (table player): " + xppomega);
 //		            perso.sendMessage("XP Omega (table experience): " + expomega);
 //		            perso.sendMessage("LVL Omega (table experience): " + lvlomega);
-		            //player.sendMessage("Pour être niveau omega " + lvlomega + " il te faut " + expomega + " d'experience en plus.");
+		            //player.sendMessage("Pour ï¿½tre niveau omega " + lvlomega + " il te faut " + expomega + " d'experience en plus.");
 				} 
 			else 
 				{
@@ -891,7 +891,7 @@ public class CommandPlayerpvm {
 				
 		        if (perso.getFight() != null) return true;
 		        perso.teleport((short) 25002, 298);
-		        SocketManager.GAME_SEND_MESSAGE(perso, "Vous avez été téléporté au <b>start</b>." , "009900");
+		        SocketManager.GAME_SEND_MESSAGE(perso, "Vous avez ï¿½tï¿½ tï¿½lï¿½portï¿½ au <b>start</b>." , "009900");
 		        return true;
 			}
 			if (msg.length() > 6 && msg.substring(1, 7).equalsIgnoreCase("poutch"))
@@ -905,7 +905,7 @@ public class CommandPlayerpvm {
 				
 		        if (perso.getFight() != null) return true;
 		        perso.teleport((short) 534, 372);
-		        SocketManager.GAME_SEND_MESSAGE(perso, "Vous avez été téléporté au <b>poutch</b>." , "009900");
+		        SocketManager.GAME_SEND_MESSAGE(perso, "Vous avez ï¿½tï¿½ tï¿½lï¿½portï¿½ au <b>poutch</b>." , "009900");
 		        return true;
 			}
 			if (msg.length() > 6 && msg.substring(1, 7).equalsIgnoreCase("enclos"))
@@ -919,7 +919,7 @@ public class CommandPlayerpvm {
 				
 		        if (perso.getFight() != null) return true;
 		        perso.teleport((short) 8747, 633);
-		        SocketManager.GAME_SEND_MESSAGE(perso, "Vous avez été téléporté au <b>enclos</b>." , "009900");
+		        SocketManager.GAME_SEND_MESSAGE(perso, "Vous avez ï¿½tï¿½ tï¿½lï¿½portï¿½ au <b>enclos</b>." , "009900");
 		        return true;
 			}
 			if (msg.length() > 4 && msg.substring(1, 5).equalsIgnoreCase("pvm1"))
@@ -933,7 +933,7 @@ public class CommandPlayerpvm {
 				
 		        if (perso.getFight() != null) return true;
 		        perso.teleport((short) 10134, 360);
-		        SocketManager.GAME_SEND_MESSAGE(perso, "Vous avez été téléporté au <b>pvm1</b>." , "009900");
+		        SocketManager.GAME_SEND_MESSAGE(perso, "Vous avez ï¿½tï¿½ tï¿½lï¿½portï¿½ au <b>pvm1</b>." , "009900");
 		        return true;
 			}
 			if (msg.length() > 4 && msg.substring(1, 5).equalsIgnoreCase("pvm2"))
@@ -947,7 +947,7 @@ public class CommandPlayerpvm {
 				
 		        if (perso.getFight() != null) return true;
 		        perso.teleport((short) 10137, 360);
-		        SocketManager.GAME_SEND_MESSAGE(perso, "Vous avez été téléporté au <b>pvm2</b>." , "009900");
+		        SocketManager.GAME_SEND_MESSAGE(perso, "Vous avez ï¿½tï¿½ tï¿½lï¿½portï¿½ au <b>pvm2</b>." , "009900");
 		        return true;
 			}
 			
@@ -958,7 +958,7 @@ public class CommandPlayerpvm {
 				{
 				SocketManager.GAME_SEND_STATS_PACKET(perso);
 				}
-				SocketManager.GAME_SEND_MESSAGE(perso, "Vous avez récupérer Tous vos points de vie." , "009900");
+				SocketManager.GAME_SEND_MESSAGE(perso, "Vous avez rï¿½cupï¿½rer Tous vos points de vie." , "009900");
 				return true;
 			}
 			if (msg.length() > 6 && msg.substring(1, 7).equalsIgnoreCase("nodrop")) {
@@ -984,11 +984,11 @@ public class CommandPlayerpvm {
 				if(perso.getParty() == null || perso.getParty().getMaster() == null ||
 						perso.getParty().getMaster().getId() != perso.getId())
 				{
-				SocketManager.GAME_SEND_MESSAGE(perso,"Mets toi Maître avant");	
+				SocketManager.GAME_SEND_MESSAGE(perso,"Mets toi Maï¿½tre avant");	
 				return true;
 				}
 				if(perso.getAccount().getSubscribeRemaining() == 0L){
-	               	 SocketManager.GAME_SEND_MESSAGE(perso,"Réservé au V.I.P.","008000");	 
+	               	 SocketManager.GAME_SEND_MESSAGE(perso,"Rï¿½servï¿½ au V.I.P.","008000");	 
 	                return true;	 
 	                }
 				 if(perso.ipKamas)
@@ -1020,11 +1020,11 @@ public class CommandPlayerpvm {
 				if(perso.getParty() == null || perso.getParty().getMaster() == null ||
 						perso.getParty().getMaster().getId() != perso.getId())
 				{
-				SocketManager.GAME_SEND_MESSAGE(perso,"Mets toi Maître avant");	
+				SocketManager.GAME_SEND_MESSAGE(perso,"Mets toi Maï¿½tre avant");	
 				return true;
 				}
 				if(perso.getAccount().getSubscribeRemaining() == 0L){
-	               	 SocketManager.GAME_SEND_MESSAGE(perso,"Réservé au V.I.P.","008000");	 
+	               	 SocketManager.GAME_SEND_MESSAGE(perso,"Rï¿½servï¿½ au V.I.P.","008000");	 
 	                return true;	 
 	                }
 				 if(perso.ipDrop)
@@ -1106,7 +1106,7 @@ public class CommandPlayerpvm {
                 	SocketManager.GAME_SEND_MESSAGE(perso,"joindelay "+perso.getJoindelay()+" seconde(s)"); 
                 }catch(Exception e)
                 {
-                	SocketManager.GAME_SEND_MESSAGE(perso,".joindelay 1 à 10 en seconde");   
+                	SocketManager.GAME_SEND_MESSAGE(perso,".joindelay 1 ï¿½ 10 en seconde");   
                   }
 				return true;
 			}
@@ -1127,27 +1127,27 @@ public class CommandPlayerpvm {
 			}
 			if(msg.length() > 9 && msg.substring(1, 10).equalsIgnoreCase("commandes"))
 			{
-				SocketManager.PACKET_POPUP_DEPART(perso, "<b>.start</b> - Permet de se téléporter au zaap."
-						+ "\n<b>.marchand</b> - Permets de se téléporter à la map marchande."
+				SocketManager.PACKET_POPUP_DEPART(perso, "<b>.start</b> - Permet de se tï¿½lï¿½porter au zaap."
+						+ "\n<b>.marchand</b> - Permets de se tï¿½lï¿½porter ï¿½ la map marchande."
 						+ "\n<b>.staff</b> - Permet de voir les membres du staff connect\u00e9s."
-						+ "\n<b>.boutique</b> - Permet d'accéder à la boutique."
+						+ "\n<b>.boutique</b> - Permet d'accï¿½der ï¿½ la boutique."
 						+ "\n<b>.points</b> - Affiche ses points boutique."
 						+ "\n<b>.all</b> - <b>.noall</b> - Permet d'envoyer un message \u00e0 tous les joueurs."
-						+ "\n<b>.celldeblo</b> - Permet de téléporter à une cellule libre si vous êtes bloqués."
+						+ "\n<b>.celldeblo</b> - Permet de tï¿½lï¿½porter ï¿½ une cellule libre si vous ï¿½tes bloquï¿½s."
 						+ "\n<b>.movemobs</b> - Permet de deplace un groupe de monstres."
-						+ "\n<b>.banque</b> - Ouvrir la banque n’importe où."
-						+ "\n<b>.maitre</b> - Permet de créer une escouade et d'inviter toutes tes mules dans ton groupe."
-						+ "\n<b>.window</b> - Permet de gérer toutes vos mules en combat via la fenêtre du maitre."
-						+ "\n<b>.tp</b> - Permet de téléporter tes personnages sur ta map actuelle."
-						+ "\n<b>.tpgroupe</b> - Permets de téléporter ton groupe sur ta map actuelle."
+						+ "\n<b>.banque</b> - Ouvrir la banque nï¿½importe oï¿½."
+						+ "\n<b>.maitre</b> - Permet de crï¿½er une escouade et d'inviter toutes tes mules dans ton groupe."
+						+ "\n<b>.window</b> - Permet de gï¿½rer toutes vos mules en combat via la fenï¿½tre du maitre."
+						+ "\n<b>.tp</b> - Permet de tï¿½lï¿½porter tes personnages sur ta map actuelle."
+						+ "\n<b>.tpgroupe</b> - Permets de tï¿½lï¿½porter ton groupe sur ta map actuelle."
 						+ "\n<b>.pass</b> - Permet au joueur de passer automatiquement ses tours."
-						+ "\n<b>.nodrop</b> - Vous empêche de recevoir des items de monstres."
-						+ "\n<b>.joindelay</b> - Permet de définir le delai d'attente avant de rejoindre le combat pour vos mules en groupe."
+						+ "\n<b>.nodrop</b> - Vous empï¿½che de recevoir des items de monstres."
+						+ "\n<b>.joindelay</b> - Permet de dï¿½finir le delai d'attente avant de rejoindre le combat pour vos mules en groupe."
 						+ "\n<b>.debug</b> - permet de debug le personnage lors d'un freeze."
-						+ "\n<b>.hdv</b> - Permet d'accéder au HDV."
-						+ "\n<b>.vip</b> - Affiche les privilèges VIP."
-						+ "\n<b>.pvm1</b> - Permet de se téléporter au pvm1."
-						+ "\n<b>.pvm2</b> - Permet de se téléporter au pvm2."
+						+ "\n<b>.hdv</b> - Permet d'accï¿½der au HDV."
+						+ "\n<b>.vip</b> - Affiche les privilï¿½ges VIP."
+						+ "\n<b>.pvm1</b> - Permet de se tï¿½lï¿½porter au pvm1."
+						+ "\n<b>.pvm2</b> - Permet de se tï¿½lï¿½porter au pvm2."
 						+ "\n<b>.parse</b> - Permet d'afficher son ParseToGM."
 						+ "\n<b>.ornements</b> - Permet d'afficher le panel d'ornement."
 						+ "\n<b>.prestige</b> - Permet de monter en prestige."
@@ -1203,24 +1203,24 @@ public class CommandPlayerpvm {
 				{
 					SocketManager.GAME_SEND_MESSAGE(perso,
 							"Les commandes disponibles sont  :\n<b>.infos</b> - Permet d'obtenir des informations sur le serveur."
-							//+ "\n<b>.start</b> - Permet de se téléporter au zaap."
-							+ "\n<b>.marchand</b> - Permets de se téléporter à la map marchande."
+							//+ "\n<b>.start</b> - Permet de se tï¿½lï¿½porter au zaap."
+							+ "\n<b>.marchand</b> - Permets de se tï¿½lï¿½porter ï¿½ la map marchande."
 							+ "\n<b>.staff</b> - Permet de voir les membres du staff connect\u00e9s."
-							+ "\n<b>.boutique</b> - Permet d'accéder à la boutique."
+							+ "\n<b>.boutique</b> - Permet d'accï¿½der ï¿½ la boutique."
 							+ "\n<b>.points</b> - Affiche ses points boutique."
 							+ "\n<b>.all</b> - <b>.noall</b> - Permet d'envoyer un message \u00e0 tous les joueurs."
-							+ "\n<b>.celldeblo</b> - Permet de téléporter à une cellule libre si vous êtes bloqués."
+							+ "\n<b>.celldeblo</b> - Permet de tï¿½lï¿½porter ï¿½ une cellule libre si vous ï¿½tes bloquï¿½s."
 							+ "\n<b>.movemobs</b> - Permet de deplace un groupe de monstres."
-							+ "\n<b>.banque</b> - Ouvrir la banque n’importe où."
-							+ "\n<b>.maitre</b> - Permet de créer une escouade et d'inviter toutes tes mules dans ton groupe."
-							+ "\n<b>.window</b> - Permet de gérer toutes vos mules en combat via la fenêtre du maitre."
-							+ "\n<b>.tp</b> - Permet de téléporter tes personnages sur ta map actuelle."
-							+ "\n<b>.tpgroupe</b> - Permets de téléporter ton groupe sur ta map actuelle."
+							+ "\n<b>.banque</b> - Ouvrir la banque nï¿½importe oï¿½."
+							+ "\n<b>.maitre</b> - Permet de crï¿½er une escouade et d'inviter toutes tes mules dans ton groupe."
+							+ "\n<b>.window</b> - Permet de gï¿½rer toutes vos mules en combat via la fenï¿½tre du maitre."
+							+ "\n<b>.tp</b> - Permet de tï¿½lï¿½porter tes personnages sur ta map actuelle."
+							+ "\n<b>.tpgroupe</b> - Permets de tï¿½lï¿½porter ton groupe sur ta map actuelle."
 							+ "\n<b>.pass</b> - Permet au joueur de passer automatiquement ses tours."
-							+ "\n<b>.nodrop</b> - Vous empêche de recevoir des items de monstres."
+							+ "\n<b>.nodrop</b> - Vous empï¿½che de recevoir des items de monstres."
 							+ "\n<b>.debug</b> - permet de debug le personnage lors d'un freeze."
-							+ "\n<b>.hdv</b> - Permet d'accéder au HDV."
-							+ "\n<b>.vip</b> - Affiche les privilèges VIP."
+							+ "\n<b>.hdv</b> - Permet d'accï¿½der au HDV."
+							+ "\n<b>.vip</b> - Affiche les privilï¿½ges VIP."
 							);	
 				}*/
 				return true;
@@ -1236,7 +1236,7 @@ public class CommandPlayerpvm {
     	player.setCapital(player.prestige * 1000000);
     	
     	
-    	// Le switch player prestige = quel numéro de prestige, le case = le numéro de prestige, player additem = l'ajout d'un item par ID et quantité
+    	// Le switch player prestige = quel numï¿½ro de prestige, le case = le numï¿½ro de prestige, player additem = l'ajout d'un item par ID et quantitï¿½
     	switch(player.prestige) {
     	
     		
@@ -1347,15 +1347,15 @@ public class CommandPlayerpvm {
               player.getStats().addOneStat(123, -player.getStats().getEffect(123));
               player.getStats().addOneStat(119, -player.getStats().getEffect(119));
               player.getStats().addOneStat(126, -player.getStats().getEffect(126));
-              player.setCapital(capitalTotalActuel + player.get_capital()); // Ici on set exactement ce que la personne avait (même si y'a un give de capital)
-              //player.addCapital((player.getLevel() - 1) * 5 - player.get_capital()); Ancienne méthode
+              player.setCapital(capitalTotalActuel + player.get_capital()); // Ici on set exactement ce que la personne avait (mï¿½me si y'a un give de capital)
+              //player.addCapital((player.getLevel() - 1) * 5 - player.get_capital()); Ancienne mï¿½thode
               player.getStatsParcho().getMap().clear();
               SocketManager.GAME_SEND_STATS_PACKET(player);
           }
           double newPDV = player.getMaxPdv() * curPer / 100;
           player.setPdv(newPDV);
           SocketManager.GAME_SEND_STATS_PACKET(player);
-          player.sendMessage("Reset des caractéristiques.");
+          player.sendMessage("Reset des caractï¿½ristiques.");
           player.verifEquiped();
     	
     }
@@ -1397,7 +1397,7 @@ public class CommandPlayerpvm {
               player.getStats().addOneStat(123, -player.getStats().getEffect(123));
               player.getStats().addOneStat(119, -player.getStats().getEffect(119));
               player.getStats().addOneStat(126, -player.getStats().getEffect(126));
-              //player.setCapital(capitalTotalActuel + player.get_capital()); // Ici on set exactement ce que la personne avait (même si y'a un give de capital)
+              //player.setCapital(capitalTotalActuel + player.get_capital()); // Ici on set exactement ce que la personne avait (mï¿½me si y'a un give de capital)
               player.addCapital((player.getLevel() - 1) * 5 - player.get_capital());
               player.getStatsParcho().getMap().clear();
               SocketManager.GAME_SEND_STATS_PACKET(player);
@@ -1405,7 +1405,7 @@ public class CommandPlayerpvm {
           double newPDV = player.getMaxPdv() * curPer / 100;
           player.setPdv(newPDV);
           SocketManager.GAME_SEND_STATS_PACKET(player);
-          player.sendMessage("Reset des caractéristiques.");
+          player.sendMessage("Reset des caractï¿½ristiques.");
           player.verifEquiped();
     	
     }

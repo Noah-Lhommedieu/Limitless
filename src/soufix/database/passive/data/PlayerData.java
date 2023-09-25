@@ -71,7 +71,7 @@ public class PlayerData extends AbstractDAO<Player>
         Main.world.addPlayer(perso);
         if(perso.isShowSeller())
           Main.world.addSeller(perso);
-        Constant.onLevelUpSpells(perso, perso.getLevel()); // le possède Player.SpellMax(perso);
+        Constant.onLevelUpSpells(perso, perso.getLevel()); // le possï¿½de Player.SpellMax(perso);
         
       }
     }
@@ -265,7 +265,10 @@ public class PlayerData extends AbstractDAO<Player>
     PreparedStatement p=null;
     try
     {
-      p=getPreparedStatement("INSERT INTO players(`id`, `name`, `sexe`, `class`, `color1`, `color2`, `color3`, `kamas`, `spellboost`, `capital`, `energy`, `level`, `xp`, `size`, `gfx`, `account`, `cell`, `map`, `spells`, `objets`, `storeObjets`, `morphMode`, `server`,`rapid`,`ornement`,`ornementsList`,`AuraC`,`auraList`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'','','0',?,'',0,?,0,?)");
+      p=getPreparedStatement("INSERT INTO players(`id`, `name`, `sexe`, `class`, `color1`, `color2`, `color3`, `kamas`, "
+      		+ "`spellboost`, `capital`, `energy`, `level`, `xp`, `size`, `gfx`, `account`, `cell`, `map`, `spells`, "
+      		+ "`objets`, `storeObjets`, `morphMode`, `server`,`rapid`,`ornement`,`ornementsList`,`AuraC`,`auraList`) "
+      		+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'','','0',?,'',0,'',0,'')");
       p.setInt(1,perso.getId());
       p.setString(2,perso.getName());
       p.setInt(3,perso.getSexe());
@@ -286,9 +289,6 @@ public class PlayerData extends AbstractDAO<Player>
       p.setInt(18,perso.getCurMap().getId());
       p.setString(19,perso.parseSpellToDB());
       p.setInt(20,Config.getInstance().serverId);
-      p.setString(21,perso.parseOrnementsToDB());
-      p.setInt(22,perso.getAura());
-      p.setString(23, perso.parseAuraToDB());
       execute(p);
       return true;
     }

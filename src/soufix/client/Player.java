@@ -50,7 +50,7 @@ import soufix.utility.TimerWaiterPlus;
 import soufix.other.SetRapido;
 import soufix.other.Succes;
 
-import java.text.DateFormat;
+
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Map.Entry;
@@ -64,7 +64,8 @@ import javassist.expr.NewArray;
 
 public class Player
 {
-public int prestige = 0;
+
+	public int prestige = 0;
 	public int ornement = 0; 
 	public String allornament;
     public int auraC = 0;
@@ -76,6 +77,7 @@ public int prestige = 0;
     public void setAuraList(List<Integer> auraList) {
         this.auraList = auraList;
     }
+    
     public String parseAuraToDB() {
         StringBuilder str = new StringBuilder();
         boolean isFirst = true;
@@ -92,6 +94,8 @@ public int prestige = 0;
     public int omega;
 	public double xpOmega;
 	public int maxInvo;
+	
+	
 
   public Stats stats;
   public boolean isNew=false;
@@ -2351,7 +2355,7 @@ public void setTotal_reculte() {
     }
     //Mise a jour du lastConnectionDate
     Date actDate=new Date();
-    DateFormat dateFormat=new SimpleDateFormat("dd");
+    SimpleDateFormat dateFormat=new SimpleDateFormat("dd");
     String jour=dateFormat.format(actDate);
     dateFormat=new SimpleDateFormat("MM");
     String mois=dateFormat.format(actDate);
