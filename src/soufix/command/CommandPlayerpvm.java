@@ -1243,18 +1243,24 @@ public class CommandPlayerpvm {
     	case 10: 
    
     		player.AddItem(10688,1);
+    		break;
     	case 20:
     		player.AddItem(100092,1);
+    		break;
     	case 25: 
     		player.AddItem(10687,1);
+    		break;
     	case 30:
     		player.AddItem(100093,1);
+    		break;
     	case 50:
     		player.AddItem(10686,1);
     		player.AddItem(200923, 1);
     		player.AddItem(200922, 1);
+    		break;
     	case 75 : 
-    		player.AddItem(10685,1);    		
+    		player.AddItem(10685,1);    
+    		break;
     	case 100: 
     		player.AddItem(15035, 1);	
     		break;
