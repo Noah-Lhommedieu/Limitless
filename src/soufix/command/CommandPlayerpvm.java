@@ -9,6 +9,7 @@ import soufix.fight.spells.Spell;
 import soufix.main.Constant;
 
 import soufix.other.Ornements;
+import soufix.other.OverPower;
 import soufix.other.Titre;
 import soufix.Hdv.Hdv;
 import soufix.client.Player;
@@ -871,9 +872,10 @@ public class CommandPlayerpvm {
 					else 
 					{
 						int OP =  Integer.parseInt(msg.substring(4, msg.length() - 1));
-						perso.setOverPower(OP);
+						perso.getOverPower().setOpLevel(OP);
 						Database.getStatics().getPlayerData().updateOverPower(perso);
 						SocketManager.PACKET_POPUP_DEPART(perso, "Tu es maintenant OverPower " + OP);
+						
 					}
 					
 				}
@@ -888,20 +890,17 @@ public class CommandPlayerpvm {
 			}
 			if (msg.length() > 13 && msg.substring(1, 14).equalsIgnoreCase("OverPowerInfo"))
 			{
+				OverPower op = perso.getOverPower();
 				try 
 				{
-					SocketManager.PACKET_POPUP_DEPART(perso, 
-							"Le système Over power augmente grandement les stats global des mobs \n"
-							+"OP 1 -> PV multiplié par 2 / Dégât multiplié par 1.2 \n"
-							+"OP 2 -> PV multiplié par 3 / Dégât multiplié par 1.4 \n"
-							+"OP 3 -> PV multiplié par 4 / Dégât multiplié par 1.6 \n"
-							+"OP 4 -> PV multiplié par 5 / Dégât multiplié par 1.8 \n"
-							+"OP 5 -> PV multiplié par 6 / Dégât multiplié par 2 \n"
-							+"OP 6 -> PV multiplié par 7 / Dégât multiplié par 2.4 \n"
-							+"OP 7 -> PV multiplié par 8 / Dégât multiplié par 2.8 \n"
-							+"OP 8 -> PV multiplié par 9 / Dégât multiplié par 3.5 \n"
-							+"OP 9 -> PV multiplié par 10 / Dégât multiplié par 5 \n"
-							+"OP 10 -> PV multiplié par 15 / Dégât multiplié par 8");	
+					String stringOverPower = "Le système OverPower augmente grandement les stats globales des mobs \n";
+					
+					for(int i = 0; i<=10; i++)
+					{
+						stringOverPower += op.InfoOpLvlDifficulty(i);
+					}
+					
+					SocketManager.PACKET_POPUP_DEPART(perso,stringOverPower);
 				}
 				catch(Exception e)
 				{
@@ -912,7 +911,7 @@ public class CommandPlayerpvm {
 			{
 				try 
 				{
-					SocketManager.PACKET_POPUP_DEPART(perso, "Tu es actuellement OverPower " + perso.getOverPower());	
+					SocketManager.PACKET_POPUP_DEPART(perso, "Tu es actuellement OverPower " + perso.getOverPower().getOpLevel());	
 				}
 				catch(Exception e)
 				{

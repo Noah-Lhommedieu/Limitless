@@ -1582,7 +1582,7 @@ public class Formulas
   }
 
   //v2.0 - Redid xp formula
-  public static double getXp(Object object, ArrayList<Fighter> winners, long groupXp, byte nbonus, int star, int challenge, int lvlMax, int lvlMin, int lvlLoosers, int lvlWinners, double conquestBonus, Player player)
+  public static double getXp(Object object, ArrayList<Fighter> winners, double groupXp, byte nbonus, int star, int challenge, int lvlMax, int lvlMin, int lvlLoosers, int lvlWinners, double conquestBonus, Player player)
   {
     if(lvlMin<=0)
       return 0;

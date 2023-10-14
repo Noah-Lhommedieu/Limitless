@@ -407,7 +407,7 @@ public class PlayerData extends AbstractDAO<Player>
       p.setInt(49, player.ornement);
       p.setInt(50, player.auraC);
       p.setString(51, player.parseAuraToDB());
-      p.setInt(52, player.getOverPower());
+      p.setInt(52, player.getOverPower().getOpLevel());
       p.setInt(53,player.getId());
       execute(p);
       if(player.getGuildMember()!=null)
@@ -1059,7 +1059,7 @@ public void updateOverPower(Player perso)
     try
     {
   	  p=getPreparedStatement("UPDATE `players` SET `OverPower` = ? WHERE `id`= ?");
-        p.setInt(1,perso.getOverPower());
+        p.setInt(1,perso.getOverPower().getOpLevel());
         p.setInt(2,perso.getId());
         execute(p);
     }

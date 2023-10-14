@@ -15,6 +15,7 @@ import soufix.guild.Guild;
 import soufix.main.Config;
 import soufix.main.Constant;
 import soufix.main.Main;
+import soufix.other.OverPower;
 import soufix.utility.Pair;
 
 import java.util.ArrayList;
@@ -42,7 +43,7 @@ public class Fighter implements Comparable<Fighter>
   private int team=-2;
   private GameCase cell;
   private double pdvMax;
-  private int OverPower;
+  private OverPower OpLevelFighter;
   private double pdv;
   private boolean isDead;
   private boolean hasLeft;
@@ -96,11 +97,13 @@ public Fighter(Fight f, MobGrade mob)
       this.type=1;
       this.perso=player;
     }
+    OpLevelFighter = new OverPower();
     setId(player.getId());
     this.pdvMax=player.getMaxPdv();
     this.pdv=player.getCurPdv(); // Si on remplace par getMaxPDV() �a redonne full pv a chaque entr�e en combat
     this.setGfxId(getDefaultGfx());
-    this.OverPower = player.getOverPower();
+    
+    this.OpLevelFighter.setOpLevel(player.getOverPower().getOpLevel());
   }
 
   public Fighter(Fight f, Collector Perco)
@@ -1410,12 +1413,12 @@ public void setTourplus() {
   {
 	  return this.getPersonnage().getAccount().getCurrentIp();
   }
-  public int getOverPower()
+  public int getOpLevelFighter()
 	{
-		return this.OverPower;
+		return this.OpLevelFighter.getOpLevel();
 	}
-	public void setOverPower(int OverPower)
+	public void setOpLevelFighter(int OverPowerLevelFighter)
 	{
-		this.OverPower = OverPower;
+		this.OpLevelFighter.setOpLevel(OverPowerLevelFighter);;
 	}
 }

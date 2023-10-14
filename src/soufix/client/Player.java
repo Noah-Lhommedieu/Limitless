@@ -43,6 +43,7 @@ import soufix.object.ObjectTemplate;
 import soufix.other.Action;
 import soufix.other.Dopeul;
 import soufix.other.Ornements;
+import soufix.other.OverPower;
 import soufix.quest.Quest;
 import soufix.quest.QuestPlayer;
 import soufix.utility.Pair;
@@ -95,14 +96,15 @@ public class Player
 	public double xpOmega;
 	public int maxInvo;
 	
-	public int OverPower = 0;
-	public int getOverPower()
+	public OverPower overPower = new OverPower();
+	
+	public OverPower getOverPower()
 	{
-		return this.OverPower;
+		return this.overPower;
 	}
-	public void setOverPower(int OverPower)
+	public void setOverPower(OverPower overPower)
 	{
-		this.OverPower = OverPower;
+		this.overPower = overPower;
 	}
 	
 	
@@ -356,6 +358,7 @@ public ArrayList<Integer> getIsCraftingType()
     this.prestige = prestige;
     this.omega = omega;
     this.xpOmega = xpOmega;
+    this.overPower.setOpLevel(0);
     this.exp=exp;
     if(mount!=-1)
       this._mount=Main.world.getMountById(mount);

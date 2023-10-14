@@ -404,7 +404,7 @@ public int chek;
   		// buy ornements
           int ornement = Integer.parseInt(packet.substring(2));
                   if(ornement == 0) {
-                      player.sendMessage("Vous venez de d�sactiver votre ornement");
+                      player.sendMessage("Vous venez de d�sactiver votre ornement");
                       player.setOrnement(0);
                       player.refresh();
                       break;
@@ -479,7 +479,7 @@ public int chek;
   	  	    break;
   	  	case '5':
   		    SocketManager.GAME_SEND_MESSAGE(player,"Le Service titre coute <b>"+Config.getInstance().prix_titre+"</b> points!","000000");
-  	  		this.send("b��");
+  	  		this.send("b��");
 	  	    break;
   	  case 'N':
   	    	this.changeName(packet,true);
@@ -589,15 +589,15 @@ public int chek;
         break;
       case 'L':
     	//  SocketManager.PACKET_ALL_CLASSE(this); 
-    	 /* this.send("��A");
-    	  this.send("��B");
-    	  this.send("��a0");
-    	  this.send("��e2.0,100,100");
-    	  this.send("��rR");
-    	  this.send("��D10");
-    	  this.send("��I");
-    	  this.send("��p20");
-    	  this.send("��Vhttp://localhost/mp3/");
+    	 /* this.send("��A");
+    	  this.send("��B");
+    	  this.send("��a0");
+    	  this.send("��e2.0,100,100");
+    	  this.send("��rR");
+    	  this.send("��D10");
+    	  this.send("��I");
+    	  this.send("��p20");
+    	  this.send("��Vhttp://localhost/mp3/");
     	  this.send("bo1");*/
         getCharacters(/*(packet.length() == 2)*/);
         break;
@@ -650,13 +650,13 @@ public int chek;
     //Validation du nom du this.playernnage
     boolean isValid=true;
     String name=infos[0].toLowerCase();
-    //V�¿½rifie d'abord si il contient des termes d�¿½finit
+    //V�¿½rifie d'abord si il contient des termes d�¿½finit
     if(name.length()>20||name.length()<3||name.contains("mod")||name.contains("admin")||name.contains("putain")||name.contains("administrateur")||name.contains("puta"))
     {
       isValid=false;
     }
 
-    //Si le nom passe le test, on v�¿½rifie que les caract�¿½re entr�¿½ sont correct.
+    //Si le nom passe le test, on v�¿½rifie que les caract�¿½re entr�¿½ sont correct.
     if(isValid)
     {
       int tiretCount=0;
@@ -871,7 +871,7 @@ public int chek;
       long stat=-1;
       if(this.player.getMorphMode())
       {
-        this.player.sendMessage("Vous �tes incarn�, vous ne pouvez pas utiliser vos points caract�ristiques dans cet �tat.");
+        this.player.sendMessage("Vous �tes incarn�, vous ne pouvez pas utiliser vos points caract�ristiques dans cet �tat.");
         return;
       }
 
@@ -1520,7 +1520,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
           {
             if((l=System.currentTimeMillis()-timeLastTradeMsg)<50000)
             {
-              l=(50000-l)/1000;//On calcul la diff�¿½rence en secondes
+              l=(50000-l)/1000;//On calcul la diff�¿½rence en secondes
               SocketManager.GAME_SEND_Im_PACKET(this.player,"0115;"+((int)Math.ceil(l)+1));
               return;
             }
@@ -1563,7 +1563,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
           {
             if((j=System.currentTimeMillis()-timeLastRecrutmentMsg)<40000)
             {
-              j=(40000-j)/1000;//On calcul la diff�¿½rence en secondes
+              j=(40000-j)/1000;//On calcul la diff�¿½rence en secondes
               SocketManager.GAME_SEND_Im_PACKET(this.player,"0115;"+((int)Math.ceil(j)+1));
               return;
             }
@@ -1610,7 +1610,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
         long k;
         if((k=System.currentTimeMillis()-timeLastAlignMsg)<30000)
         {
-          k=(30000-k)/1000;//On calcul la diff�¿½rence en secondes
+          k=(30000-k)/1000;//On calcul la diff�¿½rence en secondes
           SocketManager.GAME_SEND_Im_PACKET(this.player,"0115;"+((int)Math.ceil(k)+1));
           return;
         }
@@ -1658,7 +1658,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
           SocketManager.GAME_SEND_Im_PACKET(this.player,"184");
           return;
         }
-        if(this.player.getGroupe()==null&&target.isInvisible()) // Alors pas connect�¿½
+        if(this.player.getGroupe()==null&&target.isInvisible()) // Alors pas connect�¿½
         {
           SocketManager.GAME_SEND_CHAT_ERROR_PACKET(this,nom);
           return;
@@ -1750,7 +1750,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
     }
   }
 
-  // T�¿½l�¿½portation de MJ
+  // T�¿½l�¿½portation de MJ
   private void goToMap(String packet)
   {
     if(this.player.getGroupe()==null)
@@ -1982,7 +1982,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
         }
         break;
 
-      case 'R'://R�¿½ponse du joueur
+      case 'R'://R�¿½ponse du joueur
         response(packet);
         if(party!=null&&this.player.getFight()==null&&party.getMaster()!=null&&party.getMaster().getName().equals(this.player.getName()))
         {
@@ -2324,22 +2324,22 @@ public void setTimeLastTaverne(long timeLastTaverne) {
       return;
     switch(packet.charAt(1))
     {
-      case 'A'://Accepter demande d'�¿½change
+      case 'A'://Accepter demande d'�¿½change
         accept();
         break;
       case 'B'://Achat
         buy(packet);
         break;
-      case 'H'://Demande prix moyen + cat�¿½gorie
+      case 'H'://Demande prix moyen + cat�¿½gorie
         bigStore(packet);
         break;
       case 'K'://Ok
         ready();
         break;
-      case 'L'://jobAction : Refaire le craft pr�¿½cedent
+      case 'L'://jobAction : Refaire le craft pr�¿½cedent
         replayCraft();
         break;
-      case 'M'://Move (Ajthiser//retirer un objet a l'�¿½change)
+      case 'M'://Move (Ajthiser//retirer un objet a l'�¿½change)
     	    if(this.player.getGroupe() != null)
     	        if(this.player.getGroupe().getId() >= 1 && this.player.getGroupe().getId() < 7) {
     	        	if(this.player.getGroupe().getId() == 6) {
@@ -2378,7 +2378,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
       case 'q'://Mode marchand (demande de la taxe)
         askOfflineExchange();
         break;
-      case 'Q'://Mode marchand (Si valider apr�¿½s la taxe)
+      case 'Q'://Mode marchand (Si valider apr�¿½s la taxe)
         offlineExchange();
         break;
       case 'r'://Rides => Monture
@@ -2411,7 +2411,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
       case 'W'://Metier public
         setPublicMode(packet);
         break;
-      case 'V'://Fin de l'�¿½change
+      case 'V'://Fin de l'�¿½change
         leaveExchange(this.player);
         break;
     }
@@ -2452,7 +2452,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
         this.player.getIsCraftingType().clear();
         target.getIsCraftingType().clear();
         break;
-      case 12: // Craft s��©ucirs��©
+      case 12: // Craft s��©ucirs��©
       case 13:
         Player player1=(target.getIsCraftingType().get(0)==12 ? target : this.player);
         Player player2=(target.getIsCraftingType().get(0)==13 ? target : this.player);
@@ -2712,7 +2712,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
 			final int value = template.getPrice() * qua;
 			if (!player.hasItemTemplate(10275, value)) {
 				SocketManager.GAME_SEND_MESSAGE(this.player,
-						"Vous n'avez pas assez de P�v�tons pour acheter cet article.");
+						"Vous n'avez pas assez de P�v�tons pour acheter cet article.");
 				SocketManager.GAME_SEND_BUY_ERROR_PACKET(this);
 				return;
 			}
@@ -2928,9 +2928,9 @@ public void setTimeLastTaverne(long timeLastTaverne) {
         HdvEntry hE=hL.doYouHave(amount,Integer.parseInt(info[2]));
         if(hE==null)
         {
-          // Intervient lorsque un client ach�¿½te plusieurs fois la m�¿½me ressource.
-          // Par exemple une pyrute �¿½ 45'000k trois fois. Au bout d'un moment elle monte �¿½ 100'000k, mais le client
-          // voit toujours 45'000k. Il doit il y avoir un manque de paquet envoy�¿½. La 4�¿½me avait bugg�¿½.
+          // Intervient lorsque un client ach�¿½te plusieurs fois la m�¿½me ressource.
+          // Par exemple une pyrute �¿½ 45'000k trois fois. Au bout d'un moment elle monte �¿½ 100'000k, mais le client
+          // voit toujours 45'000k. Il doit il y avoir un manque de paquet envoy�¿½. La 4�¿½me avait bugg�¿½.
           SocketManager.GAME_SEND_MESSAGE(this.player,"[2 - Template '"+hL.getTemplateId()+"'] Une erreur s'est produite lors de la confirmation de l'achat. Veuillez contacter un membre du staff.");
           return;
         }
@@ -2949,10 +2949,10 @@ public void setTimeLastTaverne(long timeLastTaverne) {
         {
           SocketManager.GAME_SEND_EHm_PACKET(this.player,"-",ligneID+"");//Enleve la ligne
           if(curHdv.getLine(ligneID)!=null&&!curHdv.getLine(ligneID).isEmpty())
-            SocketManager.GAME_SEND_EHm_PACKET(this.player,"+",curHdv.getLine(ligneID).parseToEHm());//R�¿½ajthise la ligne si elle n'est pas vide
+            SocketManager.GAME_SEND_EHm_PACKET(this.player,"+",curHdv.getLine(ligneID).parseToEHm());//R�¿½ajthise la ligne si elle n'est pas vide
           this.player.refreshStats();
           SocketManager.GAME_SEND_Ow_PACKET(this.player);
-          SocketManager.GAME_SEND_Im_PACKET(this.player,"068");//Envoie le message "Lot achet�¿½"
+          SocketManager.GAME_SEND_Im_PACKET(this.player,"068");//Envoie le message "Lot achet�¿½"
         }
         else
         {
@@ -2979,7 +2979,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
         templateID=Integer.parseInt(packet.substring(3));
         SocketManager.GAME_SEND_EHP_PACKET(this.player,templateID);
         break;
-      case 'T'://Demande des template de la cat�¿½gorie
+      case 'T'://Demande des template de la cat�¿½gorie
         int categ=Integer.parseInt(packet.substring(3));
         String allTemplate;
        // if(player.getWorldMarket())
@@ -3744,7 +3744,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
           case '+'://Mettre un objet en vente
             if(Integer.parseInt(packet.substring(4).split("\\|")[1])>127)
             {
-              SocketManager.GAME_SEND_MESSAGE(this.player,"Vous avez d�j� atteint le nombre maximum d'articles que vous pouvez vendre � la fois.");
+              SocketManager.GAME_SEND_MESSAGE(this.player,"Vous avez d�j� atteint le nombre maximum d'articles que vous pouvez vendre � la fois.");
               return;
             }
 
@@ -3760,10 +3760,10 @@ public void setTimeLastTaverne(long timeLastTaverne) {
             catch(Exception e)
             {
               Main.world.logger.error("Error Echange HDV '"+packet+"' => "+e.getMessage());
-              // Arrive quand price n'est pas dans le pacquet. C'est que le joueur ne veut pas mettre dans un hdv, mais dans autre chose ... Un paquet qui est MO+itmID|qt�¿½
-              // Peeut-�¿½tre apr�¿½sa voir utilis�¿½ le concasseur ...
+              // Arrive quand price n'est pas dans le pacquet. C'est que le joueur ne veut pas mettre dans un hdv, mais dans autre chose ... Un paquet qui est MO+itmID|qt�¿½
+              // Peeut-�¿½tre apr�¿½sa voir utilis�¿½ le concasseur ...
               e.printStackTrace();
-              SocketManager.GAME_SEND_MESSAGE(this.player,"Une erreur s'est produite lors de la vente de votre article. Veuillez vous reconnecter pour r�soudre le probl�me.");
+              SocketManager.GAME_SEND_MESSAGE(this.player,"Une erreur s'est produite lors de la vente de votre article. Veuillez vous reconnecter pour r�soudre le probl�me.");
               return;
             }
             if(amount > 3 )
@@ -3783,7 +3783,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
             if(taxe<0)
               return;
 
-            if(!this.player.hasItemGuid(itmID))//V�¿½rifie si le this.playernnage a bien l'item sp�¿½cifi�¿½ et l'argent pour payer la taxe
+            if(!this.player.hasItemGuid(itmID))//V�¿½rifie si le this.playernnage a bien l'item sp�¿½cifi�¿½ et l'argent pour payer la taxe
               return;
             if(this.player.getAccount().countHdvEntries(curHdv.getHdvId())>=curHdv.getMaxAccountItem())
             {
@@ -3796,7 +3796,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
               return;
             }
 
-            GameObject obj=World.getGameObject(itmID);//R�¿½cup�¿½re l'item
+            GameObject obj=World.getGameObject(itmID);//R�¿½cup�¿½re l'item
             if(obj == null||obj.isAttach())
               return;
             if(obj.getTemplate().getType() == 24)
@@ -3807,14 +3807,14 @@ public void setTimeLastTaverne(long timeLastTaverne) {
 
             int qua=(amount==1 ? 1 : (amount==2 ? 10 : 100));
 
-            if(qua>obj.getQuantity())//S'il veut mettre plus de cette objet en vente que ce qu'il poss�¿½de
+            if(qua>obj.getQuantity())//S'il veut mettre plus de cette objet en vente que ce qu'il poss�¿½de
               return;
             int rAmount=(int)(Math.pow(10,amount)/10);
             int newQua=(obj.getQuantity()-rAmount);
 
-            if(newQua<=0)//Si c'est plusieurs objets ensemble enleve seulement la quantit�¿½ de mise en vente
+            if(newQua<=0)//Si c'est plusieurs objets ensemble enleve seulement la quantit�¿½ de mise en vente
             {
-              this.player.removeItem(itmID);//Enl�¿½ve l'item de l'inventaire du this.playernnage
+              this.player.removeItem(itmID);//Enl�¿½ve l'item de l'inventaire du this.playernnage
               SocketManager.GAME_SEND_REMOVE_ITEM_PACKET(this.player,itmID);//Envoie un packet au client pour retirer l'item de son inventaire
             }
             else
@@ -3933,7 +3933,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
         if(close) {
         	GameClient.leaveExchange(this.player);
 	    		SocketManager.GAME_SEND_ASK(this.player.getAccount().getGameClient(), this.player);	
-	    		SocketManager.PACKET_POPUP_DEPART(this.player, "Tout vous crafts en �t� fabriqu�");
+	    		SocketManager.PACKET_POPUP_DEPART(this.player, "Tout vous crafts en �t� fabriqu�");
 	    		this.player.startActionOnCell(this.player.get_gameAction_rapide());
 	    		this.removeAction(this.player.get_gameAction_rapide());
 	    		SocketManager.GAME_SEND_SPELL_LIST(this.player);
@@ -4363,7 +4363,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
     }
     if(taxe<0)
     {
-      SocketManager.GAME_SEND_MESSAGE(this.player,"Erreur en mode marchand: la taxe est n�gative.");
+      SocketManager.GAME_SEND_MESSAGE(this.player,"Erreur en mode marchand: la taxe est n�gative.");
       return;
     }
     int orientation=Formulas.getRandomValue(1,3);
@@ -4418,7 +4418,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
 			}
 			}
 			if(this.player.getId() != mount.getOwner() && !can){
-				SocketManager.GAME_SEND_MESSAGE(this.player,"vous tentez d'utiliser une monture qui n'appartient pas � ce personnage !");
+				SocketManager.GAME_SEND_MESSAGE(this.player,"vous tentez d'utiliser une monture qui n'appartient pas � ce personnage !");
 			return;	
 			}
           mount.setEtape(1);
@@ -4453,7 +4453,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
 			}
 			}
 			if(this.player.getId() != mount.getOwner() && !can2){
-				SocketManager.GAME_SEND_MESSAGE(this.player,"vous tentez d'utiliser une monture qui n'appartient pas � ce personnage !");
+				SocketManager.GAME_SEND_MESSAGE(this.player,"vous tentez d'utiliser une monture qui n'appartient pas � ce personnage !");
 			return;	
 			}
           mount.setEtape(0);
@@ -4501,7 +4501,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
 			}
 			}
 			if(this.player.getId() != mount.getOwner() && !can3){
-				SocketManager.GAME_SEND_MESSAGE(this.player,"vous tentez d'utiliser une monture qui n'appartient pas � ce personnage !");
+				SocketManager.GAME_SEND_MESSAGE(this.player,"vous tentez d'utiliser une monture qui n'appartient pas � ce personnage !");
 			return;	
 			}
           mount.setEtape(2);
@@ -4539,7 +4539,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
   			}
   			}
   			if(this.player.getId() != mount.getOwner() && !can4){
-  				SocketManager.GAME_SEND_MESSAGE(this.player,"vous tentez d'utiliser une monture qui n'appartient pas � ce personnage !");
+  				SocketManager.GAME_SEND_MESSAGE(this.player,"vous tentez d'utiliser une monture qui n'appartient pas � ce personnage !");
   			return;	
   			}
   			if(mount.getEtape() != -1){
@@ -4609,7 +4609,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
 			}
 			}
 			if(this.player.getId() != mount.getOwner() && !can){
-				SocketManager.GAME_SEND_MESSAGE(this.player,"vous tentez d'utiliser une monture qui n'appartient pas � ce personnage !");
+				SocketManager.GAME_SEND_MESSAGE(this.player,"vous tentez d'utiliser une monture qui n'appartient pas � ce personnage !");
 			return;	
 			}
             mount.setEtape(1);
@@ -4668,7 +4668,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
 			}
 			}
 			if(this.player.getId() != mount.getOwner() && !can2){
-				SocketManager.GAME_SEND_MESSAGE(this.player,"vous tentez d'utiliser une monture qui n'appartient pas � ce personnage !");
+				SocketManager.GAME_SEND_MESSAGE(this.player,"vous tentez d'utiliser une monture qui n'appartient pas � ce personnage !");
 			return;	
 			}
 
@@ -4702,7 +4702,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
     }
     GameClient.leaveExchange(player);
       if(packet.substring(2,4).equals("13")&&this.player.getExchangeAction()==null)
-    { // Craft s�¿½curis�¿½ : celui qui n'a pas le job ( this.player ) souhaite invit�¿½ player
+    { // Craft s�¿½curis�¿½ : celui qui n'a pas le job ( this.player ) souhaite invit�¿½ player
       try
       {
         String[] split=packet.split("\\|");
@@ -4802,7 +4802,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
       return;
     }
     else if(packet.substring(2,4).equals("12")&&this.player.getExchangeAction()==null)
-    { // Craft s�¿½curis�¿½ : celui qui �¿½ le job ( this.player ) souhaite invit�¿½ player
+    { // Craft s�¿½curis�¿½ : celui qui �¿½ le job ( this.player ) souhaite invit�¿½ player
       try
       {
         String[] split=packet.split("\\|");
@@ -4870,7 +4870,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
 
         if(!ok)
         {
-          this.player.sendMessage("Vous �tes trop loin de l'atelier.");
+          this.player.sendMessage("Vous �tes trop loin de l'atelier.");
           return;
         }
 
@@ -4925,7 +4925,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
       {
         String info="1,10,100;"+hdv.getStrCategory()+";"+hdv.parseTaxe()+";"+hdv.getLvlMax()+";"+hdv.getMaxAccountItem()+";-1;"+hdv.getSellTime();
         SocketManager.GAME_SEND_ECK_PACKET(this.player,11,info);
-        ExchangeAction<Integer> exchangeAction=new ExchangeAction<>(ExchangeAction.AUCTION_HOUSE_BUYING,-this.player.getCurMap().getId()); //R�¿½cup�¿½re l'ID de la map et rend cette valeur n�¿½gative
+        ExchangeAction<Integer> exchangeAction=new ExchangeAction<>(ExchangeAction.AUCTION_HOUSE_BUYING,-this.player.getCurMap().getId()); //R�¿½cup�¿½re l'ID de la map et rend cette valeur n�¿½gative
         this.player.setExchangeAction(exchangeAction);
       }
       return;
@@ -5129,7 +5129,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
         SocketManager.GAME_SEND_ECK_PACKET(this,8,String.valueOf(collector.getId()));
         SocketManager.GAME_SEND_ITEM_LIST_PACKET_PERCEPTEUR(this,collector);
         break;
-      case '9'://D�¿½pos�¿½/Retir�¿½ un familier
+      case '9'://D�¿½pos�¿½/Retir�¿½ un familier
         id=Integer.parseInt(packet.substring(4));
 
         if(this.player.getCurMap().getNpc(id)!=null)
@@ -5438,7 +5438,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
     if(this.player==null)
       return;
     if(this.player.getFight()!=null)
-      return;//Pas d'�¿½mote en combat
+      return;//Pas d'�¿½mote en combat
     if(!this.player.getEmotes().contains(emote))
       return;
     if(emote!=1||emote!=19&&this.player.isSitted())
@@ -5446,7 +5446,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
 
     switch(emote)
     {
-      case 20://Tabouret h�¿½h�¿½ ( rime )
+      case 20://Tabouret h�¿½h�¿½ ( rime )
       case 19://s'allonger
       case 1:// s'asseoir
         this.player.setSitted(!this.player.isSitted());
@@ -5650,7 +5650,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
         // TP Mariage : mettre une condition de donjon ...
         if(Wife.getCurMap().noTP||Wife.getCurMap().haveMobFix())
         {
-          SocketManager.GAME_SEND_MESSAGE(this.player,"Une barri�re magique vous emp�che de rejoindre votre conjoint.");
+          SocketManager.GAME_SEND_MESSAGE(this.player,"Une barri�re magique vous emp�che de rejoindre votre conjoint.");
           return;
         }
         if (System.currentTimeMillis() < this.timeLastprisme_zaap_zaapi) {
@@ -5694,7 +5694,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
     {
       switch(packet.charAt(1))
       {
-        case 'D'://D�¿½tails d'un combat (liste des combats)
+        case 'D'://D�¿½tails d'un combat (liste des combats)
           int key=-1;
           try
           {
@@ -5879,7 +5879,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
         this.player.setGameAction(GA);
         break;
 
-      case 507://Panneau int�¿½rieur de la maison
+      case 507://Panneau int�¿½rieur de la maison
         houseAction(packet);
         break;
 
@@ -6009,7 +6009,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
         removeAction(GA);
         return;
       }
-      //Si d�¿½placement inutile
+      //Si d�¿½placement inutile
       GameCase targetCell=this.player.getCurMap().getCase(Main.world.getCryptManager().cellCode_To_ID(path.substring(path.length()-2)));
       try {
     	  if(targetCell == null)
@@ -6082,11 +6082,11 @@ public void setTimeLastTaverne(long timeLastTaverne) {
       {
         this.player.getCurCell().removePlayer(this.player);
         SocketManager.GAME_SEND_BN(this);
-        //On prend la case cibl�¿½e
+        //On prend la case cibl�¿½e
         GameCase nextCell=this.player.getCurMap().getCase(Main.world.getCryptManager().cellCode_To_ID(path.substring(path.length()-2)));
         targetCell=this.player.getCurMap().getCase(Main.world.getCryptManager().cellCode_To_ID(GA.packet.substring(GA.packet.length()-2)));
 
-        //On d�¿½finie la case et on ajthise le this.playernnage sur la case
+        //On d�¿½finie la case et on ajthise le this.playernnage sur la case
         this.player.setCurCell(nextCell);
         this.player.setOldCell(nextCell.getId());
         this.player.set_orientation(Main.world.getCryptManager().getIntByHashedValue(path.charAt(path.length()-3)));
@@ -6153,9 +6153,9 @@ public void setTimeLastTaverne(long timeLastTaverne) {
     Quest quete=Quest.getQuestById(Integer.parseInt(packet.substring(5)));
     QuestPlayer qp=this.player.getQuestPersoByQuest(quete);
     if(qp==null)
-      quete.applyQuest(this.player); // S'il n'a pas la qu�¿½te
+      quete.applyQuest(this.player); // S'il n'a pas la qu�¿½te
     else
-      SocketManager.GAME_SEND_MESSAGE(this.player,"Vous avez d�j� commenc� cette qu�te.");
+      SocketManager.GAME_SEND_MESSAGE(this.player,"Vous avez d�j� commenc� cette qu�te.");
     //this.player.addNewQuest(Integer.parseInt(packet.substring(5)));
   }
 
@@ -6277,7 +6277,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
       return;
     switch(actionID)
     {
-      case 81://V�¿½rouiller maison
+      case 81://V�¿½rouiller maison
         h.lock(this.player);
         break;
       case 97://Acheter maison
@@ -6417,7 +6417,9 @@ public void setTimeLastTaverne(long timeLastTaverne) {
         {
         	player.itemchek();
           if(F.getType()==Constant.FIGHT_TYPE_PVM&&!F.isBegin())
-            F.joinFight(this.player,F.getStartGuid());
+          {
+        	  F.joinFight(this.player,F.getStartGuid());  
+          }
           else
             F.joinAsSpect(this.player);
         }
@@ -6502,7 +6504,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
       String map_pvp = ";7423;952;";
       if(!map_pvp.contains(";"+this.player.getCurMap().getId()+";"))
       {
-   SocketManager.GAME_SEND_MESSAGE(this.player,"Map non autoris� PvP");
+   SocketManager.GAME_SEND_MESSAGE(this.player,"Map non autoris� PvP");
       return;	  
       }
       }
@@ -6827,14 +6829,14 @@ public void setTimeLastTaverne(long timeLastTaverne) {
             this.player.getCurCell().removePlayer(this.player);
             SocketManager.GAME_SEND_BN(this);
             String path=GA.args;
-            //On prend la case cibl�¿½e
+            //On prend la case cibl�¿½e
 
             GameCase nextCell=this.player.getCurMap().getCase(Main.world.getCryptManager().cellCode_To_ID(path.substring(path.length()-2)));
             GameCase targetCell=this.player.getCurMap().getCase(Main.world.getCryptManager().cellCode_To_ID(GA.packet.substring(GA.packet.length()-2)));
 
             //FIXME: Anti cheat engine speedhack
 
-            //On d�¿½finie la case et on ajoute le personnage sur la case
+            //On d�¿½finie la case et on ajoute le personnage sur la case
             this.player.setCurCell(nextCell);
             this.player.set_orientation(Main.world.getCryptManager().getIntByHashedValue(path.charAt(path.length()-3)));
             if(this.player.getCurCell() == null) {
@@ -6942,14 +6944,14 @@ public void setTimeLastTaverne(long timeLastTaverne) {
             this.player.getCurCell().removePlayer(this.player);
             SocketManager.GAME_SEND_BN(this);
             String path=GA.args;
-            //On prend la case cibl�¿½e
+            //On prend la case cibl�¿½e
   
             GameCase nextCell=this.player.getCurMap().getCase(Main.world.getCryptManager().cellCode_To_ID(path.substring(path.length()-2)));
             GameCase targetCell=this.player.getCurMap().getCase(Main.world.getCryptManager().cellCode_To_ID(GA.packet.substring(GA.packet.length()-2)));
   
             //FIXME: Anti cheat engine speedhack
   
-            //On d�¿½finie la case et on ajoute le personnage sur la case
+            //On d�¿½finie la case et on ajoute le personnage sur la case
             if(nextCell!=null)
             {
               this.player.setCurCell(nextCell);
@@ -7071,7 +7073,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
     if(id>0)
     {
       Player target=Main.world.getPlayer(id);
-      //On ne quitte pas un joueur qui : est null, ne combat pas, n'est pas de �¿½a team.
+      //On ne quitte pas un joueur qui : est null, ne combat pas, n'est pas de �¿½a team.
       if(target==null||target.getFight()==null)
         return;
       if(target.getFight().getTeamId(target.getId())!=this.player.getFight().getTeamId(this.player.getId()))
@@ -7126,13 +7128,13 @@ public void setTimeLastTaverne(long timeLastTaverne) {
       case 'C'://Creation
         createGuild(packet);
         break;
-      case 'f'://T�¿½l�¿½portation enclo de guilde
+      case 'f'://T�¿½l�¿½portation enclo de guilde
         teleportToGuildFarm(packet.substring(2));
         break;
       case 'F'://Retirer Collector
         removeTaxCollector(packet.substring(2));
         break;
-      case 'h'://T�¿½l�¿½portation maison de guilde
+      case 'h'://T�¿½l�¿½portation maison de guilde
         teleportToGuildHouse(packet.substring(2));
         break;
       case 'H'://Poser un Collector
@@ -7153,7 +7155,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
       case 'T'://attaque sur Collector
         joinOrLeaveTaxCollector(packet.substring(2));
         break;
-      case 'V'://Ferme le panneau de cr�¿½ation de guilde
+      case 'V'://Ferme le panneau de cr�¿½ation de guilde
         leavePanelGuildCreate();
         break;
     }
@@ -7248,12 +7250,12 @@ public void setTimeLastTaverne(long timeLastTaverne) {
       //Validation du nom de la guilde
       String tempName=name.toLowerCase();
       boolean isValid=true;
-      //V�¿½rifie d'abord si il contient des termes d�¿½finit
+      //V�¿½rifie d'abord si il contient des termes d�¿½finit
       if(tempName.length()>20||tempName.contains("mj")||tempName.contains("modo")||tempName.contains("fuck")||tempName.contains("admin"))
       {
         isValid=false;
       }
-      //Si le nom passe le test, on v�¿½rifie que les caract�¿½re entr�¿½ sont correct.
+      //Si le nom passe le test, on v�¿½rifie que les caract�¿½re entr�¿½ sont correct.
       if(isValid)
       {
         int tiretCount=0;
@@ -7329,7 +7331,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
         return;
     	}
       }
-      if(this.player.getCurMap().getId()==2196)//Temple de cr�¿½ation de guilde
+      if(this.player.getCurMap().getId()==2196)//Temple de cr�¿½ation de guilde
       {
         if(!this.player.hasItemTemplate(1575,1))//Guildalogemme
         {
@@ -7465,7 +7467,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
         String map_pvp = ";7423;952;";
         if(!map_pvp.contains(";"+this.player.getCurMap().getId()+";"))
         {
-     SocketManager.GAME_SEND_MESSAGE(this.player,"Map non autoris� PvP");
+     SocketManager.GAME_SEND_MESSAGE(this.player,"Map non autoris� PvP");
         return;	  
         }
         }
@@ -7476,12 +7478,12 @@ public void setTimeLastTaverne(long timeLastTaverne) {
       return;
     }
     if(Collector.getCollectorByGuildId(this.player.getCurMap().getId())>0)
-    {//La Map poss�¿½de un Collector
+    {//La Map poss�¿½de un Collector
       SocketManager.GAME_SEND_Im_PACKET(this.player,"1168;1");
       return;
     }
     if(this.player.getCurMap().getPlaces().length()<5||Capture.isInArenaMap(this.player.getCurMap().getId())||this.player.getCurMap().noCollector)
-    {//La map ne poss�¿½de pas de "places"
+    {//La map ne poss�¿½de pas de "places"
       SocketManager.GAME_SEND_Im_PACKET(this.player,"113");
       return;
     }
@@ -7613,7 +7615,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
         {
           Player p=Main.world.getPlayer(this.player.getInvitation());
           if(p==null)
-            return;//Pas cens�¿½ arriver
+            return;//Pas cens�¿½ arriver
           SocketManager.GAME_SEND_gJ_PACKET(p,"Ec");
         }
         break;
@@ -7623,7 +7625,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
         {
           Player p=Main.world.getPlayer(this.player.getInvitation());
           if(p==null)
-            return;//Pas cens�¿½ arriver
+            return;//Pas cens�¿½ arriver
           Guild G=p.get_guild();
           GuildMember GM=G.addNewMember(this.player);
           Database.getDynamics().getGuildMemberData().update(this.player);
@@ -7664,13 +7666,13 @@ public void setTimeLastTaverne(long timeLastTaverne) {
       toRemGuild=P.get_guild();
       if(toRemGuild==null)//La guilde du this.playernnage n'est pas charger ?
       {
-        toRemGuild=Main.world.getGuild(this.player.get_guild().getId());//On prend la guilde du this.player qui l'�¿½jecte
+        toRemGuild=Main.world.getGuild(this.player.get_guild().getId());//On prend la guilde du this.player qui l'�¿½jecte
       }
       toRemMember=toRemGuild.getMember(P.getId());
       if(toRemMember==null)
         return;//Si le membre n'est pas dans la guilde.
       if(toRemMember.getGuild().getId()!=this.player.get_guild().getId())
-        return;//Si guilde diff�¿½rente
+        return;//Si guilde diff�¿½rente
     }
     //si pas la meme guilde
     if(toRemGuild.getId()!=this.player.get_guild().getId())
@@ -7678,13 +7680,13 @@ public void setTimeLastTaverne(long timeLastTaverne) {
       SocketManager.GAME_SEND_gK_PACKET(this.player,"Ea");
       return;
     }
-    //S'il n'a pas le droit de kick, et que ce n'est pas lui m�¿½me la cible
+    //S'il n'a pas le droit de kick, et que ce n'est pas lui m�¿½me la cible
     if(!this.player.getGuildMember().canDo(Constant.G_BAN)&&this.player.getGuildMember().getGuid()!=toRemMember.getGuid())
     {
       SocketManager.GAME_SEND_gK_PACKET(this.player,"Ed");
       return;
     }
-    //Si diff�¿½rent : Kick
+    //Si diff�¿½rent : Kick
     if(this.player.getGuildMember().getGuid()!=toRemMember.getGuid())
     {
       if(toRemMember.getRank()==1) //S'il veut kicker le meneur
@@ -7718,7 +7720,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
 	  if(this.player == null)
 		  return;
     if(this.player.get_guild()==null)
-      return; //Si le this.playernnage envoyeur n'a m�¿½me pas de guilde
+      return; //Si le this.playernnage envoyeur n'a m�¿½me pas de guilde
 
     String[] infos=packet.split("\\|");
 
@@ -7727,18 +7729,18 @@ public void setTimeLastTaverne(long timeLastTaverne) {
     byte xpGive=Byte.parseByte(infos[2]);
     int right=Integer.parseInt(infos[3]);
 
-    Player p=Main.world.getPlayer(guid); //Cherche le this.playernnage a qui l'on change les droits dans la m�¿½moire
+    Player p=Main.world.getPlayer(guid); //Cherche le this.playernnage a qui l'on change les droits dans la m�¿½moire
     GuildMember toChange;
     GuildMember changer=this.player.getGuildMember();
-    //R�¿½cup�¿½ration du this.playernnage �¿½ changer, et verification de quelques conditions de base
-    if(p==null) //Arrive lorsque le this.playernnage n'est pas charg�¿½ dans la m�¿½moire
+    //R�¿½cup�¿½ration du this.playernnage �¿½ changer, et verification de quelques conditions de base
+    if(p==null) //Arrive lorsque le this.playernnage n'est pas charg�¿½ dans la m�¿½moire
     {
-      int guildId=Database.getDynamics().getGuildMemberData().isPersoInGuild(guid); //R�¿½cup�¿½re l'id de la guilde du this.playernnage qui n'est pas dans la m�¿½moire
+      int guildId=Database.getDynamics().getGuildMemberData().isPersoInGuild(guid); //R�¿½cup�¿½re l'id de la guilde du this.playernnage qui n'est pas dans la m�¿½moire
 
       if(guildId<0)
-        return; //Si le this.playernnage �¿½ qui les droits doivent �¿½tre modifi�¿½ n'existe pas ou n'a pas de guilde
+        return; //Si le this.playernnage �¿½ qui les droits doivent �¿½tre modifi�¿½ n'existe pas ou n'a pas de guilde
 
-      if(guildId!=this.player.get_guild().getId()) //Si ils ne sont pas dans la m�¿½me guilde
+      if(guildId!=this.player.get_guild().getId()) //Si ils ne sont pas dans la m�¿½me guilde
       {
         SocketManager.GAME_SEND_gK_PACKET(this.player,"Ed");
         return;
@@ -7748,7 +7750,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
     else
     {
       if(p.get_guild()==null)
-        return; //Si la this.playernne �¿½ qui changer les droits n'a pas de guilde
+        return; //Si la this.playernne �¿½ qui changer les droits n'a pas de guilde
       if(this.player.get_guild().getId()!=p.get_guild().getId()) //Si ils ne sont pas de la meme guilde
       {
         SocketManager.GAME_SEND_gK_PACKET(this.player,"Ea");
@@ -7758,11 +7760,11 @@ public void setTimeLastTaverne(long timeLastTaverne) {
       toChange=p.getGuildMember();
     }
 
-    //V�¿½rifie ce que le this.playernnage changeur �¿½ le droit de faire
+    //V�¿½rifie ce que le this.playernnage changeur �¿½ le droit de faire
 
     if(changer.getRank()==1) //Si c'est le meneur
     {
-      if(changer.getGuid()==toChange.getGuid()) //Si il se modifie lui m�¿½me, reset tthis sauf l'XP
+      if(changer.getGuid()==toChange.getGuid()) //Si il se modifie lui m�¿½me, reset tthis sauf l'XP
       {
         rank=-1;
         right=-1;
@@ -7774,7 +7776,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
         {
           changer.setAllRights(2,(byte)-1,29694,this.player); //Met le meneur "Bras droit" avec tthis les droits
 
-          //D�¿½fini les droits �¿½ mettre au nouveau meneur
+          //D�¿½fini les droits �¿½ mettre au nouveau meneur
           rank=1;
           xpGive=-1;
           right=1;
@@ -8435,7 +8437,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
           return;
         if(!object.getTemplate().getConditions().equalsIgnoreCase("")&&!ConditionParser.validConditions(this.player,object.getTemplate().getConditions()))
         {
-          SocketManager.GAME_SEND_Im_PACKET(this.player,"119|44"); // si le this.player ne v�¿½rifie pas les conditions diverses
+          SocketManager.GAME_SEND_Im_PACKET(this.player,"119|44"); // si le this.player ne v�¿½rifie pas les conditions diverses
           return;
         }
 
@@ -8446,8 +8448,8 @@ public void setTimeLastTaverne(long timeLastTaverne) {
           {
             if(this.player.getObjetByPos(Constant.ITEM_POS_ARME).getTemplate().isTwoHanded())
             {
-              SocketManager.GAME_SEND_Im_PACKET(this.player,"119|44"); // si le this.player ne v�¿½rifie pas les conditions diverses
-              this.player.sendMessage("Vous ne pouve pas �quip�e une arme � 2 mains avec votre bouclier");
+              SocketManager.GAME_SEND_Im_PACKET(this.player,"119|44"); // si le this.player ne v�¿½rifie pas les conditions diverses
+              this.player.sendMessage("Vous ne pouve pas �quip�e une arme � 2 mains avec votre bouclier");
               return;
             }
           }
@@ -8455,7 +8457,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
           {
             if(object.getTemplate().isTwoHanded())
             {
-            	this.player.sendMessage("Vous ne pouve pas �quip�e une arme � 2 mains avec votre bouclier");
+            	this.player.sendMessage("Vous ne pouve pas �quip�e une arme � 2 mains avec votre bouclier");
             	return;
             }
           }
@@ -8468,7 +8470,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
           return;
         }
 
-        //On ne peut �¿½quiper 2 items de panoplies identiques, ou 2 Dofus identiques
+        //On ne peut �¿½quiper 2 items de panoplies identiques, ou 2 Dofus identiques
         if(position!=Constant.ITEM_POS_NO_EQUIPED&&(object.getTemplate().getPanoId()!=-1||object.getTemplate().getType()==Constant.ITEM_TYPE_DOFUS)&&this.player.hasEquiped(object.getTemplate().getId()))
         {
           return;
@@ -8494,16 +8496,16 @@ public void setTimeLastTaverne(long timeLastTaverne) {
         	  this.player.sendMessage("Erreur item mimibiote");
       		return;
       	}
-          exObj.setObvijevanPos(object.getObvijevanPos()); // L'objet qui �¿½tait en place a maintenant un obvi
+          exObj.setObvijevanPos(object.getObvijevanPos()); // L'objet qui �¿½tait en place a maintenant un obvi
           Database.getDynamics().getObvejivanData().add(object,exObj);
-          this.player.removeItem(object.getGuid(),1,false,false); // on enl�¿½ve l'existance de l'obvi en lui-m�¿½me
-          SocketManager.send(this.player,"OR"+object.getGuid()); // on le pr�¿½cise au client.
+          this.player.removeItem(object.getGuid(),1,false,false); // on enl�¿½ve l'existance de l'obvi en lui-m�¿½me
+          SocketManager.send(this.player,"OR"+object.getGuid()); // on le pr�¿½cise au client.
           Database.getDynamics().getObjectData().delete(object.getGuid());
 
           exObj.refreshStatsObjet(object.parseStatsStringSansUserObvi()+",3ca#"+Integer.toHexString(objGUID)+"#0#0#0d0+"+objGUID);
 
           SocketManager.send(this.player,exObj.obvijevanOCO_Packet(position));
-          SocketManager.GAME_SEND_ON_EQUIP_ITEM(this.player.getCurMap(),this.player); // Si l'obvi �¿½tait cape ou coiffe : packet au client
+          SocketManager.GAME_SEND_ON_EQUIP_ITEM(this.player.getCurMap(),this.player); // Si l'obvi �¿½tait cape ou coiffe : packet au client
           // S'il y avait plusieurs objets
           if(object.getQuantity()>1)
           {
@@ -8525,15 +8527,15 @@ public void setTimeLastTaverne(long timeLastTaverne) {
             Main.world.removeGameObject(object.getGuid());
           }
           //Database.getStatics().getPlayerData().update(this.player);
-          return; // on s'arr�¿½te l�¿½ pour l'obvi
+          return; // on s'arr�¿½te l�¿½ pour l'obvi
         } // FIN DU CODE OBVI
 
-        if(exObj!=null)//S'il y avait d�¿½ja un objet sur cette place on d�¿½s�¿½quipe
+        if(exObj!=null)//S'il y avait d�¿½ja un objet sur cette place on d�¿½s�¿½quipe
         {
           GameObject obj2;
           ObjectTemplate exObjTpl=exObj.getTemplate();
           int idSetExObj=exObj.getTemplate().getPanoId();
-          if((obj2=this.player.getSimilarItem(exObj))!=null)//On le poss�¿½de deja
+          if((obj2=this.player.getSimilarItem(exObj))!=null)//On le poss�¿½de deja
           {
  
             obj2.setQuantity(obj2.getQuantity()+exObj.getQuantity(), this.player);
@@ -8543,7 +8545,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
             SocketManager.GAME_SEND_REMOVE_ITEM_PACKET(this.player,exObj.getGuid());
           }
           else
-          //On ne le poss�¿½de pas
+          //On ne le poss�¿½de pas
           {
        
             exObj.setPosition(Constant.ITEM_POS_NO_EQUIPED);
@@ -8657,7 +8659,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
           switch(object.getTemplate().getId())
           //Incarnation
           {
-            case 9544: // Tourmenteur t��©nebres
+            case 9544: // Tourmenteur t��©nebres
               this.player.setFullMorph(1,false,false);
               break;
             case 9545: // Tourmenteur feu
@@ -8687,7 +8689,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
           }
         }
         else
-        {// Tourmenteur ; on d�¿½morphe
+        {// Tourmenteur ; on d�¿½morphe
           if(Constant.isIncarnationWeapon(object.getTemplate().getId()))
             this.player.unsetFullMorph();
         }
@@ -8699,7 +8701,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
             this.player.setGfxId((this.player.getSexe()==1) ? 8009 : 8006);
             SocketManager.GAME_SEND_ERASE_ON_MAP_TO_MAP(this.player.getCurMap(),this.player.getId());
             SocketManager.GAME_SEND_ADD_PLAYER_TO_MAP(this.player.getCurMap(),this.player);
-            SocketManager.GAME_SEND_MESSAGE(this.player,"Vous avez �t� transform� en mercenaire.");
+            SocketManager.GAME_SEND_MESSAGE(this.player,"Vous avez �t� transform� en mercenaire.");
           }
           else if(position==Constant.ITEM_POS_NO_EQUIPED)
           {
@@ -8732,7 +8734,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
         	//this.player.toogleOnMount();
         }
           
-        //Verif pour les thisils de m�¿½tier
+        //Verif pour les thisils de m�¿½tier
         if(position==Constant.ITEM_POS_NO_EQUIPED&&this.player.getObjetByPos(Constant.ITEM_POS_ARME)==null)
           SocketManager.GAME_SEND_OT_PACKET(this,-1);
         if(position==Constant.ITEM_POS_ARME&&this.player.getObjetByPos(Constant.ITEM_POS_ARME)!=null)
@@ -8849,7 +8851,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
        SocketManager.GAME_SEND_BUY_ERROR_PACKET(this);
        return;
      }
-		SocketManager.GAME_SEND_MESSAGE(player,"Votre mimibiote a ete dissoci�.");	
+		SocketManager.GAME_SEND_MESSAGE(player,"Votre mimibiote a ete dissoci�.");	
 
 	        SocketManager.GAME_SEND_Ow_PACKET(player);
 	        SocketManager.GAME_SEND_STATS_PACKET(player);
@@ -9275,7 +9277,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
     Party g=this.player.getParty();
     if(g==null)
       return;
-    if(packet.length()==2)//Si aucun guid est sp�¿½cifi�¿½, alors c'est que le joueur quitte
+    if(packet.length()==2)//Si aucun guid est sp�¿½cifi�¿½, alors c'est que le joueur quitte
     {
       g.leave(this.player);
       SocketManager.GAME_SEND_PV_PACKET(this,"");
@@ -9348,7 +9350,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
       case 'p'://Demande Decription en Enclo.
         dataMount(packet,false);
         break;
-      case 'f'://Lib�¿½re la monture
+      case 'f'://Lib�¿½re la monture
         killMount(packet);
         break;
       case 'n'://Change le nom
@@ -10018,7 +10020,7 @@ public void disconnect()
       //cellID == this.player.getCurCell().getId()
       if((list!=null&&list.contains((int)this.player.getCurCell().getId()))||distPecheur())// et on verrifie si le joueur = cellI
         this.player.getGameClient().gameAction(actions.get(-1));// On renvois comme demande
-      //Risqu�¿½ mais bon pas le choix si on veut pas �¿½tre emmerder avec les bl�¿½s. Parser le bon type ?
+      //Risqu�¿½ mais bon pas le choix si on veut pas �¿½tre emmerder avec les bl�¿½s. Parser le bon type ?
       //this.player.getGameClient().gameAction(actions.getWaitingAccount(-1));// On renvois comme demande
       actions.remove(-1);
     }
@@ -10063,7 +10065,7 @@ public void disconnect()
         break;
       case 'M':
         if(this.player.getFight()!=null)
-          SocketManager.GAME_SEND_MESSAGE(player,"Vous ne pouvez pas ouvrir le march� pendant le combat.");
+          SocketManager.GAME_SEND_MESSAGE(player,"Vous ne pouvez pas ouvrir le march� pendant le combat.");
         else
         {
           Hdv hdv=Main.world.getWorldMarket();
@@ -10071,7 +10073,7 @@ public void disconnect()
           {
             String info="1,10,100;"+hdv.getStrCategory()+";"+hdv.parseTaxe()+";"+hdv.getLvlMax()+";"+hdv.getMaxAccountItem()+";-1;"+hdv.getSellTime();
             SocketManager.GAME_SEND_ECK_PACKET(this.player,11,info);
-            ExchangeAction<Integer> exchangeAction=new ExchangeAction<>(ExchangeAction.AUCTION_HOUSE_BUYING,-this.player.getCurMap().getId()); //R�¿½cup�¿½re l'ID de la map et rend cette valeur n�¿½gative
+            ExchangeAction<Integer> exchangeAction=new ExchangeAction<>(ExchangeAction.AUCTION_HOUSE_BUYING,-this.player.getCurMap().getId()); //R�¿½cup�¿½re l'ID de la map et rend cette valeur n�¿½gative
             this.player.setExchangeAction(exchangeAction);
             this.player.setWorldMarket(true);
           }
@@ -10358,11 +10360,11 @@ Logging.getInstance().write("DDOS","IP Same Packet 500 out "+packet+" "+ip);
     }
     if(Database.getStatics().getPlayerData().exist(name)||!isValid)
     {
-      this.player.sendMessage("Le nom saisi est d�j� utilis� ou n'est pas autoris�.");
+      this.player.sendMessage("Le nom saisi est d�j� utilis� ou n'est pas autoris�.");
       return;
     }
     Database.getStatics().getPlayerData().logs_buy(this.player, "changement de nom "+this.player.getName()+" par "+name);
-    SocketManager.GAME_SEND_MESSAGE(player,"Vous avez chang� votre nom","000000");
+    SocketManager.GAME_SEND_MESSAGE(player,"Vous avez chang� votre nom","000000");
     this.player.setName(name);
     SocketManager.GAME_SEND_ALTER_GM_PACKET(this.player.getCurMap(),this.player);
     Database.getStatics().getPlayerData().updateName(player.getId(), name);
@@ -10525,16 +10527,16 @@ private void MorphitemChange(final String packet){
 	final int stats = Integer.parseInt(verif.replace("|", "-").split("-")[0]);
 	final int apparence = Integer.parseInt(verif.replace("|", "-").split("-")[1]);
 	if (stats == apparence){
-		SocketManager.PACKET_POPUP_DEPART(this.player, "Vous devez prendre deux objet diff�rent !");
+		SocketManager.PACKET_POPUP_DEPART(this.player, "Vous devez prendre deux objet diff�rent !");
 		return;
 	}
 	final GameObject obj = World.getGameObject(stats);
 	if(obj == null){
-		SocketManager.PACKET_POPUP_DEPART(this.player, "Les deux objet ne peuvent �tres li� !");
+		SocketManager.PACKET_POPUP_DEPART(this.player, "Les deux objet ne peuvent �tres li� !");
 		return;
 	}
 	if (!this.player.hasItemGuid(obj.getGuid()) || !this.player.hasItemGuid(apparence)) {
-		SocketManager.PACKET_POPUP_DEPART(this.player, "Les deux objet ne peuvent �tres li� !");
+		SocketManager.PACKET_POPUP_DEPART(this.player, "Les deux objet ne peuvent �tres li� !");
 		return;
 	}
 	if (obj.containtTxtStats(975)){
@@ -10544,7 +10546,7 @@ private void MorphitemChange(final String packet){
 	}
 	ObjectTemplate T = World.getGameObject(apparence).getTemplate();
 	if (T == null || obj.getTemplate().getType() != T.getType() || !Constant.MimibioteItem(T.getType()) || !Constant.MimibioteItem(obj.getTemplate().getType())){
-		SocketManager.PACKET_POPUP_DEPART(this.player, "Les deux objet ne peuvent �tres li� !");
+		SocketManager.PACKET_POPUP_DEPART(this.player, "Les deux objet ne peuvent �tres li� !");
 		return;
 	}
 	//Objects morphitem = T.createNewMorphItem(T.getID(), obj);
@@ -10578,7 +10580,7 @@ private void MorphitemChange(final String packet){
 	this.player.removeItem(apparence,1,true,true);
 	//Database.getStatics().getObjectData().update(obj);
 	SocketManager.GAME_SEND_ASK(this.player.getAccount().getGameClient(), this.player);
-	SocketManager.PACKET_POPUP_DEPART(this.player, "Votre objet � bien �t� transformer !");
+	SocketManager.PACKET_POPUP_DEPART(this.player, "Votre objet � bien �t� transformer !");
 	player.removeByTemplateID(4,1);
 	SocketManager.GAME_SEND_SPELL_LIST(player);
     }
@@ -10636,29 +10638,29 @@ private void succes(String packet)
      SocketManager.GAME_SEND_MESSAGE(this.player,""
      		+ "Victoires PvM :<b> "+World.get_Succes(this.getPlayer().getId()).getCombat() +
     		 "</b>. Victoires PvP : <b>"+World.get_Succes(this.getPlayer().getId()).getPvp()+ ""
-    		 +"</b>. D�faites PvP : <b>"+World.get_Succes(this.getPlayer().getId()).getPvp_lose()+ ""
-    		 +"</b>. Victoires Koliz�um : <b>"+World.get_Succes(this.getPlayer().getId()).getKoli_wine()+"</b>"
-    		 +"</b>. D�faites Koliz�um : <b>"+World.get_Succes(this.getPlayer().getId()).getKoli_lose()+"</b>"
-    		 +"</b>. Donjons effectu�s : <b>"+World.get_Succes(this.getPlayer().getId()).getDonjon()
-    		 +"</b>. Points boutique d�penser : <b>"+World.get_Succes(this.getPlayer().getId()).getBoutique()
+    		 +"</b>. D�faites PvP : <b>"+World.get_Succes(this.getPlayer().getId()).getPvp_lose()+ ""
+    		 +"</b>. Victoires Koliz�um : <b>"+World.get_Succes(this.getPlayer().getId()).getKoli_wine()+"</b>"
+    		 +"</b>. D�faites Koliz�um : <b>"+World.get_Succes(this.getPlayer().getId()).getKoli_lose()+"</b>"
+    		 +"</b>. Donjons effectu�s : <b>"+World.get_Succes(this.getPlayer().getId()).getDonjon()
+    		 +"</b>. Points boutique d�penser : <b>"+World.get_Succes(this.getPlayer().getId()).getBoutique()
     		 +"</b>. Challenges remporter : <b>"+World.get_Succes(this.getPlayer().getId()).getChall()+"</b>"
     		 +"</b>. Messages envoyer : <b>"+World.get_Succes(this.getPlayer().getId()).getMsg()+"</b>","008000");
      }else {
     	 SocketManager.GAME_SEND_MESSAGE(this.player,""
-    	     		+ "Combats PVM gagn�s :<b> "+World.get_Succes(this.getPlayer().getId()).getCombat() +
-    	    		 "</b>. Combats PVP gagn�s : <b>"+World.get_Succes(this.getPlayer().getId()).getPvp()+ ""
-    	    		 		+ "</b>. Qu�tes termin�es : <b>"+World.get_Succes(this.getPlayer().getId()).getQuete()
-    	    		 +"</b>. Donjons effectu�s : <b>"+World.get_Succes(this.getPlayer().getId()).getDonjon()
-    	    		 +"</b>. Archi-monstres tu�s : <b>"+World.get_Succes(this.getPlayer().getId()).getArchi()
-    	    		 +"</b>. Points boutique d�pensez : <b>"+World.get_Succes(this.getPlayer().getId()).getBoutique()
-    	    		 +"</b>. Ressources r�colt�es : <b>"+World.get_Succes(this.getPlayer().getId()).getRecolte()
-    	    		 +"</b>. Objets Craft�s : <b>"+World.get_Succes(this.getPlayer().getId()).getCraft()+"</b>"
+    	     		+ "Combats PVM gagn�s :<b> "+World.get_Succes(this.getPlayer().getId()).getCombat() +
+    	    		 "</b>. Combats PVP gagn�s : <b>"+World.get_Succes(this.getPlayer().getId()).getPvp()+ ""
+    	    		 		+ "</b>. Qu�tes termin�es : <b>"+World.get_Succes(this.getPlayer().getId()).getQuete()
+    	    		 +"</b>. Donjons effectu�s : <b>"+World.get_Succes(this.getPlayer().getId()).getDonjon()
+    	    		 +"</b>. Archi-monstres tu�s : <b>"+World.get_Succes(this.getPlayer().getId()).getArchi()
+    	    		 +"</b>. Points boutique d�pensez : <b>"+World.get_Succes(this.getPlayer().getId()).getBoutique()
+    	    		 +"</b>. Ressources r�colt�es : <b>"+World.get_Succes(this.getPlayer().getId()).getRecolte()
+    	    		 +"</b>. Objets Craft�s : <b>"+World.get_Succes(this.getPlayer().getId()).getCraft()+"</b>"
     	    		 +"</b>. Objets Briser : <b>"+World.get_Succes(this.getPlayer().getId()).getBrisage()+"</b>"
-    	    		 +"</b>. Runes Utilis�es : <b>"+World.get_Succes(this.getPlayer().getId()).getFm()+"</b>"
-    	    		 +"</b>. Combats Koli gagn�s : <b>"+World.get_Succes(this.getPlayer().getId()).getKoli_wine()+"</b>"
-    	    		 +"</b>. Challenges R�ussis : <b>"+World.get_Succes(this.getPlayer().getId()).getChall()+"</b>"
-    	    		 +"</b>. Nombre d��tages pass�s : <b>"+this.getPlayer().Song+"</b>"
-    	    		 +"</b>. Messages envoy�s : <b>"+World.get_Succes(this.getPlayer().getId()).getMsg()+"</b>","008000");	 
+    	    		 +"</b>. Runes Utilis�es : <b>"+World.get_Succes(this.getPlayer().getId()).getFm()+"</b>"
+    	    		 +"</b>. Combats Koli gagn�s : <b>"+World.get_Succes(this.getPlayer().getId()).getKoli_wine()+"</b>"
+    	    		 +"</b>. Challenges R�ussis : <b>"+World.get_Succes(this.getPlayer().getId()).getChall()+"</b>"
+    	    		 +"</b>. Nombre d��tages pass�s : <b>"+this.getPlayer().Song+"</b>"
+    	    		 +"</b>. Messages envoy�s : <b>"+World.get_Succes(this.getPlayer().getId()).getMsg()+"</b>","008000");	 
      }
 }
 
@@ -10806,17 +10808,17 @@ private void batlle_pass () {
 	  }
 	  if(Main.world.addKoli_players(this.getPlayer()))
 	  { 
-	   SocketManager.GAME_SEND_MESSAGE(this.player,"Vous vous �tes inscrit au Kolizeum", "008000");
+	   SocketManager.GAME_SEND_MESSAGE(this.player,"Vous vous �tes inscrit au Kolizeum", "008000");
 	  }
 	  else
 	  {
-	 SocketManager.GAME_SEND_MESSAGE(this.player,"Vous �tes d�j� inscrit au Kolizeum", "FF0000");
+	 SocketManager.GAME_SEND_MESSAGE(this.player,"Vous �tes d�j� inscrit au Kolizeum", "FF0000");
 
 	  }
   }
   public void Koli_remove() {
 	  if(Main.world.removeKoli_players(this.getPlayer()))
-	  SocketManager.GAME_SEND_MESSAGE(this.player,"Vous avez quitt� le Kolizeum", "FF0000");
+	  SocketManager.GAME_SEND_MESSAGE(this.player,"Vous avez quitt� le Kolizeum", "FF0000");
 	  
   }
   public void Bourse() {
@@ -10833,7 +10835,7 @@ private void batlle_pass () {
 			   continue;
 		   if(Main.world.getPlayer(Liste.getValue().id_perso).getKamas() < Liste.getValue().kamas) {
 			 if(Main.world.getPlayer(Liste.getValue().id_perso).isOnline())
-				 Main.world.getPlayer(Liste.getValue().id_perso).sendMessage("Votre offre a �t� supprim�");
+				 Main.world.getPlayer(Liste.getValue().id_perso).sendMessage("Votre offre a �t� supprim�");
 			 World.get_bourse(Liste.getValue().id).statu = 3;
 			 Database.getDynamics().getboursekamasData().delete_bourse(Liste.getValue().id);
 			  Database.getDynamics().getboursekamasData().add_bourse_logs(0, Liste.getValue().id_perso, " auto delete pas asse de kamas offre id "+Liste.getValue().id+" kamas "+Liste.getValue().kamas+" points " +Liste.getValue().points+" taux "+Liste.getValue().taux);
@@ -10897,7 +10899,7 @@ private void batlle_pass () {
 				  have = true;
 		}
 		if(have) {
-			this.player.sendMessage("Vous poss�de d�j� une offre en cours");
+			this.player.sendMessage("Vous poss�de d�j� une offre en cours");
 			return;
 		}
 		int taux = Math.round((int)kamas/points);
@@ -10911,7 +10913,7 @@ private void batlle_pass () {
 		 Database.getDynamics().getboursekamasData().add_bourse_logs(0, this.player.getId(), "ajoute offre id "+id+" kamas "+kamas+" points " +points+" taux "+taux);
 		 this.send("ka");
 		this.Bourse();
-		 SocketManager.GAME_SEND_MESSAGE(this.player,"Votre offre a �t� ajout� (Vos kamas restent sur vous le temps de trouver un acheteur)", "008000");
+		 SocketManager.GAME_SEND_MESSAGE(this.player,"Votre offre a �t� ajout� (Vos kamas restent sur vous le temps de trouver un acheteur)", "008000");
   }
   public void Bourse_delete (String packet) {
 	  if(this.player.getGroupe() != null) {
@@ -10930,7 +10932,7 @@ private void batlle_pass () {
   Database.getDynamics().getboursekamasData().delete_bourse(id);
   Database.getDynamics().getboursekamasData().add_bourse_logs(0, this.player.getId(), "delete offre id "+id+" kamas "+World.get_bourse(id).kamas+" points " +World.get_bourse(id).points+" taux "+World.get_bourse(id).taux);
   World.Bourse_kamas.remove(id);
-  this.player.sendMessage("Votre offre a �t� supprim�");
+  this.player.sendMessage("Votre offre a �t� supprim�");
  this.send("ka");
 	this.Bourse();
   
@@ -10955,7 +10957,7 @@ private void batlle_pass () {
 	  
 	  if(Main.world.getPlayer(World.get_bourse(id).id_perso) == null || Main.world.getPlayer(World.get_bourse(id).id_perso).getKamas() < World.get_bourse(id).kamas){
 		  if(Main.world.getPlayer(World.get_bourse(id).id_perso).isOnline())
-				 Main.world.getPlayer(World.get_bourse(id).id_perso).sendMessage("Votre offre a �t� supprim�");
+				 Main.world.getPlayer(World.get_bourse(id).id_perso).sendMessage("Votre offre a �t� supprim�");
 			 World.get_bourse(id).statu = 3;
 			 Database.getDynamics().getboursekamasData().delete_bourse(id);
 			 World.Bourse_kamas.remove(id);
@@ -10974,7 +10976,7 @@ private void batlle_pass () {
 	  Main.world.getPlayer(World.get_bourse(id).id_perso).setKamas(Main.world.getPlayer(World.get_bourse(id).id_perso).getKamas() - World.get_bourse(id).kamas);
 	  Main.world.getPlayer(World.get_bourse(id).id_perso).getAccount().setPoints(Main.world.getPlayer(World.get_bourse(id).id_perso).getAccount().getPoints() + World.get_bourse(id).points);
 	  if(Main.world.getPlayer(World.get_bourse(id).id_perso).isOnline()) {
-		  Main.world.getPlayer(World.get_bourse(id).id_perso).sendMessage("Votre compte a bien �t� cr�ditez de "+World.get_bourse(id).points+" points");  
+		  Main.world.getPlayer(World.get_bourse(id).id_perso).sendMessage("Votre compte a bien �t� cr�ditez de "+World.get_bourse(id).points+" points");  
 		  leaveExchange(Main.world.getPlayer(World.get_bourse(id).id_perso));
 		  SocketManager.GAME_SEND_STATS_PACKET(Main.world.getPlayer(World.get_bourse(id).id_perso));
 		  SocketManager.GAME_SEND_Im_PACKET( Main.world.getPlayer(World.get_bourse(id).id_perso),"046;"+World.get_bourse(id).kamas);
