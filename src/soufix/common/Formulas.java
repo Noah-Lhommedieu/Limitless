@@ -824,9 +824,9 @@ public class Formulas
         return (long) ((long)num*Multiplicateur);
       }
     }
+    
     return (long)num;
   }
-
   public static int calculZaapCost(GameMap map1, GameMap map2)
   {
     return 10*(Math.abs(map2.getX()-map1.getX())+Math.abs(map2.getY()-map1.getY())-1);

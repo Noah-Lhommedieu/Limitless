@@ -42,6 +42,7 @@ public class Fighter implements Comparable<Fighter>
   private int team=-2;
   private GameCase cell;
   private double pdvMax;
+  private int OverPower;
   private double pdv;
   private boolean isDead;
   private boolean hasLeft;
@@ -99,6 +100,7 @@ public Fighter(Fight f, MobGrade mob)
     this.pdvMax=player.getMaxPdv();
     this.pdv=player.getCurPdv(); // Si on remplace par getMaxPDV() �a redonne full pv a chaque entr�e en combat
     this.setGfxId(getDefaultGfx());
+    this.OverPower = player.getOverPower();
   }
 
   public Fighter(Fight f, Collector Perco)
@@ -1403,8 +1405,17 @@ public void setTourplus() {
   {
     this.justTrapped=justTrapped;
   }
+  
   public String GetIp()
   {
 	  return this.getPersonnage().getAccount().getCurrentIp();
   }
+  public int getOverPower()
+	{
+		return this.OverPower;
+	}
+	public void setOverPower(int OverPower)
+	{
+		this.OverPower = OverPower;
+	}
 }

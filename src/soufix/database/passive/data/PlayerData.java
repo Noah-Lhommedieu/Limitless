@@ -349,7 +349,7 @@ public class PlayerData extends AbstractDAO<Player>
     PreparedStatement p=null;
     try
     {
-      p=getPreparedStatement("UPDATE `players` SET `kamas`= ?, `spellboost`= ?, `capital`= ?, `energy`= ?, `level`= ?, `xp`= ?, `size` = ?, `gfx`= ?, `alignement`= ?, `honor`= ?, `deshonor`= ?, `alvl`= ?, `vitalite`= ?, `force`= ?, `sagesse`= ?, `intelligence`= ?, `chance`= ?, `agilite`= ?, `seeFriend`= ?, `seeAlign`= ?, `seeSeller`= ?, `canaux`= ?, `map`= ?, `cell`= ?, `pdvper`= ?, `spells`= ?, `objets`= ?, `storeObjets`= ?, `savepos`= ?, `zaaps`= ?, `jobs`= ?, `mountxpgive`= ?, `mount`= ?, `title`= ?, `wife`= ?, `morphMode`= ?, `allTitle` = ?, `emotes` = ?, `prison` = ?, `parcho` = ?, `timeDeblo` = ?, `noall` = ?, `deadInformation` = ?, `deathCount` = ?, `totalKills` = ?, `rapid` = ? , `song` = ?, `prestige` = ?, `ornement` = ?, `AuraC` = ?, `auraList` = ? WHERE `players`.`id` = ? LIMIT 1");
+      p=getPreparedStatement("UPDATE `players` SET `kamas`= ?, `spellboost`= ?, `capital`= ?, `energy`= ?, `level`= ?, `xp`= ?, `size` = ?, `gfx`= ?, `alignement`= ?, `honor`= ?, `deshonor`= ?, `alvl`= ?, `vitalite`= ?, `force`= ?, `sagesse`= ?, `intelligence`= ?, `chance`= ?, `agilite`= ?, `seeFriend`= ?, `seeAlign`= ?, `seeSeller`= ?, `canaux`= ?, `map`= ?, `cell`= ?, `pdvper`= ?, `spells`= ?, `objets`= ?, `storeObjets`= ?, `savepos`= ?, `zaaps`= ?, `jobs`= ?, `mountxpgive`= ?, `mount`= ?, `title`= ?, `wife`= ?, `morphMode`= ?, `allTitle` = ?, `emotes` = ?, `prison` = ?, `parcho` = ?, `timeDeblo` = ?, `noall` = ?, `deadInformation` = ?, `deathCount` = ?, `totalKills` = ?, `rapid` = ? , `song` = ?, `prestige` = ?, `ornement` = ?, `AuraC` = ?, `auraList` = ?, `OverPower` = ? WHERE `players`.`id` = ? LIMIT 1");
       p.setLong(1,player.getKamas());
       p.setInt(2,player.get_spellPts());
       p.setLong(3,player.get_capital());
@@ -407,7 +407,8 @@ public class PlayerData extends AbstractDAO<Player>
       p.setInt(49, player.ornement);
       p.setInt(50, player.auraC);
       p.setString(51, player.parseAuraToDB());
-      p.setInt(52,player.getId());
+      p.setInt(52, player.getOverPower());
+      p.setInt(53,player.getId());
       execute(p);
       if(player.getGuildMember()!=null)
         Database.getDynamics().getGuildMemberData().update(player);
@@ -1049,5 +1050,27 @@ public void updateAura(Player perso) {
     } finally {
         close(p);
     }
+}
+public void updateOverPower(Player perso)
+{
+  PreparedStatement p=null;
+  try
+  {
+    try
+    {
+  	  p=getPreparedStatement("UPDATE `players` SET `OverPower` = ? WHERE `id`= ?");
+        p.setInt(1,perso.getOverPower());
+        p.setInt(2,perso.getId());
+        execute(p);
+    }
+    catch(SQLException e)
+    {
+      e.printStackTrace();
+    }
+    
+  } finally
+  {
+    this.close(p);
+  }
 }
 }

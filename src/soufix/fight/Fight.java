@@ -96,6 +96,7 @@ public class Fight
   private boolean HUIT=false;
   private boolean PLUSQUEHUIT=false;
   private boolean bLock_join=false;
+  private int maxOverPowerOfPlayerTeam = 0;
   private String curAction="";
   private MobGroup mobGroup;
   private Collector collector;
@@ -218,18 +219,31 @@ public class Fight
       entry.getValue().setInFightID(entry.getKey());
       Fighter mob=new Fighter(this,entry.getValue());
       getTeam1().put(entry.getKey(),mob);
+      if(this.getType() == Constant.FIGHT_TYPE_PVM)
+      {
+    	//Prend l'OverPower du premier joueur qui lance le combat
+    	  maxOverPowerOfPlayerTeam = getInit0().getOverPower();
+    	  if((maxOverPowerOfPlayerTeam != 0) && (maxOverPowerOfPlayerTeam > 0) && (maxOverPowerOfPlayerTeam < 11)) 
+    	  	{
+    		  OverPowerMobBuff(mob);
+    	  	}
+    	  //entry.getValue().getBaseXp();
+      }
       if(entry.getValue().getTemplate().getId()==599) //Zilla
         map.zillaTimer();
     }
     if(getInit0().getPersonnage() == null)
     	return;
-
+  
+    
+    
+    
     SocketManager.GAME_SEND_FIGHT_GJK_PACKET_TO_FIGHT(this,1,2,0,1,0,45000,getType());
     SocketManager.GAME_SEND_GDF_PACKET_TO_FIGHT(perso,this.getMap().getCases());
     // on desactive le timer de regen cotï¿½ client
 
     scheduleTimer(45);
-    this.start0=Main.world.getCryptManager().parseStartCell(getMap(),0);
+    this.start0=Main.world.getCryptManager().parseStartCell(getMap(),0); //JoinFight  crypt
     this.start1=Main.world.getCryptManager().parseStartCell(getMap(),1);
     SocketManager.GAME_SEND_FIGHT_PLACES_PACKET_TO_FIGHT(this,1,getMap().getPlaces(),0);
     setSt1(0);
@@ -298,6 +312,8 @@ public class Fight
     {
       entry.getValue().setInFightID(entry.getKey());
       Fighter mob=new Fighter(this,entry.getValue());
+      //ICI
+      
       getTeam1().put(entry.getKey(),mob);
       if(entry.getValue().getTemplate().getId()==599) //Zilla
         map.zillaTimer();
@@ -1209,7 +1225,19 @@ public class Fight
             hasFemale=true;
         }
       }
-
+      //Région de système OverPower pour les combats avec buff exp etc
+      
+      //Code qui prend le plus haut OverPower (ou le plus bas en inversant le comparatif)
+      /*for(Fighter f : getTeam0().values()) 
+      {
+    	  if(maxOverPowerOfPlayerTeam < f.getOverPower())
+    	  {
+    		  maxOverPowerOfPlayerTeam = f.getOverPower();
+    	  }
+      }*/
+      
+      
+      
       String boss=".58.85.86.107.113.121.147.173.180.225.226.230.232.251.252.257.289.295.374.375.377.382.404.423.430.457.478.568.605.612.669.670.673.675.677.681.780.792.797.799.800.827.854.926.939.940.943.1015.1027.1045.1051.1071.1072.1085.1086.1087.1159.1184.1185.1186.1187.1188.519.";
 try {
       for(Fighter fighter : getTeam1().values())
@@ -1233,6 +1261,7 @@ try {
           }
         }
       }
+      
       if(hasBoss != -1)
     	  this.donjon = true;
            }catch (Exception e) {
@@ -2496,7 +2525,7 @@ public void Anti_bug () {
         SocketManager.GAME_SEND_GA903_ERROR_PACKET(perso.getGameClient(),'f',guid);
         return;
       }
-      if(this.getTeam0().size()>=8||this.start0.size()==this.getTeam0().size())
+      if(this.getTeam0().size()>=16||this.start0.size()==this.getTeam0().size())
         return;
       if(getType()==Constant.FIGHT_TYPE_CHALLENGE)
         SocketManager.GAME_SEND_GJK_PACKET(perso,2,1,1,0,timeRestant,getType());
@@ -5331,8 +5360,11 @@ public void Anti_bug () {
       long totalXP=0;
       for(Fighter F : loosers)
       {
+    	  
         if(F.getMob()!=null)
+        	//là
           totalXP+=F.getMob().getBaseXp();
+        
         if(F.getPersonnage()!=null)
           team=true;
       }
@@ -6047,6 +6079,49 @@ public void Anti_bug () {
               	xpPlayer = xpPlayer * 1.45;
               	xpOmega = xpOmega * 1.45;
               }
+              switch(player.getOverPower()) //OverPower xp
+	              {
+	              case 1:
+	            	  totalXP *= 1.2;
+	            	  xpOmega *= 1.2;
+	            	  break;
+	              case 2:
+	            	  totalXP *= 1.4;
+	            	  xpOmega *= 1.4;
+	            	  break;
+	              case 3:
+	            	  totalXP *= 1.8;
+	            	  xpOmega *= 1.8;
+	            	  break;
+	              case 4:
+	            	  totalXP *= 2.4;
+	            	  xpOmega *= 2.4;
+	            	  break;
+	              case 5:
+	            	  totalXP *= 3;
+	            	  xpOmega *= 3;
+	            	  break;
+	              case 6:
+	            	  totalXP *= 3.8;
+	            	  xpOmega *= 3.8;
+	            	  break;
+	              case 7:
+	            	  totalXP *= 4.8;
+	            	  xpOmega *= 4.8;
+	            	  break;
+	              case 8:
+	            	  totalXP *= 8;
+	            	  xpOmega *= 8;
+	            	  break;
+	              case 9:
+	            	  totalXP *= 13;
+	            	  xpOmega *= 13;
+	            	  break;
+	              case 10:
+	            	  totalXP *= 20;
+	            	  xpOmega *= 20;
+	            	  break;
+	              }
               
         	  if (player.getLevel() == 8000 && player.getPrestige() == 100)
         	  
@@ -7558,4 +7633,200 @@ public void Anti_bug () {
     }
     return sameIpPlayers;
   }
+  public void OverPowerMobBuff(Fighter f)
+  {
+  	  long multiplier;
+  	  switch (maxOverPowerOfPlayerTeam) {
+	    case 1:
+	        multiplier = 2;
+	        f.setPdvMax(f.getPdvMaxOutFight() * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_AGIL, f.getTotalStats().get(Constant.STATS_ADD_AGIL) * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_CHAN, f.getTotalStats().get(Constant.STATS_ADD_CHAN) * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_INTE, f.getTotalStats().get(Constant.STATS_ADD_INTE) * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_FORC, f.getTotalStats().get(Constant.STATS_ADD_FORC) * multiplier);
+	        break;
+	    case 2:
+	        multiplier = 3;
+	        f.setPdvMax(f.getPdvMaxOutFight() * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_AGIL, f.getTotalStats().get(Constant.STATS_ADD_AGIL) * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_CHAN, f.getTotalStats().get(Constant.STATS_ADD_CHAN) * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_INTE, f.getTotalStats().get(Constant.STATS_ADD_INTE) * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_FORC, f.getTotalStats().get(Constant.STATS_ADD_FORC) * multiplier);
+	        break;
+	    case 3:
+	        multiplier = 4;
+	        f.setPdvMax(f.getPdvMaxOutFight() * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_AGIL, f.getTotalStats().get(Constant.STATS_ADD_AGIL) * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_CHAN, f.getTotalStats().get(Constant.STATS_ADD_CHAN) * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_INTE, f.getTotalStats().get(Constant.STATS_ADD_INTE) * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_FORC, f.getTotalStats().get(Constant.STATS_ADD_FORC) * multiplier);
+	        break;
+	    case 4:
+	        multiplier = 5;
+	        f.setPdvMax(f.getPdvMaxOutFight() * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_AGIL, f.getTotalStats().get(Constant.STATS_ADD_AGIL) * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_CHAN, f.getTotalStats().get(Constant.STATS_ADD_CHAN) * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_INTE, f.getTotalStats().get(Constant.STATS_ADD_INTE) * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_FORC, f.getTotalStats().get(Constant.STATS_ADD_FORC) * multiplier);
+	        break;
+	    case 5:
+	        multiplier = 6;
+	        f.setPdvMax(f.getPdvMaxOutFight() * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_AGIL, f.getTotalStats().get(Constant.STATS_ADD_AGIL) * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_CHAN, f.getTotalStats().get(Constant.STATS_ADD_CHAN) * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_INTE, f.getTotalStats().get(Constant.STATS_ADD_INTE) * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_FORC, f.getTotalStats().get(Constant.STATS_ADD_FORC) * multiplier);
+	        break;
+	    case 6:
+	        multiplier = 7;
+	        f.setPdvMax(f.getPdvMaxOutFight() * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_AGIL, f.getTotalStats().get(Constant.STATS_ADD_AGIL) * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_CHAN, f.getTotalStats().get(Constant.STATS_ADD_CHAN) * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_INTE, f.getTotalStats().get(Constant.STATS_ADD_INTE) * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_FORC, f.getTotalStats().get(Constant.STATS_ADD_FORC) * multiplier);
+	        break;
+	    case 7:
+	        multiplier = 8;
+	        f.setPdvMax(f.getPdvMaxOutFight() * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_AGIL, f.getTotalStats().get(Constant.STATS_ADD_AGIL) * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_CHAN, f.getTotalStats().get(Constant.STATS_ADD_CHAN) * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_INTE, f.getTotalStats().get(Constant.STATS_ADD_INTE) * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_FORC, f.getTotalStats().get(Constant.STATS_ADD_FORC) * multiplier);
+	        break;
+	    case 8:
+	        multiplier = 9;
+	        f.setPdvMax(f.getPdvMaxOutFight() * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_AGIL, f.getTotalStats().get(Constant.STATS_ADD_AGIL) * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_CHAN, f.getTotalStats().get(Constant.STATS_ADD_CHAN) * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_INTE, f.getTotalStats().get(Constant.STATS_ADD_INTE) * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_FORC, f.getTotalStats().get(Constant.STATS_ADD_FORC) * multiplier);
+	        break;
+	    case 9:
+	        multiplier = 10;
+	        f.setPdvMax(f.getPdvMaxOutFight() * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_AGIL, f.getTotalStats().get(Constant.STATS_ADD_AGIL) * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_CHAN, f.getTotalStats().get(Constant.STATS_ADD_CHAN) * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_INTE, f.getTotalStats().get(Constant.STATS_ADD_INTE) * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_FORC, f.getTotalStats().get(Constant.STATS_ADD_FORC) * multiplier);
+	        break;
+	    case 10:
+	        multiplier = 15;
+	        f.setPdvMax(f.getPdvMaxOutFight() * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_AGIL, f.getTotalStats().get(Constant.STATS_ADD_AGIL) * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_CHAN, f.getTotalStats().get(Constant.STATS_ADD_CHAN) * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_INTE, f.getTotalStats().get(Constant.STATS_ADD_INTE) * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_FORC, f.getTotalStats().get(Constant.STATS_ADD_FORC) * multiplier);
+	        f.getTotalStats().addOneStat(Constant.STATS_ADD_DOMA, f.getTotalStats().get(Constant.STATS_ADD_DOMA) * multiplier);
+	        
+	        break;
+	    default:
+	        break;
+	}
+	f.fullPdv();
+  }
+public void OverPowerFightBuff(Map<Integer,Fighter> getTeam)
+{
+	long multiplier;
+	for(Fighter f : getTeam.values())
+	{
+		switch (maxOverPowerOfPlayerTeam) {
+		    case 1:
+		        multiplier = 2;
+		        f.setPdvMax(f.getPdvMaxOutFight() * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_AGIL, f.getTotalStats().get(Constant.STATS_ADD_AGIL) * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_CHAN, f.getTotalStats().get(Constant.STATS_ADD_CHAN) * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_INTE, f.getTotalStats().get(Constant.STATS_ADD_INTE) * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_FORC, f.getTotalStats().get(Constant.STATS_ADD_FORC) * multiplier);
+		        break;
+		    case 2:
+		        multiplier = 3;
+		        f.setPdvMax(f.getPdvMaxOutFight() * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_AGIL, f.getTotalStats().get(Constant.STATS_ADD_AGIL) * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_CHAN, f.getTotalStats().get(Constant.STATS_ADD_CHAN) * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_INTE, f.getTotalStats().get(Constant.STATS_ADD_INTE) * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_FORC, f.getTotalStats().get(Constant.STATS_ADD_FORC) * multiplier);
+		        break;
+		    case 3:
+		        multiplier = 4;
+		        f.setPdvMax(f.getPdvMaxOutFight() * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_AGIL, f.getTotalStats().get(Constant.STATS_ADD_AGIL) * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_CHAN, f.getTotalStats().get(Constant.STATS_ADD_CHAN) * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_INTE, f.getTotalStats().get(Constant.STATS_ADD_INTE) * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_FORC, f.getTotalStats().get(Constant.STATS_ADD_FORC) * multiplier);
+		        break;
+		    case 4:
+		        multiplier = 5;
+		        f.setPdvMax(f.getPdvMaxOutFight() * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_AGIL, f.getTotalStats().get(Constant.STATS_ADD_AGIL) * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_CHAN, f.getTotalStats().get(Constant.STATS_ADD_CHAN) * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_INTE, f.getTotalStats().get(Constant.STATS_ADD_INTE) * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_FORC, f.getTotalStats().get(Constant.STATS_ADD_FORC) * multiplier);
+		        break;
+		    case 5:
+		        multiplier = 6;
+		        f.setPdvMax(f.getPdvMaxOutFight() * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_AGIL, f.getTotalStats().get(Constant.STATS_ADD_AGIL) * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_CHAN, f.getTotalStats().get(Constant.STATS_ADD_CHAN) * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_INTE, f.getTotalStats().get(Constant.STATS_ADD_INTE) * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_FORC, f.getTotalStats().get(Constant.STATS_ADD_FORC) * multiplier);
+		        break;
+		    case 6:
+		        multiplier = 7;
+		        f.setPdvMax(f.getPdvMaxOutFight() * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_AGIL, f.getTotalStats().get(Constant.STATS_ADD_AGIL) * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_CHAN, f.getTotalStats().get(Constant.STATS_ADD_CHAN) * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_INTE, f.getTotalStats().get(Constant.STATS_ADD_INTE) * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_FORC, f.getTotalStats().get(Constant.STATS_ADD_FORC) * multiplier);
+		        break;
+		    case 7:
+		        multiplier = 8;
+		        f.setPdvMax(f.getPdvMaxOutFight() * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_AGIL, f.getTotalStats().get(Constant.STATS_ADD_AGIL) * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_CHAN, f.getTotalStats().get(Constant.STATS_ADD_CHAN) * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_INTE, f.getTotalStats().get(Constant.STATS_ADD_INTE) * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_FORC, f.getTotalStats().get(Constant.STATS_ADD_FORC) * multiplier);
+		        break;
+		    case 8:
+		        multiplier = 9;
+		        f.setPdvMax(f.getPdvMaxOutFight() * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_AGIL, f.getTotalStats().get(Constant.STATS_ADD_AGIL) * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_CHAN, f.getTotalStats().get(Constant.STATS_ADD_CHAN) * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_INTE, f.getTotalStats().get(Constant.STATS_ADD_INTE) * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_FORC, f.getTotalStats().get(Constant.STATS_ADD_FORC) * multiplier);
+		        break;
+		    case 9:
+		        multiplier = 10;
+		        f.setPdvMax(f.getPdvMaxOutFight() * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_AGIL, f.getTotalStats().get(Constant.STATS_ADD_AGIL) * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_CHAN, f.getTotalStats().get(Constant.STATS_ADD_CHAN) * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_INTE, f.getTotalStats().get(Constant.STATS_ADD_INTE) * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_FORC, f.getTotalStats().get(Constant.STATS_ADD_FORC) * multiplier);
+		        break;
+		    case 10:
+		        multiplier = 15;
+		        f.setPdvMax(f.getPdvMaxOutFight() * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_AGIL, f.getTotalStats().get(Constant.STATS_ADD_AGIL) * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_CHAN, f.getTotalStats().get(Constant.STATS_ADD_CHAN) * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_INTE, f.getTotalStats().get(Constant.STATS_ADD_INTE) * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_FORC, f.getTotalStats().get(Constant.STATS_ADD_FORC) * multiplier);
+		        f.getTotalStats().addOneStat(Constant.STATS_ADD_DOMA, f.getTotalStats().get(Constant.STATS_ADD_DOMA) * multiplier);
+		        
+		        break;
+		    default:
+		        break;
+		}
+		f.fullPdv();
+	}
+	
+	
+
+}
+public int getMaxOverPower()
+{
+	return maxOverPowerOfPlayerTeam;
+}
+public void buffInvocOfPlayer()
+{
+	
+}
 }

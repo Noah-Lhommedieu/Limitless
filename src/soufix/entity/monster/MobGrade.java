@@ -35,6 +35,7 @@ public class MobGrade
   private Map<Long, Long> stats=new HashMap<Long, Long>();
   private Map<Integer, SortStats> spells=new HashMap<Integer, SortStats>();
   private ArrayList<Integer> statsInfos=new ArrayList<Integer>();
+  
 
   public MobGrade(Monster template, int grade, int level, int pa, int pm, String resists, String stats, String statsInfos, String allSpells, long pdvMax, long aInit, int xp, int n)
   {
@@ -303,7 +304,7 @@ public class MobGrade
   }
 
   //2.6 - Better hp scaling
-  public void modifStatByInvocator(final Fighter caster, int mobID)
+  public void modifStatByInvocator(final Fighter caster, int mobID) //INVOC
   {
     if(mobID==116) //Special scaling for sacrifical doll
     {
@@ -329,9 +330,9 @@ public class MobGrade
       if(caster.getPersonnage()!=null)
       {
         double casterVit=caster.getPersonnage().getMaxPdv();
-        double modifier=((casterVit*pdvMax*0.15)/225);
-        if(modifier>800)
-          modifier=800;
+        double modifier=((casterVit*pdvMax*0.35)/225); //((casterVit*pdvMax*0.15)/225)
+        /*if(modifier>800)
+          modifier=800;*/
         pdv=(long)(pdvMax+modifier);
         pdvMax=pdv;
       }

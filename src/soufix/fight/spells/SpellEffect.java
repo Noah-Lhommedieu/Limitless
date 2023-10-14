@@ -354,7 +354,48 @@ public class SpellEffect
         }
       }
     }
-
+    int op = fight.getMaxOverPower(); //OverPower Damage
+    if(caster.isMob())
+    {
+	    if(op < 11 && op > 0)
+	    {
+	    	switch(op)
+	    	{
+	    	case 1:
+	    		finalDommage *= 1.2;
+	    		break;
+	    	case 2:
+	    		finalDommage *= 1.4;
+	    		break;
+	    	case 3:
+	    		finalDommage *= 1.6;
+	    		break;
+	    	case 4:
+	    		finalDommage *= 1.8;
+	    		break;
+	    	case 5:
+	    		finalDommage *= 2;
+	    		break;
+	    	case 6:
+	    		finalDommage *= 2.4;
+	    		break;
+	    	case 7:
+	    		finalDommage *= 2.8;
+	    		break;
+	    	case 8:
+	    		finalDommage *= 3.5;
+	    		break;
+	    	case 9:
+	    		finalDommage *= 5;
+	    		break;
+	    	case 10:
+	    		finalDommage *= 8;
+	    		break;
+	    	}
+	    	
+	    	
+	    }
+    }
     return finalDommage;
   }
 

@@ -856,7 +856,70 @@ public class CommandPlayerpvm {
 				}
 				return true;
 			}
+			
+			if (msg.length() > 2 && msg.substring(1, 3).equalsIgnoreCase("OP"))
+			{	
 				
+				try 
+				{
+					//Si en dessous de 0 ou au dessus de 10
+					if(Integer.parseInt(msg.substring(4, msg.length() - 1)) < 0 || Integer.parseInt(msg.substring(4, msg.length() - 1)) > 10)
+					{
+						SocketManager.PACKET_POPUP_DEPART(perso, "Tu peux pas aller en dessous de 0 ni au dessus de 10");
+					}
+					//Sinon on fais la commande
+					else 
+					{
+						int OP =  Integer.parseInt(msg.substring(4, msg.length() - 1));
+						perso.setOverPower(OP);
+						Database.getStatics().getPlayerData().updateOverPower(perso);
+						SocketManager.PACKET_POPUP_DEPART(perso, "Tu es maintenant OverPower " + OP);
+					}
+					
+				}
+				//Si pas de valeur donné ou valeur incorrecte 
+				catch (Exception e)
+				{
+					SocketManager.PACKET_POPUP_DEPART(perso, "Tu n'as pas indiqué de niveau OverPower");
+
+				}
+				
+				
+			}
+			if (msg.length() > 13 && msg.substring(1, 14).equalsIgnoreCase("OverPowerInfo"))
+			{
+				try 
+				{
+					SocketManager.PACKET_POPUP_DEPART(perso, 
+							"Le système Over power augmente grandement les stats global des mobs \n"
+							+"OP 1 -> PV multiplié par 2 / Dégât multiplié par 1.2 \n"
+							+"OP 2 -> PV multiplié par 3 / Dégât multiplié par 1.4 \n"
+							+"OP 3 -> PV multiplié par 4 / Dégât multiplié par 1.6 \n"
+							+"OP 4 -> PV multiplié par 5 / Dégât multiplié par 1.8 \n"
+							+"OP 5 -> PV multiplié par 6 / Dégât multiplié par 2 \n"
+							+"OP 6 -> PV multiplié par 7 / Dégât multiplié par 2.4 \n"
+							+"OP 7 -> PV multiplié par 8 / Dégât multiplié par 2.8 \n"
+							+"OP 8 -> PV multiplié par 9 / Dégât multiplié par 3.5 \n"
+							+"OP 9 -> PV multiplié par 10 / Dégât multiplié par 5 \n"
+							+"OP 10 -> PV multiplié par 15 / Dégât multiplié par 8");	
+				}
+				catch(Exception e)
+				{
+					SocketManager.PACKET_POPUP_DEPART(perso, "Commande bug : " + msg);
+				}
+			}
+			if (msg.length() > 5 && msg.substring(1, 6).equalsIgnoreCase("MonOP"))
+			{
+				try 
+				{
+					SocketManager.PACKET_POPUP_DEPART(perso, "Tu es actuellement OverPower " + perso.getOverPower());	
+				}
+				catch(Exception e)
+				{
+					SocketManager.PACKET_POPUP_DEPART(perso, "Commande bug" + msg);
+				}
+				
+			}
 			if (msg.length() > 4 && msg.substring(1, 5).equalsIgnoreCase("size"))
 			{
 				if(perso.getAccount().getPoints() >= 10)
@@ -865,7 +928,7 @@ public class CommandPlayerpvm {
 				}
 				else
 				{
-					SocketManager.PACKET_POPUP_DEPART(perso, "Pas assez de Points Boutique (tu as moins de 10 PB)");
+					SocketManager.PACKET_POPUP_DEPART(perso, "Pas assez de Points Boutique pour juste ouvrir le panel (tu as moins de 10 PB)");
 				}
 				
 			}

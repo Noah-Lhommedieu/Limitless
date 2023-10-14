@@ -95,6 +95,16 @@ public class Player
 	public double xpOmega;
 	public int maxInvo;
 	
+	public int OverPower = 0;
+	public int getOverPower()
+	{
+		return this.OverPower;
+	}
+	public void setOverPower(int OverPower)
+	{
+		this.OverPower = OverPower;
+	}
+	
 	
 
   public Stats stats;
