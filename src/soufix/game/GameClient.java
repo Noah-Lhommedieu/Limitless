@@ -6801,6 +6801,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
 
   private void actionAck(String packet)
   {
+	  
     int id=-1;
     String[] infos=packet.substring(3).split("\\|");
     try

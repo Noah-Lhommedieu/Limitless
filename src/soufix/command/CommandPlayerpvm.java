@@ -209,13 +209,21 @@ public class CommandPlayerpvm {
 			        {
 			        	perso.setAura(aura);
 			        }
+			        /*
+			          else
+			          {
+						SocketManager.PACKET_POPUP_DEPART(perso, "Tu ne possède pas cette aura, attend de la débloquer");
+
+			          }
+			        */
 			        else
 			        {
-			        	if(perso.getAccount().getPoints() >= PriceAura.get(aura))
+			        	int pointPlayer = perso.getAccount().getPoints();
+			        	if(pointPlayer >= PriceAura.get(aura))
 			        	{
 				        	perso.setAura(aura);
 							perso.addAura(aura);
-							perso.getAccount().setPoints(perso.getAccount().getPoints() - PriceAura.get(aura));
+							perso.getAccount().setPoints(pointPlayer - PriceAura.get(aura));
 			        	}
 			        
 			        	else 
@@ -226,7 +234,7 @@ public class CommandPlayerpvm {
 					
 				Database.getStatics().getPlayerData().updateAura(perso);
 				Database.getStatics().getPlayerData().update(perso);
-				perso.sendMessage("parseAuraToDB = " + perso.parseAuraToDB());
+				//perso.sendMessage("parseAuraToDB = " + perso.parseAuraToDB());
 				
 				
 				
@@ -235,7 +243,7 @@ public class CommandPlayerpvm {
 				{
 					perso.sendMessage("Exception AURA");
 				}
-				SocketManager.PACKET_POPUP_DEPART(perso, "Aura "+ perso.auraC +" �quip�");
+				SocketManager.PACKET_POPUP_DEPART(perso, "Aura "+ perso.auraC +" équipé");
 				
 				
 				//CommandPlayerpvm.analyse(perso,".parse");
@@ -953,7 +961,7 @@ public class CommandPlayerpvm {
 				
 		        if (perso.getFight() != null) return true;
 		        perso.teleport((short) 25002, 298);
-		        SocketManager.GAME_SEND_MESSAGE(perso, "Vous avez �t� t�l�port� au <b>start</b>." , "009900");
+		        SocketManager.GAME_SEND_MESSAGE(perso, "Vous avez été téléporté au <b>start</b>." , "009900");
 		        return true;
 			}
 			if (msg.length() > 6 && msg.substring(1, 7).equalsIgnoreCase("poutch"))
@@ -967,7 +975,7 @@ public class CommandPlayerpvm {
 				
 		        if (perso.getFight() != null) return true;
 		        perso.teleport((short) 534, 372);
-		        SocketManager.GAME_SEND_MESSAGE(perso, "Vous avez �t� t�l�port� au <b>poutch</b>." , "009900");
+		        SocketManager.GAME_SEND_MESSAGE(perso, "Vous avez été téléporté au <b>poutch</b>." , "009900");
 		        return true;
 			}
 			if (msg.length() > 6 && msg.substring(1, 7).equalsIgnoreCase("enclos"))
@@ -981,7 +989,7 @@ public class CommandPlayerpvm {
 				
 		        if (perso.getFight() != null) return true;
 		        perso.teleport((short) 8747, 633);
-		        SocketManager.GAME_SEND_MESSAGE(perso, "Vous avez �t� t�l�port� au <b>enclos</b>." , "009900");
+		        SocketManager.GAME_SEND_MESSAGE(perso, "Vous avez été téléporté au <b>enclos</b>." , "009900");
 		        return true;
 			}
 			if (msg.length() > 4 && msg.substring(1, 5).equalsIgnoreCase("pvm1"))
@@ -995,7 +1003,7 @@ public class CommandPlayerpvm {
 				
 		        if (perso.getFight() != null) return true;
 		        perso.teleport((short) 10134, 360);
-		        SocketManager.GAME_SEND_MESSAGE(perso, "Vous avez �t� t�l�port� au <b>pvm1</b>." , "009900");
+		        SocketManager.GAME_SEND_MESSAGE(perso, "Vous avez été téléporté au <b>pvm1</b>." , "009900");
 		        return true;
 			}
 			if (msg.length() > 4 && msg.substring(1, 5).equalsIgnoreCase("pvm2"))
@@ -1009,7 +1017,7 @@ public class CommandPlayerpvm {
 				
 		        if (perso.getFight() != null) return true;
 		        perso.teleport((short) 10137, 360);
-		        SocketManager.GAME_SEND_MESSAGE(perso, "Vous avez �t� t�l�port� au <b>pvm2</b>." , "009900");
+		        SocketManager.GAME_SEND_MESSAGE(perso, "Vous avez été téléporté au <b>pvm2</b>." , "009900");
 		        return true;
 			}
 			
@@ -1020,7 +1028,7 @@ public class CommandPlayerpvm {
 				{
 				SocketManager.GAME_SEND_STATS_PACKET(perso);
 				}
-				SocketManager.GAME_SEND_MESSAGE(perso, "Vous avez r�cup�rer Tous vos points de vie." , "009900");
+				SocketManager.GAME_SEND_MESSAGE(perso, "Vous avez récupérer Tous vos points de vie." , "009900");
 				return true;
 			}
 			if (msg.length() > 6 && msg.substring(1, 7).equalsIgnoreCase("nodrop")) {
@@ -1046,11 +1054,11 @@ public class CommandPlayerpvm {
 				if(perso.getParty() == null || perso.getParty().getMaster() == null ||
 						perso.getParty().getMaster().getId() != perso.getId())
 				{
-				SocketManager.GAME_SEND_MESSAGE(perso,"Mets toi Ma�tre avant");	
+				SocketManager.GAME_SEND_MESSAGE(perso,"Mets toi Maître avant");	
 				return true;
 				}
 				if(perso.getAccount().getSubscribeRemaining() == 0L){
-	               	 SocketManager.GAME_SEND_MESSAGE(perso,"R�serv� au V.I.P.","008000");	 
+	               	 SocketManager.GAME_SEND_MESSAGE(perso,"Réservé au V.I.P.","008000");	 
 	                return true;	 
 	                }
 				 if(perso.ipKamas)

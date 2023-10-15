@@ -812,7 +812,7 @@ public class Formulas
     {
       if(caster.getMob().getTemplate().getId()==116) //SacrifiÃ¯Â¿Â½ Dommage = PDV*2
       {
-        return (int)((num/25)*caster.getPdvMax());
+        return (long) ((num/25)*caster.getPdvMax());
       }
       else
       {

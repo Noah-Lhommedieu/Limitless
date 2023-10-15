@@ -2634,8 +2634,8 @@ public class Function
 
     while(i<i2)
     {
-      curHP=2147483646;
-      //curHP=Double.MAX_VALUE;
+      //curHP=2147483646; //getCurPdv
+      curHP=Double.MAX_VALUE;
       curEnnemy=null;
       for(Map.Entry<Integer, Fighter> t : ennemy.entrySet())
       {

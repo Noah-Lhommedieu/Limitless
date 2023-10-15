@@ -1055,7 +1055,7 @@ public void setTotal_reculte() {
 	  //this.sendMessage("PDV Avant modif -> " + curPdv);
     this.setPdv(getMaxPdv());
     //SocketManager.GAME_SEND_STATS_PACKET(this);
-    this.sendMessage("PDV Apres modif -> " + curPdv);
+    //this.sendMessage("PDV Apres modif -> " + curPdv);
     if(party!=null)
       SocketManager.GAME_SEND_PM_MOD_PACKET_TO_GROUP(party,this);
   }
