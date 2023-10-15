@@ -106,7 +106,7 @@ public class GameObject
 
   public static GameObject getCloneObjet(GameObject obj, int qua)
   {
-    Map<Long, Long> maps=new HashMap<>();
+    Map<Long, Double> maps=new HashMap<>();
     maps.putAll(obj.getStats().getMap());
     Stats newStats=new Stats(maps);
 
@@ -690,7 +690,7 @@ public class GameObject
       isFirst=false;
     }
 
-    for(Entry<Long, Long> entry : Stats.getMap().entrySet())
+    for(Entry<Long, Double> entry : Stats.getMap().entrySet())
     {
 
       long statID=entry.getKey();
@@ -717,7 +717,7 @@ public class GameObject
         stats.append(",");
       if(statID==615)
       {
-        stats.append(Long.toHexString(statID)).append("#0#0#").append(Long.toHexString(entry.getValue()));
+        stats.append(Long.toHexString(statID)).append("#0#0#").append(Double.toHexString(entry.getValue()));
       }
       else if((statID==970)||(statID==971)||(statID==972)||(statID==973)||(statID==974))
       {
@@ -735,13 +735,13 @@ public class GameObject
       {
         String jet="0d0+"+entry.getValue();
         stats.append(Long.toHexString(statID)).append("#");
-        stats.append("0#0#").append(Long.toHexString(entry.getValue())).append("#").append(jet);
+        stats.append("0#0#").append(Double.toHexString(entry.getValue())).append("#").append(jet);
       }
       else if(statID==995)
       {
         stats.append(Long.toHexString(statID)).append("#");
         stats.append(Long.toHexString(Long.parseLong(entry.getValue().toString().replace("-", ""))));
-        stats.append("#0#").append(Long.toHexString(entry.getValue())).append("#").append(entry.getValue());
+        stats.append("#0#").append(Double.toHexString(entry.getValue())).append("#").append(entry.getValue());
       }
       else
       {
@@ -872,19 +872,19 @@ public class GameObject
       stats.append(Integer.toHexString(Constant.STATS_PETS_SOUL)).append("#").append(Integer.toHexString(entry.getKey())).append("#").append("0").append("#").append(Integer.toHexString(entry.getValue()));
       isFirst=false;
     }
-    for(Entry<Long, Long> entry : Stats.getMap().entrySet())
+    for(Entry<Long, Double> entry : Stats.getMap().entrySet())
     {
       if(!isFirst)
         stats.append(",");
 
       if(entry.getKey()==615)
       {
-        stats.append(Long.toHexString(entry.getKey())).append("#0#0#").append(Long.toHexString(entry.getValue()));
+        stats.append(Long.toHexString(entry.getKey())).append("#0#0#").append(Double.toHexString(entry.getValue()));
       }
       else
       {
         String jet="0d0+"+entry.getValue();
-        stats.append(Long.toHexString(entry.getKey())).append("#").append(Long.toHexString(entry.getValue()));
+        stats.append(Long.toHexString(entry.getKey())).append("#").append(Double.toHexString(entry.getValue()));
         stats.append("#0#0#").append(jet);
       }
       isFirst=false;
@@ -916,24 +916,24 @@ public class GameObject
   {
     if(obj==null)
       return;
-    for(Entry<Long, Long> entry : Stats.getMap().entrySet())
+    for(Entry<Long, Double> entry : Stats.getMap().entrySet())
     {
       if(entry.getKey().intValue()!=974) // on ne boost que la stat de l'exp�rience de l'obvi
         continue;
       if(entry.getValue().intValue()>500) // si le boost a une valeur sup�rieure � 500 (irr�aliste)
         return;
-      entry.setValue(Long.valueOf(entry.getValue().intValue()+obj.getTemplate().getLevel()/3));
+      entry.setValue(Double.valueOf(entry.getValue().intValue()+obj.getTemplate().getLevel()/3));
     }
     this.setModification();
   }
 
   public void obvijevanChangeStat(int statID, int val)
   {
-    for(Entry<Long, Long> entry : Stats.getMap().entrySet())
+    for(Entry<Long, Double> entry : Stats.getMap().entrySet())
     {
       if(entry.getKey().intValue()!=statID)
         continue;
-      entry.setValue(Long.valueOf(val));
+      entry.setValue(Double.valueOf(val));
     }
     this.setModification();
   }
@@ -942,7 +942,7 @@ public class GameObject
   {
     setObvijevanPos(0);
     soufix.client.other.Stats StatsSansObvi=new Stats();
-    for(Entry<Long, Long> entry : Stats.getMap().entrySet())
+    for(Entry<Long, Double> entry : Stats.getMap().entrySet())
     {
       int statID=entry.getKey().intValue();
       if((statID==970)||(statID==971)||(statID==972)||(statID==973)||(statID==974))
@@ -957,7 +957,7 @@ public class GameObject
   {
     setObvijevanPos(0);
     soufix.client.other.Stats StatsSansObvi=new Stats();
-    for(Entry<Long, Long> entry : Stats.getMap().entrySet())
+    for(Entry<Long, Double> entry : Stats.getMap().entrySet())
     {
       int statID=entry.getKey().intValue();
       if((statID!=971)&&(statID!=972)&&(statID!=973)&&(statID!=974))
@@ -1170,21 +1170,21 @@ public class GameObject
       isFirst=false;
     }
 
-    for(Entry<Long, Long> entry : obj.Stats.getMap().entrySet())
+    for(Entry<Long, Double> entry : obj.Stats.getMap().entrySet())
     {
       boolean statRemoved=false;
       if(!isFirst)
         stats.append(",");
       if(Long.toHexString(entry.getKey()).compareTo(runeStat)==0) //stat you are maging
       {
-        long newstats=0;
+        double newstats=0;
         if(negatif)
         {
           newstats=entry.getValue()-add;
           if(newstats<0) //stat > 0, add positive stat
-            stats.append(Rune.getPositiveStatByRuneStat(Long.toHexString(entry.getKey()))+"#"+Long.toHexString(-newstats)+"#0#0#0d0+"+-newstats);
+            stats.append(Rune.getPositiveStatByRuneStat(Long.toHexString(entry.getKey()))+"#"+Double.toHexString(-newstats)+"#0#0#0d0+"+-newstats);
           else if(newstats>0) //stat < 0, keep
-            stats.append(Long.toHexString(entry.getKey())+"#"+Long.toHexString(newstats)+"#0#0#0d0+"+newstats);
+            stats.append(Long.toHexString(entry.getKey())+"#"+Double.toHexString(newstats)+"#0#0#0d0+"+newstats);
           else //else if newstats = 0, remove last character of string (",") and continue
           {
         	  try {
@@ -1200,12 +1200,12 @@ public class GameObject
         else
         {
           newstats=entry.getValue()+add;
-          stats.append(Long.toHexString(entry.getKey())+"#"+Long.toHexString(newstats)+"#0#0#0d0+"+newstats);
+          stats.append(Long.toHexString(entry.getKey())+"#"+Double.toHexString(newstats)+"#0#0#0d0+"+newstats);
         }
         found=true;
       }
       else
-        stats.append(Long.toHexString(entry.getKey())+"#"+Long.toHexString(entry.getValue())+"#0#0#0d0+"+entry.getValue());
+        stats.append(Long.toHexString(entry.getKey())+"#"+Double.toHexString(entry.getValue())+"#0#0#0d0+"+entry.getValue());
       if(!statRemoved)
         isFirst=false;
     }
@@ -1254,7 +1254,7 @@ public class GameObject
         first=true;
       }
 
-      Map<Long, Long> statsObj=new HashMap<Long, Long>(obj.Stats.getMap());
+      Map<Long, Double> statsObj=new HashMap<Long, Double>(obj.Stats.getMap());
       ArrayList<Long> keys=new ArrayList<Long>(obj.Stats.getMap().keySet());
       ArrayList<Long> noNegativeMaxKeys=new ArrayList<Long>();
       ArrayList<Long> filteredKeys=new ArrayList<Long>();
@@ -1306,9 +1306,9 @@ public class GameObject
 
       for(Long i : filteredKeys)
       {
-        long newstats=0;
+        double newstats=0;
         long statID=i;
-        long statAmount=statsObj.get(i);
+        double statAmount=statsObj.get(i);
         float statPower=0;
         if(Rune.getRuneByStatId(Long.toHexString(statID))!=null)
         {
@@ -1358,14 +1358,14 @@ public class GameObject
           continue;
         if(first)
           stats+=",";
-        stats+=Long.toHexString(statID)+"#"+Long.toHexString(newstats)+"#0#0#0d0+"+newstats;
+        stats+=Long.toHexString(statID)+"#"+Double.toHexString(newstats)+"#0#0#0d0+"+newstats;
         first=true;
       }
       for(Long i : removedStats) //add back filtered stats (stat currently being maged)
       {
         if(first)
           stats+=",";
-        stats+=Long.toHexString(i)+"#"+Long.toHexString(statsObj.get(i))+"#0#0#0d0+"+statsObj.get(i);
+        stats+=Long.toHexString(i)+"#"+Double.toHexString(statsObj.get(i))+"#0#0#0d0+"+statsObj.get(i);
         first=true;
       }
       for(Entry<Integer, String> entry : obj.txtStats.entrySet()) //add back textstats
@@ -1383,7 +1383,7 @@ public class GameObject
     return stats;
   }
 
-  public boolean isOverFm(Long i, Long long1)
+  public boolean isOverFm(Long i, Double double1)
   {
     boolean trouve=false;
     String statsTemplate="";
@@ -1429,7 +1429,7 @@ public class GameObject
       {
         e.printStackTrace();
       }
-      if(long1>value)
+      if(double1>value)
         return true;
     }
     return !trouve;
@@ -1439,7 +1439,7 @@ public class GameObject
   public String findOverExo(final GameObject obj, int currentStat)
   {
     String stats="";
-    final Map<Long, Long> statsObj=new HashMap<Long, Long>(obj.Stats.getMap());
+    final Map<Long, Double> statsObj=new HashMap<Long, Double>(obj.Stats.getMap());
     final ArrayList<Long> keys=new ArrayList<Long>(obj.Stats.getMap().keySet());
     Collections.shuffle(keys);
     final ArrayList<Long> key=new ArrayList<Long>();
@@ -1449,7 +1449,7 @@ public class GameObject
       while(iter.hasNext())
       {
         long i=iter.next();
-        final long value=statsObj.get(i);
+        final double value=statsObj.get(i);
         if(obj.getTemplate().getType()!=83)
           if(this.isOverFm(i,value)&&i!=currentStat)
             key.add(i);
@@ -1458,7 +1458,7 @@ public class GameObject
     for(Long i : key)
     {
       final long statID=i;
-      final long value=statsObj.get(i);
+      final double value=statsObj.get(i);
       stats=String.valueOf(stats)+statID+","+String.valueOf(value)+";";
     }
     return stats;
@@ -1468,7 +1468,7 @@ public class GameObject
   public String findAllExo(final GameObject obj)
   {
     String stats="";
-    final Map<Long, Long> statsObj=new HashMap<Long, Long>(obj.Stats.getMap());
+    final Map<Long, Double> statsObj=new HashMap<Long, Double>(obj.Stats.getMap());
     final ArrayList<Long> keys=new ArrayList<Long>(obj.Stats.getMap().keySet());
     Collections.shuffle(keys);
     final ArrayList<Long> key=new ArrayList<Long>();
@@ -1478,7 +1478,7 @@ public class GameObject
       while(iter.hasNext())
       {
         long i=iter.next();
-        final long value=statsObj.get(i);
+        final double value=statsObj.get(i);
         if(obj.getTemplate().getType()!=83)
           if(this.isOverFm(i,value))
             key.add(i);
@@ -1487,7 +1487,7 @@ public class GameObject
     for(Long i : key)
     {
       final long statID=i;
-      final long value=statsObj.get(i);
+      final double value=statsObj.get(i);
       stats=String.valueOf(stats)+statID+","+String.valueOf(value)+";";
     }
     return stats;
@@ -1558,7 +1558,7 @@ public class GameObject
 
   public boolean onlyStat(String runeStat)
   {
-    Map<Long, Long> statsObj=new HashMap<Long, Long>(this.Stats.getMap());
+    Map<Long, Double> statsObj=new HashMap<Long, Double>(this.Stats.getMap());
     ArrayList<Long> keys=new ArrayList<Long>(this.Stats.getMap().keySet());
     for(Long i : keys)
     {

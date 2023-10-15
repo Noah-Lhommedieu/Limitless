@@ -30,7 +30,7 @@ public class Prism
   private int honor=0;
   private int area=-1;
   private Fight fight;
-  private Map<Long, Long> stats=new HashMap<Long, Long>();
+  private Map<Long, Double> stats=new HashMap<Long, Double>();
 
   public Prism(int id, int alignement, int level, short Map, int cell, int honor, int area)
   {
@@ -248,12 +248,12 @@ public class Prism
 
   public void refreshStats()
   {
-    long feu=1000+(500*this.level);
-    long intel=1000+(500*this.level);
-    long agi=1000+(500*this.level);
-    long sagesse=1000+(500*this.level);
-    long chance=1000+(500*this.level);
-    long resistance=9*this.level;
+	  double feu=1000+(500*this.level);
+    double intel=1000+(500*this.level);
+    double agi=1000+(500*this.level);
+    double sagesse=1000+(500*this.level);
+    double chance=1000+(500*this.level);
+    double resistance=9*this.level;
     this.stats.clear();
     this.stats.put(Constant.STATS_ADD_FORC,feu);
     this.stats.put(Constant.STATS_ADD_INTE,intel);
@@ -267,8 +267,8 @@ public class Prism
     this.stats.put((long)Constant.STATS_ADD_RP_TER,resistance);
     this.stats.put((long)Constant.STATS_ADD_AFLEE,resistance);
     this.stats.put((long)Constant.STATS_ADD_MFLEE,resistance);
-    this.stats.put(Constant.STATS_ADD_PA,(long)6);
-    this.stats.put(Constant.STATS_ADD_PM,(long)0);
+    this.stats.put(Constant.STATS_ADD_PA,(double)6);
+    this.stats.put(Constant.STATS_ADD_PM,(double)0);
   }
 
   public int getX()

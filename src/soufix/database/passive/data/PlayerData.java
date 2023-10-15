@@ -58,14 +58,14 @@ public class PlayerData extends AbstractDAO<Player>
       ResultSet RS=result.resultSet;
       while(RS.next())
       {
-        HashMap<Long, Long> stats=new HashMap<Long, Long>();
-        stats.put(Constant.STATS_ADD_VITA,RS.getLong("vitalite"));
-        stats.put(Constant.STATS_ADD_FORC,RS.getLong("force"));
-        stats.put(Constant.STATS_ADD_SAGE,RS.getLong("sagesse"));
-        stats.put(Constant.STATS_ADD_INTE,RS.getLong("intelligence"));
-        stats.put(Constant.STATS_ADD_CHAN,RS.getLong("chance"));
-        stats.put(Constant.STATS_ADD_AGIL,RS.getLong("agilite"));
-        Player perso=new Player(RS.getInt("id"),RS.getString("name"),RS.getInt("groupe"),RS.getInt("sexe"),RS.getInt("class"),RS.getInt("color1"),RS.getInt("color2"),RS.getInt("color3"),RS.getLong("kamas"),RS.getInt("spellboost"),RS.getLong("capital"),RS.getInt("energy"),RS.getInt("level"),RS.getDouble("xp"),RS.getInt("size"),RS.getInt("gfx"),RS.getByte("alignement"),RS.getInt("account"),stats,RS.getByte("seeFriend"),RS.getByte("seeAlign"),RS.getByte("seeSeller"),RS.getString("canaux"),RS.getShort("map"),RS.getInt("cell"),RS.getString("objets"),RS.getString("storeObjets"),RS.getString("pdvper"),RS.getString("spells"),RS.getString("savepos"),RS.getString("jobs"),RS.getInt("mountxpgive"),RS.getInt("mount"),RS.getInt("honor"),RS.getInt("deshonor"),RS.getInt("alvl"),RS.getString("zaaps"),RS.getInt("title"),RS.getInt("wife"),RS.getString("morphMode"),RS.getString("allTitle"),RS.getString("emotes"),RS.getLong("prison"),false,RS.getString("parcho"),RS.getLong("timeDeblo"),RS.getBoolean("noall"),RS.getString("deadInformation"),RS.getByte("deathCount"),RS.getLong("totalKills"),RS.getInt("tokens"),RS.getInt("apExo"),RS.getInt("mpExo"),RS.getInt("raExo"),RS.getString("rapid"),RS.getInt("song"),false,RS.getInt("prestige"),RS.getInt("ornement"),RS.getInt("omega"), RS.getDouble("xpOmega"), RS.getString("ornementsList"), RS.getInt("AuraC"), RS.getString("auraList"));
+        HashMap<Long, Double> stats=new HashMap<Long, Double>();
+        stats.put(Constant.STATS_ADD_VITA,RS.getDouble("vitalite"));
+        stats.put(Constant.STATS_ADD_FORC,RS.getDouble("force"));
+        stats.put(Constant.STATS_ADD_SAGE,RS.getDouble("sagesse"));
+        stats.put(Constant.STATS_ADD_INTE,RS.getDouble("intelligence"));
+        stats.put(Constant.STATS_ADD_CHAN,RS.getDouble("chance"));
+        stats.put(Constant.STATS_ADD_AGIL,RS.getDouble("agilite"));
+        Player perso=new Player(RS.getInt("id"),RS.getString("name"),RS.getInt("groupe"),RS.getInt("sexe"),RS.getInt("class"),RS.getInt("color1"),RS.getInt("color2"),RS.getInt("color3"),RS.getLong("kamas"),RS.getInt("spellboost"),RS.getDouble("capital"),RS.getInt("energy"),RS.getInt("level"),RS.getDouble("xp"),RS.getInt("size"),RS.getInt("gfx"),RS.getByte("alignement"),RS.getInt("account"),stats,RS.getByte("seeFriend"),RS.getByte("seeAlign"),RS.getByte("seeSeller"),RS.getString("canaux"),RS.getShort("map"),RS.getInt("cell"),RS.getString("objets"),RS.getString("storeObjets"),RS.getString("pdvper"),RS.getString("spells"),RS.getString("savepos"),RS.getString("jobs"),RS.getInt("mountxpgive"),RS.getInt("mount"),RS.getInt("honor"),RS.getInt("deshonor"),RS.getInt("alvl"),RS.getString("zaaps"),RS.getInt("title"),RS.getInt("wife"),RS.getString("morphMode"),RS.getString("allTitle"),RS.getString("emotes"),RS.getLong("prison"),false,RS.getString("parcho"),RS.getLong("timeDeblo"),RS.getBoolean("noall"),RS.getString("deadInformation"),RS.getByte("deathCount"),RS.getLong("totalKills"),RS.getInt("tokens"),RS.getInt("apExo"),RS.getInt("mpExo"),RS.getInt("raExo"),RS.getString("rapid"),RS.getInt("song"),false,RS.getInt("prestige"),RS.getInt("ornement"),RS.getInt("omega"), RS.getDouble("xpOmega"), RS.getString("ornementsList"), RS.getInt("AuraC"), RS.getString("auraList"));
         Main.world.kamas_total += RS.getLong("kamas");
         perso.VerifAndChangeItemPlace();
         Main.world.addPlayer(perso);
@@ -98,13 +98,13 @@ public class PlayerData extends AbstractDAO<Player>
         if(RS.getInt("server")!=Config.getInstance().serverId)
           continue;
 
-        HashMap<Long, Long> stats=new HashMap<Long, Long>();
-        stats.put(Constant.STATS_ADD_VITA,RS.getLong("vitalite"));
-        stats.put(Constant.STATS_ADD_FORC,RS.getLong("force"));
-        stats.put(Constant.STATS_ADD_SAGE,RS.getLong("sagesse"));
-        stats.put(Constant.STATS_ADD_INTE,RS.getLong("intelligence"));
-        stats.put(Constant.STATS_ADD_CHAN,RS.getLong("chance"));
-        stats.put(Constant.STATS_ADD_AGIL,RS.getLong("agilite"));
+        HashMap<Long, Double> stats=new HashMap<Long, Double>();
+        stats.put(Constant.STATS_ADD_VITA,RS.getDouble("vitalite"));
+        stats.put(Constant.STATS_ADD_FORC,RS.getDouble("force"));
+        stats.put(Constant.STATS_ADD_SAGE,RS.getDouble("sagesse"));
+        stats.put(Constant.STATS_ADD_INTE,RS.getDouble("intelligence"));
+        stats.put(Constant.STATS_ADD_CHAN,RS.getDouble("chance"));
+        stats.put(Constant.STATS_ADD_AGIL,RS.getDouble("agilite"));
         Main.world.kamas_total += RS.getLong("kamas");
         Player oldPlayer=Main.world.getPlayer((int)obj);
         player=new Player(RS.getInt("id"),RS.getString("name"),RS.getInt("groupe"),RS.getInt("sexe"),RS.getInt("class"),RS.getInt("color1"),RS.getInt("color2"),RS.getInt("color3"),RS.getLong("kamas"),RS.getInt("spellboost"),RS.getInt("capital"),RS.getInt("energy"),RS.getInt("level"),RS.getLong("xp"),RS.getInt("size"),RS.getInt("gfx"),RS.getByte("alignement"),RS.getInt("account"),stats,RS.getByte("seeFriend"),RS.getByte("seeAlign"),RS.getByte("seeSeller"),RS.getString("canaux"),RS.getShort("map"),RS.getInt("cell"),RS.getString("objets"),RS.getString("storeObjets"),RS.getString("pdvper"),RS.getString("spells"),RS.getString("savepos"),RS.getString("jobs"),RS.getInt("mountxpgive"),RS.getInt("mount"),RS.getInt("honor"),RS.getInt("deshonor"),RS.getInt("alvl"),RS.getString("zaaps"),RS.getInt("title"),RS.getInt("wife"),RS.getString("morphMode"),RS.getString("allTitle"),RS.getString("emotes"),RS.getLong("prison"),false,RS.getString("parcho"),RS.getLong("timeDeblo"),RS.getBoolean("noall"),RS.getString("deadInformation"),RS.getByte("deathCount"),RS.getLong("totalKills"),RS.getInt("tokens"),RS.getInt("apExo"),RS.getInt("mpExo"),RS.getInt("raExo"),RS.getString("rapid"),RS.getInt("song"),true,RS.getInt("prestige"),RS.getInt("ornement"),RS.getInt("omega"), RS.getDouble("xpOmega"), RS.getString("ornementsList"), RS.getInt("AuraC"), RS.getString("auraList"));
@@ -143,13 +143,13 @@ public class PlayerData extends AbstractDAO<Player>
         if(RS.getInt("server")!=Config.getInstance().serverId)
           continue;
 
-        HashMap<Long, Long> stats=new HashMap<Long, Long>();
-        stats.put(Constant.STATS_ADD_VITA,RS.getLong("vitalite"));
-        stats.put(Constant.STATS_ADD_FORC,RS.getLong("force"));
-        stats.put(Constant.STATS_ADD_SAGE,RS.getLong("sagesse"));
-        stats.put(Constant.STATS_ADD_INTE,RS.getLong("intelligence"));
-        stats.put(Constant.STATS_ADD_CHAN,RS.getLong("chance"));
-        stats.put(Constant.STATS_ADD_AGIL,RS.getLong("agilite"));
+        HashMap<Long, Double> stats=new HashMap<Long, Double>();
+        stats.put(Constant.STATS_ADD_VITA,RS.getDouble("vitalite"));
+        stats.put(Constant.STATS_ADD_FORC,RS.getDouble("force"));
+        stats.put(Constant.STATS_ADD_SAGE,RS.getDouble("sagesse"));
+        stats.put(Constant.STATS_ADD_INTE,RS.getDouble("intelligence"));
+        stats.put(Constant.STATS_ADD_CHAN,RS.getDouble("chance"));
+        stats.put(Constant.STATS_ADD_AGIL,RS.getDouble("agilite"));
         Main.world.kamas_total += RS.getLong("kamas");
         Player oldPlayer=Main.world.getPlayer(RS.getInt("id"));
         player=new Player(RS.getInt("id"),RS.getString("name"),RS.getInt("groupe"),RS.getInt("sexe"),RS.getInt("class"),RS.getInt("color1"),RS.getInt("color2"),RS.getInt("color3"),RS.getLong("kamas"),RS.getInt("spellboost"),RS.getInt("capital"),RS.getInt("energy"),RS.getInt("level"),RS.getLong("xp"),RS.getInt("size"),RS.getInt("gfx"),RS.getByte("alignement"),RS.getInt("account"),stats,RS.getByte("seeFriend"),RS.getByte("seeAlign"),RS.getByte("seeSeller"),RS.getString("canaux"),RS.getShort("map"),RS.getInt("cell"),RS.getString("objets"),RS.getString("storeObjets"),RS.getString("pdvper"),RS.getString("spells"),RS.getString("savepos"),RS.getString("jobs"),RS.getInt("mountxpgive"),RS.getInt("mount"),RS.getInt("honor"),RS.getInt("deshonor"),RS.getInt("alvl"),RS.getString("zaaps"),RS.getInt("title"),RS.getInt("wife"),RS.getString("morphMode"),RS.getString("allTitle"),RS.getString("emotes"),RS.getLong("prison"),false,RS.getString("parcho"),RS.getLong("timeDeblo"),RS.getBoolean("noall"),RS.getString("deadInformation"),RS.getByte("deathCount"),RS.getLong("totalKills"),RS.getInt("tokens"),RS.getInt("apExo"),RS.getInt("mpExo"),RS.getInt("raExo"),RS.getString("rapid"),RS.getInt("song"),true,RS.getInt("prestige"),RS.getInt("ornement"),RS.getInt("omega"), RS.getDouble("xpOmega"),RS.getString("ornementsList"), RS.getInt("AuraC"), RS.getString("auraList"));
@@ -209,14 +209,14 @@ public class PlayerData extends AbstractDAO<Player>
             continue;
           }
         }
-        HashMap<Long, Long> stats=new HashMap<Long, Long>();
+        HashMap<Long, Double> stats=new HashMap<Long, Double>();
 
-        stats.put(Constant.STATS_ADD_VITA,RS.getLong("vitalite"));
-        stats.put(Constant.STATS_ADD_FORC,RS.getLong("force"));
-        stats.put(Constant.STATS_ADD_SAGE,RS.getLong("sagesse"));
-        stats.put(Constant.STATS_ADD_INTE,RS.getLong("intelligence"));
-        stats.put(Constant.STATS_ADD_CHAN,RS.getLong("chance"));
-        stats.put(Constant.STATS_ADD_AGIL,RS.getLong("agilite"));
+        stats.put(Constant.STATS_ADD_VITA,RS.getDouble("vitalite"));
+        stats.put(Constant.STATS_ADD_FORC,RS.getDouble("force"));
+        stats.put(Constant.STATS_ADD_SAGE,RS.getDouble("sagesse"));
+        stats.put(Constant.STATS_ADD_INTE,RS.getDouble("intelligence"));
+        stats.put(Constant.STATS_ADD_CHAN,RS.getDouble("chance"));
+        stats.put(Constant.STATS_ADD_AGIL,RS.getDouble("agilite"));
         Player player=new Player(RS.getInt("id"),RS.getString("name"),RS.getInt("groupe"),RS.getInt("sexe"),RS.getInt("class"),RS.getInt("color1"),RS.getInt("color2"),RS.getInt("color3"),RS.getLong("kamas"),RS.getInt("spellboost"),RS.getInt("capital"),RS.getInt("energy"),RS.getInt("level"),RS.getLong("xp"),RS.getInt("size"),RS.getInt("gfx"),RS.getByte("alignement"),RS.getInt("account"),stats,RS.getByte("seeFriend"),RS.getByte("seeAlign"),RS.getByte("seeSeller"),RS.getString("canaux"),RS.getShort("map"),RS.getInt("cell"),RS.getString("objets"),RS.getString("storeObjets"),RS.getString("pdvper"),RS.getString("spells"),RS.getString("savepos"),RS.getString("jobs"),RS.getInt("mountxpgive"),RS.getInt("mount"),RS.getInt("honor"),RS.getInt("deshonor"),RS.getInt("alvl"),RS.getString("zaaps"),RS.getInt("title"),RS.getInt("wife"),RS.getString("morphMode"),RS.getString("allTitle"),RS.getString("emotes"),RS.getLong("prison"),false,RS.getString("parcho"),RS.getLong("timeDeblo"),RS.getBoolean("noall"),RS.getString("deadInformation"),RS.getByte("deathCount"),RS.getLong("totalKills"),RS.getInt("tokens"),RS.getInt("apExo"),RS.getInt("mpExo"),RS.getInt("raExo"),RS.getString("rapid"),RS.getInt("song"),true,RS.getInt("prestige"),RS.getInt("ornement"),RS.getInt("omega"), RS.getDouble("xpOmega"),RS.getString("ornementsList"), RS.getInt("AuraC"), RS.getString("auraList"));
         Main.world.kamas_total += RS.getLong("kamas");
         if(p!=null)
@@ -278,7 +278,7 @@ public class PlayerData extends AbstractDAO<Player>
       p.setInt(7,perso.getColor3());
       p.setLong(8,perso.getKamas());
       p.setInt(9,perso.get_spellPts());
-      p.setLong(10,perso.get_capital());
+      p.setDouble(10,perso.get_capital());
       p.setInt(11,perso.getEnergy());
       p.setInt(12,perso.getLevel());
       p.setDouble(13,perso.getExp());
@@ -352,7 +352,7 @@ public class PlayerData extends AbstractDAO<Player>
       p=getPreparedStatement("UPDATE `players` SET `kamas`= ?, `spellboost`= ?, `capital`= ?, `energy`= ?, `level`= ?, `xp`= ?, `size` = ?, `gfx`= ?, `alignement`= ?, `honor`= ?, `deshonor`= ?, `alvl`= ?, `vitalite`= ?, `force`= ?, `sagesse`= ?, `intelligence`= ?, `chance`= ?, `agilite`= ?, `seeFriend`= ?, `seeAlign`= ?, `seeSeller`= ?, `canaux`= ?, `map`= ?, `cell`= ?, `pdvper`= ?, `spells`= ?, `objets`= ?, `storeObjets`= ?, `savepos`= ?, `zaaps`= ?, `jobs`= ?, `mountxpgive`= ?, `mount`= ?, `title`= ?, `wife`= ?, `morphMode`= ?, `allTitle` = ?, `emotes` = ?, `prison` = ?, `parcho` = ?, `timeDeblo` = ?, `noall` = ?, `deadInformation` = ?, `deathCount` = ?, `totalKills` = ?, `rapid` = ? , `song` = ?, `prestige` = ?, `ornement` = ?, `AuraC` = ?, `auraList` = ?, `OverPower` = ? WHERE `players`.`id` = ? LIMIT 1");
       p.setLong(1,player.getKamas());
       p.setInt(2,player.get_spellPts());
-      p.setLong(3,player.get_capital());
+      p.setDouble(3,player.get_capital());
       p.setInt(4,player.getEnergy());
       p.setInt(5,player.getLevel());
       p.setDouble(6,player.getExp());
@@ -362,12 +362,12 @@ public class PlayerData extends AbstractDAO<Player>
       p.setInt(10,player.get_honor());
       p.setInt(11,player.getDeshonor());
       p.setInt(12,player.getALvl());
-      p.setLong(13,player.stats.getEffect(Constant.STATS_ADD_VITA));
-      p.setLong(14,player.stats.getEffect(Constant.STATS_ADD_FORC));
-      p.setLong(15,player.stats.getEffect(Constant.STATS_ADD_SAGE));
-      p.setLong(16,player.stats.getEffect(Constant.STATS_ADD_INTE));
-      p.setLong(17,player.stats.getEffect(Constant.STATS_ADD_CHAN));
-      p.setLong(18,player.stats.getEffect(Constant.STATS_ADD_AGIL));
+      p.setDouble(13,player.stats.getEffect(Constant.STATS_ADD_VITA));
+      p.setDouble(14,player.stats.getEffect(Constant.STATS_ADD_FORC));
+      p.setDouble(15,player.stats.getEffect(Constant.STATS_ADD_SAGE));
+      p.setDouble(16,player.stats.getEffect(Constant.STATS_ADD_INTE));
+      p.setDouble(17,player.stats.getEffect(Constant.STATS_ADD_CHAN));
+      p.setDouble(18,player.stats.getEffect(Constant.STATS_ADD_AGIL));
       p.setInt(19,(player.is_showFriendConnection() ? 1 : 0));
       p.setInt(20,(player.is_showWings() ? 1 : 0));
       p.setInt(21,(player.isShowSeller() ? 1 : 0));

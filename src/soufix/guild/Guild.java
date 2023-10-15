@@ -28,7 +28,7 @@ public class Guild
   private Map<Integer, SortStats> spells=new HashMap<>(); //<ID, Level>
   private Map<Long, Long> stats=new HashMap<>(); //<Effet, Quantit�>
   //Stats en combat
-  private Map<Long, Long> statsFight=new HashMap<>();
+  private Map<Long, Double> statsFight=new HashMap<>();
   private long date;
 
   public Guild(String name, String emblem)
@@ -65,15 +65,15 @@ public class Guild
     decompileStats(stats);
     //Mise en place des stats
     statsFight.clear();
-    statsFight.put((long)Constant.STATS_ADD_DOMA,(long)Math.floor(getLvl()/4));
-    statsFight.put((long)Constant.STATS_ADD_CC,(long)Math.floor(getLvl()/10));
-    statsFight.put((long)Constant.STATS_ADD_SOIN,(long)Math.floor(getLvl()/2));
-    statsFight.put((long)Constant.STATS_ADD_PERDOM,(long)Math.floor(getLvl()));
-    statsFight.put((long)Constant.STATS_ADD_RP_NEU,(long)Math.floor(getLvl()/4));
-    statsFight.put((long)Constant.STATS_ADD_RP_FEU,(long)Math.floor(getLvl()/4));
-    statsFight.put((long)Constant.STATS_ADD_RP_EAU,(long)Math.floor(getLvl()/4));
-    statsFight.put((long)Constant.STATS_ADD_RP_AIR,(long)Math.floor(getLvl()/4));
-    statsFight.put((long)Constant.STATS_ADD_RP_TER,(long)Math.floor(getLvl()/4));
+    statsFight.put((long)Constant.STATS_ADD_DOMA,(double)Math.floor(getLvl()/4));
+    statsFight.put((long)Constant.STATS_ADD_CC,(double)Math.floor(getLvl()/10));
+    statsFight.put((long)Constant.STATS_ADD_SOIN,(double)Math.floor(getLvl()/2));
+    statsFight.put((long)Constant.STATS_ADD_PERDOM,(double)Math.floor(getLvl()));
+    statsFight.put((long)Constant.STATS_ADD_RP_NEU,(double)Math.floor(getLvl()/4));
+    statsFight.put((long)Constant.STATS_ADD_RP_FEU,(double)Math.floor(getLvl()/4));
+    statsFight.put((long)Constant.STATS_ADD_RP_EAU,(double)Math.floor(getLvl()/4));
+    statsFight.put((long)Constant.STATS_ADD_RP_AIR,(double)Math.floor(getLvl()/4));
+    statsFight.put((long)Constant.STATS_ADD_RP_TER,(double)Math.floor(getLvl()/4));
   }
 
   public GuildMember addMember(int id, int r, byte pXp, long x, int ri, String lastCo)

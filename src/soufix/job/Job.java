@@ -105,9 +105,9 @@ public class Job
     return (this.id>42&&this.id<51)||(this.id>61&&this.id<65);
   }
 
-  public static long getActualJet(GameObject obj, String statsModif)
+  public static double getActualJet(GameObject obj, String statsModif)
   {
-    for(Entry<Long, Long> entry : obj.getStats().getMap().entrySet())
+    for(Entry<Long, Double> entry : obj.getStats().getMap().entrySet())
     {
       if(Long.toHexString(entry.getKey()).compareTo(statsModif)>0)//Effets inutiles
       {
@@ -115,7 +115,7 @@ public class Job
       }
       else if(Long.toHexString(entry.getKey()).compareTo(statsModif)==0)//L'effet existe bien !
       {
-        long JetActual=entry.getValue();
+    	double JetActual=entry.getValue();
         return JetActual;
       }
     }
@@ -127,7 +127,7 @@ public class Job
   {
     if(!obj.parseStatsString().isEmpty())
     {
-      for(Entry<Long, Long> entry : obj.getStats().getMap().entrySet())
+      for(Entry<Long, Double> entry : obj.getStats().getMap().entrySet())
       {
         if(!Long.toHexString(entry.getKey()).equalsIgnoreCase(runeStat)) //Rune is not on item
         {

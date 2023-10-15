@@ -7,7 +7,7 @@ import java.util.Map;
 
 import soufix.fight.spells.Spell;
 import soufix.main.Constant;
-
+import soufix.other.ItemEvolution;
 import soufix.other.Ornements;
 import soufix.other.OverPower;
 import soufix.other.Titre;
@@ -252,6 +252,15 @@ public class CommandPlayerpvm {
             	SocketManager.GAME_SEND_ERASE_ON_MAP_TO_MAP(perso.getCurMap(), perso.getId()); // delete perso de la map
             	SocketManager.GAME_SEND_ADD_PLAYER_TO_MAP(perso.getCurMap(), perso); // rajoute le perso 
 			}
+			if (msg.length() > 7 && msg.substring(1, 8).equalsIgnoreCase("ItemEvo")) 
+				{
+					ItemEvolution itemEvo = new ItemEvolution(perso);
+					itemEvo.OneItemEvoWithObject(perso, Constant.ITEM_POS_ANNEAU1, Constant.STATS_ADD_CHAN, perso.getObjetByPos(Constant.ITEM_POS_ANNEAU1).getTemplate());		
+						
+							
+				}
+			
+			
 			/*if (msg.length() > 9 && msg.substring(1, 10).equalsIgnoreCase("auraClear")) 
 			{
 				perso.getAuraList().clear();
@@ -1386,7 +1395,7 @@ public class CommandPlayerpvm {
     
     
     public static void Restat(Player player) {
-    	long capitalTotalActuel = (player.getStats().get(Constant.STATS_ADD_SAGE)) + player.getStats().get(Constant.STATS_ADD_AGIL) + player.getStats().get(Constant.STATS_ADD_CHAN) + player.getStats().get(Constant.STATS_ADD_FORC) +player.getStats().get(Constant.STATS_ADD_INTE) + player.getStats().get(Constant.STATS_ADD_VITA);
+    	double capitalTotalActuel = (player.getStats().get(Constant.STATS_ADD_SAGE)) + player.getStats().get(Constant.STATS_ADD_AGIL) + player.getStats().get(Constant.STATS_ADD_CHAN) + player.getStats().get(Constant.STATS_ADD_FORC) +player.getStats().get(Constant.STATS_ADD_INTE) + player.getStats().get(Constant.STATS_ADD_VITA);
     	double curPer = player.get_pdvper();
 
           if (player.getStatsParcho().getEffect(125) != 0 || player.getStatsParcho().getEffect(124) != 0 || player.getStatsParcho().getEffect(118) != 0

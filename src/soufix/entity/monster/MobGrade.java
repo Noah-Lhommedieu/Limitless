@@ -32,7 +32,7 @@ public class MobGrade
   private GameCase fightCell;
   private String _resistencias, _spells;
   private ArrayList<SpellEffect> fightBuffs=new ArrayList<SpellEffect>();
-  private Map<Long, Long> stats=new HashMap<Long, Long>();
+  private Map<Long, Double> stats=new HashMap<Long, Double>();
   private Map<Integer, SortStats> spells=new HashMap<Integer, SortStats>();
   private ArrayList<Integer> statsInfos=new ArrayList<Integer>();
   
@@ -63,32 +63,32 @@ public class MobGrade
     {
       if(resist.length>3)
       {
-    	  this.stats.put((long)Constant.STATS_ADD_RP_NEU,Long.parseLong(resist[0]));
-          this.stats.put((long)Constant.STATS_ADD_RP_TER,Long.parseLong(resist[1]));
-          this.stats.put((long)Constant.STATS_ADD_RP_FEU,Long.parseLong(resist[2]));
-          this.stats.put((long)Constant.STATS_ADD_RP_EAU,Long.parseLong(resist[3]));
-          this.stats.put((long)Constant.STATS_ADD_RP_AIR,Long.parseLong(resist[4]));
-          this.stats.put((long)Constant.STATS_ADD_AFLEE,Long.parseLong(resist[5]));
-          this.stats.put((long)Constant.STATS_ADD_MFLEE,Long.parseLong(resist[6]));
+    	  this.stats.put((long)Constant.STATS_ADD_RP_NEU,Double.parseDouble(resist[0]));
+          this.stats.put((long)Constant.STATS_ADD_RP_TER,Double.parseDouble(resist[1]));
+          this.stats.put((long)Constant.STATS_ADD_RP_FEU,Double.parseDouble(resist[2]));
+          this.stats.put((long)Constant.STATS_ADD_RP_EAU,Double.parseDouble(resist[3]));
+          this.stats.put((long)Constant.STATS_ADD_RP_AIR,Double.parseDouble(resist[4]));
+          this.stats.put((long)Constant.STATS_ADD_AFLEE,Double.parseDouble(resist[5]));
+          this.stats.put((long)Constant.STATS_ADD_MFLEE,Double.parseDouble(resist[6]));
       }
       else
       {
         String[] split=resist[0].split(",");
-        this.stats.put((long)-1,Long.parseLong(split[0]));
-        this.stats.put((long)-100,Long.parseLong(split[1]));
-        this.stats.put((long)Constant.STATS_ADD_AFLEE,Long.parseLong(resist[1]));
-        this.stats.put((long)Constant.STATS_ADD_MFLEE,Long.parseLong(resist[2]));
+        this.stats.put((long)-1,Double.parseDouble(split[0]));
+        this.stats.put((long)-100,Double.parseDouble(split[1]));
+        this.stats.put((long)Constant.STATS_ADD_AFLEE,Double.parseDouble(resist[1]));
+        this.stats.put((long)Constant.STATS_ADD_MFLEE,Double.parseDouble(resist[2]));
       }
 
-      this.stats.put(Constant.STATS_ADD_FORC,Long.parseLong(stat[0]));
-      this.stats.put(Constant.STATS_ADD_SAGE,Long.parseLong(stat[1]));
-      this.stats.put(Constant.STATS_ADD_INTE,Long.parseLong(stat[2]));
-      this.stats.put(Constant.STATS_ADD_CHAN,Long.parseLong(stat[3]));
-      this.stats.put(Constant.STATS_ADD_AGIL,Long.parseLong(stat[4]));
-      this.stats.put(Constant.STATS_ADD_DOMA,Long.parseLong(statInfos[0]));
-      this.stats.put((long) Constant.STATS_ADD_PERDOM,Long.parseLong(statInfos[1]));
-      this.stats.put((long) Constant.STATS_ADD_SOIN,Long.parseLong(statInfos[2]));
-      this.stats.put(Constant.STATS_ADD_SUM,Long.parseLong(statInfos[3]));
+      this.stats.put(Constant.STATS_ADD_FORC,Double.parseDouble(stat[0]));
+      this.stats.put(Constant.STATS_ADD_SAGE,Double.parseDouble(stat[1]));
+      this.stats.put(Constant.STATS_ADD_INTE,Double.parseDouble(stat[2]));
+      this.stats.put(Constant.STATS_ADD_CHAN,Double.parseDouble(stat[3]));
+      this.stats.put(Constant.STATS_ADD_AGIL,Double.parseDouble(stat[4]));
+      this.stats.put(Constant.STATS_ADD_DOMA,Double.parseDouble(statInfos[0]));
+      this.stats.put((long) Constant.STATS_ADD_PERDOM,Double.parseDouble(statInfos[1]));
+      this.stats.put((long) Constant.STATS_ADD_SOIN,Double.parseDouble(statInfos[2]));
+      this.stats.put(Constant.STATS_ADD_SUM,Double.parseDouble(statInfos[3]));
     }
     catch(Exception e)
     {
@@ -131,7 +131,7 @@ public class MobGrade
     }
   }
 
-  private MobGrade(Monster template, int grade, int level, long pdv, long pdvMax, int pa, int pm, Map<Long, Long> stats, ArrayList<Integer> statsInfos, Map<Integer, SortStats> spells, int xp, int n)
+  private MobGrade(Monster template, int grade, int level, long pdv, long pdvMax, int pa, int pm, Map<Long, Double> stats, ArrayList<Integer> statsInfos, Map<Integer, SortStats> spells, int xp, int n)
   {
     this.size=100+n*pSize;
     this.template=template;
@@ -155,7 +155,7 @@ public class MobGrade
   }
   public MobGrade getCopy()
   {
-    Map<Long, Long> newStats=new HashMap<Long, Long>();
+    Map<Long, Double> newStats=new HashMap<Long, Double>();
     newStats.putAll(this.stats);
     int n=(this.size-100)/pSize;
     return new MobGrade(this.template,this.grade,this.level,this.pdv,this.pdvMax,this.pa,this.pm,newStats,this.statsInfos,this.spells,this.baseXp,n);
@@ -276,16 +276,16 @@ public class MobGrade
   public Stats getStats()
   {
     if(this.getTemplate().getId()==42&&!stats.containsKey(Constant.STATS_ADD_SUM))
-      stats.put(Constant.STATS_ADD_SUM,(long) 5);
+      stats.put(Constant.STATS_ADD_SUM,(double) 5);
     if(this.stats.get(-1)!=null)
     {
-      Map<Long, Long> stats=new HashMap<>();
+      Map<Long, Double> stats=new HashMap<>();
       stats.putAll(this.stats);
       stats.remove(-1);
       stats.remove(-100);
 
       int random=Formulas.getRandomValue(210,214);
-      long one=this.stats.get(-1),all=this.stats.get(-100);
+      double one=this.stats.get(-1),all=this.stats.get(-100);
 
       stats.put((long) Constant.STATS_ADD_RP_NEU,(random==Constant.STATS_ADD_RP_NEU ? one : all));
       stats.put((long) Constant.STATS_ADD_RP_TER,(random==Constant.STATS_ADD_RP_TER ? one : all));
@@ -322,8 +322,8 @@ public class MobGrade
         casterAgi=0;
       double agili=stats.get(Constant.STATS_ADD_AGIL)+(casterAgi*0.3);
       double sages=stats.get(Constant.STATS_ADD_SAGE)+(casterWis*0.2);
-      stats.put(Constant.STATS_ADD_AGIL,(long)agili);
-      stats.put(Constant.STATS_ADD_SAGE,(long)sages);
+      stats.put(Constant.STATS_ADD_AGIL,(double)agili);
+      stats.put(Constant.STATS_ADD_SAGE,(double)sages);
     }
     else
     {
@@ -360,12 +360,12 @@ public class MobGrade
       double chance=stats.get(Constant.STATS_ADD_CHAN)+(casterCha*0.5);
       double agili=stats.get(Constant.STATS_ADD_AGIL)+(casterAgi*0.5);
       double summons=1+(casterSummons*0.5);
-      stats.put(Constant.STATS_ADD_SAGE,(long)sages);
-      stats.put(Constant.STATS_ADD_FORC,(long)force);
-      stats.put(Constant.STATS_ADD_INTE,(long)intel);
-      stats.put(Constant.STATS_ADD_CHAN,(long)chance);
-      stats.put(Constant.STATS_ADD_AGIL,(long)agili);
-      stats.put(Constant.STATS_ADD_SUM,(long)summons);
+      stats.put(Constant.STATS_ADD_SAGE,(double)sages);
+      stats.put(Constant.STATS_ADD_FORC,(double)force);
+      stats.put(Constant.STATS_ADD_INTE,(double)intel);
+      stats.put(Constant.STATS_ADD_CHAN,(double)chance);
+      stats.put(Constant.STATS_ADD_AGIL,(double)agili);
+      stats.put(Constant.STATS_ADD_SUM,(double)summons);
     }
   }
 }

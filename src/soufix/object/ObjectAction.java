@@ -329,7 +329,7 @@ public class ObjectAction
               return;
             if(player.get_guild() == null)
       	  {
-      		  player.sendMessage("Vous ne possède pas de guilde"); 
+      		  player.sendMessage("Vous ne possï¿½de pas de guilde"); 
       		return;  
       	  }
       	  if(player.get_guild().getMember(player.getId()) == null)
@@ -403,7 +403,7 @@ public class ObjectAction
 
             if(player.getEmotes().contains(emote))
             {
-              SocketManager.GAME_SEND_MESSAGE(player,"Vous connaissez déjà cet emote.");
+              SocketManager.GAME_SEND_MESSAGE(player,"Vous connaissez dï¿½jï¿½ cet emote.");
               return;
             }
 
@@ -560,12 +560,12 @@ public class ObjectAction
             }
             if(alignement==0||alignement==3)
             {
-              SocketManager.GAME_SEND_MESSAGE(player,"Vous n'avez pas l'alignement nécessaire pour placer un prisme.");
+              SocketManager.GAME_SEND_MESSAGE(player,"Vous n'avez pas l'alignement nï¿½cessaire pour placer un prisme.");
               return;
             }
             if(!player.is_showWings())
             {
-              SocketManager.GAME_SEND_MESSAGE(player,"Vos ailes doivent être activées avant de placer un prisme.");
+              SocketManager.GAME_SEND_MESSAGE(player,"Vos ailes doivent ï¿½tre activï¿½es avant de placer un prisme.");
               return;
             }
             if(map0.noPrism||(subArea!=null&&(subArea.getId()==9||subArea.getId()==95))||map0.haveMobFix()||map0.getMobGroups().isEmpty()||map0.getPlaces().isEmpty())
@@ -755,7 +755,7 @@ public class ObjectAction
 		        player.setMount(Main.world.getMountById(mount.getId()));
 		        SocketManager.GAME_SEND_Re_PACKET(player,"+",Main.world.getMountById(mount.getId()));
 		        Database.getDynamics().getMountData().update(mount);
-		        SocketManager.GAME_SEND_MESSAGE(player,"Votre dragodinde a eté transforme on caméléone");
+		        SocketManager.GAME_SEND_MESSAGE(player,"Votre dragodinde a etï¿½ transforme on camï¿½lï¿½one");
 				break;
 			}
 
@@ -813,7 +813,7 @@ public class ObjectAction
 				  player0.getStats().addOneStat(123, -player0.getStats().getEffect(123));
 				  player0.getStats().addOneStat(119, -player0.getStats().getEffect(119));
 				  player0.getStats().addOneStat(126, -player0.getStats().getEffect(126));
-				  long val = 0;
+				  double val = 0;
 		            if(player.getStatsParcho().getEffect(Constant.STATS_ADD_VITA) != 0) {
 		            	val = player.getStatsParcho().getEffect(Constant.STATS_ADD_VITA);
 		            	player.getStatsParcho().addOneStat(Constant.STATS_ADD_VITA,-player.getStatsParcho().getEffect(Constant.STATS_ADD_VITA));
@@ -1126,7 +1126,7 @@ public class ObjectAction
           case 52: {// renom guilde
         	  if(player.get_guild() == null)
         	  {
-        		  player.sendMessage("Vous ne possède pas de guilde"); 
+        		  player.sendMessage("Vous ne possï¿½de pas de guilde"); 
         		return;  
         	  }
         	  if(player.get_guild().getMember(player.getId()) == null)

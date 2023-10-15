@@ -32,6 +32,7 @@ import soufix.main.Main;
 import soufix.object.GameObject;
 import soufix.object.ObjectSet;
 import soufix.object.ObjectTemplate;
+import soufix.other.ItemEvolution;
 import soufix.quest.Quest;
 import soufix.quest.QuestPlayer;
 import soufix.quest.QuestStep;
@@ -168,7 +169,7 @@ public class CommandAdmin extends AdminUser
           perso.getAccount().setPoints( perso.getAccount().getPoints() + 300);
           Database.getStatics().getPlayerData().logs_event(this.getPlayer().getName(), perso.getName(), 300);
           this.getPlayer().getAccount().setEvent( this.getPlayer().getAccount().getEvent()+1);
-           String suffix="Le joueur "+perso.getName()+" vient de gagner 300 points boutique suite à l'event fait par "+this.getPlayer().getName()+" .";
+           String suffix="Le joueur "+perso.getName()+" vient de gagner 300 points boutique suite ï¿½ l'event fait par "+this.getPlayer().getName()+" .";
             String prefix="<b>Server</b>";
             SocketManager.GAME_SEND_Im_PACKET_TO_ALL("116;"+prefix+"~"+suffix);
           String str="Le joueur a eu ses points.";
@@ -1878,7 +1879,7 @@ public class CommandAdmin extends AdminUser
       perso.unlearnJob(jobStats.getId());
       SocketManager.GAME_SEND_STATS_PACKET(perso);
       Database.getStatics().getPlayerData().update(perso);
-      SocketManager.GAME_SEND_MESSAGE(perso,"Vous venez d'apprendre un métier, veuillez vous reconnecter pour finaliser les changements.");
+      SocketManager.GAME_SEND_MESSAGE(perso,"Vous venez d'apprendre un mï¿½tier, veuillez vous reconnecter pour finaliser les changements.");
       this.sendMessage("You have remove profession "+job+" from character "+perso.getName()+".");
       return;
     }
@@ -2305,8 +2306,9 @@ public class CommandAdmin extends AdminUser
         this.sendMessage("Valeur incorecte.");
         return;
       }
-      Constant.onLevelUpSpells(perso, perso.getLevel()); // le possède Player.SpellMax(perso);
-      perso.ItemEvolution();
+      Constant.onLevelUpSpells(perso, perso.getLevel()); // le possï¿½de Player.SpellMax(perso);
+      ItemEvolution itemevo = new ItemEvolution(perso);
+      itemevo.OneItemEvoWithObject(perso, Constant.ITEM_POS_ANNEAU1,Constant.STATS_ADD_CHAN,perso.getObjetByPos(Constant.ITEM_POS_ANNEAU1).getTemplate());    
       
       return;
     }
@@ -2359,7 +2361,7 @@ public class CommandAdmin extends AdminUser
     	SocketManager.GAME_SEND_ASK(perso.getAccount().getGameClient(), perso); // ask le client
     	SocketManager.GAME_SEND_ERASE_ON_MAP_TO_MAP(perso.getCurMap(), perso.getId()); // delete perso de la map
     	SocketManager.GAME_SEND_ADD_PLAYER_TO_MAP(perso.getCurMap(), perso); // rajoute le perso
-    	Constant.onLevelUpSpells(perso, perso.getLevel()); // le possède Player.SpellMax(perso);
+    	Constant.onLevelUpSpells(perso, perso.getLevel()); // le possï¿½de Player.SpellMax(perso);
       }
       catch(Exception e)
       {
@@ -2368,7 +2370,7 @@ public class CommandAdmin extends AdminUser
         return;
       }
    }
-    else if(command.equalsIgnoreCase("ADDOMGEXP")) // Ajoute au joueur une quantité d'exp omega
+    else if(command.equalsIgnoreCase("ADDOMGEXP")) // Ajoute au joueur une quantitï¿½ d'exp omega
     {
       try
       {
@@ -2400,7 +2402,7 @@ public class CommandAdmin extends AdminUser
         return;
       }
    }
-    else if(command.equalsIgnoreCase("SETOMGLVL")) // Met le joueur au lvl omega donné
+    else if(command.equalsIgnoreCase("SETOMGLVL")) // Met le joueur au lvl omega donnï¿½
     {
       try
       {
@@ -3076,8 +3078,8 @@ public class CommandAdmin extends AdminUser
         {
           for(Player player : Main.world.getOnlinePlayers())
           {
-        	  SocketManager.PACKET_POPUP_DEPART(player, "Vous ne pouvez pas lancer de combats car le serveur redémarrera bientôt.");
-            //player.sendServerMessage("Vous ne pouvez pas lancer de combats car le serveur redémarrera bientôt.");
+        	  SocketManager.PACKET_POPUP_DEPART(player, "Vous ne pouvez pas lancer de combats car le serveur redï¿½marrera bientï¿½t.");
+            //player.sendServerMessage("Vous ne pouvez pas lancer de combats car le serveur redï¿½marrera bientï¿½t.");
             //player.send("M13");
           }
           Config.getInstance().fightAsBlocked=true;
@@ -3098,7 +3100,7 @@ public class CommandAdmin extends AdminUser
         this.getTimer().stop();
         this.setTimerStart(false);
         for(Player player : Main.world.getOnlinePlayers())
-          player.sendServerMessage("Le redémarrage a été annulé. Vous pouvez recommencer les combats.");
+          player.sendServerMessage("Le redï¿½marrage a ï¿½tï¿½ annulï¿½. Vous pouvez recommencer les combats.");
         Config.getInstance().fightAsBlocked=false;
         this.sendMessage("Reboot arrÃªtÃ©.");
       }
@@ -4483,25 +4485,25 @@ public class CommandAdmin extends AdminUser
     	Player perso=this.getPlayer();
         if(infos.length==3)//Si le nom du perso est specifie
         {
-          String name=infos[2]; // On récupère le joueur ciblé
-          perso=Main.world.getPlayerByName(name); //Récupère le Player si le joueur existe via son nom
+          String name=infos[2]; // On rï¿½cupï¿½re le joueur ciblï¿½
+          perso=Main.world.getPlayerByName(name); //Rï¿½cupï¿½re le Player si le joueur existe via son nom
           if(perso==null)
-            perso=this.getPlayer(); // Si le joueur ciblé existe pas, on prend le joueur qui execute la commande
+            perso=this.getPlayer(); // Si le joueur ciblï¿½ existe pas, on prend le joueur qui execute la commande
         }
-    	String stringorn=infos[1]; // On récupère l'ornement 
+    	String stringorn=infos[1]; // On rï¿½cupï¿½re l'ornement 
     	
     	int ornement = Integer.parseInt(stringorn); // Conversion de string -> int pour l'ornement
         
         if(perso==null) // Si la cible choisi existe pas
-          perso=this.getPlayer(); // On prend le joueur qui à fait la commande
+          perso=this.getPlayer(); // On prend le joueur qui ï¿½ fait la commande
         perso.addOrnements(ornement); // Ajoute l'ornement en BDD au joueur
-        perso.setOrnement(ornement); // Equipe l'ornement donné, car c'est stylé
-    	perso.sendMessage(perso.getName() + ": Ornement reçu -> " + perso.getOrnement()); // Affichage résultat d'obtention d'ornement
+        perso.setOrnement(ornement); // Equipe l'ornement donnï¿½, car c'est stylï¿½
+    	perso.sendMessage(perso.getName() + ": Ornement reï¿½u -> " + perso.getOrnement()); // Affichage rï¿½sultat d'obtention d'ornement
     	SocketManager.GAME_SEND_ALTER_GM_PACKET(perso.getCurMap(), perso);
         perso.refresh();
         SocketManager.GAME_SEND_ASK(perso.getGameClient(), perso);
         Database.getStatics().getPlayerData().updateOrnements(perso);
-        Constant.onLevelUpSpells(perso, perso.getLevel()); // le possède Player.SpellMax(perso);
+        Constant.onLevelUpSpells(perso, perso.getLevel()); // le possï¿½de Player.SpellMax(perso);
         
     }
     

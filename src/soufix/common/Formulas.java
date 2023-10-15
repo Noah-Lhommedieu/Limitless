@@ -172,8 +172,8 @@ public class Formulas
 
   public static int getTacleChance(Fighter fight, Fighter fighter)
   {
-    long agiTacleur=fight.getTotalStats().getEffect(Constant.STATS_ADD_AGIL);
-    long agiEnemi=fighter.getTotalStats().getEffect(Constant.STATS_ADD_AGIL);
+    double agiTacleur=fight.getTotalStats().getEffect(Constant.STATS_ADD_AGIL);
+    double agiEnemi=fighter.getTotalStats().getEffect(Constant.STATS_ADD_AGIL);
     int div=(int) (agiTacleur+agiEnemi+50);
     if(div==0)
       div=1;
@@ -183,8 +183,8 @@ public class Formulas
 
   public static long calculFinalHeal(Fighter healer, long roll, boolean isCac)
   {
-    long intel=healer.getTotalStats().getEffect(Constant.STATS_ADD_INTE);
-    long heals=healer.getTotalStats().getEffect(Constant.STATS_ADD_SOIN);
+	  double intel=healer.getTotalStats().getEffect(Constant.STATS_ADD_INTE);
+	  double heals=healer.getTotalStats().getEffect(Constant.STATS_ADD_SOIN);
     if(intel<0)
       intel=0;
     float a=1;
@@ -475,9 +475,11 @@ public class Formulas
 
   public static long calculFinalDommage(Fight fight, Fighter caster, Fighter target, int statID, long dmg, boolean isHeal, boolean isCaC, int spellid, GameCase castCell, GameCase targetCell, boolean isAoe, boolean isTrap)
   {
-    float a=1; //Calcul
-    float num=0;
-    float statC=0,domC=0,perdomC=0,resfT=0,respT=0,mulT=1;
+    double a=1; //Calcul
+    double num=0;
+    double statC=0,resfT=0,mulT=1;
+	double respT=0;
+    double domC=0,perdomC=0;
     if(!isHeal)
     {
       domC=caster.getTotalStats().getEffect(Constant.STATS_ADD_DOMA);
@@ -875,14 +877,14 @@ public class Formulas
           break;
         }
       }
-      long damRed=0;
-      long carac=0;
-      long[] stats= { SE.getCaster().getTotalStats().getEffect(Constant.STATS_ADD_FORC), SE.getCaster().getTotalStats().getEffect(Constant.STATS_ADD_INTE), SE.getCaster().getTotalStats().getEffect(Constant.STATS_ADD_CHAN), SE.getCaster().getTotalStats().getEffect(Constant.STATS_ADD_AGIL) };
-      long highest=0;
-      for(long stat : stats)
+      double damRed=0;
+      double carac=0;
+      double[] stats= { SE.getCaster().getTotalStats().getEffect(Constant.STATS_ADD_FORC), SE.getCaster().getTotalStats().getEffect(Constant.STATS_ADD_INTE), SE.getCaster().getTotalStats().getEffect(Constant.STATS_ADD_CHAN), SE.getCaster().getTotalStats().getEffect(Constant.STATS_ADD_AGIL) };
+      double highest=0;
+      for(double stat : stats)
         if(stat>highest)
           highest=stat;
-      final long value=SE.getValue();
+      final double value=SE.getValue();
       switch(statID)
       {
         case 4:
@@ -913,13 +915,13 @@ public class Formulas
 
     for(final SpellEffect SE : target.getBuffsByEffectID(105))
     {
-      long[] stats= { SE.getCaster().getTotalStats().getEffect(Constant.STATS_ADD_FORC), SE.getCaster().getTotalStats().getEffect(Constant.STATS_ADD_INTE), SE.getCaster().getTotalStats().getEffect(Constant.STATS_ADD_CHAN), SE.getCaster().getTotalStats().getEffect(Constant.STATS_ADD_AGIL) };
-      long highest=0;
-      for(long stat : stats)
+      double[] stats= { SE.getCaster().getTotalStats().getEffect(Constant.STATS_ADD_FORC), SE.getCaster().getTotalStats().getEffect(Constant.STATS_ADD_INTE), SE.getCaster().getTotalStats().getEffect(Constant.STATS_ADD_CHAN), SE.getCaster().getTotalStats().getEffect(Constant.STATS_ADD_AGIL) };
+      double highest=0;
+      for(double stat : stats)
         if(stat>highest)
           highest=stat;
 
-      final long value=SE.getValue();
+      final double value=SE.getValue();
       armor+=value*(100+highest)/100;
     }
 
@@ -928,9 +930,9 @@ public class Formulas
 
   public static int getPointsLost(char z, int value, Fighter caster, Fighter target)
   {
-    float esquiveC=z=='a' ? caster.getTotalStats().getEffect(Constant.STATS_ADD_AFLEE) : caster.getTotalStats().getEffect(Constant.STATS_ADD_MFLEE);
-    float esquiveT=z=='a' ? target.getTotalStats().getEffect(Constant.STATS_ADD_AFLEE) : target.getTotalStats().getEffect(Constant.STATS_ADD_MFLEE);
-    float ptsMax=z=='a' ? target.getTotalStatsLessBuff().getEffect(Constant.STATS_ADD_PA) : target.getTotalStatsLessBuff().getEffect(Constant.STATS_ADD_PM);
+	  double esquiveC=z=='a' ? caster.getTotalStats().getEffect(Constant.STATS_ADD_AFLEE) : caster.getTotalStats().getEffect(Constant.STATS_ADD_MFLEE);
+	  double esquiveT=z=='a' ? target.getTotalStats().getEffect(Constant.STATS_ADD_AFLEE) : target.getTotalStats().getEffect(Constant.STATS_ADD_MFLEE);
+	  double ptsMax=z=='a' ? target.getTotalStatsLessBuff().getEffect(Constant.STATS_ADD_PA) : target.getTotalStatsLessBuff().getEffect(Constant.STATS_ADD_PM);
 
     int retrait=0;
 
@@ -941,18 +943,18 @@ public class Formulas
         ptsMax=z=='a' ? target.getMob().getPa() : target.getMob().getPm();
       }
 
-      float pts=z=='a' ? target.getPa() : target.getPm();
-      float ptsAct=pts-retrait;
+      double pts=z=='a' ? target.getPa() : target.getPm();
+      double ptsAct=pts-retrait;
 
       if(esquiveT<=0)
         esquiveT=1;
       if(esquiveC<=0)
         esquiveC=1;
 
-      float a=esquiveC/esquiveT;
-      float b=(ptsAct/ptsMax);
+      double a=esquiveC/esquiveT;
+      double b=(ptsAct/ptsMax);
 
-      float pourcentage=a*b*50;
+      double pourcentage=a*b*50;
       int chance=(int)Math.ceil(pourcentage);
 
       if(chance<0)
@@ -1576,7 +1578,7 @@ public class Formulas
   }
 
   //v2.5 - new stats
-  public static long pushDamage(long pushedCells, long lvlPusher, long pushDam, long negPushDam, long pushRes, long negPushRes)
+  public static double pushDamage(long pushedCells, long lvlPusher, double pushDam, double negPushDam, double pushRes, double negPushRes)
   {
     return (8+Formulas.getRandomJet("1d8+0")*lvlPusher/50)*pushedCells+pushDam-negPushDam-pushRes+negPushRes;
   }
@@ -1811,7 +1813,7 @@ public class Formulas
   }
 
   //v2.8 - Critical hit system
-  public static boolean isCriticalHit(long baseCrit, long equipCrit, long negativeCrit, long agi)
+  public static boolean isCriticalHit(long baseCrit, double equipCrit, double negativeCrit, double agi)
   {
     baseCrit=(int)Math.floor(((baseCrit-equipCrit+negativeCrit)*2.9901)/Math.log(agi+12));
     if(baseCrit<2)

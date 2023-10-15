@@ -9,63 +9,63 @@ import java.util.HashMap;
 
 public class Stats
 {
-  private Map<Long, Long> effects=new HashMap<Long, Long>();
+  private Map<Long, Double> effects=new HashMap<Long, Double>();
 
   public Stats(boolean addBases, Player perso)
   {
-    this.effects=new HashMap<Long, Long>();
+    this.effects=new HashMap<Long, Double>();
     if(!addBases)
       return;
-    this.effects.put(Constant.STATS_ADD_PA, (long)12);
-    this.effects.put(Constant.STATS_ADD_PM, (long)6);
-    this.effects.put(Constant.STATS_ADD_PROS,perso.getClasse()==Constant.CLASS_ENUTROF ? (long)120 : 100);
-    this.effects.put(Constant.STATS_ADD_PODS,(long)20000);
-    this.effects.put(Constant.STATS_ADD_SUM,perso.getClasse()==Constant.CLASS_OSAMODAS ? (long)25 : 15);
-    this.effects.put(Constant.STATS_ADD_INIT,(long)1);
+    this.effects.put(Constant.STATS_ADD_PA, (double)12);
+    this.effects.put(Constant.STATS_ADD_PM, (double)6);
+    this.effects.put(Constant.STATS_ADD_PROS,perso.getClasse()==Constant.CLASS_ENUTROF ? (double)120 : 100);
+    this.effects.put(Constant.STATS_ADD_PODS,(double)20000);
+    this.effects.put(Constant.STATS_ADD_SUM,perso.getClasse()==Constant.CLASS_OSAMODAS ? (double)25 : 15);
+    this.effects.put(Constant.STATS_ADD_INIT,(double)1);
   }
 
-  public Stats(Map<Long, Long> stats, boolean addBases, Player perso)
+  public Stats(Map<Long, Double> stats, boolean addBases, Player perso)
   {
     this.effects=stats;
     if(!addBases)
       return;
-    this.effects.put(Constant.STATS_ADD_PA, (long)12);
-    this.effects.put(Constant.STATS_ADD_PM, (long)6);
-    this.effects.put(Constant.STATS_ADD_PROS,perso.getClasse()==Constant.CLASS_ENUTROF ? (long)120 : 100);
-    this.effects.put(Constant.STATS_ADD_PODS,(long)20000);
-    this.effects.put(Constant.STATS_ADD_SUM,perso.getClasse()==Constant.CLASS_OSAMODAS ? (long)25 : 15);
-    this.effects.put(Constant.STATS_ADD_INIT,(long)1);
+    this.effects.put(Constant.STATS_ADD_PA, (double)12);
+    this.effects.put(Constant.STATS_ADD_PM, (double)6);
+    this.effects.put(Constant.STATS_ADD_PROS,perso.getClasse()==Constant.CLASS_ENUTROF ? (double)120 : 100);
+    this.effects.put(Constant.STATS_ADD_PODS,(double)20000);
+    this.effects.put(Constant.STATS_ADD_SUM,perso.getClasse()==Constant.CLASS_OSAMODAS ? (double)25 : 15);
+    this.effects.put(Constant.STATS_ADD_INIT,(double)1);
   }
 
   public Stats(boolean a)
   {
-    this.effects.put(Constant.STATS_ADD_VITA,(long)0);
-    this.effects.put(Constant.STATS_ADD_SAGE,(long)0);
-    this.effects.put(Constant.STATS_ADD_INTE,(long)0);
-    this.effects.put(Constant.STATS_ADD_FORC,(long)0);
-    this.effects.put(Constant.STATS_ADD_CHAN,(long)0);
-    this.effects.put(Constant.STATS_ADD_AGIL,(long)0);
+    this.effects.put(Constant.STATS_ADD_VITA,(double)0);
+    this.effects.put(Constant.STATS_ADD_SAGE,(double)0);
+    this.effects.put(Constant.STATS_ADD_INTE,(double)0);
+    this.effects.put(Constant.STATS_ADD_FORC,(double)0);
+    this.effects.put(Constant.STATS_ADD_CHAN,(double)0);
+    this.effects.put(Constant.STATS_ADD_AGIL,(double)0);
   }
 
-  public Stats(Map<Long, Long> stats)
+  public Stats(Map<Long, Double> stats)
   {
     this.effects=stats;
   }
 
   public Stats()
   {
-    this.effects=new HashMap<Long, Long>();
+    this.effects=new HashMap<Long, Double>();
   }
 
   public static Stats cumulStat(Stats s1, Stats s2, Player perso)
   {
-    HashMap<Long, Long> effets=new HashMap<Long, Long>();
+    Map<Long, Double> effets=new HashMap<Long, Double>();
     for(long a=0;a<=Constant.MAX_EFFECTS_ID;a++)
     {
       if(s1.effects.get(a)==null&&s2.effects.get(a)==null)
         continue;
 
-      long som=0;
+      double som=0;
       if(s1.effects.get(a)!=null)
         som+=s1.effects.get(a);
       if(s2.effects.get(a)!=null)
@@ -90,13 +90,13 @@ public class Stats
   }
   public static Stats cumulStatfight2(Stats s1, Stats s2, Player perso)
   {
-    HashMap<Long, Long> effets=new HashMap<Long, Long>();
+    Map<Long, Double> effets=new HashMap<Long, Double>();
     for(long a=0;a<=Constant.MAX_EFFECTS_ID;a++)
     {
       if(s1.effects.get(a)==null&&s2.effects.get(a)==null)
         continue;
 
-      long som=0;
+      double som=0;
       if(s1.effects.get(a)!=null)
         som+=s1.effects.get(a);
       if(s2.effects.get(a)!=null)
@@ -108,12 +108,12 @@ public class Stats
 
   public static Stats cumulStatFight(Stats s1, Stats s2)
   {
-    HashMap<Long, Long> effets=new HashMap<Long, Long>();
+    HashMap<Long, Double> effets=new HashMap<Long, Double>();
     for(long a=0;a<=Constant.MAX_EFFECTS_ID;a++)
     {
       if((s1.effects.get(a)==null||s1.effects.get(a)==0)&&(s2.effects.get(a)==null||s2.effects.get(a)==0))
         continue;
-      long som=0;
+      double som=0;
       if(s1.effects.get(a)!=null)
         som+=s1.effects.get(a);
       if(s2.effects.get(a)!=null)
@@ -123,19 +123,19 @@ public class Stats
     return new Stats(effets,false,null);
   }
 
-  public Map<Long, Long> getMap()
+  public Map<Long, Double> getMap()
   {
     return this.effects;
   }
 
-  public long addOneStat(long id, long l)
+  public double addOneStat(long id, double countVal)
   {
     if(this.effects.get(id)==null||this.effects.get(id)==0)
     {
-      this.effects.put((long)id, l);
+      this.effects.put(id, countVal);
     } else
     {
-      long newVal=(this.effects.get(id)+l);
+    	double newVal=(this.effects.get(id)+countVal);
       if(newVal<=0)
       {
         this.effects.remove(id);
@@ -148,7 +148,7 @@ public class Stats
 
   public boolean isSameStats(Stats other)
   {
-    for(Entry<Long, Long> entry : this.effects.entrySet())
+    for(Entry<Long, Double> entry : this.effects.entrySet())
     {
       //Si la stat n'existe pas dans l'autre map
       if(other.getMap().get(entry.getKey())==null)
@@ -157,7 +157,7 @@ public class Stats
       if(other.getMap().get(entry.getKey()).compareTo(entry.getValue())!=0)
         return false;
     }
-    for(Entry<Long, Long> entry : other.getMap().entrySet())
+    for(Entry<Long, Double> entry : other.getMap().entrySet())
     {
       //Si la stat n'existe pas dans l'autre map
       if(this.effects.get(entry.getKey())==null)
@@ -174,23 +174,23 @@ public class Stats
     StringBuilder str=new StringBuilder();
     if(this.effects.isEmpty())
       return "";
-    for(Entry<Long, Long> entry : this.effects.entrySet())
+    for(Entry<Long, Double> entry : this.effects.entrySet())
     {
       if(str.length()>0)
         str.append(",");
-      str.append(Long.toHexString(entry.getKey())).append("#").append(Long.toHexString(entry.getValue())).append("#0#0");
+      str.append(Long.toHexString(entry.getKey())).append("#").append(Double.toHexString(entry.getValue())).append("#0#0");
     }
     return str.toString();
   }
 
-  public long get(long statsAddSage)
+  public double get(long statsAddSage)
   {
     return this.effects.get(statsAddSage)==null ? 0 : this.effects.get(statsAddSage);
   }
 
-  public long getEffect(long statsAddSage)
+  public double getEffect(long statsAddSage)
   {
-    long val;
+    double val;
     if(this.effects.get(statsAddSage)==null)
       val=0;
     else

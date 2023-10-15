@@ -146,7 +146,7 @@ public class JobAction
         int distItem=JobConstant.getDistCanne(P.getObjetByPos(Constant.ITEM_POS_ARME).getTemplate().getId());
         if(distItem<dist)
         {
-          SocketManager.GAME_SEND_MESSAGE(P,"Vous êtes trop loin pour attraper du poisson!");
+          SocketManager.GAME_SEND_MESSAGE(P,"Vous ï¿½tes trop loin pour attraper du poisson!");
           SocketManager.GAME_SEND_GA_PACKET(P.getGameClient(),"","0","","");
           P.setExchangeAction(null);
           P.setDoAction(false);
@@ -244,11 +244,11 @@ public class JobAction
             if(player.addObjet(_O,true))
               World.addGameObject(_O,true);
             if(SM.getTemplate().getId()==JobConstant.JOB_PECHEUR)
-              SocketManager.GAME_SEND_MESSAGE(player,"Vous venez de pêcher un poisson rare.","009900");
+              SocketManager.GAME_SEND_MESSAGE(player,"Vous venez de pï¿½cher un poisson rare.","009900");
             else if(SM.getTemplate().getId()==JobConstant.JOB_MINEUR)
-              SocketManager.GAME_SEND_MESSAGE(player,"Lors de l'exploitation minière, vous remarquez quelque chose qui scintille dans la roche.","009900");
+              SocketManager.GAME_SEND_MESSAGE(player,"Lors de l'exploitation miniï¿½re, vous remarquez quelque chose qui scintille dans la roche.","009900");
             else if(SM.getTemplate().getId()==JobConstant.JOB_PAYSAN)
-              SocketManager.GAME_SEND_MESSAGE(player,"Vous venez de récolter une céréale rare.","009900");
+              SocketManager.GAME_SEND_MESSAGE(player,"Vous venez de rï¿½colter une cï¿½rï¿½ale rare.","009900");
           }
         }
       }
@@ -942,7 +942,7 @@ public boolean doMage(boolean repeat, Player receiver, Map<Player, ArrayList<Pai
       if(Job.getActualJet(objectFm,rune.getStatId())+rune.getStatsAdd()>getStatBaseMaxs(objectFm.getTemplate(),rune.getStatId())) //current mage exceeds base stats
         if(rune.getPower()+exoPower>101f)
         {
-         // SocketManager.GAME_SEND_MESSAGE(this.player,"Ce mage dépasserait la limite de puissance maximale autorisée.");
+         // SocketManager.GAME_SEND_MESSAGE(this.player,"Ce mage dï¿½passerait la limite de puissance maximale autorisï¿½e.");
           if(receiver!=null)
           {
         	  canFM=false;
@@ -973,7 +973,7 @@ public boolean doMage(boolean repeat, Player receiver, Map<Player, ArrayList<Pai
     {
   
        int statMax=getStatBaseMaxs(objectFm.getTemplate(),rune.getStatId());
-       long currentStat=Job.getActualJet(objectFm,rune.getStatId());
+       double currentStat=Job.getActualJet(objectFm,rune.getStatId());
        if(statMax < 0)
     	   statMax = 0;
       int maxOvermage=getMaxStat(rune.getPower(),rune.getStatsAdd());
@@ -993,13 +993,13 @@ public boolean doMage(boolean repeat, Player receiver, Map<Player, ArrayList<Pai
        if(statMax == 0) {
     	  if (currentStat+rune.getStatsAdd() >= 2)
     	  {
-    		  //SocketManager.GAME_SEND_MESSAGE(this.player,"Ce mage dépasserait la limite de statistiques maximale autorisée");
+    		  //SocketManager.GAME_SEND_MESSAGE(this.player,"Ce mage dï¿½passerait la limite de statistiques maximale autorisï¿½e");
     		  canFM = false; 	  
     	  }
        }else
       if(currentStat+rune.getStatsAdd()>maxOvermage)
       {
-        SocketManager.GAME_SEND_MESSAGE(this.player,"Ce fm dépasserait la limite de statistiques maximale autorisée "+maxOvermage+".");
+        SocketManager.GAME_SEND_MESSAGE(this.player,"Ce fm dï¿½passerait la limite de statistiques maximale autorisï¿½e "+maxOvermage+".");
       
         	canFM = false;
        
@@ -1007,7 +1007,7 @@ public boolean doMage(boolean repeat, Player receiver, Map<Player, ArrayList<Pai
 
       if(canFM)
       {
-        float currentStatPower=1f;
+        double currentStatPower=1f;
         final int statMin=getStatBaseMins(objectFm.getTemplate(),rune.getStatId());
         float maxItemPower=maxTotalPower(objTemplateID);
         float minitemPower=minTotalPower(objTemplateID);
@@ -1038,9 +1038,9 @@ public boolean doMage(boolean repeat, Player receiver, Map<Player, ArrayList<Pai
         if(minitemPower==0)
           minitemPower=0.01f;
         if(minitemPower<0&&currentStatPower<0) //negative stats
-          chances=Formulas.chanceFM(maxItemPower,minitemPower,currentItemPower,currentStatPower,rune.getnPower(),statMax,statMin,rune.getStatsAdd(),coef,negative,rune);
+          chances=Formulas.chanceFM(maxItemPower,minitemPower,currentItemPower,(float) currentStatPower,rune.getnPower(),statMax,statMin,rune.getStatsAdd(),coef,negative,rune);
         else //standard
-          chances=Formulas.chanceFM(maxItemPower,minitemPower,currentItemPower,currentStatPower,rune.getPower(),statMax,statMin,rune.getStatsAdd(),coef,negative,rune);
+          chances=Formulas.chanceFM(maxItemPower,minitemPower,currentItemPower,(float) currentStatPower,rune.getPower(),statMax,statMin,rune.getStatsAdd(),coef,negative,rune);
       }
       else
       {
@@ -1195,7 +1195,7 @@ public boolean doMage(boolean repeat, Player receiver, Map<Player, ArrayList<Pai
       this.data=data;
       SocketManager.GAME_SEND_IO_PACKET_TO_MAP(this.player.getCurMap(),this.player.getId(),"+"+objTemplateID);
       if(!secure)
-        SocketManager.GAME_SEND_MESSAGE(this.player,"Vous avez fm avec succès.","009900");
+        SocketManager.GAME_SEND_MESSAGE(this.player,"Vous avez fm avec succï¿½s.","009900");
       SocketManager.GAME_SEND_Ec_PACKET(this.player,"EF");
       World.get_Succes(this.player.getId()).fm_add(this.player);
     }
@@ -1288,20 +1288,20 @@ public boolean doMage(boolean repeat, Player receiver, Map<Player, ArrayList<Pai
         if(newSink!=objectFm.getPuit())
         {
           if(successN)
-            SocketManager.GAME_SEND_MESSAGE(this.player,"Vous avez réussi à fm cet objet - Le puits actuel de cet objet est "+newSink+".","009900");
+            SocketManager.GAME_SEND_MESSAGE(this.player,"Vous avez rï¿½ussi ï¿½ fm cet objet - Le puits actuel de cet objet est "+newSink+".","009900");
           else
-            SocketManager.GAME_SEND_MESSAGE(this.player,"Vous n'avez pas réussi à fm cet objet - Le puits actuel de cet objet est "+newSink+".","009900");
+            SocketManager.GAME_SEND_MESSAGE(this.player,"Vous n'avez pas rï¿½ussi ï¿½ fm cet objet - Le puits actuel de cet objet est "+newSink+".","009900");
           objectFm.setPuit(newSink);
         }
         else if(successN)
-          SocketManager.GAME_SEND_MESSAGE(this.player,"Vous avez réussi à fm cet objet, mais vous avez perdu certaines statistiques.","009900");
+          SocketManager.GAME_SEND_MESSAGE(this.player,"Vous avez rï¿½ussi ï¿½ fm cet objet, mais vous avez perdu certaines statistiques.","009900");
         else
-          SocketManager.GAME_SEND_MESSAGE(this.player,"Vous n'avez pas réussi à fm cet élément.","009900");
+          SocketManager.GAME_SEND_MESSAGE(this.player,"Vous n'avez pas rï¿½ussi ï¿½ fm cet ï¿½lï¿½ment.","009900");
       }
       else if(successN)
-        SocketManager.GAME_SEND_MESSAGE(this.player,"Vous avez réussi à fm cet objet, mais vous avez perdu certaines statistiques.","009900");
+        SocketManager.GAME_SEND_MESSAGE(this.player,"Vous avez rï¿½ussi ï¿½ fm cet objet, mais vous avez perdu certaines statistiques.","009900");
       else
-        SocketManager.GAME_SEND_MESSAGE(this.player,"Vous n'avez pas réussi à fm cet élément.","009900");
+        SocketManager.GAME_SEND_MESSAGE(this.player,"Vous n'avez pas rï¿½ussi ï¿½ fm cet ï¿½lï¿½ment.","009900");
     }
 
     if(receiver==null)
@@ -2006,25 +2006,25 @@ public boolean doMage(boolean repeat, Player receiver, Map<Player, ArrayList<Pai
     return 0;
   }
 
-  public static float currentStatPower(final GameObject obj, Rune rune)
+  public static double currentStatPower(final GameObject obj, Rune rune)
   {
-    for(final Entry<Long, Long> entry : obj.getStats().getMap().entrySet())
+    for(final Entry<Long, Double> entry : obj.getStats().getMap().entrySet())
     {
       final Long statID=entry.getKey();
-      if(Long.toHexString(statID).toLowerCase().compareTo(rune.getStatId())==0)
+      if(Double.toHexString(statID).toLowerCase().compareTo(rune.getStatId())==0)
       {
         float finalWeight=0; //v2.0 - Divide by 0 handler
-        final float Weight=entry.getValue()*(rune.getPower()/rune.getStatsAdd());
+        final double Weight=entry.getValue()*(rune.getPower()/rune.getStatsAdd());
         if(Weight==0)
           finalWeight=1;
         else
-          finalWeight=Weight;
+          finalWeight=(float) Weight;
         return finalWeight;
       }
-      else if(Long.toHexString(statID).toLowerCase().compareTo(Rune.getNegativeStatByRuneStat(rune.getStatId()))==0)
+      else if(Double.toHexString(statID).toLowerCase().compareTo(Rune.getNegativeStatByRuneStat(rune.getStatId()))==0)
       {
-        float finalWeight=0; //v2.0 - Divide by 0 handler
-        final float Weight=entry.getValue()*(rune.getnPower()/rune.getStatsAdd());
+    	  double finalWeight=0; //v2.0 - Divide by 0 handler
+        final double Weight=(entry.getValue()*(rune.getnPower()/rune.getStatsAdd()));
         if(Weight==0)
           finalWeight=1;
         else

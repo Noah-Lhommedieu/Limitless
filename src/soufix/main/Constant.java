@@ -824,7 +824,7 @@ public class Constant
   }
 
   //v0.01 - Equal stat cost
-  public static int getReqPtsToBoostStatsByClass(int classID, int statID, long value)
+  public static int getReqPtsToBoostStatsByClass(int classID, int statID, double value)
   {
     switch(statID)
     {
@@ -1422,7 +1422,7 @@ public class Constant
       	{
       		perso.learnSpell(51,1,true,false,false);//Lancer de Piece
       		perso.learnSpell(43,1,true,false,false);//Lancer de Pelle
-      		perso.learnSpell(41,1,true,false,false);//Sac animé
+      		perso.learnSpell(41,1,true,false,false);//Sac animï¿½
       	}
         if(lvl>=3)
           perso.learnSpell(49,1,true,false,false);//Pelle Fantomatique
@@ -1466,7 +1466,7 @@ public class Constant
     	  if(lvl >= 1)
       	{
       		perso.learnSpell(61,1,true,false,false);//Sournoiserie
-      		perso.learnSpell(72,1,true,false,false);//Invisibilité
+      		perso.learnSpell(72,1,true,false,false);//Invisibilitï¿½
       		perso.learnSpell(65,1,true,false,false);//Piege sournois
       	}
         if(lvl>=3)
@@ -1827,7 +1827,7 @@ public class Constant
         	{
         		perso.learnSpell(686,1,true,false,false);//Picole
         		perso.learnSpell(692,1,true,false,false);//Gueule de bois
-        		perso.learnSpell(687,1,true,false,false);//Poing enflammé
+        		perso.learnSpell(687,1,true,false,false);//Poing enflammï¿½
         	}
         if(lvl>=3)
           perso.learnSpell(689,1,true,false,false);//Epouvante
@@ -2596,7 +2596,7 @@ public class Constant
       case 88:
         return Main.world.getObjTemplate(9582);
         
-      //Sakochère
+      //Sakochï¿½re
       case 91:
         return Main.world.getObjTemplate(7036);
       //Kramkram

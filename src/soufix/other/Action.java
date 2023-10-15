@@ -748,7 +748,7 @@ public class Action
             player.getStats().addOneStat(123,-player.getStats().getEffect(123));
             player.getStats().addOneStat(119,-player.getStats().getEffect(119));
             player.getStats().addOneStat(126,-player.getStats().getEffect(126));
-            long val = 0;
+            double val = 0;
             if(player.getStatsParcho().getEffect(Constant.STATS_ADD_VITA) != 0) {
             	val = player.getStatsParcho().getEffect(Constant.STATS_ADD_VITA);
             	player.getStatsParcho().addOneStat(Constant.STATS_ADD_VITA,-player.getStatsParcho().getEffect(Constant.STATS_ADD_VITA));
@@ -1346,7 +1346,7 @@ public class Action
           player.addXp(xp);
           player.set_traque(null);//On supprime la traque
           SocketManager.GAME_SEND_STATS_PACKET(player);
-          SocketManager.GAME_SEND_MESSAGE(player,"vous venez de recevoir "+xp+" points d'expérience.","000000");
+          SocketManager.GAME_SEND_MESSAGE(player,"vous venez de recevoir "+xp+" points d'expï¿½rience.","000000");
           return true;
         }
 
@@ -1379,7 +1379,7 @@ public class Action
           }
           if(victimes.size()==0)
           {
-            SocketManager.GAME_SEND_MESSAGE(player,"Nous n'avons pas trouvé de cible à votre niveau, merci de revenir plus tard.","000000");
+            SocketManager.GAME_SEND_MESSAGE(player,"Nous n'avons pas trouvï¿½ de cible ï¿½ votre niveau, merci de revenir plus tard.","000000");
             player.set_traque(null);
             return true;
           }
@@ -1584,7 +1584,7 @@ public class Action
               player.getStats().addOneStat(123,-player.getStats().getEffect(123));
               player.getStats().addOneStat(119,-player.getStats().getEffect(119));
               player.getStats().addOneStat(126,-player.getStats().getEffect(126));
-              long val = 0;
+              double val = 0;
 	            if(player.getStatsParcho().getEffect(Constant.STATS_ADD_VITA) != 0) {
 	            	val = player.getStatsParcho().getEffect(Constant.STATS_ADD_VITA);
 	            	player.getStatsParcho().addOneStat(Constant.STATS_ADD_VITA,-player.getStatsParcho().getEffect(Constant.STATS_ADD_VITA));
@@ -1672,7 +1672,7 @@ public class Action
                 player.getStats().addOneStat(119,-player.getStats().getEffect(119)+player.getStatsParcho().getEffect(119));
                 player.getStats().addOneStat(126,-player.getStats().getEffect(126)+player.getStatsParcho().getEffect(126));
                 player.addCapital((player.getLevel()-1)*5-player.get_capital());
-                long val = 0;
+                double val = 0;
 	            if(player.getStatsParcho().getEffect(Constant.STATS_ADD_VITA) != 0) {
 	            	val = player.getStatsParcho().getEffect(Constant.STATS_ADD_VITA);
 	            	player.getStatsParcho().addOneStat(Constant.STATS_ADD_VITA,-player.getStatsParcho().getEffect(Constant.STATS_ADD_VITA));
@@ -4970,7 +4970,7 @@ public class Action
         	     }
         	    player.songe_reset = true;
         	    player.Song = 0;
-        	    SocketManager.GAME_SEND_MESSAGE(player,"Songe Remis a zéro.");
+        	    SocketManager.GAME_SEND_MESSAGE(player,"Songe Remis a zï¿½ro.");
         	  if(player.getLevel()<179)
               {
                 SocketManager.GAME_SEND_MESSAGE(player,"Vous devez avoir au moins le niveau 180 .");

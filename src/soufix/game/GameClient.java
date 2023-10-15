@@ -880,7 +880,7 @@ public int chek;
         stat=Long.parseLong(packet.substring(2).split(";")[0]);
         if(stat>0)
         {
-          long code=0;
+          double code=0;
           code=Long.parseLong(packet.substring(4).split(";")[1]);
           if(code<0)
             return;
@@ -3087,9 +3087,9 @@ public void setTimeLastTaverne(long timeLastTaverne) {
           if(type>23&&type!=81&&type!=82)
         	  continue;
            calcule ++;
-          for(Entry<Long, Long> entry1 : object.getStats().getMap().entrySet())
+          for(Entry<Long, Double> entry1 : object.getStats().getMap().entrySet())
           {
-            Long jet=entry1.getValue();
+            Double jet=entry1.getValue();
             for(Rune rune : Rune.runes)
             {
               short characteristic=Short.parseShort(Main.world.getObjTemplate(rune.getTemplateId()).getStrTemplate().split("#")[0],16);
@@ -3129,9 +3129,9 @@ public void setTimeLastTaverne(long timeLastTaverne) {
                   if(jet<tauxMin)
                     continue;
 
-                  for(Long i=jet;i>0;i-=tauxMax)
+                  for(double i=jet;i>0;i-=tauxMax)
                   {
-                    Long j=(long) 0;
+                	 double j=(long) 0;
                     if(i>tauxMax)
                       j=(long) tauxMax;
                     else
@@ -8076,7 +8076,7 @@ public void setTimeLastTaverne(long timeLastTaverne) {
         {
           try
           {
-            long code=0;
+        	double code=0;
             code=Integer.parseInt(packet);
             if(code<0)
               return;

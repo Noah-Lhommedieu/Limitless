@@ -225,7 +225,7 @@ public class SpellEffect
             }
 
             String[] args=buff.getArgs().split(";");
-            float coef=1+(target.getTotalStats().getEffect(Constant.STATS_ADD_SAGE)/100);
+            double coef=1+(target.getTotalStats().getEffect(Constant.STATS_ADD_SAGE)/100);
             long renvoie=0;
             try
             {
@@ -1743,7 +1743,7 @@ public class SpellEffect
         {
 
           long a=-newCellId;
-          long finalDmg=Formulas.pushDamage(-newCellId,(caster.isInvocation() ? (long)caster.getInvocator().getLvl() : (long)caster.getLvl()),caster.getTotalStats().getEffect(Constant.STATS_ADD_PUSH),caster.getTotalStats().getEffect(Constant.STATS_REM_PUSH),target.getTotalStats().getEffect(Constant.STATS_ADD_R_PUSH),target.getTotalStats().getEffect(Constant.STATS_REM_R_PUSH));
+          double finalDmg=Formulas.pushDamage(-newCellId,(caster.isInvocation() ? (long)caster.getInvocator().getLvl() : (long)caster.getLvl()),caster.getTotalStats().getEffect(Constant.STATS_ADD_PUSH),caster.getTotalStats().getEffect(Constant.STATS_REM_PUSH),target.getTotalStats().getEffect(Constant.STATS_ADD_R_PUSH),target.getTotalStats().getEffect(Constant.STATS_REM_R_PUSH));
 
           if(finalDmg<1)
             finalDmg=1;
@@ -7025,14 +7025,14 @@ public class SpellEffect
       int armor=0;
       for(SpellEffect SE : target.getBuffsByEffectID(105))
       {
-        long[] stats= { target.getTotalStats().getEffect(118), (int) target.getTotalStats().getEffect(126), target.getTotalStats().getEffect(123), target.getTotalStats().getEffect(119) };
-        long highest=0;
+    	  double[] stats= { target.getTotalStats().getEffect(118), (int) target.getTotalStats().getEffect(126), target.getTotalStats().getEffect(123), target.getTotalStats().getEffect(119) };
+    	  double highest=0;
         for(int i=0;i<stats.length-1;i++)
           if(stats[i]>highest)
             highest=stats[i];
         final long value=SE.getValue();
-        long carac=target.getTotalStats().getEffect(Constant.STATS_ADD_FORC);
-        final long a=value*(100+highest/2+carac/2)/100;
+        double carac=target.getTotalStats().getEffect(Constant.STATS_ADD_FORC);
+        final double a=value*(100+highest/2+carac/2)/100;
         armor+=a;
       }
       if(armor>0)

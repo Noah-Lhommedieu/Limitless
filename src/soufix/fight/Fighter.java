@@ -1022,11 +1022,11 @@ public void setTourplus() {
   {
     if(baseCrit<2)
       return false;
-    long agi=getTotalStats().getEffect(Constant.STATS_ADD_AGIL);
+    double agi=getTotalStats().getEffect(Constant.STATS_ADD_AGIL);
     if(agi<0)
       agi=0;
-    long equipCrit=getTotalStats().getEffect(Constant.STATS_ADD_CC);
-    long negativeCrit=getTotalStats().getEffect(Constant.STATS_REM_CC);
+    double equipCrit=getTotalStats().getEffect(Constant.STATS_ADD_CC);
+    double negativeCrit=getTotalStats().getEffect(Constant.STATS_REM_CC);
     return Formulas.isCriticalHit(baseCrit,equipCrit,negativeCrit,agi);
   }
 
@@ -1035,11 +1035,11 @@ public void setTourplus() {
     Player perso=fighter.getPersonnage();
     if(baseCrit<2)
       return false;
-    long agi=getTotalStats().getEffect(Constant.STATS_ADD_AGIL);
+    double agi=getTotalStats().getEffect(Constant.STATS_ADD_AGIL);
     if(agi<0)
       agi=0;
-    long equipCrit=getTotalStats().getEffect(Constant.STATS_ADD_CC);
-    long negativeCrit=getTotalStats().getEffect(Constant.STATS_REM_CC);
+    double equipCrit=getTotalStats().getEffect(Constant.STATS_ADD_CC);
+    double negativeCrit=getTotalStats().getEffect(Constant.STATS_REM_CC);
     if(fighter.getType()==1&&perso.getItemClasseSpell().containsKey(sSort.getSpellID()))
     {
       int modi=perso.getItemClasseModif(sSort.getSpellID(),287);
@@ -1063,7 +1063,7 @@ public void setTourplus() {
     return 0;
   }
 
-  public long getPa()
+  public double getPa()
   {
     switch(this.type)
     {
@@ -1081,7 +1081,7 @@ public void setTourplus() {
     return 0;
   }
 
-  public long getPm()
+  public double getPm()
   {
     switch(this.type)
     {
@@ -1099,7 +1099,7 @@ public void setTourplus() {
     return 0;
   }
 
-  public long getPros()
+  public double getPros()
   {
     switch(this.type)
     {

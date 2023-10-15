@@ -106,7 +106,7 @@ public class PetEntry
     if(obj==null)
       return 0;
     float cumul=0;
-    for(Entry<Long, Long> entry : obj.getStats().getMap().entrySet())
+    for(Entry<Long, Double> entry : obj.getStats().getMap().entrySet())
       if(entry.getKey()!=Integer.parseInt("320",16)&&entry.getKey()!=Integer.parseInt("326",16)&&entry.getKey()!=Integer.parseInt("328",16)) //textstats of pet
         if(Rune.getRuneByStatId(Long.toHexString(entry.getKey()))!=null)
         {
@@ -191,7 +191,7 @@ public class PetEntry
         {
           if(obj.getStats().getMap().containsKey(statsID))
           {
-            long value=obj.getStats().getMap().get(statsID)+Main.world.getPets(World.getGameObject(this.objectId).getTemplate().getId()).getGain();
+            double value=obj.getStats().getMap().get(statsID)+Main.world.getPets(World.getGameObject(this.objectId).getTemplate().getId()).getGain();
             if(value>this.getMaxStat())
               value=this.getMaxStat();
             obj.getStats().getMap().remove(statsID);
@@ -233,7 +233,7 @@ public class PetEntry
         {
           if(obj.getStats().getMap().containsKey(statsID))
           {
-            long value=obj.getStats().getMap().get(statsID)+Main.world.getPets(World.getGameObject(this.objectId).getTemplate().getId()).getGain();
+            double value=obj.getStats().getMap().get(statsID)+Main.world.getPets(World.getGameObject(this.objectId).getTemplate().getId()).getGain();
             if(value>this.getMaxStat())
               value=this.getMaxStat();
             obj.getStats().getMap().remove(statsID);
@@ -263,7 +263,7 @@ public class PetEntry
         {
           if(obj.getStats().getMap().containsKey(statsID))
           {
-            long value=obj.getStats().getMap().get(statsID)+Main.world.getPets(World.getGameObject(this.objectId).getTemplate().getId()).getGain();
+            double value=obj.getStats().getMap().get(statsID)+Main.world.getPets(World.getGameObject(this.objectId).getTemplate().getId()).getGain();
             if(value>this.getMaxStat())
               value=this.getMaxStat();
             obj.getStats().getMap().remove(statsID);
@@ -354,7 +354,7 @@ public class PetEntry
           {
             if(pet.getNumbMonster(ent.getKey(),monsterEntry.getKey())!=0)
             {
-              long pts=0;
+              double pts=0;
               for(Entry<Integer, Integer> list : obj.getSoulStat().entrySet())
               {
                 if(pet.getNumbMonster(ent.getKey(),list.getKey())!=0) //Do not eat monsters not in eatable list, divide-by-zero handler
@@ -380,7 +380,7 @@ public class PetEntry
               {
                 if(obj.getStats().getMap().containsKey(ent.getKey()))
                 {
-                  long nbr=obj.getStats().getMap().get(ent.getKey());
+                  double nbr=obj.getStats().getMap().get(ent.getKey());
                   if(pts+nbr>this.getMaxStat())
                     pts=this.getMaxStat()-nbr;
                   pts+=nbr;

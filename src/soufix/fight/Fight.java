@@ -41,6 +41,7 @@ import soufix.object.GameObject;
 import soufix.object.ObjectTemplate;
 import soufix.object.entity.Capture;
 import soufix.other.Action;
+import soufix.other.ItemEvolution;
 import soufix.other.OverPower;
 import soufix.quest.Quest;
 import soufix.quest.QuestPlayer;
@@ -1996,8 +1997,8 @@ public void Anti_bug () {
     	endTurn(false,this.getFighterByOrdreJeu());
     current.start_turn = System.currentTimeMillis();
 
-    setCurFighterPa(current.getPa());
-    setCurFighterPm(current.getPm());
+    setCurFighterPa((long) current.getPa());
+    setCurFighterPm((long) current.getPm());
     setCurFighterUsedPa(0);
     setCurFighterUsedPm(0);
 
@@ -2332,10 +2333,10 @@ public void Anti_bug () {
 
       if(SE.getSpell()==200) //Paralyzing poison
       {
-        float inte=SE.getCaster().getTotalStats().getEffect(Constant.STATS_ADD_INTE);
+        double inte=SE.getCaster().getTotalStats().getEffect(Constant.STATS_ADD_INTE);
         if(inte<0)
           inte=0;
-        float pdom=SE.getCaster().getTotalStats().getEffect(Constant.STATS_ADD_PERDOM);
+        double pdom=SE.getCaster().getTotalStats().getEffect(Constant.STATS_ADD_PERDOM);
         if(pdom<0)
           pdom=0;
         dgt=(int)Math.floor(((inte+pdom)/100+1)*dgt);
@@ -2383,8 +2384,8 @@ public void Anti_bug () {
     }
     setCurFighterUsedPa(0);
     setCurFighterUsedPm(0);
-    setCurFighterPa(current.getTotalStats().getEffect(Constant.STATS_ADD_PA));
-    setCurFighterPm(current.getTotalStats().getEffect(Constant.STATS_ADD_PM));
+    setCurFighterPa((long) current.getTotalStats().getEffect(Constant.STATS_ADD_PA));
+    setCurFighterPm((long) current.getTotalStats().getEffect(Constant.STATS_ADD_PM));
     current.refreshEndTurnBuff();
     if(current.getPersonnage()!=null)
       if(current.getPersonnage().isOnline())
@@ -5036,7 +5037,8 @@ public void Anti_bug () {
       if(fighter.getLevelUp())
       {
         player.fullPDV();
-      	player.ItemEvolution();
+        ItemEvolution itemEvo= new ItemEvolution(player);
+      	//itemEvo.OneItemEvoWithObject(player, captWinner, state, null)
       }
     }
 
@@ -5679,7 +5681,7 @@ public void Anti_bug () {
       Fighter higherFighter=null;
       while(temporary1.size()<winners.size())
       {
-        long currentProspecting=-1;
+        double currentProspecting=-1;
         for(Fighter fighter : winners)
         {
           if(fighter.getMob()!=null&&fighter.getMob().getTemplate()!=null&&fighter.getMob().getTemplate().getId()==285&&fighter.getInvocator()!=null)
@@ -6163,7 +6165,7 @@ public void Anti_bug () {
 
             for(Drop drop : temporary3)
             {
-              long charPros=i.getPros();
+            	double charPros=i.getPros();
               if(charPros<1)
                 charPros=1;
               if(this.type == Constant.FIGHT_TYPE_PVM)
