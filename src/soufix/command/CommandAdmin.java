@@ -2308,7 +2308,7 @@ public class CommandAdmin extends AdminUser
       }
       Constant.onLevelUpSpells(perso, perso.getLevel()); // le poss�de Player.SpellMax(perso);
       ItemEvolution itemevo = new ItemEvolution(perso);
-      itemevo.OneItemEvoWithObject(perso, Constant.ITEM_POS_ANNEAU1,Constant.STATS_ADD_CHAN,perso.getObjetByPos(Constant.ITEM_POS_ANNEAU1).getTemplate());    
+      itemevo.OneItemEvoWithVerif(perso, Constant.ITEM_POS_ANNEAU1,Constant.STATS_ADD_CHAN,true,perso.getObjetByPos(Constant.ITEM_POS_ANNEAU1).getTemplate());    
       
       return;
     }

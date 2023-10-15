@@ -255,8 +255,8 @@ public class CommandPlayerpvm {
 			if (msg.length() > 7 && msg.substring(1, 8).equalsIgnoreCase("ItemEvo")) 
 				{
 					ItemEvolution itemEvo = new ItemEvolution(perso);
-					itemEvo.OneItemEvoWithObject(perso, Constant.ITEM_POS_ANNEAU1, Constant.STATS_ADD_CHAN, perso.getObjetByPos(Constant.ITEM_POS_ANNEAU1).getTemplate());		
-						
+					itemEvo.AllItemEvo(perso, 0, true);		
+					SocketManager.GAME_SEND_ASK(perso.getAccount().getGameClient(), perso);	
 							
 				}
 			
