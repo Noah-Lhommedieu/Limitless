@@ -112,6 +112,7 @@ public class Fight
   private int nextId=-100;
   private boolean donjon;
   private boolean archi;
+  ItemEvolution itemEvo;
   private boolean DROP_ONE_TIME;
   //v2.3 - Spectator join PvM
   public int startGuid=-1;
@@ -200,6 +201,7 @@ public class Fight
 
   public Fight(int id, GameMap map, Player perso, MobGroup group)
   {
+	  itemEvo = new ItemEvolution(perso);
 	  OverPowerOfFight = new OverPower();
 	  OverPowerOfFight.setOpLevel(0);
 	  if(perso == null)
@@ -5037,8 +5039,8 @@ public void Anti_bug () {
       if(fighter.getLevelUp())
       {
         player.fullPDV();
-        ItemEvolution itemEvo= new ItemEvolution(player);
-      	//itemEvo.OneItemEvoWithObject(player, captWinner, state, null)
+        
+      	itemEvo.AllItemEvo(fighter.getPersonnage(), 0, true);
       }
     }
 

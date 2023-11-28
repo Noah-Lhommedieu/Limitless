@@ -253,13 +253,8 @@ public class ItemEvolution {
 	{
 		if(prestigePlayer != 0)
 		{
-			
-		
-		
 			if(ConstantStat == 0) //Si on met 0 pour indiquer AllElem
 			{
-				
-			
 				if(allElem) //Si effectivement on veut tous les element
 				{
 					//Pour chaque item dans les objets équipé du joueur
@@ -287,8 +282,6 @@ public class ItemEvolution {
 							}
 						Database.getDynamics().getObjectData().update(objectTemplateDuJoueur);	
 					}
-					
-				
 				}
 			}
 			else // si on veut juste ajouter 1 stats a tous les objets équipé du joueur 

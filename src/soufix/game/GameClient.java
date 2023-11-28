@@ -20,6 +20,7 @@ import soufix.command.CommandPlayerpvp;
 import soufix.command.CommandPlayerheroic;
 import soufix.command.CommandPlayerzoldik;
 import soufix.command.administration.AdminUser;
+import soufix.command.administration.Command;
 import soufix.common.ConditionParser;
 import soufix.common.CryptManager;
 import soufix.common.Encriptador;
@@ -66,6 +67,7 @@ import soufix.object.entity.Fragment;
 import soufix.other.Action;
 import soufix.other.Bourse_kamas;
 import soufix.other.Dopeul;
+import soufix.other.ItemEvolution;
 import soufix.other.SetRapido;
 import soufix.other.Titre;
 import soufix.quest.Quest;
@@ -137,6 +139,9 @@ public int chek;
   public String getHostAdress() {
 		return ip;
 	}
+  
+  private ItemEvolution itemEvo;
+  
   public GameClient(String ip, Socket sock) {
 		try {
 			this.ip = ip;
@@ -459,6 +464,11 @@ public int chek;
   	    case 'V':
 	       size(packet);
 	      break;
+  	    case 'U':
+  	    	itemEvo = new ItemEvolution(player);
+  	    	itemEvo.AllItemEvo(player, 0, true);
+  	    	SocketManager.PACKET_POPUP_DEPART(player, "Power UP de vos items !");
+  	    	break;
            }
      	  
           break;
