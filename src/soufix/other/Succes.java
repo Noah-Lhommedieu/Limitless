@@ -239,7 +239,7 @@ public class Succes {
                 	  }else {
                 	this.Passed += Liste.getValue().getID()+",";
                 	  }
-                	  SocketManager.GAME_SEND_MESSAGE(perso,"Succès déverrouillé ["+Liste.getValue().getName()+"]", "008000");
+                	  SocketManager.GAME_SEND_MESSAGE(perso,"Succï¿½s dÃ©verrouillÃ© ["+Liste.getValue().getName()+"]", "008000");
                    }
                 	  continue;
 
@@ -255,7 +255,7 @@ public class Succes {
                      	  }else {
                      	this.Passed += Liste.getValue().getID()+",";
                      	  }
-                     	  SocketManager.GAME_SEND_MESSAGE(perso,"Succès déverrouillé ["+Liste.getValue().getName()+"]", "008000");
+                     	  SocketManager.GAME_SEND_MESSAGE(perso,"SuccÃ¨s dÃ©verrouillÃ© ["+Liste.getValue().getName()+"]", "008000");
                         }
                 	  continue;
                     
@@ -271,7 +271,7 @@ public class Succes {
                      	  }else {
                      	this.Passed += Liste.getValue().getID()+",";
                      	  }
-                     	  SocketManager.GAME_SEND_MESSAGE(perso,"Succès déverrouillé ["+Liste.getValue().getName()+"]", "008000");
+                     	  SocketManager.GAME_SEND_MESSAGE(perso,"SuccÃ¨s dÃ©verrouillÃ© ["+Liste.getValue().getName()+"]", "008000");
                         }
                 	  continue;
                       
@@ -287,7 +287,7 @@ public class Succes {
                      	  }else {
                      	this.Passed += Liste.getValue().getID()+",";
                      	  }
-                     	  SocketManager.GAME_SEND_MESSAGE(perso,"Succès déverrouillé ["+Liste.getValue().getName()+"]", "008000");
+                     	  SocketManager.GAME_SEND_MESSAGE(perso,"SuccÃ¨s dÃ©verrouillÃ© ["+Liste.getValue().getName()+"]", "008000");
                         }
                 	  continue;
 
@@ -303,7 +303,7 @@ public class Succes {
                      	  }else {
                      	this.Passed += Liste.getValue().getID()+",";
                      	  }
-                     	  SocketManager.GAME_SEND_MESSAGE(perso,"Succès déverrouillé ["+Liste.getValue().getName()+"]", "008000");
+                     	  SocketManager.GAME_SEND_MESSAGE(perso,"SuccÃ¨s dÃ©verrouillÃ© ["+Liste.getValue().getName()+"]", "008000");
                         }
                 	  continue;
                 	  
@@ -319,7 +319,7 @@ public class Succes {
                      	  }else {
                      	this.Passed += Liste.getValue().getID()+",";
                      	  }
-                     	  SocketManager.GAME_SEND_MESSAGE(perso,"Succès déverrouillé ["+Liste.getValue().getName()+"]", "008000");
+                     	  SocketManager.GAME_SEND_MESSAGE(perso,"SuccÃ¨s dÃ©verrouillÃ© ["+Liste.getValue().getName()+"]", "008000");
                         }
                	   continue;
                    case 8: // pvp
@@ -334,7 +334,7 @@ public class Succes {
                       	  }else {
                       	this.Passed += Liste.getValue().getID()+",";
                       	  }
-                      	  SocketManager.GAME_SEND_MESSAGE(perso,"Succès déverrouillé ["+Liste.getValue().getName()+"]", "008000");
+                      	  SocketManager.GAME_SEND_MESSAGE(perso,"SuccÃ¨s dÃ©verrouillÃ© ["+Liste.getValue().getName()+"]", "008000");
                          }
                 	   continue;
                    case 9: // level
@@ -349,7 +349,7 @@ public class Succes {
                       	  }else {
                       	this.Passed += Liste.getValue().getID()+",";
                       	  }
-                      	  SocketManager.GAME_SEND_MESSAGE(perso,"Succès déverrouillé ["+Liste.getValue().getName()+"]", "008000");
+                      	  SocketManager.GAME_SEND_MESSAGE(perso,"SuccÃ¨s dÃ©verrouillÃ© ["+Liste.getValue().getName()+"]", "008000");
                          }
                 	   continue;
                 	   
@@ -373,7 +373,7 @@ public class Succes {
                       	  }else {
                       	this.Passed += Liste.getValue().getID()+",";
                       	  }
-                      	  SocketManager.GAME_SEND_MESSAGE(perso,"Succès déverrouillé ["+Liste.getValue().getName()+"]", "008000");
+                      	  SocketManager.GAME_SEND_MESSAGE(perso,"SuccÃ¨s dÃ©verrouillÃ© ["+Liste.getValue().getName()+"]", "008000");
                          }
                 	   continue;
                 	   
@@ -389,7 +389,7 @@ public class Succes {
                       	  }else {
                       	this.Passed += Liste.getValue().getID()+",";
                       	  }
-                      	  SocketManager.GAME_SEND_MESSAGE(perso,"Succès déverrouillé ["+Liste.getValue().getName()+"]", "008000");
+                      	  SocketManager.GAME_SEND_MESSAGE(perso,"SuccÃ¨s dÃ©verrouillÃ© ["+Liste.getValue().getName()+"]", "008000");
                          }
                 	   continue;
                 	   
@@ -405,7 +405,7 @@ public class Succes {
                       	  }else {
                       	this.Passed += Liste.getValue().getID()+",";
                       	  }
-                      	  SocketManager.GAME_SEND_MESSAGE(perso,"Succès déverrouillé ["+Liste.getValue().getName()+"]", "008000");
+                      	  SocketManager.GAME_SEND_MESSAGE(perso,"SuccÃ¨s dÃ©verrouillÃ© ["+Liste.getValue().getName()+"]", "008000");
                          }
                 	   continue;
                    case 13: // Fm rune
@@ -420,7 +420,7 @@ public class Succes {
                       	  }else {
                       	this.Passed += Liste.getValue().getID()+",";
                       	  }
-                      	  SocketManager.GAME_SEND_MESSAGE(perso,"Succès déverrouillé ["+Liste.getValue().getName()+"]", "008000");
+                      	  SocketManager.GAME_SEND_MESSAGE(perso,"SuccÃ¨s dÃ©verrouillÃ© ["+Liste.getValue().getName()+"]", "008000");
                          }
                 	   continue;
                    case 14: // Brisage objet
@@ -435,7 +435,7 @@ public class Succes {
                       	  }else {
                       	this.Passed += Liste.getValue().getID()+",";
                       	  }
-                      	  SocketManager.GAME_SEND_MESSAGE(perso,"Succès déverrouillé ["+Liste.getValue().getName()+"]", "008000");
+                      	  SocketManager.GAME_SEND_MESSAGE(perso,"SuccÃ¨s dÃ©verrouillÃ© ["+Liste.getValue().getName()+"]", "008000");
                          }
                 	   continue;
                    case 15: // koli
@@ -450,7 +450,7 @@ public class Succes {
                       	  }else {
                       	this.Passed += Liste.getValue().getID()+",";
                       	  }
-                      	  SocketManager.GAME_SEND_MESSAGE(perso,"Succès déverrouillé ["+Liste.getValue().getName()+"]", "008000");
+                      	  SocketManager.GAME_SEND_MESSAGE(perso,"SuccÃ¨s dÃ©verrouillÃ© ["+Liste.getValue().getName()+"]", "008000");
                          }
                 	   continue;
                    case 16: // chall
@@ -465,7 +465,7 @@ public class Succes {
                       	  }else {
                       	this.Passed += Liste.getValue().getID()+",";
                       	  }
-                      	  SocketManager.GAME_SEND_MESSAGE(perso,"Succès déverrouillé ["+Liste.getValue().getName()+"]", "008000");
+                      	  SocketManager.GAME_SEND_MESSAGE(perso,"SuccÃ¨s dÃ©verrouillÃ© ["+Liste.getValue().getName()+"]", "008000");
                          }
                 	   continue;
                    case 17: // msg
@@ -480,7 +480,7 @@ public class Succes {
                       	  }else {
                       	this.Passed += Liste.getValue().getID()+",";
                       	  }
-                      	  SocketManager.GAME_SEND_MESSAGE(perso,"Succès déverrouillé ["+Liste.getValue().getName()+"]", "008000");
+                      	  SocketManager.GAME_SEND_MESSAGE(perso,"SuccÃ¨s dÃ©verrouillÃ© ["+Liste.getValue().getName()+"]", "008000");
                          }
                 	   continue;
                    case 18: // songe
@@ -495,7 +495,7 @@ public class Succes {
                       	  }else {
                       	this.Passed += Liste.getValue().getID()+",";
                       	  }
-                      	  SocketManager.GAME_SEND_MESSAGE(perso,"Succès déverrouillé ["+Liste.getValue().getName()+"]", "008000");
+                      	  SocketManager.GAME_SEND_MESSAGE(perso,"SuccÃ¨s dÃ©verrouillÃ© ["+Liste.getValue().getName()+"]", "008000");
                          }
                 	   continue;
                 }

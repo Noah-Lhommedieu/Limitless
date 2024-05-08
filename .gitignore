@@ -1,3 +1,4 @@
+.idea/
 .metadata
 bin/
 tmp/
@@ -63,3 +64,5 @@ config.conf
 Logs/Ip_logs/5-7-2023/127.0.0.1.txt
 Logs/Ip_logs/15-10-2023/127.0.0.1.txt
 *.txt
+*.xml
+*.xml

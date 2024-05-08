@@ -3569,6 +3569,10 @@ public void setTotal_reculte() {
 			level++;
 
 		}
+		if(((getLevel() + level) > 8000) || getLevel() > 8000)
+		{
+			level = 0;
+		}
 		return level; // l'exp renvoyer est l'exp du niveau correspondant
 	}
 

@@ -1318,9 +1318,7 @@ public class CommandPlayerpvm {
     	// Le switch player prestige = quel num�ro de prestige, le case = le num�ro de prestige, player additem = l'ajout d'un item par ID et quantit�
     	switch(player.prestige) {
     	
-    		
     	case 10: 
-   
     		player.AddItem(10688,1);
     		break;
     	case 20:

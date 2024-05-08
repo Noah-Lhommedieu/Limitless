@@ -1476,7 +1476,7 @@ try {
     	  return;
         case Constant.FIGHT_TYPE_CHALLENGE:
         case Constant.FIGHT_TYPE_AGRESSION:
-        case Constant.FIGHT_TYPE_PVM:
+        case Constant.FIGHT_TYPE_PVM: //PVM action a faire en cas de fin de fight
         case Constant.FIGHT_TYPE_PVT:
         case Constant.FIGHT_TYPE_CONQUETE:
         case Constant.FIGHT_TYPE_DOPEUL:
